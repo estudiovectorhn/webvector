@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Trabajos — Estudio Vector</title>
+  <meta name="description" content="Galería de fotografías y videos de Estudio Vector: campañas, producción de contenido, diseño y proyectos de marketing realizados para clientes en Honduras.">
+  <link rel="canonical" href="https://estudiovectorhn.github.io/webvector/galeria.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estudio Vector">
+  <meta property="og:title" content="Galería de Trabajos — Estudio Vector">
+  <meta property="og:description" content="Fotografías y videos de campañas, producción de contenido y proyectos de Estudio Vector.">
+  <meta property="og:url" content="https://estudiovectorhn.github.io/webvector/galeria.html">
+  <meta property="og:locale" content="es_HN">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=3">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Galería de Trabajos — Estudio Vector",
+    "url": "https://estudiovectorhn.github.io/webvector/galeria.html",
+    "about": { "@id": "https://estudiovectorhn.github.io/webvector/#organizacion" }
+  }
+  </script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="assets/img/logo-vector-blanco.png" alt="Logo Vector MKT">Estudio<span>Vector</span></a>
+    <nav class="main" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="capacitaciones.html">Capacitaciones</a>
+      <a href="marca-personal.html">Marca personal</a>
+      <a href="galeria.html" aria-current="page">Galería</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <p class="etiqueta">Trabajo real, resultados reales</p>
+    <h1>Galería de <em>trabajos</em></h1>
+    <p class="lead">
+      Una muestra de lo que hacemos: campañas, producción de contenido,
+      diseño y proyectos para marcas que confían en Estudio Vector.
+    </p>
+  </div>
+
+  <section class="alt" id="fotos">
+    <div class="wrap">
+      <h2>Fotografías</h2>
+      <div id="galeria-fotos" class="galeria-grid" hidden></div>
+      <p id="fotos-vacio" class="vacio" hidden>Galería en preparación — pronto verás aquí nuestros proyectos.</p>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="wrap">
+      <h2>Videos</h2>
+      <div id="galeria-videos" class="video-grid" hidden></div>
+      <p id="videos-vacio" class="vacio" hidden>Videos en preparación — pronto podrás verlos aquí.</p>
+    </div>
+  </section>
+</main>
+
+<dialog class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+  <p class="pie" id="lightbox-pie"></p>
+</dialog>
+
+<footer class="site">
+  <div class="wrap cols">
+    <div>
+      <img class="logo-footer" src="assets/img/logo-vector-blanco.png" alt="">
+      <strong>Estudio Vector</strong><br>
+      Agencia de marketing, publicidad y capacitaciones.<br>
+      Honduras · <a href="mailto:estudiovectorhn@gmail.com">estudiovectorhn@gmail.com</a>
+    </div>
+    <nav aria-label="Enlaces del sitio">
+      <a href="servicios.html">Servicios</a>
+      <a href="capacitaciones.html">Capacitaciones</a>
+      <a href="marca-personal.html">Marca personal</a>
+      <a href="galeria.html">Galería</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(async function () {
+  let datos = { fotos: [], videos: [] };
+  try {
+    const res = await fetch('assets/data/galeria.json', { cache: 'no-cache' });
+    if (res.ok) datos = await res.json();
+  } catch (e) { /* sin conexión: se muestran los estados vacíos */ }
+
+  // Fotos
+  const gridFotos = document.getElementById('galeria-fotos');
+  const fotosVacio = document.getElementById('fotos-vacio');
+  if (Array.isArray(datos.fotos) && datos.fotos.length) {
+    for (const foto of datos.fotos) {
+      const fig = document.createElement('figure');
+      fig.className = 'foto-item';
+      const img = document.createElement('img');
+      img.src = foto.src;
+      img.alt = foto.titulo || 'Trabajo de Estudio Vector';
+      img.loading = 'lazy';
+      fig.appendChild(img);
+      if (foto.titulo) {
+        const cap = document.createElement('figcaption');
+        cap.textContent = foto.titulo;
+        fig.appendChild(cap);
+      }
+      fig.addEventListener('click', () => abrirLightbox(foto));
+      gridFotos.appendChild(fig);
+    }
+    gridFotos.hidden = false;
+  } else {
+    fotosVacio.hidden = false;
+  }
+
+  // Videos (YouTube, carga diferida: miniatura primero, iframe al hacer clic)
+  const gridVideos = document.getElementById('galeria-videos');
+  const videosVacio = document.getElementById('videos-vacio');
+  if (Array.isArray(datos.videos) && datos.videos.length) {
+    for (const video of datos.videos) {
+      const item = document.createElement('article');
+      item.className = 'video-item';
+      const marco = document.createElement('button');
+      marco.className = 'video-marco';
+      marco.setAttribute('aria-label', 'Reproducir: ' + (video.titulo || 'video'));
+      const thumb = document.createElement('img');
+      thumb.src = 'https://i.ytimg.com/vi/' + video.youtube_id + '/hqdefault.jpg';
+      thumb.alt = '';
+      thumb.loading = 'lazy';
+      const play = document.createElement('span');
+      play.className = 'play';
+      play.textContent = '▶';
+      marco.append(thumb, play);
+      marco.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + video.youtube_id + '?autoplay=1';
+        iframe.title = video.titulo || 'Video de Estudio Vector';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        marco.replaceWith(iframe);
+      });
+      item.appendChild(marco);
+      if (video.titulo || video.descripcion) {
+        const info = document.createElement('div');
+        info.className = 'video-info';
+        if (video.titulo) { const h = document.createElement('h3'); h.textContent = video.titulo; info.appendChild(h); }
+        if (video.descripcion) { const p = document.createElement('p'); p.textContent = video.descripcion; info.appendChild(p); }
+        item.appendChild(info);
+      }
+      gridVideos.appendChild(item);
+    }
+    gridVideos.hidden = false;
+  } else {
+    videosVacio.hidden = false;
+  }
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxPie = document.getElementById('lightbox-pie');
+  function abrirLightbox(foto) {
+    lightboxImg.src = foto.src;
+    lightboxImg.alt = foto.titulo || '';
+    lightboxPie.textContent = [foto.titulo, foto.descripcion].filter(Boolean).join(' — ');
+    lightbox.showModal();
+  }
+  lightbox.addEventListener('click', () => lightbox.close());
+})();
+</script>
+
+</body>
+</html>
