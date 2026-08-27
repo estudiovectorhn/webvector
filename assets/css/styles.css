@@ -66,12 +66,25 @@ header.site .wrap {
   gap: 0.6rem;
 }
 .logo span { color: var(--azul); }
-.logo img { height: 44px; width: auto; }
+.logo img { height: 44px; width: auto; transition: transform 0.3s ease; }
+.logo:hover img { transform: rotate(-8deg) scale(1.06); }
 .logo:hover { text-decoration: none; }
 .logo-footer { height: 88px; width: auto; display: block; margin-bottom: 1rem; }
 nav.main a {
   color: var(--gris); margin-left: 1.5rem; font-weight: 500; font-size: 0.95rem;
+  position: relative;
 }
+nav.main a::after {
+  content: "";
+  position: absolute; left: 0; bottom: -4px;
+  height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--azul), var(--magenta));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+nav.main a:hover::after { transform: scaleX(1); }
+nav.main a[aria-current="page"]::after { display: none; }
 nav.main a:hover { color: var(--tinta); text-decoration: none; }
 nav.main a[aria-current="page"] {
   color: var(--tinta);
@@ -145,14 +158,32 @@ nav.main a[aria-current="page"] {
 .trazo .punta { fill: var(--azul); }
 @media (prefers-reduced-motion: no-preference) {
   .trazo .curva { animation: dibujar 1.6s ease-out forwards; stroke-dashoffset: 700; }
-  .trazo .ancla, .trazo .manejador, .trazo .punta {
+  .trazo .ancla {
+    opacity: 0;
+    animation: aparecer 0.4s ease-out 1.3s forwards, pulso-ancla 3.2s ease-in-out 2.2s infinite;
+  }
+  .trazo .manejador, .trazo .punta {
     opacity: 0; animation: aparecer 0.4s ease-out forwards; animation-delay: 1.3s;
   }
   .trazo .manejador { animation-name: aparecer-manejador; }
+
+  /* Entrada orquestada del hero */
+  .hero > * { animation: subir-fundido 0.65s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+  .hero > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero > *:nth-child(2) { animation-delay: 0.14s; }
+  .hero > *:nth-child(3) { animation-delay: 0.23s; }
+  .hero > *:nth-child(4) { animation-delay: 0.32s; }
+  .hero > *:nth-child(5) { animation-delay: 0.41s; }
 }
 @keyframes dibujar { to { stroke-dashoffset: 0; } }
 @keyframes aparecer { to { opacity: 1; } }
 @keyframes aparecer-manejador { to { opacity: 0.55; } }
+@keyframes pulso-ancla { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: 0.35; } }
+@keyframes subir-fundido { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+/* Revelado al hacer scroll (la clase la agrega assets/js/animaciones.js) */
+.revelar { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.revelar.visible { opacity: 1; transform: none; }
 
 .cta-row { margin-top: 2.4rem; display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn {
@@ -164,7 +195,12 @@ nav.main a[aria-current="page"] {
   transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 .btn:hover { text-decoration: none; transform: translateY(-2px); }
-.btn::after { content: " →"; font-family: var(--mono); }
+.btn::after {
+  content: " →"; font-family: var(--mono);
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.btn:hover::after { transform: translateX(4px); }
 .btn-primary {
   background: linear-gradient(135deg, var(--azul-solido), var(--azul));
   color: #fff;
