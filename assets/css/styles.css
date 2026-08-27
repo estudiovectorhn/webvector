@@ -56,16 +56,14 @@ header.site .wrap {
   letter-spacing: 0.01em;
   color: var(--tinta);
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 .logo span { color: var(--azul); }
-.logo::after {
-  content: "→";
-  color: var(--magenta);
-  margin-left: 0.3rem;
-  font-family: var(--mono);
-  font-weight: 700;
-}
+.logo img { height: 44px; width: auto; filter: brightness(0); }
 .logo:hover { text-decoration: none; }
+.logo-footer { height: 88px; width: auto; display: block; margin-bottom: 1rem; }
 nav.main a {
   color: var(--gris); margin-left: 1.5rem; font-weight: 500; font-size: 0.95rem;
 }
