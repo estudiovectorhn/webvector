@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -97,10 +97,11 @@
             constante y una identidad que no se confunde con nadie más. Esta página es,
             a la vez, su casa digital y la prueba de lo que este servicio puede hacer por ti.
           </p>
-          <div id="videos-director" class="video-grid" hidden></div>
+          
         </div>
       </div>
     </div>
+    <div id="carrusel-director" class="carrusel" hidden></div>
   </section>
 
   <section class="alt">
@@ -141,50 +142,9 @@
   </div>
 </footer>
 
-<script>
-(async function () {
-  try {
-    const res = await fetch('assets/data/galeria.json', { cache: 'no-cache' });
-    if (!res.ok) return;
-    const datos = await res.json();
-    const lista = (datos.videos || []).filter(v => v.categoria === 'marca-personal');
-    if (!lista.length) return;
-    const grid = document.getElementById('videos-director');
-    for (const video of lista) {
-      const item = document.createElement('article');
-      item.className = 'video-item';
-      const marco = document.createElement('button');
-      marco.className = 'video-marco';
-      marco.setAttribute('aria-label', 'Reproducir: ' + (video.titulo || 'video'));
-      const thumb = document.createElement('img');
-      thumb.src = 'https://i.ytimg.com/vi/' + video.youtube_id + '/hqdefault.jpg';
-      thumb.alt = '';
-      thumb.loading = 'lazy';
-      const play = document.createElement('span');
-      play.className = 'play';
-      play.textContent = '▶';
-      marco.append(thumb, play);
-      marco.addEventListener('click', () => {
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube-nocookie.com/embed/' + video.youtube_id + '?autoplay=1';
-        iframe.title = video.titulo || 'Video';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        marco.replaceWith(iframe);
-      });
-      item.appendChild(marco);
-      if (video.titulo) {
-        const info = document.createElement('div');
-        info.className = 'video-info';
-        const h = document.createElement('h3'); h.textContent = video.titulo; info.appendChild(h);
-        item.appendChild(info);
-      }
-      grid.appendChild(item);
-    }
-    grid.hidden = false;
-  } catch (e) { /* sin datos aún */ }
-})();
-</script>
+<dialog class="video-modal" id="video-modal"></dialog>
+
+<script src="assets/js/galeria.js"></script>
 
 </body>
 </html>

@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,18 +56,22 @@
 
   <section class="alt" id="fotos">
     <div class="wrap">
+      <p class="etiqueta">Fotografía</p>
       <h2>Fotografías</h2>
-      <div id="galeria-fotos" class="galeria-grid" hidden></div>
-      <p id="fotos-vacio" class="vacio" hidden>Galería en preparación — pronto verás aquí nuestros proyectos.</p>
+      <p class="section-intro">Pasa el cursor sobre el carrusel para pausarlo; haz clic en una foto para ampliarla.</p>
     </div>
+    <div id="carrusel-fotos" class="carrusel" hidden></div>
+    <div class="wrap"><p id="fotos-vacio" class="vacio" hidden>Galería en preparación — pronto verás aquí nuestros proyectos.</p></div>
   </section>
 
   <section id="videos">
     <div class="wrap">
+      <p class="etiqueta">Video</p>
       <h2>Videos</h2>
-      <div id="galeria-videos" class="video-grid" hidden></div>
-      <p id="videos-vacio" class="vacio" hidden>Videos en preparación — pronto podrás verlos aquí.</p>
+      <p class="section-intro">Haz clic en un video para reproducirlo aquí mismo.</p>
     </div>
+    <div id="carrusel-videos" class="carrusel" data-direccion="reversa" hidden></div>
+    <div class="wrap"><p id="videos-vacio" class="vacio" hidden>Videos en preparación — pronto podrás verlos aquí.</p></div>
   </section>
 </main>
 
@@ -75,6 +79,8 @@
   <img id="lightbox-img" src="" alt="">
   <p class="pie" id="lightbox-pie"></p>
 </dialog>
+
+<dialog class="video-modal" id="video-modal"></dialog>
 
 <footer class="site">
   <div class="wrap cols">
@@ -95,93 +101,7 @@
   </div>
 </footer>
 
-<script>
-(async function () {
-  let datos = { fotos: [], videos: [] };
-  try {
-    const res = await fetch('assets/data/galeria.json', { cache: 'no-cache' });
-    if (res.ok) datos = await res.json();
-  } catch (e) { /* sin conexión: se muestran los estados vacíos */ }
-
-  // Fotos
-  const gridFotos = document.getElementById('galeria-fotos');
-  const fotosVacio = document.getElementById('fotos-vacio');
-  if (Array.isArray(datos.fotos) && datos.fotos.length) {
-    for (const foto of datos.fotos) {
-      const fig = document.createElement('figure');
-      fig.className = 'foto-item';
-      const img = document.createElement('img');
-      img.src = foto.src;
-      img.alt = foto.titulo || 'Trabajo de Estudio Vector';
-      img.loading = 'lazy';
-      fig.appendChild(img);
-      if (foto.titulo) {
-        const cap = document.createElement('figcaption');
-        cap.textContent = foto.titulo;
-        fig.appendChild(cap);
-      }
-      fig.addEventListener('click', () => abrirLightbox(foto));
-      gridFotos.appendChild(fig);
-    }
-    gridFotos.hidden = false;
-  } else {
-    fotosVacio.hidden = false;
-  }
-
-  // Videos (YouTube, carga diferida: miniatura primero, iframe al hacer clic)
-  const gridVideos = document.getElementById('galeria-videos');
-  const videosVacio = document.getElementById('videos-vacio');
-  if (Array.isArray(datos.videos) && datos.videos.length) {
-    for (const video of datos.videos) {
-      const item = document.createElement('article');
-      item.className = 'video-item';
-      const marco = document.createElement('button');
-      marco.className = 'video-marco';
-      marco.setAttribute('aria-label', 'Reproducir: ' + (video.titulo || 'video'));
-      const thumb = document.createElement('img');
-      thumb.src = 'https://i.ytimg.com/vi/' + video.youtube_id + '/hqdefault.jpg';
-      thumb.alt = '';
-      thumb.loading = 'lazy';
-      const play = document.createElement('span');
-      play.className = 'play';
-      play.textContent = '▶';
-      marco.append(thumb, play);
-      marco.addEventListener('click', () => {
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube-nocookie.com/embed/' + video.youtube_id + '?autoplay=1';
-        iframe.title = video.titulo || 'Video de Estudio Vector';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        marco.replaceWith(iframe);
-      });
-      item.appendChild(marco);
-      if (video.titulo || video.descripcion) {
-        const info = document.createElement('div');
-        info.className = 'video-info';
-        if (video.titulo) { const h = document.createElement('h3'); h.textContent = video.titulo; info.appendChild(h); }
-        if (video.descripcion) { const p = document.createElement('p'); p.textContent = video.descripcion; info.appendChild(p); }
-        item.appendChild(info);
-      }
-      gridVideos.appendChild(item);
-    }
-    gridVideos.hidden = false;
-  } else {
-    videosVacio.hidden = false;
-  }
-
-  // Lightbox
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxPie = document.getElementById('lightbox-pie');
-  function abrirLightbox(foto) {
-    lightboxImg.src = foto.src;
-    lightboxImg.alt = foto.titulo || '';
-    lightboxPie.textContent = [foto.titulo, foto.descripcion].filter(Boolean).join(' — ');
-    lightbox.showModal();
-  }
-  lightbox.addEventListener('click', () => lightbox.close());
-})();
-</script>
+<script src="assets/js/galeria.js"></script>
 
 </body>
 </html>
