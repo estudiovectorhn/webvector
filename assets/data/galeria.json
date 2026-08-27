@@ -1,4 +1,29 @@
 {
-  "fotos": [],
+  "fotos": [
+    {
+      "src": "assets/img/galeria/altos-de-valencia.jpg",
+      "titulo": "Proyecto Altos de Valencia",
+      "descripcion": "Campaña de contenido inmobiliario en San Pedro Sula",
+      "categoria": "campanas"
+    },
+    {
+      "src": "assets/img/galeria/parque-produccion-01.jpg",
+      "titulo": "Producción de contenido",
+      "descripcion": "Sesión para parque de diversiones",
+      "categoria": "produccion"
+    },
+    {
+      "src": "assets/img/galeria/parque-produccion-02.jpg",
+      "titulo": "Producción de contenido",
+      "descripcion": "Sesión para parque de diversiones",
+      "categoria": "produccion"
+    },
+    {
+      "src": "assets/img/galeria/parque-produccion-03.webp",
+      "titulo": "Producción de contenido",
+      "descripcion": "Sesión para parque de diversiones",
+      "categoria": "produccion"
+    }
+  ],
   "videos": []
 }

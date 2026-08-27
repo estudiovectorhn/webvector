@@ -1,14 +1,16 @@
-/* Estudio Vector — "El plano de trabajo"
-   Lienzo claro de editor vectorial: retícula, curvas Bézier, anclas y selección. */
+/* Estudio Vector — "El plano de trabajo" (edición nocturna)
+   Blueprint oscuro de editor vectorial: retícula, curvas Bézier, anclas y selección. */
 :root {
-  --papel: #FAFBFD;      /* lienzo */
-  --tinta: #0E1626;      /* texto principal */
-  --azul: #2545D9;       /* azul de selección */
-  --azul-hover: #1B35B8;
-  --magenta: #E93D82;    /* magenta de guía — solo anclas */
-  --guia: #DDE2EC;       /* hairlines */
-  --guia-suave: #EEF1F7; /* retícula de fondo */
-  --gris: #5A6375;       /* texto secundario */
+  --fondo: #0B1220;       /* lienzo nocturno */
+  --panel: #121B2E;       /* superficies */
+  --tinta: #EAEEF6;       /* texto principal */
+  --gris: #A3ADC2;        /* texto secundario */
+  --azul: #5B79FF;        /* azul de selección */
+  --azul-hover: #7A93FF;
+  --azul-solido: #2545D9; /* botones */
+  --magenta: #FF4D8F;     /* magenta de guía — solo anclas */
+  --borde: #243049;       /* hairlines */
+  --reticula: rgba(122, 146, 201, 0.08);
   --blanco: #FFFFFF;
   --max: 1120px;
   --display: "Archivo Black", "Archivo", system-ui, sans-serif;
@@ -19,16 +21,16 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--cuerpo);
-  background-color: var(--papel);
+  background-color: var(--fondo);
   background-image:
-    linear-gradient(var(--guia-suave) 1px, transparent 1px),
-    linear-gradient(90deg, var(--guia-suave) 1px, transparent 1px);
+    linear-gradient(var(--reticula) 1px, transparent 1px),
+    linear-gradient(90deg, var(--reticula) 1px, transparent 1px);
   background-size: 36px 36px;
   color: var(--tinta);
   line-height: 1.65;
   font-size: 17px;
 }
-a { color: var(--azul); text-decoration: none; }
+a { color: var(--azul-hover); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--azul);
@@ -42,9 +44,9 @@ img { max-width: 100%; height: auto; }
 /* ---------- Header ---------- */
 header.site {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(250, 251, 253, 0.92);
+  background: rgba(11, 18, 32, 0.9);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--guia);
+  border-bottom: 1px solid var(--borde);
 }
 header.site .wrap {
   display: flex; align-items: center; justify-content: space-between;
@@ -61,7 +63,7 @@ header.site .wrap {
   gap: 0.6rem;
 }
 .logo span { color: var(--azul); }
-.logo img { height: 44px; width: auto; filter: brightness(0); }
+.logo img { height: 44px; width: auto; }
 .logo:hover { text-decoration: none; }
 .logo-footer { height: 88px; width: auto; display: block; margin-bottom: 1rem; }
 nav.main a {
@@ -81,7 +83,7 @@ nav.main a[aria-current="page"] {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--azul);
+  color: var(--azul-hover);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -90,7 +92,7 @@ nav.main a[aria-current="page"] {
 .etiqueta::before {
   content: "";
   width: 8px; height: 8px;
-  background: var(--blanco);
+  background: var(--fondo);
   border: 2px solid var(--magenta);
   display: inline-block;
 }
@@ -114,7 +116,7 @@ nav.main a[aria-current="page"] {
 .trazo { display: block; width: min(560px, 90%); margin-top: 2.2rem; overflow: visible; }
 .trazo .curva {
   fill: none;
-  stroke: var(--azul);
+  stroke: var(--azul) !important;
   stroke-width: 2.5;
   stroke-dasharray: 700;
   stroke-dashoffset: 0;
@@ -126,7 +128,7 @@ nav.main a[aria-current="page"] {
   opacity: 0.55;
 }
 .trazo .ancla {
-  fill: var(--blanco);
+  fill: var(--fondo);
   stroke: var(--magenta);
   stroke-width: 2;
 }
@@ -153,24 +155,23 @@ nav.main a[aria-current="page"] {
 }
 .btn:hover { text-decoration: none; }
 .btn::after { content: " →"; font-family: var(--mono); }
-.btn-primary { background: var(--azul); color: #fff; }
-.btn-primary:hover { background: var(--azul-hover); }
-.btn-ghost { border: 1.5px solid var(--tinta); color: var(--tinta); background: var(--blanco); }
-.btn-ghost:hover { border-color: var(--azul); color: var(--azul); }
+.btn-primary { background: var(--azul-solido); color: #fff; }
+.btn-primary:hover { background: var(--azul); }
+.btn-ghost { border: 1.5px solid var(--gris); color: var(--tinta); background: transparent; }
+.btn-ghost:hover { border-color: var(--azul); color: var(--azul-hover); }
 
 /* ---------- Secciones ---------- */
 section { padding: 4rem 0; }
 section.alt {
-  background: var(--blanco);
-  border-top: 1px solid var(--guia);
-  border-bottom: 1px solid var(--guia);
+  background: var(--panel);
+  border-top: 1px solid var(--borde);
+  border-bottom: 1px solid var(--borde);
 }
 h2 {
   font-family: var(--display);
   font-size: clamp(1.4rem, 3.2vw, 2rem);
   line-height: 1.2;
   text-transform: uppercase;
-  letter-spacing: 0;
   margin-bottom: 0.7rem;
 }
 .section-intro { color: var(--gris); max-width: 700px; margin-bottom: 1.5rem; }
@@ -183,19 +184,20 @@ h2 {
 }
 .card {
   position: relative;
-  background: var(--blanco);
-  border: 1px solid var(--guia);
+  background: var(--fondo);
+  border: 1px solid var(--borde);
   border-radius: 4px;
   padding: 1.7rem;
   transition: border-color 0.15s ease;
 }
+section:not(.alt) .card { background: var(--panel); }
 .card:hover { border-color: var(--azul); }
 /* handles de selección en las esquinas, como en un editor vectorial */
 .card::before, .card::after {
   content: "";
   position: absolute;
   width: 8px; height: 8px;
-  background: var(--blanco);
+  background: var(--fondo);
   border: 2px solid var(--azul);
   opacity: 0;
   transition: opacity 0.15s ease;
@@ -222,12 +224,13 @@ h2 {
 
 /* ---------- FAQ ---------- */
 details {
-  background: var(--blanco);
-  border: 1px solid var(--guia);
+  background: var(--panel);
+  border: 1px solid var(--borde);
   border-radius: 4px;
   padding: 1.05rem 1.4rem;
   margin-bottom: 0.8rem;
 }
+section.alt details { background: var(--fondo); }
 details[open] { border-color: var(--azul); }
 details summary {
   cursor: pointer; font-weight: 600; font-size: 1.02rem;
@@ -238,7 +241,7 @@ details summary::after {
   content: "+";
   font-family: var(--mono);
   position: absolute; right: 0; top: 0;
-  color: var(--azul); font-weight: 700;
+  color: var(--azul-hover); font-weight: 700;
 }
 details[open] summary::after { content: "−"; }
 details p { margin-top: 0.7rem; color: var(--gris); }
@@ -259,14 +262,15 @@ details p { margin-top: 0.7rem; color: var(--gris); }
 
 /* ---------- Footer ---------- */
 footer.site {
-  background: var(--tinta);
-  color: #B8C0D4;
+  background: #070D19;
+  border-top: 1px solid var(--borde);
+  color: var(--gris);
   padding: 3rem 0;
   margin-top: 3rem;
   font-size: 0.94rem;
 }
 footer.site strong { color: #fff; }
-footer.site a { color: #9FB0FF; }
+footer.site a { color: var(--azul-hover); }
 footer.site .cols { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
 footer.site nav a { display: block; margin-bottom: 0.45rem; }
 
@@ -278,10 +282,10 @@ footer.site nav a { display: block; margin-bottom: 0.45rem; }
 }
 .foto-item {
   position: relative;
-  border: 1px solid var(--guia);
+  border: 1px solid var(--borde);
   border-radius: 4px;
   overflow: hidden;
-  background: var(--blanco);
+  background: var(--fondo);
   cursor: zoom-in;
   padding: 0;
   transition: border-color 0.15s ease;
@@ -291,30 +295,30 @@ footer.site nav a { display: block; margin-bottom: 0.45rem; }
 .foto-item figcaption {
   font-family: var(--mono); font-size: 0.75rem;
   color: var(--gris); padding: 0.5rem 0.7rem;
-  border-top: 1px solid var(--guia);
+  border-top: 1px solid var(--borde);
 }
 .video-grid {
   display: grid; gap: 1.3rem;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   margin-top: 1.6rem;
 }
-.video-item { border: 1px solid var(--guia); border-radius: 4px; overflow: hidden; background: var(--blanco); }
-.video-marco { position: relative; aspect-ratio: 16/9; background: var(--tinta); cursor: pointer; border: 0; padding: 0; width: 100%; display: block; }
+.video-item { border: 1px solid var(--borde); border-radius: 4px; overflow: hidden; background: var(--panel); }
+.video-marco { position: relative; aspect-ratio: 16/9; background: #000; cursor: pointer; border: 0; padding: 0; width: 100%; display: block; }
 .video-marco img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
 .video-marco .play {
   position: absolute; inset: 0; margin: auto;
   width: 64px; height: 64px; border-radius: 50%;
-  background: var(--azul); color: #fff;
+  background: var(--azul-solido); color: #fff;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.5rem; pointer-events: none;
 }
-.video-marco:hover .play { background: var(--azul-hover); }
+.video-marco:hover .play { background: var(--azul); }
 .video-item iframe { width: 100%; aspect-ratio: 16/9; border: 0; display: block; }
 .video-item .video-info { padding: 0.9rem 1.1rem; }
 .video-item h3 { font-size: 1.02rem; font-weight: 700; }
 .video-item p { color: var(--gris); font-size: 0.92rem; margin-top: 0.25rem; }
 .vacio {
-  border: 1.5px dashed var(--guia);
+  border: 1.5px dashed var(--borde);
   border-radius: 6px;
   padding: 3rem 1.5rem;
   text-align: center;
@@ -328,9 +332,9 @@ dialog.lightbox {
   border: 0; padding: 0; background: transparent;
   max-width: min(92vw, 1100px); max-height: 92vh;
 }
-dialog.lightbox::backdrop { background: rgba(14, 22, 38, 0.92); }
+dialog.lightbox::backdrop { background: rgba(3, 6, 12, 0.94); }
 dialog.lightbox img { max-width: 100%; max-height: 85vh; display: block; border-radius: 4px; }
-dialog.lightbox .pie { color: #B8C0D4; font-family: var(--mono); font-size: 0.85rem; margin-top: 0.6rem; text-align: center; }
+dialog.lightbox .pie { color: var(--gris); font-family: var(--mono); font-size: 0.85rem; margin-top: 0.6rem; text-align: center; }
 
 /* ---------- Marca personal / perfil ---------- */
 .perfil {
@@ -341,8 +345,8 @@ dialog.lightbox .pie { color: #B8C0D4; font-family: var(--mono); font-size: 0.85
 }
 .perfil-foto {
   aspect-ratio: 4/5; width: 100%;
-  background: var(--blanco);
-  border: 1px solid var(--guia); border-radius: 4px;
+  background: var(--panel);
+  border: 1px solid var(--borde); border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
   color: var(--gris); font-family: var(--mono); font-size: 0.8rem;
   overflow: hidden;
