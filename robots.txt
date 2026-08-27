@@ -47,4 +47,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://SITE_URL/sitemap.xml
+Sitemap: https://estudiovectorhn.github.io/webvector/sitemap.xml
