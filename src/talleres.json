@@ -1,0 +1,520 @@
+[
+ {
+  "id": "video",
+  "title": "Editor de Video de 0 a Pro",
+  "tagline": "CapCut PC",
+  "grad": "linear-gradient(135deg,#3A0CC9,#8B2BE2 55%,#E0169B)",
+  "goals": [
+   "contenido"
+  ],
+  "level": "De cero a avanzado",
+  "sub": "Aprende a editar videos profesionales para redes sociales con CapCut PC, desde cero hasta nivel avanzado.",
+  "days": [
+   {
+    "d": 26,
+    "m": 9
+   },
+   {
+    "d": 3,
+    "m": 10
+   },
+   {
+    "d": 10,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Sáb 26 sep, 3 y 10 oct",
+  "dw": "sab",
+  "time": "9:00 a.m. a 12:00 m.",
+  "dur": "9 horas",
+  "durNote": "3 sábados",
+  "mode": "Presencial",
+  "price": 3500,
+  "live": true,
+  "take": "Un video editado de principio a fin con calidad profesional, listo para publicar.",
+  "learn": [
+   "Dominar la interfaz de CapCut PC y organizar tus proyectos",
+   "Cortes, ritmo y transiciones que retienen a la audiencia",
+   "Subtítulos automáticos, textos animados y títulos",
+   "Música, efectos de sonido y limpieza de audio",
+   "Corrección de color y filtros con criterio",
+   "Formatos correctos para Reels, TikTok y Facebook",
+   "Exportar en la mejor calidad sin perder nitidez"
+  ],
+  "results": [
+   "Editas los videos de tu negocio sin depender de terceros",
+   "Publicas contenido con más frecuencia y mejor acabado",
+   "Tus videos retienen más y se ven profesionales en cualquier red"
+  ],
+  "ideal": "Emprendedores, creadores de contenido, community managers y personas que quieran ofrecer el servicio de edición.",
+  "note": "Este taller ya inició el 26 de septiembre. Escríbenos para consultar si aún puedes integrarte.",
+  "slug": "taller-edicion-de-video-capcut",
+  "seoTitle": "Taller de edición de video con CapCut PC en San Pedro Sula",
+  "keywords": [
+   "edición de video",
+   "CapCut",
+   "reels",
+   "TikTok"
+  ],
+  "sched": [
+   {
+    "date": "2026-09-26",
+    "start": "09:00",
+    "end": "12:00"
+   },
+   {
+    "date": "2026-10-03",
+    "start": "09:00",
+    "end": "12:00"
+   },
+   {
+    "date": "2026-10-10",
+    "start": "09:00",
+    "end": "12:00"
+   }
+  ],
+  "img": "/img/video.jpg"
+ },
+ {
+  "id": "anuncios",
+  "title": "Creación de Anuncios en Redes Sociales",
+  "tagline": "Facebook e Instagram",
+  "grad": "linear-gradient(135deg,#1C0877,#4B1FE0 50%,#C21CE0)",
+  "goals": [
+   "ventas"
+  ],
+  "level": "Principiante",
+  "sub": "Aprende a crear, gestionar y escalar campañas en Facebook e Instagram para atraer más clientes, desde tu casa.",
+  "days": [
+   {
+    "d": 3,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Sábado 3 de octubre",
+  "dw": "sab",
+  "time": "1:00 p.m. a 6:00 p.m.",
+  "dur": "5 horas",
+  "mode": "Online",
+  "price": 1500,
+  "take": "Tu primera campaña armada y la guía para medir si está funcionando.",
+  "learn": [
+   "Fundamentos de Meta Ads: cómo funciona la plataforma y qué necesitas para empezar",
+   "Audiencias que convierten: segmentar para llegar a las personas adecuadas",
+   "Creación de campañas paso a paso, de la configuración a la publicación",
+   "Cómo armar el anuncio: texto, imagen o video que detiene el scroll",
+   "Optimización: interpretar métricas y mejorar el rendimiento",
+   "Estrategias prácticas para distintos tipos de negocio"
+  ],
+  "results": [
+   "Lanzas tus propias campañas sin pagarle a alguien más",
+   "Inviertes tu presupuesto con criterio y sabes qué medir",
+   "Recibes más mensajes y contactos de clientes interesados"
+  ],
+  "ideal": "Emprendedores, negocios y personas que quieran usar Meta Ads de forma estratégica, desde cualquier parte del país.",
+  "slug": "taller-anuncios-redes-sociales-online",
+  "seoTitle": "Taller online de anuncios en Facebook e Instagram (Meta Ads)",
+  "keywords": [
+   "Meta Ads",
+   "anuncios en Facebook",
+   "anuncios en Instagram",
+   "publicidad digital"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-03",
+    "start": "13:00",
+    "end": "18:00"
+   }
+  ],
+  "img": "/img/anuncios.jpg"
+ },
+ {
+  "id": "celular",
+  "title": "Graba Videos para Redes con tu Celular",
+  "tagline": "Guion, luz, edición y publicación",
+  "grad": "linear-gradient(135deg,#5A12D6,#A11FD8 50%,#FF2E88)",
+  "goals": [
+   "contenido"
+  ],
+  "level": "Principiante",
+  "sub": "De la idea al video publicado: guion, grabación, luz, edición rápida y subida a todas tus redes con una sola app gratis.",
+  "days": [
+   {
+    "d": 4,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Domingo 4 de octubre",
+  "dw": "dom",
+  "time": "10:00 a.m. a 4:00 p.m.",
+  "dur": "6 horas",
+  "mode": "Presencial",
+  "price": 2500,
+  "take": "Un video grabado por ti, editado y publicado en todas tus redes el mismo día.",
+  "learn": [
+   "Armar una idea completa y convertirla en guion que vende",
+   "Usar bien la cámara de tu celular: resolución, enfoque, exposición y estabilidad",
+   "Autograbarte con trípode y hablar con seguridad frente a cámara",
+   "Mejorar la calidad con luz: aro de luz o iluminación profesional",
+   "Edición rápida desde el celular",
+   "Calidad y tamaños correctos para cada red (9:16, 4:5, 1:1)",
+   "Subir y programar en todas tus redes con una sola app gratis"
+  ],
+  "results": [
+   "Grabas contenido de calidad con el equipo que ya tienes",
+   "Tienes un método para pasar de la idea al video en menos tiempo",
+   "Tu marca se ve constante y profesional en todas las redes"
+  ],
+  "ideal": "Dueños de negocio, vendedores, profesionales y marcas personales que quieren aparecer en video y no saben por dónde empezar.",
+  "slug": "taller-grabar-videos-con-celular",
+  "seoTitle": "Taller para grabar videos para redes sociales con tu celular",
+  "keywords": [
+   "grabar videos con celular",
+   "guiones para videos",
+   "contenido para redes",
+   "aro de luz"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-04",
+    "start": "10:00",
+    "end": "16:00"
+   }
+  ],
+  "img": "/img/celular.jpg"
+ },
+ {
+  "id": "ia",
+  "title": "Inteligencia Artificial para Negocios",
+  "tagline": "ChatGPT + Claude",
+  "grad": "linear-gradient(135deg,#150660,#5B21F5 45%,#E0169B)",
+  "goals": [
+   "ia",
+   "ventas"
+  ],
+  "level": "Todos los niveles",
+  "sub": "Usa ChatGPT y Claude orientados al marketing digital y la automatización de tareas de tu negocio.",
+  "days": [
+   {
+    "d": 10,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Sábado 10 de octubre",
+  "dw": "sab",
+  "time": "1:00 p.m. a 5:00 p.m.",
+  "dur": "4 horas",
+  "mode": "Presencial",
+  "price": 2000,
+  "take": "Tu biblioteca de instrucciones listas para copys, guiones, cotizaciones y respuestas.",
+  "learn": [
+   "Cómo pedirle a la IA lo que necesitas: instrucciones claras que dan buenos resultados",
+   "Crear copys, guiones y planes de contenido para tus redes",
+   "Generar cotizaciones, manuales, correos y documentos en minutos",
+   "Analizar tus ventas, clientes y resultados con la IA",
+   "Automatizar respuestas y tareas repetitivas del día a día",
+   "Cuándo usar ChatGPT y cuándo usar Claude"
+  ],
+  "results": [
+   "Ahorras horas de trabajo cada semana",
+   "Produces contenido de marketing sin bloquearte",
+   "Tu negocio trabaja con herramientas que ya usan las empresas líderes"
+  ],
+  "ideal": "Dueños de negocio, gerentes, emprendedores y equipos de marketing y ventas.",
+  "slug": "taller-inteligencia-artificial-para-negocios",
+  "seoTitle": "Taller de inteligencia artificial para negocios con ChatGPT y Claude",
+  "keywords": [
+   "inteligencia artificial",
+   "ChatGPT",
+   "Claude",
+   "automatización",
+   "marketing con IA"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-10",
+    "start": "13:00",
+    "end": "17:00"
+   }
+  ],
+  "img": "/img/ia.jpg"
+ },
+ {
+  "id": "meta",
+  "title": "Taller de Anuncios Meta Ads",
+  "tagline": "Presencial con refrigerio",
+  "grad": "linear-gradient(135deg,#2C02A4,#7B4DFF 50%,#D1036F)",
+  "goals": [
+   "ventas"
+  ],
+  "level": "Principiante a intermedio",
+  "sub": "Taller práctico y en persona: sales con tu cuenta configurada y tu primera campaña lista para vender.",
+  "days": [
+   {
+    "d": 11,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Domingo 11 de octubre",
+  "dw": "dom",
+  "time": "10:00 a.m. a 3:00 p.m.",
+  "dur": "5 horas",
+  "mode": "Presencial",
+  "price": 1900,
+  "extra": "Refrigerio incluido",
+  "take": "Tu cuenta publicitaria configurada y una campaña a WhatsApp lista para activar.",
+  "learn": [
+   "Configurar tu portafolio comercial y cuenta publicitaria",
+   "Método de pago y facturación sin errores",
+   "Elegir el objetivo correcto: mensajes a WhatsApp, ventas o alcance",
+   "Públicos: segmentación por intereses, ubicación y edad",
+   "Presupuesto: cuánto invertir y cómo distribuirlo",
+   "Leer resultados: costo por resultado, alcance y frecuencia",
+   "Optimizar y escalar las campañas que funcionan"
+  ],
+  "results": [
+   "Tu cuenta queda lista y aprendes haciéndolo en vivo",
+   "Recibes mensajes de clientes a tu WhatsApp con tus propias campañas",
+   "Tomas decisiones con números, no a ciegas"
+  ],
+  "ideal": "Negocios y emprendedores que prefieren aprender en persona con acompañamiento directo del instructor.",
+  "slug": "taller-meta-ads-presencial",
+  "seoTitle": "Taller presencial de Meta Ads en San Pedro Sula",
+  "keywords": [
+   "Meta Ads",
+   "campañas a WhatsApp",
+   "administrador de anuncios",
+   "publicidad en Facebook"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-11",
+    "start": "10:00",
+    "end": "15:00"
+   }
+  ],
+  "img": "/img/meta.jpg"
+ },
+ {
+  "id": "whatsapp",
+  "title": "Atención al Cliente y Ventas por WhatsApp",
+  "tagline": "WhatsApp Business",
+  "grad": "linear-gradient(135deg,#3D0FB8,#9A2CE6 55%,#F0409E)",
+  "goals": [
+   "cierre",
+   "ventas"
+  ],
+  "level": "Todos los niveles",
+  "isNew": true,
+  "sub": "Convierte los mensajes que llegan de tus anuncios en ventas cerradas, con orden y buena atención.",
+  "days": [
+   {
+    "d": 17,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Sábado 17 de octubre",
+  "dw": "sab",
+  "time": "1:00 p.m. a 5:00 p.m.",
+  "dur": "4 horas",
+  "mode": "Presencial",
+  "price": 1500,
+  "take": "Tu guion de atención y cierre, y tu WhatsApp Business ordenado con etiquetas.",
+  "learn": [
+   "Configurar WhatsApp Business: perfil, catálogo y respuestas rápidas",
+   "Etiquetas y base de datos de clientes",
+   "Guion de atención: saludo, diagnóstico, oferta y cierre",
+   "Cómo responder objeciones de precio",
+   "Seguimiento a clientes que no respondieron",
+   "Tiempos de respuesta y trato que generan confianza"
+  ],
+  "results": [
+   "Más ventas cerradas con los mismos mensajes",
+   "Tu base de clientes ordenada para volver a venderles",
+   "Tu equipo atiende igual de bien, siempre"
+  ],
+  "ideal": "Vendedores de redes, recepcionistas, dueños de negocio y equipos de atención al cliente.",
+  "slug": "taller-ventas-por-whatsapp",
+  "seoTitle": "Taller de atención al cliente y ventas por WhatsApp Business",
+  "keywords": [
+   "WhatsApp Business",
+   "ventas por WhatsApp",
+   "atención al cliente",
+   "cierre de ventas"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-17",
+    "start": "13:00",
+    "end": "17:00"
+   }
+  ],
+  "img": "/img/whatsapp.jpg"
+ },
+ {
+  "id": "canva",
+  "title": "Diseño de Artes en Canva desde Cero",
+  "tagline": "Sin experiencia previa",
+  "grad": "linear-gradient(135deg,#4A0FC4,#B026E0 50%,#FF4FB8)",
+  "goals": [
+   "contenido"
+  ],
+  "level": "Desde cero",
+  "isNew": true,
+  "sub": "Aprende a crear artes profesionales para tus redes aunque nunca hayas diseñado nada.",
+  "days": [
+   {
+    "d": 18,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Domingo 18 de octubre",
+  "dw": "dom",
+  "time": "10:00 a.m. a 4:00 p.m.",
+  "dur": "6 horas",
+  "mode": "Presencial",
+  "price": 1500,
+  "take": "Tu kit de marca en Canva y tus primeras artes listas para publicar.",
+  "learn": [
+   "Las partes de un arte que vende y cómo se lee",
+   "Tipografías, colores y jerarquía visual",
+   "Plantillas: cómo usarlas sin que tu marca se vea genérica",
+   "Fotos de producto, recortes y fondos",
+   "Formatos para post, historia y portada",
+   "Crear un kit de marca para mantener todo consistente"
+  ],
+  "results": [
+   "Diseñas tus propias publicaciones en minutos",
+   "Tu marca se ve consistente y profesional",
+   "Ahorras en diseño gráfico cada mes"
+  ],
+  "ideal": "Emprendedores, asistentes, vendedores y cualquier persona que quiera diseñar sin experiencia previa.",
+  "slug": "taller-diseno-en-canva",
+  "seoTitle": "Taller de diseño de artes en Canva desde cero",
+  "keywords": [
+   "Canva",
+   "diseño gráfico",
+   "artes para redes sociales",
+   "kit de marca"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-18",
+    "start": "10:00",
+    "end": "16:00"
+   }
+  ],
+  "img": "/img/canva.jpg"
+ },
+ {
+  "id": "foto",
+  "title": "Fotografía Básica para Negocios",
+  "tagline": "Producto, comida y retrato",
+  "grad": "linear-gradient(135deg,#240A8A,#6A1BE6 50%,#E0169B)",
+  "goals": [
+   "contenido"
+  ],
+  "level": "Principiante",
+  "isNew": true,
+  "sub": "Toma fotos profesionales de tus productos, comida y personas. Entiende la cámara y la luz de una vez por todas.",
+  "days": [
+   {
+    "d": 24,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Sábado 24 de octubre",
+  "dw": "sab",
+  "time": "9:00 a.m. a 3:00 p.m.",
+  "dur": "6 horas",
+  "mode": "Presencial",
+  "price": 2500,
+  "take": "Una sesión real de producto hecha por ti y el método para repetirla.",
+  "learn": [
+   "ISO, velocidad de obturación y apertura explicados fácil",
+   "Tipos de plano y composición",
+   "Luz natural, luz artificial y flash",
+   "Fotografía de producto",
+   "Fotografía de comida",
+   "Retrato para marca personal y equipo"
+  ],
+  "results": [
+   "Fotos propias con calidad profesional para tu catálogo",
+   "Tus productos se ven más apetecibles y se venden mejor",
+   "Dejas de depender de fotos de internet"
+  ],
+  "ideal": "Restaurantes, tiendas, emprendedores de producto y personas que inician en la fotografía.",
+  "slug": "taller-fotografia-para-negocios",
+  "seoTitle": "Taller de fotografía básica para negocios",
+  "keywords": [
+   "fotografía de producto",
+   "fotografía de comida",
+   "fotografía básica",
+   "retrato"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-24",
+    "start": "09:00",
+    "end": "15:00"
+   }
+  ],
+  "img": "/img/foto.jpg"
+ },
+ {
+  "id": "power",
+  "title": "Power AI Crea: tu App con IA",
+  "tagline": "Sin ser programador",
+  "grad": "linear-gradient(135deg,#12044F,#4B12D6 45%,#B81FD8)",
+  "goals": [
+   "ia"
+  ],
+  "level": "Intermedio",
+  "isNew": true,
+  "sub": "Crea tu propia aplicación para tu negocio con inteligencia artificial, sin ser programador.",
+  "days": [
+   {
+    "d": 25,
+    "m": 10
+   }
+  ],
+  "dayLabel": "Domingo 25 de octubre",
+  "dw": "dom",
+  "time": "10:00 a.m. a 3:00 p.m.",
+  "dur": "5 horas",
+  "mode": "Presencial",
+  "price": 4000,
+  "take": "Tu propia app funcionando, conectada a una base de datos gratuita.",
+  "learn": [
+   "Qué tipo de app necesita tu negocio: local u online",
+   "Construir la app paso a paso con IA",
+   "Conectar una base de datos gratuita",
+   "Conexiones con correo y notificaciones",
+   "Publicarla y compartirla con tu equipo",
+   "Casos reales: inventarios, citas, pedidos y control de clientes"
+  ],
+  "results": [
+   "Una herramienta hecha a la medida de tu negocio",
+   "Procesos más ordenados sin pagar software caro",
+   "Ventaja real frente a tu competencia"
+  ],
+  "ideal": "Dueños de negocio, administradores y emprendedores que quieren digitalizar sus procesos.",
+  "slug": "taller-crear-app-con-ia",
+  "seoTitle": "Taller Power AI Crea: crea tu propia app con inteligencia artificial",
+  "keywords": [
+   "crear apps con IA",
+   "no-code",
+   "base de datos",
+   "automatización"
+  ],
+  "sched": [
+   {
+    "date": "2026-10-25",
+    "start": "10:00",
+    "end": "15:00"
+   }
+  ],
+  "img": "/img/power.jpg"
+ }
+]

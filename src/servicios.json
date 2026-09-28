@@ -1,0 +1,98 @@
+[
+ {
+  "id": "manejo-de-redes-sociales",
+  "icon": "redes",
+  "title": "Manejo completo de redes sociales",
+  "short": "Tu marca activa, constante y vendiendo en Facebook, Instagram y TikTok, sin que tengas que ocuparte.",
+  "desc": "Nos encargamos de todo el ciclo de tus redes: estrategia, plan de contenido mensual, diseño de artes, copys de venta, videos, programación y reporte. Tu negocio publica con constancia y con un objetivo claro: que te escriban para comprar.",
+  "includes": ["Plan de contenido mensual para aprobación", "Diseño de artes y copys de venta", "Videos y reels según el plan", "Programación en Facebook, Instagram y TikTok", "Historias y fechas especiales", "Reporte mensual de resultados"],
+  "ideal": "Negocios que quieren presencia profesional en redes sin contratar un equipo interno.",
+  "results": ["Publicaciones constantes y con identidad de marca", "Más mensajes y consultas de clientes", "Tiempo libre para atender tu negocio"],
+  "grad": "linear-gradient(135deg,#3A0CC9,#8B2BE2 55%,#E0169B)",
+  "keywords": ["manejo de redes sociales", "community manager", "agencia de redes sociales", "contenido para redes"]
+ },
+ {
+  "id": "produccion-de-video",
+  "icon": "video",
+  "title": "Creación y producción de video",
+  "short": "Videos comerciales, reels y contenido con guion de venta, grabados y editados por profesionales.",
+  "desc": "Desde la idea hasta el video publicado: escribimos el guion con lenguaje comercial, grabamos en tu negocio con equipo profesional y editamos para cada red. Producimos videos promocionales, reels, testimonios, videos de producto y tomas con dron.",
+  "includes": ["Guion comercial enfocado en ventas", "Grabación en locación con equipo profesional", "Tomas con dron (según proyecto)", "Edición, subtítulos, música y color", "Formatos para Reels, TikTok, Facebook y YouTube", "Dirección de cámara para ti y tu equipo"],
+  "ideal": "Marcas que quieren destacar con video, lanzar productos o renovar su imagen.",
+  "results": ["Contenido que detiene el scroll", "Anuncios en video listos para pautar", "Una imagen de marca más profesional"],
+  "grad": "linear-gradient(135deg,#1C0877,#4B1FE0 50%,#C21CE0)",
+  "keywords": ["producción de video", "videos para redes sociales", "video comercial", "creadores de video"]
+ },
+ {
+  "id": "manejo-de-pauta",
+  "icon": "pauta",
+  "title": "Manejo de pauta publicitaria",
+  "short": "Campañas en Meta Ads (Facebook e Instagram) configuradas, optimizadas y medidas por especialistas.",
+  "desc": "Creamos y administramos tus campañas pagadas en Facebook e Instagram: objetivo correcto, públicos bien segmentados, anuncios que convierten y presupuesto controlado. Optimizamos cada semana y te entregamos informes técnicos claros de resultados y costos.",
+  "includes": ["Configuración de portafolio y cuenta publicitaria", "Estrategia y estructura de campañas", "Segmentación de públicos", "Campañas a WhatsApp, mensajes, tráfico o alcance", "Optimización semanal", "Informe técnico de resultados y costo por resultado"],
+  "ideal": "Negocios que ya invierten en anuncios o quieren empezar a hacerlo con criterio.",
+  "results": ["Más conversaciones de clientes interesados", "Presupuesto invertido con datos, no a ciegas", "Visibilidad frente a tu público ideal"],
+  "grad": "linear-gradient(135deg,#2C02A4,#7B4DFF 50%,#D1036F)",
+  "keywords": ["Meta Ads", "manejo de pauta", "publicidad en Facebook", "anuncios en Instagram", "campañas a WhatsApp"]
+ },
+ {
+  "id": "diseno-grafico",
+  "icon": "diseno",
+  "title": "Diseño gráfico y branding",
+  "short": "Logotipos, manuales de marca, artes para redes y material impreso con estrategia detrás.",
+  "desc": "Construimos o renovamos la identidad visual de tu marca y la aplicamos en todo lo que comunica: logotipo, paleta de colores, tipografías, manual de marca, artes para redes, catálogos, rótulos y material impreso.",
+  "includes": ["Diseño de logotipo", "Manual de marca (colores, tipografías, usos del logo)", "Artes para redes sociales", "Catálogos y material de venta", "Diseño de impresos: rótulos, banners, tarjetas", "Adaptación de piezas a cada formato"],
+  "ideal": "Marcas nuevas o negocios que quieren verse más profesionales y coherentes.",
+  "results": ["Una marca reconocible y consistente", "Material listo para vender", "Mayor confianza de tus clientes"],
+  "grad": "linear-gradient(135deg,#4A0FC4,#B026E0 50%,#FF4FB8)",
+  "keywords": ["diseño gráfico", "diseño de logotipo", "manual de marca", "branding", "artes para redes"]
+ },
+ {
+  "id": "asesorias-comerciales",
+  "icon": "asesoria",
+  "title": "Asesorías comerciales",
+  "short": "Acompañamiento estratégico para vender más: diagnóstico, cliente incógnito y plan de acción.",
+  "desc": "Revisamos tu negocio desde los ojos del cliente: cómo te encuentran, cómo te atienden y por qué compran o no compran. Hacemos inspecciones de servicio (cliente incógnito), analizamos tu comunicación y te entregamos un plan de acción concreto para tu equipo.",
+  "includes": ["Diagnóstico comercial y de marketing", "Inspección de servicio / cliente incógnito", "Revisión de atención por WhatsApp y redes", "Informe con hallazgos y prioridades", "Plan de acción para el equipo", "Sesiones de seguimiento"],
+  "ideal": "Dueños de negocio que sienten que venden menos de lo que podrían y quieren saber por qué.",
+  "results": ["Claridad sobre qué frena tus ventas", "Un plan concreto y priorizado", "Mejor experiencia para tus clientes"],
+  "grad": "linear-gradient(135deg,#240A8A,#6A1BE6 50%,#E0169B)",
+  "keywords": ["asesoría comercial", "consultoría de marketing", "cliente incógnito", "estrategia de ventas"]
+ },
+ {
+  "id": "capacitaciones-empresariales",
+  "icon": "empresa",
+  "title": "Capacitaciones empresariales",
+  "short": "Talleres privados para tu equipo: marketing, Meta Ads, IA, video, Canva y ventas por WhatsApp.",
+  "desc": "Llevamos nuestros talleres a tu empresa, adaptados a tu rubro y a tu equipo. Capacitamos equipos de marketing, ventas y atención al cliente con clases prácticas, manuales del participante y grabaciones para repaso. También capacitamos en eventos y seminarios empresariales.",
+  "includes": ["Diagnóstico de necesidades del equipo", "Contenido adaptado a tu empresa", "Clases presenciales en tus instalaciones o en línea", "Manual del participante", "Grabación de las clases", "Certificado Vector MKT"],
+  "ideal": "Empresas, cámaras de comercio, instituciones y equipos de marketing o ventas.",
+  "results": ["Un equipo que sabe ejecutar, no solo teoría", "Procesos de venta y atención más ordenados", "Menor dependencia de terceros"],
+  "grad": "linear-gradient(135deg,#12044F,#4B12D6 45%,#B81FD8)",
+  "keywords": ["capacitaciones empresariales", "capacitación de equipos de ventas", "talleres de marketing para empresas", "formación empresarial"]
+ },
+ {
+  "id": "podcast",
+  "icon": "podcast",
+  "title": "Producción de podcast",
+  "short": "Graba tu podcast en video y audio con calidad profesional y publícalo en todas las plataformas.",
+  "desc": "Te ayudamos a lanzar y producir tu podcast: concepto, formato, grabación en video multicámara y audio profesional, edición y recortes para redes. Ideal para posicionarte como experto y generar contenido para todo el mes con una sola grabación.",
+  "includes": ["Concepto y formato del programa", "Grabación multicámara y audio profesional", "Edición del episodio completo", "Clips cortos para Reels y TikTok", "Portadas y diseño del programa", "Publicación en YouTube y plataformas de audio"],
+  "ideal": "Marcas personales, profesionales, empresas y líderes que quieren posicionarse con contenido de valor.",
+  "results": ["Autoridad y posicionamiento como experto", "Contenido para todo el mes", "Una comunidad fiel alrededor de tu marca"],
+  "grad": "linear-gradient(135deg,#3D0FB8,#9A2CE6 55%,#F0409E)",
+  "keywords": ["producción de podcast", "grabar podcast", "videopodcast", "podcast para empresas"]
+ },
+ {
+  "id": "montaje-de-eventos",
+  "icon": "eventos",
+  "title": "Montaje y cobertura de eventos",
+  "short": "Producción, montaje y cobertura audiovisual de lanzamientos, seminarios y eventos corporativos.",
+  "desc": "Planificamos y montamos eventos de marca: lanzamientos, aperturas, seminarios y ferias. Coordinamos la producción y hacemos la cobertura en foto y video para que el evento también viva en redes antes, durante y después.",
+  "includes": ["Planificación y concepto del evento", "Montaje y ambientación de marca", "Coordinación de producción el día del evento", "Cobertura en fotografía y video", "Contenido para redes en tiempo real", "Video resumen del evento"],
+  "ideal": "Empresas con lanzamientos, aperturas, seminarios, ferias o eventos corporativos.",
+  "results": ["Un evento que proyecta tu marca", "Contenido para seguir comunicando", "Mayor alcance del evento en redes"],
+  "grad": "linear-gradient(135deg,#5A12D6,#A11FD8 50%,#FF2E88)",
+  "keywords": ["montaje de eventos", "eventos corporativos", "cobertura de eventos", "producción de eventos"]
+ }
+]

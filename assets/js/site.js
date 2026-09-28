@@ -1,0 +1,56 @@
+/* Comportamiento común de todas las páginas: menú, copiar WhatsApp, animaciones al hacer scroll */
+(function () {
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const counted = new WeakSet();
+
+  function countUp(el) {
+    const end = +el.dataset.count, suf = el.dataset.suffix || "";
+    if (reduce) { el.textContent = end + suf; return; }
+    const t0 = performance.now(), d = 1200;
+    (function step(t) {
+      const p = Math.min(1, (t - t0) / d);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suf;
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  const io = ("IntersectionObserver" in window) ? new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    el.classList.remove("pre");
+    el.querySelectorAll("[data-count]").forEach(n => { if (!counted.has(n)) { counted.add(n); countUp(n); } });
+    io.unobserve(el);
+  }), { threshold: .12, rootMargin: "0px 0px -40px 0px" }) : null;
+
+  const SEL = ".sechead,.goals,.includes,.steps,.cal,.weekends,.prof .stats,.forum,.allies,.skills,.quote,.contact,.facts,.faq,.seo-block,.svc-grid,.svc,.process,.why,.ctaband,.tp-main,.tp-side";
+  function watch() {
+    document.querySelectorAll(SEL).forEach(el => {
+      if (el.dataset.rv) return; el.dataset.rv = 1; el.classList.add("rv");
+      const r = el.getBoundingClientRect();
+      if (io && !reduce && r.top > window.innerHeight && !el.closest("[hidden]")) el.classList.add("pre");
+      if (io) io.observe(el);
+    });
+  }
+  window.VRAnim = { init: watch, watch };
+
+  /* menú móvil */
+  const tog = document.getElementById("navtoggle"), menu = document.getElementById("sitenav");
+  if (tog && menu) tog.addEventListener("click", () => {
+    const open = tog.getAttribute("aria-expanded") !== "true";
+    tog.setAttribute("aria-expanded", open); menu.classList.toggle("open", open);
+  });
+
+  /* copiar WhatsApp */
+  const cb = document.getElementById("copywa");
+  if (cb) cb.addEventListener("click", async e => {
+    const b = e.currentTarget;
+    try { await navigator.clipboard.writeText("95691481"); b.textContent = "Copiado"; }
+    catch (err) { const r = document.createRange(); r.selectNodeContents(document.getElementById("wanum")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selecciónalo"; }
+    setTimeout(() => b.textContent = "Copiar", 1800);
+  });
+
+  /* encabezado con sombra al hacer scroll */
+  const hdr = document.querySelector(".sitehead");
+  if (hdr) { const f = () => hdr.classList.toggle("scrolled", scrollY > 10); addEventListener("scroll", f, { passive: true }); f(); }
+
+  watch();
+})();

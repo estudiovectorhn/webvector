@@ -1,0 +1,163 @@
+{{HEADER}}
+<main class="wrap" id="contenido">
+  <section class="hero">
+    <div class="hero-text">
+    <div class="eyebrow">Talleres de marketing digital · San Pedro Sula · Octubre 2026</div>
+    <h1>Talleres<span class="g">de octubre</span><span class="sr">: capacitaciones de marketing digital, Meta Ads e inteligencia artificial en San Pedro Sula, Honduras</span></h1>
+    <p class="lead">Capacitaciones prácticas de marketing digital, video e inteligencia artificial para dueños de negocio, emprendedores y equipos de venta. Todos los sábados y domingos.</p>
+    <div class="facts">
+      <div class="fact"><b data-count="10">10</b><span>cupos máximo por taller</span></div>
+      <div class="fact"><b>100%</b><span>clases grabadas para repaso</span></div>
+      <div class="fact"><b data-count="9">9</b><span>talleres en el mes</span></div>
+    </div>
+    <button class="trust" id="trustbtn" type="button"><span class="av"><img src="/img/edgardo-avatar.jpg" alt=""></span><span>Imparte <b>Edgardo A. López</b>, capacitador de <b>+500 alumnos</b> en Honduras y del <b>FORUM RUTA COPÁN 2026</b>.</span></button>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-main"><img src="/img/meta.jpg" alt=""><div class="wm logo-img"></div></div>
+      <div class="hv-sm hv-a"><img src="/img/ia.jpg" alt=""></div>
+      <div class="hv-sm hv-b"><img src="/img/celular.jpg" alt=""></div>
+      <div class="hv-badge"><b>Sábados y domingos</b><span>Octubre 2026 · San Pedro Sula</span></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track">
+    <span>Meta Ads</span><i></i><span>Inteligencia Artificial</span><i></i><span>Edición de video</span><i></i><span>Contenido con celular</span><i></i><span>Canva</span><i></i><span>Fotografía</span><i></i><span>Ventas por WhatsApp</span><i></i><span>Apps con IA</span><i></i>
+    <span>Meta Ads</span><i></i><span>Inteligencia Artificial</span><i></i><span>Edición de video</span><i></i><span>Contenido con celular</span><i></i><span>Canva</span><i></i><span>Fotografía</span><i></i><span>Ventas por WhatsApp</span><i></i><span>Apps con IA</span><i></i>
+  </div></div>
+
+  <nav class="tabs" aria-label="Secciones">
+    <div class="tabs-in" role="tablist">
+      <button class="tab" role="tab" id="tab-talleres" aria-selected="true" data-v="talleres">Talleres</button>
+      <button class="tab" role="tab" id="tab-calendario" aria-selected="false" data-v="calendario">Calendario</button>
+      <button class="tab" role="tab" id="tab-instructor" aria-selected="false" data-v="instructor">Instructor</button>
+    </div>
+  </nav>
+
+  <!-- TALLERES -->
+  <section class="view" id="v-talleres">
+    <div class="sechead"><h2>¿Qué quieres lograr?</h2><p>Elige tu objetivo y te mostramos los talleres que más te sirven.</p></div>
+    <div class="goals" role="group" aria-label="Objetivo">
+      <button class="goal" id="g-ventas" data-g="ventas" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><b>Vender más con anuncios</b><small>Campañas que traen clientes</small></button>
+      <button class="goal" id="g-contenido" data-g="contenido" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg><b>Crear contenido que atrae</b><small>Video, foto y diseño propio</small></button>
+      <button class="goal" id="g-ia" data-g="ia" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/><circle cx="12" cy="12" r="3.5"/></svg><b>Ahorrar tiempo con IA</b><small>Automatiza y produce más</small></button>
+      <button class="goal" id="g-cierre" data-g="cierre" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20l1.3-5.1A8.5 8.5 0 1 1 21 11.5z"/><path d="m8.5 11.5 2.5 2.5 4.5-4.5"/></svg><b>Atender y cerrar ventas</b><small>Convierte mensajes en clientes</small></button>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrar">
+      <button class="chip" aria-pressed="true" data-f="all" id="f-all">Todos</button>
+      <button class="chip" aria-pressed="false" data-f="Presencial" id="f-pres">Presencial</button>
+      <button class="chip" aria-pressed="false" data-f="Online" id="f-online">Online</button>
+      <button class="chip" aria-pressed="false" data-f="sab" id="f-sab">Sábados</button>
+      <button class="chip" aria-pressed="false" data-f="dom" id="f-dom">Domingos</button>
+    </div>
+    <div class="resultline" id="resultline">9 talleres disponibles</div>
+    <div class="list" id="list">{{CARDS}}</div>
+
+    <div class="extras">
+    <div class="includes">
+      <div class="wm logo-img"></div>
+      <h3>Todos los talleres incluyen</h3>
+      <div class="inc">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg>Grabación de la clase para repasar</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20l1.3-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg>Grupo privado de WhatsApp del curso</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg>Certificado oficial Vector MKT</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2A5 5 0 0 1 22 19"/></svg>Grupos de solo 10 personas</div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <h3>Así reservas tu cupo</h3>
+      <div class="step"><i></i><div><b>Elige tu taller</b><span>Revisa fecha, horario y lo que aprenderás.</span></div></div>
+      <div class="step"><i></i><div><b>Escríbenos por WhatsApp</b><span>Toca "Reservar mi cupo" y te confirmamos disponibilidad.</span></div></div>
+      <div class="step"><i></i><div><b>Asegura tu lugar</b><span>Con tu pago quedas inscrito. Solo hay 10 cupos por taller.</span></div></div>
+      <div class="step"><i></i><div><b>Aprende y repasa</b><span>Vives la clase, recibes la grabación y entras al grupo privado.</span></div></div>
+    </div>
+  </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section class="view" id="v-calendario" hidden>
+    <div class="sechead"><h2>Fechas de octubre</h2><p>Toca un día marcado para ver sus talleres.</p></div>
+    <div class="calwrap"><div class="calcol">
+    <div class="cal">
+      <div class="wm logo-img logo-dark"></div>
+      <div class="calhead"><b>Octubre 2026</b><span>Sábados y domingos</span></div>
+      <div class="grid7" id="calgrid"></div>
+      <div class="legend">
+        <span><i style="background:#fff"></i>Taller disponible</span>
+        <span><i style="background:var(--fuchsia-soft)"></i>Taller en curso</span>
+      </div>
+    </div>
+    <div class="weekends" id="weekends">{{WEEKENDS}}</div>
+    </div>
+    <div class="calside"><div class="daypanel" id="daypanel"></div></div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTOR -->
+  <section class="view" id="v-instructor" hidden aria-label="Instructor Edgardo A. López">
+    <article class="prof">
+      <div class="ph">
+        <img src="/img/edgardo.jpg" alt="Edgardo A. López con camisa de Vector MKT">
+        <div class="wm logo-img"></div>
+        <div class="nm"><small>Tu instructor</small><h2>Edgardo A.<br>López</h2></div>
+      </div>
+      <div class="body">
+        <p class="roles">Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial · Asesor publicitario</p>
+        <div class="stats">
+          <div class="stat"><b data-count="15" data-suffix="+">15+</b><span>años en comunicación visual y marketing</span></div>
+          <div class="stat"><b>4</b><span>países con proyectos publicitarios</span></div>
+          <div class="stat"><b data-count="500" data-suffix="+">500+</b><span>alumnos capacitados en Honduras</span></div>
+        </div>
+        <div class="bio">
+          <p>Fundador y Director Creativo de la agencia de marketing <b>Estudio Vector</b>, y fundador de <b>VCloud Multisystems</b>, empresa de desarrollo de software.</p>
+          <p>Capacita a <b>equipos de marketing empresarial</b> y es <b>asesor publicitario de varias empresas en Honduras</b>, acompañándolas en su estrategia, sus campañas y su contenido. Además es diseñador gráfico, publicista y especialista en marketing digital e inteligencia artificial.</p>
+          <p>Domina todas las ramas de la publicidad: digital e impresa, grabación, edición, actuación, dirección creativa y diseño gráfico. Por eso sus clases cubren el proceso completo, desde la idea hasta el anuncio que vende.</p>
+          <p>Ha liderado procesos creativos para marcas internacionales como Chuck E. Cheese en Honduras, El Salvador y República Dominicana, con proyectos en Honduras, Panamá, México y Estados Unidos.</p>
+        </div>
+
+        <div class="forum">
+          <div class="wm logo-img"></div>
+          <span class="lbl">Evento destacado</span>
+          <h3>Forum Ruta Copán 2026<span>Primer seminario de IA para empresarios en Honduras</span></h3>
+          <p>Edgardo fue el capacitador de todo el evento, realizado en el occidente de Honduras.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg><span>Organizado por la <b>Cámara de Comercio e Industrias de Copán</b> y <b>Banco de Occidente</b>, que patrocinó el evento.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2A5 5 0 0 1 22 19"/></svg><span>Participaron empresarios de la región y el <b>equipo de mercadeo de Banco de Occidente</b>.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3.5"/></svg><span>Tema central: inteligencia artificial aplicada a los negocios.</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h4>Ha capacitado con</h4>
+          <div class="allies">
+            <div class="ally"><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></span><div>Cámara de Comercio e Industrias de Copán<small>Forum Ruta Copán 2026</small></div></div>
+            <div class="ally"><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18L12 4 3 10zM5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg></span><div>Banco de Occidente<small>Patrocinador del Forum · capacitación a su equipo de mercadeo</small></div></div>
+            <div class="ally"><span class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2A5 5 0 0 1 22 19"/></svg></span><div>Empresas y emprendedores<small>Más de 500 alumnos en talleres privados y abiertos</small></div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <h4>Áreas de especialidad</h4>
+          <div class="skills">
+            <span>Meta Ads avanzado</span><span>Inteligencia Artificial</span><span>Edición de video</span><span>Fotografía y videografía</span><span>Diseño gráfico</span><span>Diseño web</span><span>Dirección creativa</span><span>Guiones y actuación</span><span>Medios impresos y digitales</span><span>Servicio al cliente</span><span>Desarrollo de software</span>
+          </div>
+        </div>
+
+        <div class="quote"><div class="wm logo-img"></div>Mi misión es ayudarte a integrar la tecnología, la creatividad y la estrategia para que tu negocio crezca de manera inteligente y sostenible.<cite>Edgardo A. López</cite></div>
+      </div>
+    </article>
+  </section>
+
+{{SEO}}
+{{FOOTER}}
+</main>
+
+<div class="cta-bar"><a class="btn" id="maincta" href="https://wa.me/50495691481?text=Hola%20Vector%2C%20quiero%20informaci%C3%B3n%20de%20los%20talleres%20de%20octubre" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg>
+  Reservar mi cupo por WhatsApp</a></div>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" hidden>
+  <div class="sh-scroll" id="shscroll"></div>
+  <div class="sh-cta" id="shcta"></div>
+</div>
