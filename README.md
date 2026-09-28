@@ -17,4 +17,4 @@ Configuración: sin comando de build, comando de inicio `npm start` (o archivo d
 
 ## Sitio anterior
 
-El sitio que antes vivía en este repo quedó guardado en la etiqueta `sitio-anterior-2026-09-27`.
+El sitio que antes vivía en este repo sigue en el historial de git: commit `efb0fe5` (última versión del sitio anterior).
