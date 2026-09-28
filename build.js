@@ -188,7 +188,7 @@ function siteFooter() {
       <b>Talleres</b>${T.slice(0, 5).map(t => `<a href="/talleres/${t.slug}/">${t.title}</a>`).join("")}<a href="/#calendario">Ver calendario completo</a>
     </nav>
     <nav class="ft-nav" aria-label="Servicios">
-      <b>Servicios</b>${SV.slice(0, 6).map(s => `<a href="/servicios/#${s.id}">${s.title}</a>`).join("")}<a href="/servicios/">Todos los servicios</a>
+      <b>Servicios</b>${SV.slice(0, 6).map(s => `<a href="${svPath(s)}">${s.title}</a>`).join("")}<a href="/servicios/">Todos los servicios</a>
     </nav>
     <div class="ft-contact">
       <b>Contacto</b>
@@ -214,6 +214,7 @@ const faqHTML = (items, title) => `<section class="faq" aria-labelledby="faq-t">
 </section>`;
 
 /* ---------------- Datos de preguntas frecuentes ---------------- */
+const svPath = s => `/servicios/${s.id}/`;
 const byId = id => T.find(t => t.id === id);
 const tl = id => { const t = byId(id); return `<a href="/talleres/${t.slug}/">${t.title}</a>`; };
 const FAQ_HOME = [
@@ -232,7 +233,7 @@ const FAQ_HOME = [
   ["¿Quién imparte los talleres?",
     `Edgardo A. López, fundador y Director Creativo de la agencia de marketing Estudio Vector. Es capacitador de equipos de marketing empresarial, asesor publicitario de empresas en Honduras y ha capacitado a más de 500 alumnos. Fue el capacitador del Forum Ruta Copán 2026, organizado por la Cámara de Comercio e Industrias de Copán con el patrocinio de Banco de Occidente.`],
   ["¿Dan capacitaciones privadas para empresas?",
-    `Sí. Llevamos cualquiera de los talleres a tu empresa, adaptados a tu equipo y rubro, en tus instalaciones o en línea. Consulta las <a href="/servicios/#capacitaciones-empresariales">capacitaciones empresariales</a>.`],
+    `Sí. Llevamos cualquiera de los talleres a tu empresa, adaptados a tu equipo y rubro, en tus instalaciones o en línea. Consulta las <a href="/servicios/capacitaciones-empresariales/">capacitaciones empresariales</a>.`],
   ["¿Dónde son los talleres presenciales?",
     `Los talleres presenciales se imparten en el aula de Estudio Vector en San Pedro Sula, Cortés. La ubicación exacta se comparte al confirmar la reserva. El taller de anuncios del 3 de octubre es en línea por Zoom, así que puedes tomarlo desde cualquier parte de Honduras.`],
   ["¿Cómo reservo mi cupo?",
@@ -358,20 +359,20 @@ ${ctaBar(waLink(t), "Reservar mi cupo por WhatsApp")}`;
 function buildServicios() {
   const url = SITE + "/servicios/";
   const svcLD = SV.map(s => ({
-    "@type": "Service", "@id": `${url}#${s.id}`, name: s.title, serviceType: s.title,
+    "@type": "Service", "@id": `${SITE}${svPath(s)}#servicio`, name: s.title, serviceType: s.title,
     description: s.desc, provider: { "@id": ORG_ID }, areaServed: { "@type": "Country", name: "Honduras" },
-    url: `${url}#${s.id}`, keywords: s.keywords.join(", "),
+    url: SITE + svPath(s), keywords: s.keywords.join(", "),
     offers: { "@type": "Offer", priceCurrency: "HNL", availability: "https://schema.org/InStock", url: waText(`Hola Vector, quiero cotizar: ${s.title}.`) }
   }));
-  const orgWithCatalog = Object.assign({}, ORG, { hasOfferCatalog: { "@type": "OfferCatalog", name: "Servicios de marketing digital", itemListElement: SV.map(s => ({ "@type": "Offer", itemOffered: { "@id": `${url}#${s.id}` } })) } });
+  const orgWithCatalog = Object.assign({}, ORG, { hasOfferCatalog: { "@type": "OfferCatalog", name: "Servicios de marketing digital", itemListElement: SV.map(s => ({ "@type": "Offer", itemOffered: { "@id": `${SITE}${svPath(s)}#servicio` } })) } });
   const graph = [orgWithCatalog, PERSON, ...svcLD, faqLD(FAQ_SV), crumbsLD([["Inicio", "/"], ["Servicios", "/servicios/"]]),
     { "@type": "WebPage", url, name: "Servicios de marketing digital en San Pedro Sula", about: { "@id": ORG_ID }, dateModified: TODAY, inLanguage: "es-HN" }];
 
-  const grid = SV.map((s, i) => `<a class="svc-card" href="#${s.id}" style="--g:${s.grad}"><span class="svc-ico">${ART[s.icon]}</span><span class="svc-n">${String(i + 1).padStart(2, "0")}</span><b>${s.title}</b><small>${s.short}</small></a>`).join("");
+  const grid = SV.map((s, i) => `<a class="svc-card" href="${svPath(s)}" style="--g:${s.grad}"><span class="svc-ico">${ART[s.icon]}</span><span class="svc-n">${String(i + 1).padStart(2, "0")}</span><b>${s.title}</b><small>${s.short}</small></a>`).join("");
   const detail = SV.map((s, i) => `<section class="svc" id="${s.id}" aria-labelledby="${s.id}-t">
     <div class="svc-vis" style="background:${s.grad}"><div class="wm logo-img"></div><span class="svc-big">${ART[s.icon]}</span><span class="svc-num">${String(i + 1).padStart(2, "0")}</span></div>
     <div class="svc-txt">
-      <h2 id="${s.id}-t">${s.title}</h2>
+      <h2 id="${s.id}-t"><a href="${svPath(s)}">${s.title}</a></h2>
       <p class="svc-lead">${s.short}</p>
       <p>${s.desc}</p>
       <h3 class="sh-h">Qué incluye</h3>
@@ -380,7 +381,7 @@ function buildServicios() {
         <div><h3 class="sh-h">Ideal para</h3><p class="ideal">${s.ideal}</p></div>
         <div><h3 class="sh-h">Resultados</h3><ul class="svc-res">${s.results.map(r => `<li>${r}</li>`).join("")}</ul></div>
       </div>
-      <a class="btn" href="${waText(`Hola Vector, quiero cotizar el servicio de ${s.title.toLowerCase()}.`)}" target="_blank" rel="noopener">${ICON.wa}Cotizar este servicio</a>
+      <div class="tp-actions"><a class="btn" href="${waText(`Hola Vector, quiero cotizar el servicio de ${s.title.toLowerCase()}.`)}" target="_blank" rel="noopener">${ICON.wa}Cotizar este servicio</a><a class="btn ghost" href="${svPath(s)}">Ver detalles ${ICON.arrow}</a></div>
     </div>
   </section>`).join("\n");
 
@@ -400,7 +401,7 @@ function buildServicios() {
   <div class="marquee" aria-hidden="true"><div class="mq-track">${[1, 2].map(() => SV.map(s => `<span>${s.title}</span><i></i>`).join("")).join("")}</div></div>
 
   <section id="servicios" aria-labelledby="svg-t">
-    <div class="sechead"><h2 id="svg-t">Todo lo que tu marca necesita</h2><p>Toca un servicio para ver qué incluye.</p></div>
+    <div class="sechead"><h2 id="svg-t">Todo lo que tu marca necesita</h2><p>Toca un servicio para ver todos los detalles.</p></div>
     <div class="svc-grid">${grid}</div>
   </section>
 
@@ -451,6 +452,76 @@ ${ctaBar(waText("Hola Vector, quiero una cotización de servicios de marketing."
   write("servicios/index.html", html);
 }
 
+/* ---------------- Página: cada servicio ---------------- */
+function buildServicio(s, i) {
+  const path = svPath(s), url = SITE + path;
+  const wa = waText(`Hola Vector, quiero cotizar el servicio de ${s.title.toLowerCase()}.`);
+  const rel = (s.talleres || []).map(byId).filter(Boolean);
+  const others = SV.filter(x => x.id !== s.id);
+  const svc = {
+    "@type": "Service", "@id": url + "#servicio", name: s.title, serviceType: s.title,
+    description: s.intro + " " + s.desc, provider: { "@id": ORG_ID },
+    areaServed: [{ "@type": "City", name: "San Pedro Sula" }, { "@type": "Country", name: "Honduras" }],
+    url, keywords: s.keywords.join(", "),
+    hasOfferCatalog: { "@type": "OfferCatalog", name: "Qué incluye", itemListElement: s.includes.map(x => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: x } })) },
+    offers: { "@type": "Offer", priceCurrency: "HNL", availability: "https://schema.org/InStock", url: wa }
+  };
+  const graph = [ORG, PERSON, svc, faqLD(s.faq), crumbsLD([["Inicio", "/"], ["Servicios", "/servicios/"], [s.title, path]]),
+    { "@type": "WebPage", "@id": url, url, name: s.seoTitle, description: s.seoDesc, about: { "@id": url + "#servicio" }, dateModified: TODAY, inLanguage: "es-HN" }];
+  const body = `${siteHeader("servicios")}
+<main class="wrap svpage" id="contenido">
+  <nav class="crumbs" aria-label="Ruta"><a href="/">Inicio</a><span>/</span><a href="/servicios/">Servicios</a><span>/</span><span aria-current="page">${s.title}</span></nav>
+  <section class="sv-hero sv-one">
+    <span class="eyebrow">${s.title} · San Pedro Sula, Honduras</span>
+    <h1>${s.seoTitle}</h1>
+    <p class="lead">${s.intro}</p>
+    <div class="tp-actions">
+      <a class="btn" href="${wa}" target="_blank" rel="noopener">${ICON.wa}Cotizar por WhatsApp</a>
+      <a class="btn ghost" href="#detalle">Qué incluye ${ICON.arrow}</a>
+    </div>
+  </section>
+  <div class="svc-detail">
+  <section class="svc" id="detalle" aria-labelledby="det-t">
+    <div class="svc-vis" style="background:${s.grad}"><div class="wm logo-img"></div><span class="svc-big">${ART[s.icon]}</span><span class="svc-num">${String(i + 1).padStart(2, "0")}</span></div>
+    <div class="svc-txt">
+      <h2 id="det-t">${s.title}</h2>
+      <p class="svc-lead">${s.short}</p>
+      <p>${s.desc}</p>
+      <h3 class="sh-h">Qué incluye</h3>
+      <ul class="svc-list">${s.includes.map(x => `<li>${ICON.check}<span>${x}</span></li>`).join("")}</ul>
+      <div class="svc-cols">
+        <div><h3 class="sh-h">Ideal para</h3><p class="ideal">${s.ideal}</p></div>
+        <div><h3 class="sh-h">Resultados</h3><ul class="svc-res">${s.results.map(r => `<li>${r}</li>`).join("")}</ul></div>
+      </div>
+      <a class="btn" href="${wa}" target="_blank" rel="noopener">${ICON.wa}Cotizar este servicio</a>
+    </div>
+  </section>
+  </div>
+  <section class="process" aria-labelledby="pr-t">
+    <h2 id="pr-t" class="sectitle">Cómo trabajamos</h2>
+    <ol class="pr-steps">
+      <li><b>Diagnóstico</b><span>Conversamos sobre tu negocio, tus clientes y tus metas de venta.</span></li>
+      <li><b>Propuesta</b><span>Te enviamos una cotización formal con alcance, entregables y fechas.</span></li>
+      <li><b>Producción</b><span>Ejecutamos el plan con nuestro equipo.</span></li>
+      <li><b>Medición</b><span>Revisamos resultados y costos, y ajustamos para mejorar.</span></li>
+    </ol>
+  </section>
+  ${faqHTML(s.faq, "Preguntas sobre " + s.title.toLowerCase())}
+  ${rel.length ? `<section class="more">
+    <h2 class="sectitle">¿Prefieres aprender a hacerlo tú mismo?</h2>
+    <div class="list">${rel.map(x => VR.cardHTML(x)).join("")}</div>
+  </section>` : ""}
+  <section class="more" aria-labelledby="ot-t">
+    <h2 id="ot-t" class="sectitle">Otros servicios</h2>
+    <div class="svc-grid">${others.map(x => `<a class="svc-card" href="${svPath(x)}" style="--g:${x.grad}"><span class="svc-ico">${ART[x.icon]}</span><b>${x.title}</b><small>${x.short}</small></a>`).join("")}</div>
+  </section>
+  ${siteFooter()}
+</main>
+${ctaBar(wa, "Cotizar por WhatsApp")}`;
+  const html = head({ title: `${s.seoTitle} | Estudio Vector`, desc: s.seoDesc, keywords: s.keywords.join(", ") + ", Honduras, San Pedro Sula", canonical: url, ldGraph: graph }) + "\n" + body + scripts();
+  write(`servicios/${s.id}/index.html`, html);
+}
+
 /* ---------------- Página de campaña de anuncios ---------------- */
 function buildAnuncios() {
   require("./src/page-anuncios.js")({ head, ICON, ART, fmt, T, SITE, ORG, PERSON, tallerLD, faqLD, crumbsLD, faqHTML, siteFooter, write, V, waText });
@@ -471,7 +542,7 @@ ${siteHeader("")}
 
 /* ---------------- sitemap, robots, llms ---------------- */
 function buildMeta() {
-  const urls = [["/", "1.0", "weekly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
+  const urls = [["/", "1.0", "weekly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ...SV.map(s => [svPath(s), "0.9", "monthly"]), ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
   write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(([u, p, f]) => `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority></url>`).join("\n")}
@@ -507,7 +578,7 @@ ${T.map(t => `- [${t.title}](${SITE}/talleres/${t.slug}/): ${t.dayLabel}, ${t.ti
 
 ## Servicios de marketing digital
 
-${SV.map(s => `- [${s.title}](${SITE}/servicios/#${s.id}): ${s.short}`).join("\n")}
+${SV.map(s => `- [${s.seoTitle}](${SITE}${svPath(s)}): ${s.short} ${s.intro}`).join("\n")}
 
 ## Instructor
 
@@ -515,7 +586,7 @@ ${SV.map(s => `- [${s.title}](${SITE}/servicios/#${s.id}): ${s.short}`).join("\n
 
 ## Preguntas frecuentes
 
-${[...FAQ_HOME, ...FAQ_SV].map(([q, a]) => `### ${q}\n${strip(a)}`).join("\n\n")}
+${[...FAQ_HOME, ...FAQ_SV, ...SV.flatMap(s => s.faq)].map(([q, a]) => `### ${q}\n${strip(a)}`).join("\n\n")}
 `;
   write("llms.txt", llms);
 }
@@ -524,6 +595,7 @@ console.log("Generando sitio…");
 buildHome();
 T.forEach(buildTaller);
 buildServicios();
+SV.forEach(buildServicio);
 buildAnuncios();
 build404();
 buildMeta();
