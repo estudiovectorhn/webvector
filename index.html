@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Talleres de Octubre 2026 | Vector Marketing</title>
 <meta name="description" content="Talleres prácticos de Meta Ads, inteligencia artificial, edición de video, Canva y fotografía en San Pedro Sula. Solo 10 cupos por taller. Imparte Edgardo A. López.">
-<meta name="theme-color" content="#08041A">
+<meta name="theme-color" content="#F7F4FF">
 <link rel="canonical" href="https://estudiovector.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vector Marketing">
@@ -18,28 +18,30 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<style>html{color-scheme:dark}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+<style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
-  color-scheme: dark;
-  --bg:#08041A;
-  --bg2:#110830;
-  --surface:#170B3D;
-  --surface2:#21104F;
-  --line:#2F1C66;
-  --line2:rgba(255,255,255,.14);
-  --violet:#7B4DFF;
-  --violet-soft:#B49BFF;
+  color-scheme: light;
+  --bg:#F7F4FF;
+  --bg2:#F0EBFE;
+  --surface:#FFFFFF;
+  --surface2:#F4EFFF;
+  --line:#E4DBFB;
+  --line2:rgba(44,2,164,.12);
+  --violet:#6A3BF5;
+  --violet-soft:#5A2BE0;
   --deep:#2C02A4;
   --fuchsia:#E0169B;
-  --fuchsia-soft:#FF7CC8;
-  --text:#F6F2FF;
-  --muted:#ADA2D3;
-  --dim:#7A6EA8;
-  --ok:#3DDC97;
+  --fuchsia-soft:#C4107C;
+  --text:#160A3A;
+  --muted:#5E5484;
+  --dim:#8C83AF;
+  --ok:#0E9A60;
+  --ink:#0E0630;
+  --shadow:0 18px 40px -24px rgba(44,2,164,.35);
   --grad:linear-gradient(120deg,#3A0CC9 0%,#7B4DFF 45%,#E0169B 100%);
   --display:"Anton","Impact","Arial Narrow",sans-serif;
   --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -301,6 +303,99 @@ section.view{padding-top:20px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (min-width:480px){.kv{grid-template-columns:repeat(4,1fr)}}
+
+/* ===== TEMA CLARO: ajustes ===== */
+.logo-dark{background-image:url("img/logo-morado.png")}
+body{background:
+  radial-gradient(760px 520px at 105% -8%,rgba(224,22,155,.16),transparent 62%),
+  radial-gradient(680px 560px at -18% 10%,rgba(106,59,245,.18),transparent 62%),
+  var(--bg);background-repeat:no-repeat}
+.hero p.lead{color:var(--muted)}
+.pillmonth{background:var(--surface);border-color:var(--line);color:var(--deep);box-shadow:var(--shadow)}
+.fact,.trust{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow);color:var(--text)}
+.fact b{color:var(--deep)}
+.trust b{color:var(--deep)}
+.tabs{background:rgba(247,244,255,.86)}
+.tabs-in{background:var(--surface);box-shadow:var(--shadow);border:1px solid var(--line)}
+.goal{box-shadow:0 10px 26px -20px rgba(44,2,164,.35)}
+.goal[aria-pressed="true"]{background:linear-gradient(var(--surface),var(--surface)) padding-box,var(--grad) border-box}
+.chip[aria-pressed="true"]{background:rgba(106,59,245,.12);color:var(--deep)}
+.card{border-color:var(--line);box-shadow:var(--shadow)}
+.card:hover{box-shadow:0 26px 50px -24px rgba(224,22,155,.45)}
+.cover{color:#fff}
+.datebadge .dw,.cover .by small{color:#FF9AD2}
+.card h3 em{color:var(--fuchsia)}
+.go{background:rgba(106,59,245,.1);color:var(--violet)}
+.includes,.forum,.quote,.hv-badge,.step i,.incl span.hl{color:#fff}
+.forum p{color:rgba(255,255,255,.9)}
+.forum h3 span{color:#FFC4E4}
+.stat{background:var(--surface2)}
+.bio{color:#3A3060}
+.ally,.wk,.inst,.skills span,.kv div,.incl span{background:var(--surface);box-shadow:0 8px 22px -18px rgba(44,2,164,.35)}
+.cal{box-shadow:var(--shadow)}
+.day.we{background:var(--bg2);color:var(--muted)}
+.day.has{background:rgba(106,59,245,.14);color:var(--deep)}
+.day.sel{color:#fff}
+.day .dots i{background:var(--violet)}
+.day.sel .dots i{background:#fff}
+.day .dots i.live{background:var(--fuchsia)}
+.legend i[style*="#fff"]{background:var(--violet)!important}
+.prof{box-shadow:var(--shadow)}
+.prof .nm h2{color:var(--ink)}
+.sh-sub,.ideal{color:var(--muted)}
+.sheet{background:var(--bg)}
+.sh-cta{background:var(--surface)}
+.res{background:rgba(14,154,96,.07);border-color:rgba(14,154,96,.22)}
+.tag.rec{color:#fff}
+.scrim{background:rgba(22,10,58,.55);backdrop-filter:blur(4px)}
+/* pie oscuro para contraste */
+.contact{margin-top:36px;padding:26px 22px;border:0;border-radius:24px;background:linear-gradient(150deg,#12044F,#2C02A4 60%,#7A0F66);color:rgba(255,255,255,.72);box-shadow:var(--shadow)}
+.contact b{color:#fff}
+.copy{border-color:rgba(255,255,255,.3);color:#FFC4E4}
+.foot .logo-img{opacity:.9}
+.foot span{color:rgba(255,255,255,.55)}
+
+/* ===== MARQUESINA ===== */
+html,body{overflow-x:clip}
+.marquee{margin-inline:calc(50% - 50vw);overflow:hidden;background:var(--grad);color:#fff;padding-block:11px;transform:rotate(-1.2deg);box-shadow:0 14px 30px -18px rgba(224,22,155,.7);margin-block:4px 18px}
+.mq-track{display:flex;align-items:center;gap:22px;width:max-content;animation:mq 34s linear infinite}
+.mq-track span{font-family:var(--display);text-transform:uppercase;font-size:20px;letter-spacing:.02em;white-space:nowrap}
+.mq-track i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.75);flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ===== ANIMACIONES ===== */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.86)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes shift{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+@keyframes shine{0%,72%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(260%) skewX(-20deg)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.hero .eyebrow,.hero h1,.hero p.lead,.facts,.trust,.hero-visual{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1{animation-delay:.08s}
+.hero p.lead{animation-delay:.18s}
+.facts{animation-delay:.28s}
+.trust{animation-delay:.36s}
+.hero-visual{animation-delay:.2s}
+.hero h1 .g{background:linear-gradient(90deg,#3A0CC9,#7B4DFF,#E0169B,#7B4DFF,#3A0CC9);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;animation:shift 8s linear infinite alternate}
+.hv-a{animation:floaty 6s ease-in-out infinite}
+.hv-b{animation:floaty 7s ease-in-out -2s infinite}
+.hv-badge{animation:floaty 5.5s ease-in-out -1s infinite}
+.list .card{animation:cardIn .55s cubic-bezier(.2,.8,.2,1) both}
+.day.sel{animation:pop .35s ease}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:shine 4.5s ease-in-out infinite;pointer-events:none}
+.goal{transition:transform .2s,border-color .2s,box-shadow .2s}
+.goal:hover{transform:translateY(-3px)}
+.goal[aria-pressed="true"] svg{animation:pop .4s ease}
+.rv{transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.pre{opacity:.15;transform:translateY(34px)}
+.ally,.skills span{transition:transform .2s}
+.ally:hover{transform:translateX(4px)}
+.skills span:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}.rv.pre{opacity:1;transform:none}}
+@media (min-width:760px){.mq-track span{font-size:24px}}
+@media (min-width:1000px){.contact{padding:30px 36px}}
+
 /* ===== ESCRITORIO ===== */
 .hero-visual{display:none}
 @media (min-width:760px){
@@ -373,7 +468,7 @@ section.view{padding-top:20px}
 <div class="wrap">
   <header class="hero">
     <div class="brandrow">
-      <div class="logo-img" role="img" aria-label="Vector MKT"></div>
+      <div class="logo-img logo-dark" role="img" aria-label="Vector MKT"></div>
       <span class="pillmonth">Octubre 2026</span>
     </div>
     <div class="hero-text">
@@ -381,9 +476,9 @@ section.view{padding-top:20px}
     <h1>Talleres<span class="g">de octubre</span></h1>
     <p class="lead">Capacitaciones prácticas de marketing digital, video e inteligencia artificial para dueños de negocio, emprendedores y equipos de venta. Todos los sábados y domingos.</p>
     <div class="facts">
-      <div class="fact"><b>10</b><span>cupos máximo por taller</span></div>
+      <div class="fact"><b data-count="10">10</b><span>cupos máximo por taller</span></div>
       <div class="fact"><b>100%</b><span>clases grabadas para repaso</span></div>
-      <div class="fact"><b>9</b><span>talleres en el mes</span></div>
+      <div class="fact"><b data-count="9">9</b><span>talleres en el mes</span></div>
     </div>
     <button class="trust" id="trustbtn" type="button"><span class="av"><img src="img/edgardo-avatar.jpg" alt=""></span><span>Imparte <b>Edgardo A. López</b>, capacitador de <b>+500 alumnos</b> en Honduras y del <b>FORUM RUTA COPÁN 2026</b>.</span></button>
     </div>
@@ -394,6 +489,11 @@ section.view{padding-top:20px}
       <div class="hv-badge"><b>Sábados y domingos</b><span>Octubre 2026 · San Pedro Sula</span></div>
     </div>
   </header>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track">
+    <span>Meta Ads</span><i></i><span>Inteligencia Artificial</span><i></i><span>Edición de video</span><i></i><span>Contenido con celular</span><i></i><span>Canva</span><i></i><span>Fotografía</span><i></i><span>Ventas por WhatsApp</span><i></i><span>Apps con IA</span><i></i>
+    <span>Meta Ads</span><i></i><span>Inteligencia Artificial</span><i></i><span>Edición de video</span><i></i><span>Contenido con celular</span><i></i><span>Canva</span><i></i><span>Fotografía</span><i></i><span>Ventas por WhatsApp</span><i></i><span>Apps con IA</span><i></i>
+  </div></div>
 
   <nav class="tabs" aria-label="Secciones">
     <div class="tabs-in" role="tablist">
@@ -449,7 +549,7 @@ section.view{padding-top:20px}
     <div class="sechead"><h2>Fechas de octubre</h2><p>Toca un día marcado para ver sus talleres.</p></div>
     <div class="calwrap"><div class="calcol">
     <div class="cal">
-      <div class="wm logo-img"></div>
+      <div class="wm logo-img logo-dark"></div>
       <div class="calhead"><b>Octubre 2026</b><span>Sábados y domingos</span></div>
       <div class="grid7" id="calgrid"></div>
       <div class="legend">
@@ -474,9 +574,9 @@ section.view{padding-top:20px}
       <div class="body">
         <p class="roles">Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial · Asesor publicitario</p>
         <div class="stats">
-          <div class="stat"><b>15+</b><span>años en comunicación visual y marketing</span></div>
+          <div class="stat"><b data-count="15" data-suffix="+">15+</b><span>años en comunicación visual y marketing</span></div>
           <div class="stat"><b>4</b><span>países con proyectos publicitarios</span></div>
-          <div class="stat"><b>500+</b><span>alumnos capacitados en Honduras</span></div>
+          <div class="stat"><b data-count="500" data-suffix="+">500+</b><span>alumnos capacitados en Honduras</span></div>
         </div>
         <div class="bio">
           <p>Fundador y Director Creativo de la agencia de marketing <b>Estudio Vector</b>, y fundador de <b>VCloud Multisystems</b>, empresa de desarrollo de software.</p>
@@ -783,6 +883,38 @@ document.getElementById("copywa").addEventListener("click",async e=>{
 });
 
 renderList();renderCal();renderWeekends();
+
+/* ANIMACIONES */
+const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+function staggerCards(root){(root||document).querySelectorAll(".list .card").forEach((c,i)=>c.style.animationDelay=(Math.min(i,8)*70)+"ms")}
+function countUp(el){
+  const end=+el.dataset.count,suf=el.dataset.suffix||"",pre=el.textContent.includes("%")?"":"";
+  if(reduce){el.textContent=end+suf;return}
+  const t0=performance.now(),d=1200;
+  (function step(t){const p=Math.min(1,(t-t0)/d),v=Math.round(end*(1-Math.pow(1-p,3)));el.textContent=v+suf;if(p<1)requestAnimationFrame(step)})(t0);
+}
+const counted=new WeakSet();
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target;
+  el.classList.remove("pre");
+  el.querySelectorAll("[data-count]").forEach(n=>{if(!counted.has(n)){counted.add(n);countUp(n)}});
+  if(el.dataset.count&&!counted.has(el)){counted.add(el);countUp(el)}
+  io.unobserve(el);
+}),{threshold:.12,rootMargin:"0px 0px -40px 0px"}):null;
+function watchReveal(){
+  document.querySelectorAll(".sechead,.goals,.includes,.steps,.cal,.weekends,.prof .stats,.forum,.allies,.skills,.quote,.contact,.facts").forEach(el=>{
+    if(el.dataset.rv)return; el.dataset.rv=1; el.classList.add("rv");
+    const r=el.getBoundingClientRect();
+    if(io&&!reduce&&r.top>window.innerHeight&&!el.closest("[hidden]"))el.classList.add("pre");
+    if(io)io.observe(el);
+  });
+}
+const _renderList=renderList; renderList=function(){_renderList();staggerCards(document.getElementById("list"))};
+const _renderCal=renderCal; renderCal=function(){_renderCal();staggerCards(document.getElementById("daypanel"))};
+const _show=show; show=function(v){_show(v);setTimeout(watchReveal,30)};
+staggerCards();watchReveal();
+
 const h=(location.hash||"").slice(1);
 if(["talleres","calendario","instructor"].includes(h))show(h);
 </script>
