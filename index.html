@@ -301,6 +301,71 @@ section.view{padding-top:20px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (min-width:480px){.kv{grid-template-columns:repeat(4,1fr)}}
+/* ===== ESCRITORIO ===== */
+.hero-visual{display:none}
+@media (min-width:760px){
+  .wrap{max-width:1180px;padding-inline:28px}
+  .list{grid-template-columns:repeat(2,1fr);gap:18px}
+  .goals{grid-template-columns:repeat(4,1fr);gap:10px}
+  .goal{padding:14px}
+  .tabs{margin-inline:-28px;padding:12px 28px}
+  .tabs-in{max-width:480px;margin:0 auto}
+  .sechead h2{font-size:34px}
+  .extras{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:start;margin-top:30px}
+  .extras .includes{margin-top:0}
+  .extras .steps{margin-top:0}
+  .calwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start}
+  .calcol{position:sticky;top:90px}
+  .daypanel{margin-top:0}
+  .contact{grid-template-columns:repeat(2,1fr);column-gap:40px}
+  .contact .foot{grid-column:1/-1}
+  .prof{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start;overflow:visible}
+  .prof .ph{aspect-ratio:4/5;position:sticky;top:86px;border-radius:24px 0 0 24px}
+  .prof .ph::after{background:linear-gradient(90deg,transparent 55%,var(--surface) 100%),linear-gradient(180deg,transparent 55%,rgba(44,2,164,.55) 100%)}
+  .prof .body{padding:28px 32px 32px}
+  .prof .nm h2{font-size:58px}
+  .cta-bar{left:auto;right:24px;bottom:20px;padding:0;background:none;width:auto}
+  .cta-bar .btn{padding:14px 22px}
+  /* ficha como modal centrado */
+  .sheet{top:50%;bottom:auto;left:50%;right:auto;width:min(760px,calc(100% - 48px));max-width:none;max-height:88vh;border-radius:24px;transform:translate(-50%,calc(-50% + 40px));opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s}
+  .sheet.on{transform:translate(-50%,-50%);opacity:1}
+  .sh-cover{aspect-ratio:16/7}
+  .sh-in{padding:22px 28px 26px}
+  .results{grid-template-columns:repeat(3,1fr)}
+  .res{flex-direction:column}
+  .sh-cta{flex-direction:row;display:flex;align-items:center;justify-content:space-between;padding:14px 28px}
+  .sh-cta .btn{margin:0;flex:none}
+}
+@media (min-width:1000px){
+  .list{grid-template-columns:repeat(3,1fr)}
+  .calside .list{grid-template-columns:repeat(2,1fr)}
+  .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);column-gap:48px;align-items:center;padding-block:28px 44px}
+  .brandrow{grid-column:1/-1}
+  .hero h1{font-size:clamp(76px,7.4vw,112px)}
+  .hero p.lead{font-size:17px;max-width:44ch}
+  .facts{max-width:520px}
+  .trust{max-width:520px}
+  .hero-visual{display:block;position:relative;height:480px;margin-top:20px}
+  .hv-main{position:absolute;inset:0 0 40px 40px;border-radius:26px;overflow:hidden;isolation:isolate;box-shadow:0 40px 80px -30px rgba(224,22,155,.55)}
+  .hv-main::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 40%,rgba(8,4,26,.6));z-index:1}
+  .hv-main img{width:100%;height:100%;object-fit:cover;display:block}
+  .hv-main .wm{position:absolute;right:-30px;top:20px;width:260px;aspect-ratio:600/464;opacity:.18;transform:rotate(-12deg);z-index:2}
+  .hv-sm{position:absolute;width:200px;aspect-ratio:3/2;border-radius:18px;overflow:hidden;border:3px solid var(--bg);box-shadow:0 20px 40px -15px rgba(0,0,0,.7)}
+  .hv-sm img{width:100%;height:100%;object-fit:cover;display:block}
+  .hv-a{left:0;bottom:0}
+  .hv-b{right:-10px;top:-18px;width:170px}
+  .hv-badge{position:absolute;right:20px;bottom:0;background:var(--grad);border-radius:16px;padding:12px 16px;box-shadow:0 16px 30px -12px rgba(224,22,155,.8)}
+  .hv-badge b{display:block;font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase;line-height:1}
+  .hv-badge span{font-size:12px;opacity:.9}
+  .card h3{font-size:16.5px}
+}
+@media (min-width:760px) and (hover:hover){
+  .card{transition:transform .2s,border-color .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-4px)}
+  .card .cover img.bgimg{transition:transform .5s}
+  .card:hover .cover img.bgimg{transform:scale(1.05)}
+}
+
 </style>
 
 </head>
@@ -311,6 +376,7 @@ section.view{padding-top:20px}
       <div class="logo-img" role="img" aria-label="Vector MKT"></div>
       <span class="pillmonth">Octubre 2026</span>
     </div>
+    <div class="hero-text">
     <div class="eyebrow">Formación que impulsa tu crecimiento</div>
     <h1>Talleres<span class="g">de octubre</span></h1>
     <p class="lead">Capacitaciones prácticas de marketing digital, video e inteligencia artificial para dueños de negocio, emprendedores y equipos de venta. Todos los sábados y domingos.</p>
@@ -320,6 +386,13 @@ section.view{padding-top:20px}
       <div class="fact"><b>9</b><span>talleres en el mes</span></div>
     </div>
     <button class="trust" id="trustbtn" type="button"><span class="av"><img src="img/edgardo-avatar.jpg" alt=""></span><span>Imparte <b>Edgardo A. López</b>, capacitador de <b>+500 alumnos</b> en Honduras y del <b>FORUM RUTA COPÁN 2026</b>.</span></button>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-main"><img src="img/meta.jpg" alt=""><div class="wm logo-img"></div></div>
+      <div class="hv-sm hv-a"><img src="img/ia.jpg" alt=""></div>
+      <div class="hv-sm hv-b"><img src="img/celular.jpg" alt=""></div>
+      <div class="hv-badge"><b>Sábados y domingos</b><span>Octubre 2026 · San Pedro Sula</span></div>
+    </div>
   </header>
 
   <nav class="tabs" aria-label="Secciones">
@@ -349,6 +422,7 @@ section.view{padding-top:20px}
     <div class="resultline" id="resultline"></div>
     <div class="list" id="list"></div>
 
+    <div class="extras">
     <div class="includes">
       <div class="wm logo-img"></div>
       <h3>Todos los talleres incluyen</h3>
@@ -367,11 +441,13 @@ section.view{padding-top:20px}
       <div class="step"><i></i><div><b>Asegura tu lugar</b><span>Con tu pago quedas inscrito. Solo hay 10 cupos por taller.</span></div></div>
       <div class="step"><i></i><div><b>Aprende y repasa</b><span>Vives la clase, recibes la grabación y entras al grupo privado.</span></div></div>
     </div>
+  </div>
   </section>
 
   <!-- CALENDARIO -->
   <section class="view" id="v-calendario" hidden>
     <div class="sechead"><h2>Fechas de octubre</h2><p>Toca un día marcado para ver sus talleres.</p></div>
+    <div class="calwrap"><div class="calcol">
     <div class="cal">
       <div class="wm logo-img"></div>
       <div class="calhead"><b>Octubre 2026</b><span>Sábados y domingos</span></div>
@@ -381,8 +457,10 @@ section.view{padding-top:20px}
         <span><i style="background:var(--fuchsia-soft)"></i>Taller en curso</span>
       </div>
     </div>
-    <div class="daypanel" id="daypanel"></div>
     <div class="weekends" id="weekends"></div>
+    </div>
+    <div class="calside"><div class="daypanel" id="daypanel"></div></div>
+    </div>
   </section>
 
   <!-- INSTRUCTOR -->
