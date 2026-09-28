@@ -1,5 +1,4 @@
-Thumbs.db
-Desktop.ini
 .DS_Store
-*.log
+Thumbs.db
 node_modules/
+*.log

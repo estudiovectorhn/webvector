@@ -1,32 +1,20 @@
-# webvector — Sitio web de Estudio Vector
+# Talleres Vector Marketing
 
-Sitio web oficial de **Estudio Vector**, agencia de marketing digital, publicidad y capacitaciones en Honduras.
+Página de talleres de Estudio Vector, publicada en **https://estudiovector.com**.
 
-## Características
+## Archivos
 
-- **HTML estático puro** — sin frameworks ni build step; carga instantánea.
-- **Optimizado para buscadores de IA (AEO/GEO)**:
-  - Datos estructurados JSON-LD (schema.org): `ProfessionalService`, `Service`, `FAQPage`, `EducationalOrganization`.
-  - [`llms.txt`](llms.txt) — resumen del sitio en formato legible por LLMs.
-  - [`robots.txt`](robots.txt) — permite explícitamente crawlers de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.).
-  - Contenido en formato pregunta-respuesta que los asistentes de IA pueden citar directamente.
-- **SEO tradicional**: sitemap.xml, canonicals, Open Graph, meta descriptions, HTML semántico.
-
-## Estructura
-
-| Archivo | Contenido |
+| Archivo | Para qué sirve |
 |---|---|
-| `index.html` | Inicio: presentación, servicios y FAQ |
-| `servicios.html` | Detalle de servicios de marketing y publicidad |
-| `capacitaciones.html` | Talleres y programas de formación |
-| `nosotros.html` | Misión y forma de trabajo |
-| `contacto.html` | Información de contacto |
-| `talleres/` | Calendario interactivo de talleres del mes (fechas, precios, fichas e instructor) |
+| `index.html` | La página completa. Los talleres (fechas, precios, contenido) están en el arreglo `T` dentro del `<script>`. |
+| `img/` | Portadas de cada taller, foto del instructor, logo, íconos e imagen para compartir (`og-talleres.jpg`). |
+| `server.js` | Servidor mínimo sin dependencias para el hosting Node.js de Hostinger. |
 
 ## Publicación
 
-El sitio está pensado para servirse con **GitHub Pages** (rama `main`, raíz). Al cambiar de dominio, actualizar las URLs absolutas en: canonicals de cada página, `sitemap.xml`, `robots.txt` y `llms.txt`.
+Hostinger despliega automáticamente cada push a `main`.
+Configuración: sin comando de build, comando de inicio `npm start` (o archivo de entrada `server.js`), directorio raíz `./`.
 
-## Contacto
+## Sitio anterior
 
-Estudio Vector · estudiovectorhn@gmail.com · Honduras
+El sitio que antes vivía en este repo quedó guardado en la etiqueta `sitio-anterior-2026-09-27`.
