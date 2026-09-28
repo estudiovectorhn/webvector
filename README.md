@@ -21,6 +21,7 @@ Sitio web oficial de **Estudio Vector**, agencia de marketing digital, publicida
 | `capacitaciones.html` | Talleres y programas de formación |
 | `nosotros.html` | Misión y forma de trabajo |
 | `contacto.html` | Información de contacto |
+| `talleres/` | Calendario interactivo de talleres del mes (fechas, precios, fichas e instructor) |
 
 ## Publicación
 
