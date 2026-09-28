@@ -52,5 +52,16 @@
   const hdr = document.querySelector(".sitehead");
   if (hdr) { const f = () => hdr.classList.toggle("scrolled", scrollY > 10); addEventListener("scroll", f, { passive: true }); f(); }
 
+  /* Píxel de Meta: cada clic a WhatsApp cuenta como cliente potencial (Lead) */
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href*="wa.me/"]');
+    if (!a || !window.fbq) return;
+    const card = a.closest("[data-id]");
+    const name = a.dataset.name || (card && card.dataset.id) || (document.querySelector("h1") || {}).textContent || "WhatsApp";
+    const data = { content_name: String(name).trim().slice(0, 80), currency: "HNL" };
+    if (a.dataset.value) data.value = +a.dataset.value;
+    try { fbq("track", "Lead", data); fbq("track", "Contact"); } catch (err) {}
+  });
+
   watch();
 })();

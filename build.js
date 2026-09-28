@@ -16,6 +16,13 @@ const T = JSON.parse(fs.readFileSync("src/talleres.json", "utf8"));
 const SV = JSON.parse(fs.readFileSync("src/servicios.json", "utf8"));
 const { ICON, ART, fmt, esc, waLink, waText } = VR;
 const V = Date.now().toString(36); // versión de caché para CSS/JS
+const CFG = JSON.parse(fs.readFileSync("src/config.json", "utf8"));
+/* Píxel de Meta: se activa solo cuando src/config.json trae metaPixelId */
+const pixel = () => CFG.metaPixelId ? `<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','${CFG.metaPixelId}');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${CFG.metaPixelId}&ev=PageView&noscript=1"></noscript>` : "";
 
 const write = (p, s) => { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, s); console.log("  ✓", p); };
 const strip = s => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
@@ -152,6 +159,7 @@ ${keywords ? `<meta name="keywords" content="${esc(keywords)}">` : ""}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/assets/css/site.css?v=${V}">
 ${ld({ "@context": "https://schema.org", "@graph": ldGraph })}
+${pixel()}
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>`;
@@ -443,6 +451,11 @@ ${ctaBar(waText("Hola Vector, quiero una cotización de servicios de marketing."
   write("servicios/index.html", html);
 }
 
+/* ---------------- Página de campaña de anuncios ---------------- */
+function buildAnuncios() {
+  require("./src/page-anuncios.js")({ head, ICON, ART, fmt, T, SITE, ORG, PERSON, tallerLD, faqLD, crumbsLD, faqHTML, siteFooter, write, V, waText });
+}
+
 /* ---------------- 404 ---------------- */
 function build404() {
   const html = head({ title: "Página no encontrada | Estudio Vector", desc: "La página que buscas no existe.", canonical: SITE + "/", ldGraph: [ORG] }).replace('content="index,follow,max-image-preview:large,max-snippet:-1"', 'content="noindex"') + `
@@ -458,7 +471,7 @@ ${siteHeader("")}
 
 /* ---------------- sitemap, robots, llms ---------------- */
 function buildMeta() {
-  const urls = [["/", "1.0", "weekly"], ["/servicios/", "0.9", "monthly"], ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
+  const urls = [["/", "1.0", "weekly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
   write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(([u, p, f]) => `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority></url>`).join("\n")}
@@ -511,6 +524,7 @@ console.log("Generando sitio…");
 buildHome();
 T.forEach(buildTaller);
 buildServicios();
+buildAnuncios();
 build404();
 buildMeta();
 console.log("Listo.");
