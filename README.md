@@ -23,7 +23,7 @@ node server.js    # abre http://localhost:3000
 | Portafolio de la página de inicio (videos en `video/`, fotos y pósters en `img/trabajos/`) | `src/trabajos.json` |
 | Estructura de la página de inicio | `src/home.body.html` |
 | Estructura de la página de talleres | `src/talleres.body.html` |
-| Página del Director Creativo | `src/director.body.html` |
+| Página del Director Creativo (videos de capacitaciones y eventos en `src/eventos.json`) | `src/director.body.html` |
 | Encabezado, pie, preguntas frecuentes, página de taller y de servicios | `build.js` |
 | Estilos | `assets/css/site.css` |
 | Interacción (filtros, calendario, ficha) | `assets/js/app.js`, `assets/js/render.js` |
