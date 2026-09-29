@@ -14,6 +14,7 @@ const SITE = "https://estudiovector.com";
 const TODAY = new Date().toISOString().slice(0, 10);
 const T = JSON.parse(fs.readFileSync("src/talleres.json", "utf8"));
 const SV = JSON.parse(fs.readFileSync("src/servicios.json", "utf8"));
+const WORK = JSON.parse(fs.readFileSync("src/trabajos.json", "utf8")); // portafolio: videos y fotos de trabajos
 const { ICON, ART, fmt, esc, waLink, waText } = VR;
 const V = Date.now().toString(36); // versión de caché para CSS/JS
 const CFG = JSON.parse(fs.readFileSync("src/config.json", "utf8"));
@@ -34,6 +35,7 @@ const imgv = f => {
 };
 const versionImgs = s => s.replace(/\/img\/([\w.-]+\.(?:jpe?g|png|webp|svg))(?![\w?])/g, (_, f) => imgv(f));
 
+const ICON_MUTE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m23 9-6 6M17 9l6 6"/></svg>`;
 const write = (p, s) => { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, p.endsWith(".html") ? versionImgs(s) : s); console.log("  ✓", p); };
 const strip = s => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 const ld = obj => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`;
@@ -394,6 +396,16 @@ function buildServicios() {
     </div>
   </section>`).join("\n");
 
+  const reels = WORK.filter(w => w.type === "video").map(w => `<figure class="reel"><video playsinline muted loop preload="none" poster="${w.poster}" data-src="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><button class="snd" type="button" aria-label="Activar sonido">${ICON_MUTE}</button><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`).join("");
+  const photos = WORK.filter(w => w.type === "foto").map(w => `<figure class="shot${w.w > w.h ? " wide" : ""}"><img src="${w.src}" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption>${esc(w.caption)}</figcaption></figure>`).join("");
+  const work = `
+  <section class="work" id="trabajo" aria-labelledby="wk-t">
+    <div class="sechead"><h2 id="wk-t">Nuestro trabajo</h2><p>Videos y fotografías producidos por Estudio Vector para marcas de Honduras.</p></div>
+    <div class="reels" aria-label="Videos producidos">${reels}</div>
+    <div class="shots" aria-label="Fotografías producidas">${photos}</div>
+    <a class="btn" href="${waText("Hola Vector, vi su portafolio y quiero cotizar producción de video o fotografía.")}" target="_blank" rel="noopener">${ICON.wa}Quiero algo así para mi marca</a>
+  </section>`;
+
   const body = `${siteHeader("servicios")}
 <main class="wrap svpage" id="contenido">
   <section class="sv-hero">
@@ -402,7 +414,7 @@ function buildServicios() {
     <p class="lead">Estrategia, contenido, publicidad y capacitación en un solo equipo. Nos encargamos de que tu marca se vea profesional, llegue a las personas correctas y convierta mensajes en ventas.</p>
     <div class="tp-actions">
       <a class="btn" href="${waText("Hola Vector, quiero una cotización de servicios de marketing.")}" target="_blank" rel="noopener">${ICON.wa}Pedir cotización</a>
-      <a class="btn ghost" href="#servicios">Ver servicios ${ICON.arrow}</a>
+      <a class="btn ghost" href="#trabajo">Ver nuestro trabajo ${ICON.arrow}</a>
     </div>
     <p class="sv-quote">“Si ya pasaste por muchas agencias y no ves el resultado que esperas, es porque aún no has trabajado con nosotros.”</p>
   </section>
@@ -413,6 +425,8 @@ function buildServicios() {
     <div class="sechead"><h2 id="svg-t">Todo lo que tu marca necesita</h2><p>Toca un servicio para ver qué incluye.</p></div>
     <div class="svc-grid">${grid}</div>
   </section>
+
+${work}
 
   <div class="svc-detail">
 ${detail}

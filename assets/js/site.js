@@ -1,5 +1,23 @@
 /* Comportamiento común de todas las páginas: menú, copiar WhatsApp, animaciones al hacer scroll */
 (function () {
+  /* Portafolio: los videos cargan y se reproducen en silencio solo cuando están en pantalla; un toque activa el sonido */
+  const reels = document.querySelectorAll(".reel");
+  if (reels.length && "IntersectionObserver" in window) {
+    const vo = new IntersectionObserver(es => es.forEach(e => {
+      const v = e.target.querySelector("video");
+      if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
+      else { v.pause(); }
+    }), { threshold: .35 });
+    reels.forEach(r => {
+      vo.observe(r);
+      const v = r.querySelector("video");
+      r.querySelector(".snd").addEventListener("click", () => {
+        v.muted = !v.muted; r.classList.toggle("on", !v.muted);
+        if (!v.muted) reels.forEach(o => { if (o !== r) { o.querySelector("video").muted = true; o.classList.remove("on"); } });
+        if (!v.src) v.src = v.dataset.src; v.play().catch(() => {});
+      });
+    });
+  }
   const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const counted = new WeakSet();
 
@@ -21,7 +39,7 @@
     io.unobserve(el);
   }), { threshold: .12, rootMargin: "0px 0px -40px 0px" }) : null;
 
-  const SEL = ".sechead,.goals,.includes,.steps,.cal,.weekends,.prof .stats,.forum,.allies,.skills,.quote,.contact,.facts,.faq,.seo-block,.svc-grid,.svc,.process,.why,.ctaband,.tp-main,.tp-side";
+  const SEL = ".sechead,.goals,.includes,.steps,.cal,.weekends,.prof .stats,.forum,.allies,.skills,.quote,.contact,.facts,.faq,.seo-block,.svc-grid,.work,.svc,.process,.why,.ctaband,.tp-main,.tp-side";
   function watch() {
     document.querySelectorAll(SEL).forEach(el => {
       if (el.dataset.rv) return; el.dataset.rv = 1; el.classList.add("rv");

@@ -1,0 +1,12 @@
+[
+ { "type": "video", "id": "pina-loca", "title": "Piña Loca", "caption": "Video de ambiente para bar y restaurante", "src": "/video/pina-loca.mp4", "poster": "/img/trabajos/pina-loca.jpg" },
+ { "type": "video", "id": "blees-coffee", "title": "Blees Coffee", "caption": "Video gastronómico para redes", "src": "/video/blees-coffee.mp4", "poster": "/img/trabajos/blees-coffee.jpg" },
+ { "type": "video", "id": "frutos-rojos", "title": "Coctelería", "caption": "Video de producto: trago de frutos rojos", "src": "/video/frutos-rojos.mp4", "poster": "/img/trabajos/frutos-rojos.jpg" },
+ { "type": "video", "id": "balance", "title": "Balance", "caption": "Video de producto para alimento de mascotas", "src": "/video/balance.mp4", "poster": "/img/trabajos/balance.jpg" },
+ { "type": "video", "id": "rtn-empresarial", "title": "RTN Empresarial", "caption": "Video corporativo educativo con presentadora", "src": "/video/rtn-empresarial.mp4", "poster": "/img/trabajos/rtn-empresarial.jpg" },
+ { "type": "foto", "id": "corte-de-carne", "title": "Fotografía gastronómica", "caption": "Corte de carne a la parrilla", "src": "/img/trabajos/corte-de-carne.jpg", "w": 675, "h": 1200 },
+ { "type": "foto", "id": "coctel-azul", "title": "Fotografía de bebidas", "caption": "Cóctel azul con luz de ambiente", "src": "/img/trabajos/coctel-azul.jpg", "w": 675, "h": 1200 },
+ { "type": "foto", "id": "gratinado", "title": "Fotografía de platos", "caption": "Gratinado al horno", "src": "/img/trabajos/gratinado.jpg", "w": 1200, "h": 675 },
+ { "type": "foto", "id": "postre-y-bebida", "title": "Fotografía de postres", "caption": "Postre y bebida de la casa", "src": "/img/trabajos/postre-y-bebida.jpg", "w": 800, "h": 1200 },
+ { "type": "foto", "id": "desayuno-tipico", "title": "Fotografía de desayunos", "caption": "Desayuno típico hondureño", "src": "/img/trabajos/desayuno-tipico.jpg", "w": 675, "h": 1200 }
+]
