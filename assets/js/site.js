@@ -71,6 +71,26 @@
       el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); } });
     });
   }
+  /* Carruseles en pantallas táctiles: avanzan solos en bucle y se pueden deslizar con el dedo; se pausan mientras se toca */
+  if (matchMedia("(hover:none)").matches && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    document.querySelectorAll(".reels.loop").forEach(box => {
+      let pos = 0, paused = false, resume = null, half = 0;
+      const measure = () => { half = box.scrollWidth / 2; };
+      const wrap = () => { if (half > 0) { if (box.scrollLeft >= half) box.scrollLeft -= half; else if (box.scrollLeft < 1) box.scrollLeft += half; } };
+      const stop = () => { paused = true; clearTimeout(resume); };
+      const go = () => { clearTimeout(resume); resume = setTimeout(() => { pos = box.scrollLeft; paused = false; }, 2200); };
+      box.addEventListener("touchstart", stop, { passive: true });
+      box.addEventListener("touchend", go, { passive: true });
+      box.addEventListener("touchcancel", go, { passive: true });
+      box.addEventListener("scroll", () => { if (paused) wrap(); }, { passive: true });
+      window.addEventListener("resize", measure);
+      measure();
+      (function step() {
+        if (!paused && half > 0) { pos += 0.55; if (pos >= half) pos -= half; box.scrollLeft = pos; }
+        requestAnimationFrame(step);
+      })();
+    });
+  }
   /* Enlaces antiguos al inicio (#calendario, #talleres, #instructor) siguen funcionando */
   if (location.pathname === "/" && location.hash) {
     const h = location.hash.slice(1);
