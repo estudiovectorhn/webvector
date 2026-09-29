@@ -15,6 +15,8 @@ const TYPES = {
   ".txt": "text/plain; charset=utf-8",
   ".xml": "application/xml; charset=utf-8",
   ".jpg": "image/jpeg",
+  ".pdf": "application/pdf",
+  ".woff2": "font/woff2",
   ".jpeg": "image/jpeg",
   ".png": "image/png",
   ".webp": "image/webp",
@@ -22,7 +24,7 @@ const TYPES = {
   ".ico": "image/x-icon",
 };
 // Carpetas y archivos internos que no se publican
-const PRIVATE = /^\/(src|node_modules|\.git)(\/|$)|^\/(server\.js|build\.js|package\.json|package-lock\.json|README\.md|\.gitignore)$/;
+const PRIVATE = /^\/(src|node_modules|\.git)(\/|$)|^\/(server\.js|build\.js|build-pdf\.js|package\.json|package-lock\.json|README\.md|\.gitignore)$/;
 
 function send(req, res, status, file, extraHeaders) {
   fs.readFile(file, (err, data) => {

@@ -3,6 +3,7 @@
   "id": "video",
   "title": "Editor de Video de 0 a Pro",
   "tagline": "CapCut PC",
+  "tools": ["capcut", "tiktok", "instagram", "facebook"],
   "grad": "linear-gradient(135deg,#3A0CC9,#8B2BE2 55%,#E0169B)",
   "goals": [
    "contenido"
@@ -79,6 +80,7 @@
   "id": "anuncios",
   "title": "Creación de Anuncios en Redes Sociales",
   "tagline": "Facebook e Instagram",
+  "tools": ["meta", "facebook", "instagram", "zoom"],
   "grad": "linear-gradient(135deg,#1C0877,#4B1FE0 50%,#C21CE0)",
   "goals": [
    "ventas"
@@ -133,6 +135,7 @@
   "id": "celular",
   "title": "Graba Videos para Redes con tu Celular",
   "tagline": "Guion, luz, edición y publicación",
+  "tools": ["capcut", "instagram", "tiktok", "facebook"],
   "grad": "linear-gradient(135deg,#5A12D6,#A11FD8 50%,#FF2E88)",
   "goals": [
    "contenido"
@@ -188,6 +191,7 @@
   "id": "ia",
   "title": "Inteligencia Artificial para Negocios",
   "tagline": "ChatGPT + Claude",
+  "tools": ["chatgpt", "claude"],
   "grad": "linear-gradient(135deg,#150660,#5B21F5 45%,#E0169B)",
   "goals": [
    "ia",
@@ -244,6 +248,7 @@
   "id": "meta",
   "title": "Taller de Anuncios Meta Ads",
   "tagline": "Presencial con refrigerio",
+  "tools": ["meta", "facebook", "instagram", "whatsapp"],
   "grad": "linear-gradient(135deg,#2C02A4,#7B4DFF 50%,#D1036F)",
   "goals": [
    "ventas"
@@ -300,6 +305,7 @@
   "id": "whatsapp",
   "title": "Atención al Cliente y Ventas por WhatsApp",
   "tagline": "WhatsApp Business",
+  "tools": ["whatsapp"],
   "grad": "linear-gradient(135deg,#3D0FB8,#9A2CE6 55%,#F0409E)",
   "goals": [
    "cierre",
@@ -356,6 +362,7 @@
   "id": "canva",
   "title": "Diseño de Artes en Canva desde Cero",
   "tagline": "Sin experiencia previa",
+  "tools": ["canva"],
   "grad": "linear-gradient(135deg,#4A0FC4,#B026E0 50%,#FF4FB8)",
   "goals": [
    "contenido"
@@ -411,6 +418,7 @@
   "id": "foto",
   "title": "Fotografía Básica para Negocios",
   "tagline": "Producto, comida y retrato",
+  "tools": [],
   "grad": "linear-gradient(135deg,#240A8A,#6A1BE6 50%,#E0169B)",
   "goals": [
    "contenido"
@@ -466,6 +474,7 @@
   "id": "power",
   "title": "Power AI Crea: tu App con IA",
   "tagline": "Sin ser programador",
+  "tools": ["claude", "chatgpt", "supabase"],
   "grad": "linear-gradient(135deg,#12044F,#4B12D6 45%,#B81FD8)",
   "goals": [
    "ia"
