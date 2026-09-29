@@ -770,14 +770,16 @@ a.inst{text-decoration:none;color:inherit}
 .reels.loop{display:block;overflow:hidden;padding:22px 0 12px;margin-inline:calc(-1 * (50vw - 50% + 16px));scroll-snap-type:none;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
 .reels-track{display:flex;width:max-content;animation:reelscroll 70s linear infinite;will-change:transform}
-.reels.loop:hover .reels-track,.reels.loop:focus-within .reels-track{animation-play-state:paused}
+@media (hover:hover){.reels.loop:hover .reels-track{animation-play-state:paused}}
+/* Táctil: lista deslizable con el dedo; el script la hace avanzar sola y en bucle */
+@media (hover:none){.reels.loop{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}.reels.loop::-webkit-scrollbar{display:none}.reels-track{animation:none}}
 .reels.loop .reel{flex:0 0 auto;width:auto;height:var(--rh,338px);max-width:none;margin:0 12px 0 0;transition-property:opacity,transform,box-shadow}
 .reels.loop .reel.photo{aspect-ratio:3/4}.reels.loop .reel.photo.wide{aspect-ratio:4/3}.reels.loop .reel.photo.sq{aspect-ratio:1}
 .reel.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .st-sub{margin:10px 0 0;color:rgba(255,255,255,.75);font-size:14px;max-width:60ch}
 .bts{margin-top:34px}
 .bts .reels.loop{padding-top:14px}
-.reels.loop .reel.in:hover,.reels.loop .reel.in:focus-visible{transform:translateY(-14px) scale(1.07)}
+@media (hover:hover){.reels.loop .reel.in:hover,.reels.loop .reel.in:focus-visible{transform:translateY(-14px) scale(1.07)}}
 @keyframes reelscroll{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.reels-track{animation:none}.reels.loop{overflow-x:auto}}
 .reels{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -785,7 +787,7 @@ a.inst{text-decoration:none;color:inherit}
 .reel{position:relative;flex:0 0 58%;max-width:230px;margin:0;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#0E0630;scroll-snap-align:start;cursor:pointer;isolation:isolate;
   box-shadow:0 24px 50px -24px rgba(0,0,0,.8);opacity:0;transform:translateY(28px) scale(.94);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
 .reel.in{opacity:1;transform:none}
-.reel.in:hover,.reel.in:focus-visible{transform:translateY(-6px) scale(1.05);z-index:3;box-shadow:0 36px 70px -24px rgba(224,22,155,.75)}
+@media (hover:hover){.reel.in:hover,.reel.in:focus-visible{transform:translateY(-6px) scale(1.05);z-index:3;box-shadow:0 36px 70px -24px rgba(224,22,155,.75)}}
 .reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,4,26,.15),transparent 30%,transparent 55%,rgba(8,4,26,.88));pointer-events:none}
 .reel figcaption{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;color:#fff}
@@ -793,7 +795,7 @@ a.inst{text-decoration:none;color:inherit}
 .reel figcaption span{display:block;font-size:11.5px;color:rgba(255,255,255,.75);line-height:1.3;margin-top:2px}
 .reel .play{position:absolute;right:10px;top:10px;z-index:2;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;display:grid;place-items:center;backdrop-filter:blur(6px);transition:transform .3s,background .3s}
 .reel .play svg{width:18px;height:18px}
-.reel:hover .play{background:var(--fuchsia);transform:scale(1.1)}
+@media (hover:hover){.reel:hover .play{background:var(--fuchsia);transform:scale(1.1)}}
 .work{margin-top:34px}
 .shots{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
 .shot{position:relative;margin:0;border-radius:16px;overflow:hidden;aspect-ratio:3/4;background:var(--surface2);box-shadow:var(--shadow);cursor:pointer;
