@@ -50,7 +50,7 @@
     if (t.live) tags.push('<span class="tag live">En curso</span>');
     if (t.isNew) tags.push('<span class="tag new">Nuevo</span>');
     tags.push(`<span class="tag">${t.mode === "Online" ? "Online · Zoom" : "Presencial"}</span>`);
-    const img = t.img ? `<img class="bgimg" src="${t.img}" alt="${esc(t.seoTitle || t.title)}" loading="lazy" width="960" height="640">` : "";
+    const img = t.img ? `<img class="bgimg" src="${t.img}" alt="${esc(t.seoTitle || t.title)}" loading="lazy" width="1280" height="720">` : "";
     return `<div class="cover ${cls || ""} ${img ? "hasimg" : ""}" style="background:${t.grad}">${img}
     <div class="wm logo-img"></div>
     ${img ? "" : `<div class="bigico">${ART[t.id]}</div>`}
