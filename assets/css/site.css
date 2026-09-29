@@ -769,10 +769,20 @@ a.inst{text-decoration:none;color:inherit}
 /* carrusel infinito de videos (portada) */
 .reels.loop{display:block;overflow:hidden;padding:22px 0 12px;margin-inline:calc(-1 * (50vw - 50% + 16px));scroll-snap-type:none;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-.reels-track{display:flex;width:max-content;animation:reelscroll 70s linear infinite;will-change:transform}
-@media (hover:hover){.reels.loop:hover .reels-track{animation-play-state:paused}}
+.reels-track{display:flex;width:max-content}
+.reelbox{position:relative}
+.reels.loop{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:grab}
+.reels.loop::-webkit-scrollbar{display:none}
+.reels.loop.dragging{cursor:grabbing;scroll-behavior:auto}
+.reels.loop.dragging .reel{pointer-events:none}
+.rnav{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(8,4,26,.55);color:#fff;display:none;place-items:center;backdrop-filter:blur(8px);transition:background .2s,transform .2s;box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+.rnav svg{width:22px;height:22px}
+.rnav.prev{left:calc(50% - 50vw + 14px)}.rnav.next{right:calc(50% - 50vw + 14px)}
+.rnav:hover{background:var(--fuchsia);transform:translateY(-50%) scale(1.06)}
+.bts .rnav{background:rgba(44,2,164,.7);border-color:rgba(255,255,255,.4)}
+@media (hover:hover){.rnav{display:grid}}
 /* Táctil: lista deslizable con el dedo; el script la hace avanzar sola y en bucle */
-@media (hover:none){.reels.loop{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}.reels.loop::-webkit-scrollbar{display:none}.reels-track{animation:none}}
+
 .reels.loop .reel{flex:0 0 auto;width:auto;height:var(--rh,338px);max-width:none;margin:0 12px 0 0;transition-property:opacity,transform,box-shadow}
 .reels.loop .reel.photo{aspect-ratio:3/4}.reels.loop .reel.photo.wide{aspect-ratio:4/3}.reels.loop .reel.photo.sq{aspect-ratio:1}
 .reel.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -780,8 +790,7 @@ a.inst{text-decoration:none;color:inherit}
 .bts{margin-top:34px}
 .bts .reels.loop{padding-top:14px}
 @media (hover:hover){.reels.loop .reel.in:hover,.reels.loop .reel.in:focus-visible{transform:translateY(-14px) scale(1.07)}}
-@keyframes reelscroll{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.reels-track{animation:none}.reels.loop{overflow-x:auto}}
+
 .reels{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .reels::-webkit-scrollbar{display:none}
 .reel{position:relative;flex:0 0 58%;max-width:230px;margin:0;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#0E0630;scroll-snap-align:start;cursor:pointer;isolation:isolate;
@@ -870,3 +879,4 @@ a.trust{text-decoration:none;color:inherit}
   .reels:not(.loop) .reel .play{width:28px;height:28px}.reels:not(.loop) .reel .play svg{width:14px;height:14px}
 }
 @media (hover:none){.st-hint .hov{display:none}}
+@media (hover:hover){.st-hint .tch{display:none}}

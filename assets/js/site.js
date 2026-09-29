@@ -71,29 +71,47 @@
       el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); } });
     });
   }
-  /* Carruseles en pantallas táctiles: avanzan solos en bucle y se pueden deslizar con el dedo; se pausan mientras se toca */
-  if (matchMedia("(hover:none)").matches && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
-    document.querySelectorAll(".reels.loop").forEach(box => {
-      let pos = 0, paused = false, resume = null, half = 0;
-      const measure = () => { half = box.scrollWidth / 2; };
-      const wrap = () => { if (half > 0) { if (box.scrollLeft >= half) box.scrollLeft -= half; else if (box.scrollLeft < 1) box.scrollLeft += half; } };
-      const stop = () => { paused = true; clearTimeout(resume); };
-      const go = () => { clearTimeout(resume); resume = setTimeout(() => { pos = box.scrollLeft; paused = false; }, 2500); };
-      box.addEventListener("touchstart", stop, { passive: true });
-      box.addEventListener("pointerdown", stop, { passive: true });
-      box.addEventListener("touchend", go, { passive: true });
-      box.addEventListener("touchcancel", go, { passive: true });
-      box.addEventListener("pointerup", go, { passive: true });
-      /* Cualquier desplazamiento que no sea nuestro (dedo, inercia) pausa el avance y lo reanuda después */
-      box.addEventListener("scroll", () => { if (paused) { wrap(); go(); } else if (Math.abs(box.scrollLeft - pos) > 2) { stop(); go(); } }, { passive: true });
-      window.addEventListener("resize", measure);
-      measure(); setTimeout(measure, 800);
-      (function step() {
-        if (!paused && half > 0) { pos += 0.55; if (pos >= half) pos -= half; if (Math.abs(box.scrollLeft - pos) > 2 && Math.abs(box.scrollLeft - pos) < half - 2) { stop(); go(); } else box.scrollLeft = pos; }
-        requestAnimationFrame(step);
-      })();
+  /* Carruseles: avanzan solos en bucle; se pueden deslizar con el dedo, arrastrar con el ratón, usar el trackpad o las flechas.
+   * Se pausan al pasar el cursor o al tocarlos y retoman solos después. */
+  const still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".reels.loop").forEach(box => {
+    let pos = 0, paused = false, resume = null, half = 0, hover = false, drag = null, dragged = false;
+    const measure = () => { half = box.scrollWidth / 2; };
+    const wrap = () => { if (half > 0) { if (box.scrollLeft >= half) box.scrollLeft -= half; else if (box.scrollLeft < 1) box.scrollLeft += half; } };
+    const stop = () => { paused = true; clearTimeout(resume); };
+    const go = () => { clearTimeout(resume); resume = setTimeout(() => { if (hover) return; pos = box.scrollLeft; paused = false; }, 2500); };
+    /* táctil */
+    box.addEventListener("touchstart", stop, { passive: true });
+    box.addEventListener("touchend", go, { passive: true });
+    box.addEventListener("touchcancel", go, { passive: true });
+    /* cursor: pausa mientras está encima; arrastre con el ratón */
+    box.addEventListener("pointerenter", e => { if (e.pointerType !== "mouse") return; hover = true; stop(); });
+    box.addEventListener("pointerleave", e => { if (e.pointerType !== "mouse") return; hover = false; if (drag) endDrag(); go(); });
+    function endDrag() { drag = null; box.classList.remove("dragging"); setTimeout(() => { dragged = false; }, 50); }
+    box.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse" || e.button !== 0) return; drag = { x: e.clientX, left: box.scrollLeft }; dragged = false; stop(); });
+    box.addEventListener("pointermove", e => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x;
+      if (!dragged && Math.abs(dx) > 6) { dragged = true; box.classList.add("dragging"); }
+      if (dragged) { box.scrollLeft = drag.left - dx; wrap(); if (box.scrollLeft !== drag.left - dx) { drag.left = box.scrollLeft + dx; } }
     });
-  }
+    window.addEventListener("pointerup", () => { if (drag) endDrag(); });
+    box.addEventListener("click", e => { if (dragged) { e.stopPropagation(); e.preventDefault(); } }, true);
+    /* cualquier desplazamiento que no sea nuestro (dedo, inercia, trackpad) pausa el avance y lo reanuda después */
+    box.addEventListener("scroll", () => { if (paused) { wrap(); if (!hover && !drag) go(); } else if (Math.abs(box.scrollLeft - pos) > 2) { stop(); go(); } }, { passive: true });
+    /* flechas */
+    const wrapEl = box.parentElement;
+    wrapEl.querySelectorAll(".rnav").forEach(btn => btn.addEventListener("click", () => {
+      const tile = box.querySelector(".reel"); const w = tile ? tile.getBoundingClientRect().width + 14 : 260;
+      stop(); box.scrollBy({ left: btn.classList.contains("next") ? w : -w, behavior: "smooth" }); go();
+    }));
+    window.addEventListener("resize", measure);
+    measure(); setTimeout(measure, 800);
+    if (!still) (function step() {
+      if (!paused && half > 0) { pos += 0.55; if (pos >= half) pos -= half; if (Math.abs(box.scrollLeft - pos) > 2 && Math.abs(box.scrollLeft - pos) < half - 2) { stop(); go(); } else box.scrollLeft = pos; }
+      requestAnimationFrame(step);
+    })();
+  });
   /* Enlaces antiguos al inicio (#calendario, #talleres, #instructor) siguen funcionando */
   if (location.pathname === "/" && location.hash) {
     const h = location.hash.slice(1);
