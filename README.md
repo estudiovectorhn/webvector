@@ -16,7 +16,7 @@ node server.js    # abre http://localhost:3000
 
 | Qué | Archivo |
 |---|---|
-| Talleres (fechas, precios, contenido, apps que se usan: campo `tools`) | `src/talleres.json` |
+| Talleres (fechas, precios, contenido, apps que se usan: campo `tools`; cámaras u otro equipo en PNG sin fondo: campo `gear` con imágenes en `img/gear/`) | `src/talleres.json` |
 | Iconos de las apps (Meta, Facebook, Instagram, WhatsApp, ChatGPT, Claude, Canva, CapCut, TikTok, Zoom, Supabase, YouTube) | `img/tools/*.svg`, nombres y notas en `assets/js/render.js` (`TOOLS`) |
 | Programa del mes en PDF (portada con calendario + lista con precios y botones) | `build-pdf.js` → `talleres-octubre-2026.pdf` |
 | Servicios | `src/servicios.json` |

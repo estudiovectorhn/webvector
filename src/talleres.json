@@ -418,7 +418,11 @@
   "id": "foto",
   "title": "Fotografía Básica para Negocios",
   "tagline": "Producto, comida y retrato",
-  "tools": [],
+  "tools": ["sony", "canon"],
+  "gear": [
+   {"img": "/img/gear/camara-mirrorless.png", "name": "Mirrorless", "note": "Tipo Sony Alpha: ligera, visor electrónico"},
+   {"img": "/img/gear/camara-reflex.png", "name": "Réflex (DSLR)", "note": "Tipo Canon EOS: visor óptico, gran agarre"}
+  ],
   "grad": "linear-gradient(135deg,#240A8A,#6A1BE6 50%,#E0169B)",
   "goals": [
    "contenido"
