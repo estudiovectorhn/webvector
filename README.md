@@ -20,6 +20,7 @@ node server.js    # abre http://localhost:3000
 | Iconos de las apps (Meta, Facebook, Instagram, WhatsApp, ChatGPT, Claude, Canva, CapCut, TikTok, Zoom, Supabase, YouTube) | `img/tools/*.svg`, nombres y notas en `assets/js/render.js` (`TOOLS`) |
 | Programa del mes en PDF (portada con calendario + lista con precios y botones) | `build-pdf.js` → `talleres-octubre-2026.pdf` |
 | Servicios | `src/servicios.json` |
+| Portafolio "Nuestro trabajo" en /servicios/ (videos en `video/`, fotos y pósters en `img/trabajos/`) | `src/trabajos.json` |
 | Estructura de la página de inicio | `src/index.body.html` |
 | Encabezado, pie, preguntas frecuentes, página de taller y de servicios | `build.js` |
 | Estilos | `assets/css/site.css` |

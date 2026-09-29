@@ -16,6 +16,7 @@ const TYPES = {
   ".xml": "application/xml; charset=utf-8",
   ".jpg": "image/jpeg",
   ".pdf": "application/pdf",
+  ".mp4": "video/mp4",
   ".woff2": "font/woff2",
   ".jpeg": "image/jpeg",
   ".png": "image/png",
