@@ -866,3 +866,4 @@ a.trust{text-decoration:none;color:inherit}
   .reels:not(.loop) .reel figcaption b{font-size:12.5px}.reels:not(.loop) .reel figcaption span{display:none}
   .reels:not(.loop) .reel .play{width:28px;height:28px}.reels:not(.loop) .reel .play svg{width:14px;height:14px}
 }
+@media (hover:none){.st-hint .hov{display:none}}
