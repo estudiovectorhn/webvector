@@ -1,0 +1,5 @@
+[
+ { "type": "video", "id": "forum-ruta-copan", "title": "Forum Ruta Copán 2026", "caption": "Primer seminario de IA para empresarios en Honduras · Cámara de Comercio e Industrias de Copán y Banco de Occidente", "src": "/video/evento-forum-ruta-copan.mp4", "poster": "/img/trabajos/evento-forum-ruta-copan.jpg" },
+ { "type": "video", "id": "diagro", "title": "Diagro", "caption": "Capacitación en marketing digital e inteligencia artificial para la empresa, en Copán", "src": "/video/evento-diagro.mp4", "poster": "/img/trabajos/evento-diagro.jpg" },
+ { "type": "video", "id": "la-union-copan", "title": "Municipalidad de La Unión, Copán", "caption": "Capacitación en herramientas de IA y marketing digital para el equipo municipal", "src": "/video/evento-la-union-copan.mp4", "poster": "/img/trabajos/evento-la-union-copan.jpg" }
+]
