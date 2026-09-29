@@ -17,6 +17,7 @@ const SV = JSON.parse(fs.readFileSync("src/servicios.json", "utf8"));
 const WORK = JSON.parse(fs.readFileSync("src/trabajos.json", "utf8")); // portafolio: videos y fotos de trabajos
 const EV = JSON.parse(fs.readFileSync("src/eventos.json", "utf8")); // capacitaciones y eventos impartidos por Edgardo (videos y fotos)
 const BACK = JSON.parse(fs.readFileSync("src/backstage.json", "utf8")); // detrás de cámaras: cómo trabajamos
+const CLI = JSON.parse(fs.readFileSync("src/clientes.json", "utf8")); // logos de clientes para el cintillo de marcas
 const { ICON, ART, fmt, esc, waLink, waText } = VR;
 const V = Date.now().toString(36); // versión de caché para CSS/JS
 const CFG = JSON.parse(fs.readFileSync("src/config.json", "utf8"));
@@ -281,6 +282,15 @@ function reelsHTML(items, label, loop) {
     ? `<div class="reelbox"><div class="reels loop" aria-label="${label || "Videos producidos"}"><div class="reels-track">${items.map(w => reel(w)).join("")}${items.map(w => reel(w, true)).join("")}</div></div><button class="rnav prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button><button class="rnav next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button></div>`
     : `<div class="reels" aria-label="${label || "Videos producidos"}">${items.map(w => reel(w)).join("")}</div>`;
 }
+/* Cintillo de marcas: logos de clientes en movimiento continuo (la lista se duplica para el bucle) */
+function brandsHTML() {
+  const tile = (c, dup) => `<span class="blogo"${dup ? ' aria-hidden="true"' : ""}><img src="${c.img}" alt="${dup ? "" : esc(c.name)}" width="${c.w}" height="${c.h}" loading="lazy"></span>`;
+  return `
+  <section class="brands" aria-labelledby="br-t">
+    <div class="br-head"><span class="eyebrow">Marcas que confían en nosotros</span><h2 id="br-t">Trabajamos con marcas de todo Honduras</h2></div>
+    <div class="brand-mq"><div class="brand-track">${CLI.map(c => tile(c)).join("")}${CLI.map(c => tile(c, true)).join("")}</div></div>
+  </section>`;
+}
 function shotsHTML() {
   return `<div class="shots" aria-label="Fotografías producidas">${WORK.filter(w => w.type === "foto").map(w => `<figure class="shot${w.wide || w.w > w.h ? " wide" : ""}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"><img src="${w.src}" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption>${esc(w.caption)}</figcaption></figure>`).join("")}</div>`;
 }
@@ -291,7 +301,8 @@ function buildHome() {
   const grid = SV.map((s, i) => `<a class="svc-card" href="/servicios/#${s.id}" style="--g:${s.grad}"><span class="svc-ico">${ART[s.icon]}</span><span class="svc-n">${String(i + 1).padStart(2, "0")}</span><b>${s.title}</b><small>${s.short}</small></a>`).join("");
   body = body.replace("{{HEADER}}", siteHeader("trabajo"))
     .replace("{{REELS}}", reelsHTML(WORK.filter(w => w.type === "video"), "Videos producidos", true))
-    .replace("{{BACKSTAGE}}", reelsHTML(BACK, "Detrás de cámaras", true)).replace("{{SHOTS}}", shotsHTML())
+    .replace("{{BACKSTAGE}}", reelsHTML(BACK, "Detrás de cámaras", true))
+    .replace("{{BRANDS}}", brandsHTML()).replace("{{SHOTS}}", shotsHTML())
     .replace("{{WA_PORTAFOLIO}}", waText("Hola Vector, vi su portafolio y quiero cotizar producción de video o fotografía."))
     .replace("{{SVC_GRID}}", grid)
     .replace("{{MARQUEE}}", [1, 2].map(() => SV.map(s => `<span>${s.title}</span><i></i>`).join("")).join(""))
@@ -479,6 +490,7 @@ function buildServicios() {
   </section>
 
   <div class="marquee" aria-hidden="true"><div class="mq-track">${[1, 2].map(() => SV.map(s => `<span>${s.title}</span><i></i>`).join("")).join("")}</div></div>
+${brandsHTML()}
 
   <section id="servicios" aria-labelledby="svg-t">
     <div class="sechead"><h2 id="svg-t">Todo lo que tu marca necesita</h2><p>Toca un servicio para ver qué incluye.</p></div>
