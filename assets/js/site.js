@@ -1,7 +1,8 @@
 /* Comportamiento común de todas las páginas: menú, copiar WhatsApp, animaciones al hacer scroll */
 (function () {
   /* Portafolio: entrada animada, reproducción en silencio al estar en pantalla y visor centrado al tocar */
-  const items = [...document.querySelectorAll(".reel,.shot")];
+  const items = [...document.querySelectorAll(".reel:not([data-dup]),.shot")];
+  const dups = [...document.querySelectorAll(".reel[data-dup]")];
   if (items.length) {
     const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     const load = v => { if (v && !v.src) v.src = v.dataset.src; };
@@ -17,7 +18,8 @@
         if (e.isIntersecting) { load(v); v.play().catch(() => {}); } else v.pause();
       }), { threshold: .4 });
       items.forEach(el => { seen.observe(el); if (el.classList.contains("reel")) play.observe(el); });
-    } else items.forEach(el => { el.classList.add("in"); load(el.querySelector("video")); });
+      dups.forEach(el => { seen.observe(el); play.observe(el); });
+    } else [...items, ...dups].forEach(el => { el.classList.add("in"); load(el.querySelector("video")); });
 
     /* Visor */
     const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
@@ -62,6 +64,7 @@
       setTimeout(() => { lb.hidden = true; lb.querySelector(".lb-box").innerHTML = ""; }, 260);
       if (lastFocus) lastFocus.focus({ preventScroll: true });
     }
+    dups.forEach(el => el.addEventListener("click", () => { const i = items.findIndex(x => x.dataset.id === el.dataset.id); if (i >= 0) open(i); }));
     items.forEach((el, i) => {
       el.tabIndex = 0; el.setAttribute("role", "button");
       el.addEventListener("click", () => open(i));

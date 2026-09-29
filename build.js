@@ -270,8 +270,13 @@ const FAQ_SV = [
 
 /* ---------------- Portafolio: videos y fotos de trabajos (se usa en el inicio) ---------------- */
 const ICON_PLAY = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
-function reelsHTML(list, label) {
-  return `<div class="reels" aria-label="${label || "Videos producidos"}">${(list || WORK).filter(w => w.type === "video").map(w => `<figure class="reel" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"><video playsinline muted loop preload="none" poster="${w.poster}" data-src="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><span class="play" aria-hidden="true">${ICON_PLAY}</span><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`).join("")}</div>`;
+function reelsHTML(list, label, loop) {
+  const items = (list || WORK).filter(w => w.type === "video");
+  const reel = (w, dup) => `<figure class="reel" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><video playsinline muted loop preload="none" poster="${w.poster}" data-src="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><span class="play" aria-hidden="true">${ICON_PLAY}</span><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`;
+  /* loop: carrusel infinito en movimiento; la lista se duplica para que el desplazamiento no tenga cortes */
+  return loop
+    ? `<div class="reels loop" aria-label="${label || "Videos producidos"}"><div class="reels-track">${items.map(w => reel(w)).join("")}${items.map(w => reel(w, true)).join("")}</div></div>`
+    : `<div class="reels" aria-label="${label || "Videos producidos"}">${items.map(w => reel(w)).join("")}</div>`;
 }
 function shotsHTML() {
   return `<div class="shots" aria-label="Fotografías producidas">${WORK.filter(w => w.type === "foto").map(w => `<figure class="shot${w.wide || w.w > w.h ? " wide" : ""}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"><img src="${w.src}" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption>${esc(w.caption)}</figcaption></figure>`).join("")}</div>`;
@@ -282,14 +287,14 @@ function buildHome() {
   let body = fs.readFileSync("src/home.body.html", "utf8");
   const grid = SV.map((s, i) => `<a class="svc-card" href="/servicios/#${s.id}" style="--g:${s.grad}"><span class="svc-ico">${ART[s.icon]}</span><span class="svc-n">${String(i + 1).padStart(2, "0")}</span><b>${s.title}</b><small>${s.short}</small></a>`).join("");
   body = body.replace("{{HEADER}}", siteHeader("trabajo"))
-    .replace("{{REELS}}", reelsHTML()).replace("{{SHOTS}}", shotsHTML())
+    .replace("{{REELS}}", reelsHTML(WORK, "Videos producidos", true)).replace("{{SHOTS}}", shotsHTML())
     .replace("{{WA_PORTAFOLIO}}", waText("Hola Vector, vi su portafolio y quiero cotizar producción de video o fotografía."))
     .replace("{{SVC_GRID}}", grid)
     .replace("{{MARQUEE}}", [1, 2].map(() => SV.map(s => `<span>${s.title}</span><i></i>`).join("")).join(""))
-    .replace("{{WA_COTIZAR}}", waText("Hola Vector, quiero una cotización de servicios de marketing."))
+    .replace("{{WA_COTIZAR}}", waText("Hola Vector, quiero que trabajemos juntos. ¿Me pueden dar información?"))
     .replace(/{{ICON_WA}}/g, ICON.wa).replace(/{{ICON_CAL}}/g, ICON.cal).replace(/{{ARROW}}/g, ICON.arrow)
     .replace("{{FOOTER}}", siteFooter())
-    .replace("{{CTABAR}}", ctaBar(waText("Hola Vector, quiero una cotización de servicios de marketing."), "Cotizar por WhatsApp"));
+    .replace("{{CTABAR}}", ctaBar(waText("Hola Vector, quiero que trabajemos juntos. ¿Me pueden dar información?"), "Trabajemos juntos · WhatsApp"));
   const videosLD = WORK.filter(w => w.type === "video").map(w => ({ "@type": "VideoObject", name: `${w.title}: ${w.caption}`, description: `${w.caption}. Producido por Estudio Vector.`, thumbnailUrl: SITE + w.poster, contentUrl: SITE + w.src, uploadDate: TODAY, publisher: { "@id": ORG_ID } }));
   const graph = [
     { "@type": "WebSite", "@id": SITE + "/#web", url: SITE + "/", name: "Estudio Vector", inLanguage: "es-HN", publisher: { "@id": ORG_ID } },
