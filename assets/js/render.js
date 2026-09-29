@@ -56,7 +56,7 @@
     ${img ? "" : `<div class="bigico">${ART[t.id]}</div>`}
     ${withDate ? `<div class="datebadge"><div class="dw">${DOW[dowOf(nd.d, nd.m)].toUpperCase()}</div><div class="dn">${String(nd.d).padStart(2, "0")}</div><div class="dm">${MON[nd.m]}</div></div>` : ""}
     <div class="covertags">${tags.join("")}</div>
-    <div class="by"><span class="av"><img src="${AV}" alt="" width="30" height="30"></span><span><small>Instructor</small><b>Edgardo López</b></span></div></div>`;
+    <div class="by"><span class="av"><img src="${AV}" alt="" width="30" height="30"></span><span><small>Instructor</small><b>Edgardo López</b></span></div>${toolsStrip(t)}</div>`;
   }
 
   function cardHTML(t, goal) {
@@ -68,6 +68,29 @@
       <div class="cardfoot"><div class="price">${fmt(t.price)}<small>${t.dur}${t.durNote ? " · " + t.durNote : ""}</small></div><span class="go">Ver taller ${ICON.arrow}</span></div>
     </div></a>`;
   }
+
+  /* Apps y plataformas que se usan en cada taller (campo "tools" en src/talleres.json). Iconos en /img/tools/. */
+  const TOOLS = {
+    meta: { name: "Meta Ads", note: "Administrador de anuncios" },
+    facebook: { name: "Facebook", note: "Página y anuncios" },
+    instagram: { name: "Instagram", note: "Feed, historias y Reels" },
+    whatsapp: { name: "WhatsApp Business", note: "Catálogo, etiquetas y respuestas" },
+    chatgpt: { name: "ChatGPT", note: "OpenAI" },
+    claude: { name: "Claude", note: "Anthropic" },
+    canva: { name: "Canva", note: "Diseño y kit de marca" },
+    capcut: { name: "CapCut", note: "Edición de video" },
+    tiktok: { name: "TikTok", note: "Formato vertical" },
+    zoom: { name: "Zoom", note: "Clase en vivo" },
+    supabase: { name: "Supabase", note: "Base de datos gratuita" },
+    youtube: { name: "YouTube", note: "Video largo y Shorts" }
+  };
+  const toolIcon = (k, size) => `<img src="/img/tools/${k}.svg" alt="${TOOLS[k].name}" width="${size}" height="${size}" loading="lazy">`;
+  /* Tira de iconos pequeños para la portada de la tarjeta */
+  const toolsStrip = t => (t.tools && t.tools.length) ? `<div class="apps" aria-label="Apps del taller">${t.tools.slice(0, 4).map(k => `<span class="app" title="${TOOLS[k].name}">${toolIcon(k, 22)}</span>`).join("")}</div>` : "";
+  /* Sección con iconos grandes para la ficha y la página del taller */
+  const toolsHTML = (t, H) => (t.tools && t.tools.length) ? `
+   <${H} class="sh-h">Herramientas que usarás</${H}>
+   <div class="tools n${Math.min(t.tools.length, 4)}">${t.tools.map(k => `<div class="tool"><span class="ticon">${toolIcon(k, 64)}</span><b>${TOOLS[k].name}</b><small>${TOOLS[k].note}</small></div>`).join("")}</div>` : "";
 
   const INCLUYE = t => ["Grabación de la clase", "Grupo privado de WhatsApp", "Certificado oficial Vector MKT", t.mode === "Online" ? "Clase en vivo por Zoom" : "Clase presencial en aula Vector"];
 
@@ -87,6 +110,7 @@
       ? `<a class="inst" href="/#instructor"><span class="av"><img src="${AV}" alt="Edgardo A. López" width="52" height="52"></span><div><small>Imparte</small><b>Edgardo A. López</b><span>Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial</span></div><span class="go">Perfil ${ICON.arrow}</span></a>`
       : `<button class="inst" id="goinst" type="button"><span class="av"><img src="${AV}" alt="Edgardo A. López"></span><div><small>Imparte</small><b>Edgardo A. López</b><span>Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial</span></div><span class="go">Perfil ${ICON.arrow}</span></button>`}
    <div class="takeaway">${ICON.trophy}<div><small>Al terminar te llevas</small><b>${t.take}</b></div></div>
+   ${toolsHTML(t, H)}
    <${H} class="sh-h">Lo que aprenderás</${H}>
    <ol class="path">${t.learn.map(l => `<li><span>${l}</span></li>`).join("")}</ol>
    <${H} class="sh-h">Resultados para tu negocio</${H}>
@@ -98,7 +122,7 @@
    ${t.note ? `<div class="note">${t.note}</div>` : ""}`;
   }
 
-  const api = { WA, ICON, ART, DOW, MON, AV, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, INCLUYE };
+  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, toolsStrip, INCLUYE };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.VR = api;
 })(typeof window !== "undefined" ? window : globalThis);
