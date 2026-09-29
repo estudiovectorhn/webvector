@@ -15,7 +15,8 @@ const TODAY = new Date().toISOString().slice(0, 10);
 const T = JSON.parse(fs.readFileSync("src/talleres.json", "utf8"));
 const SV = JSON.parse(fs.readFileSync("src/servicios.json", "utf8"));
 const WORK = JSON.parse(fs.readFileSync("src/trabajos.json", "utf8")); // portafolio: videos y fotos de trabajos
-const EV = JSON.parse(fs.readFileSync("src/eventos.json", "utf8")); // capacitaciones y eventos impartidos por Edgardo
+const EV = JSON.parse(fs.readFileSync("src/eventos.json", "utf8")); // capacitaciones y eventos impartidos por Edgardo (videos y fotos)
+const BACK = JSON.parse(fs.readFileSync("src/backstage.json", "utf8")); // detrás de cámaras: cómo trabajamos
 const { ICON, ART, fmt, esc, waLink, waText } = VR;
 const V = Date.now().toString(36); // versión de caché para CSS/JS
 const CFG = JSON.parse(fs.readFileSync("src/config.json", "utf8"));
@@ -270,9 +271,11 @@ const FAQ_SV = [
 
 /* ---------------- Portafolio: videos y fotos de trabajos (se usa en el inicio) ---------------- */
 const ICON_PLAY = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
-function reelsHTML(list, label, loop) {
-  const items = (list || WORK).filter(w => w.type === "video");
-  const reel = (w, dup) => `<figure class="reel" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><video playsinline muted loop preload="none" poster="${w.poster}" data-src="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><span class="play" aria-hidden="true">${ICON_PLAY}</span><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`;
+function reelsHTML(items, label, loop) {
+  const shape = w => w.w > w.h ? " wide" : w.w === w.h ? " sq" : "";
+  const reel = (w, dup) => w.type === "foto"
+    ? `<figure class="reel photo${shape(w)}" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><img src="${w.src}" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`
+    : `<figure class="reel" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><video playsinline muted loop preload="none" poster="${w.poster}" data-src="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><span class="play" aria-hidden="true">${ICON_PLAY}</span><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`;
   /* loop: carrusel infinito en movimiento; la lista se duplica para que el desplazamiento no tenga cortes */
   return loop
     ? `<div class="reels loop" aria-label="${label || "Videos producidos"}"><div class="reels-track">${items.map(w => reel(w)).join("")}${items.map(w => reel(w, true)).join("")}</div></div>`
@@ -287,7 +290,8 @@ function buildHome() {
   let body = fs.readFileSync("src/home.body.html", "utf8");
   const grid = SV.map((s, i) => `<a class="svc-card" href="/servicios/#${s.id}" style="--g:${s.grad}"><span class="svc-ico">${ART[s.icon]}</span><span class="svc-n">${String(i + 1).padStart(2, "0")}</span><b>${s.title}</b><small>${s.short}</small></a>`).join("");
   body = body.replace("{{HEADER}}", siteHeader("trabajo"))
-    .replace("{{REELS}}", reelsHTML(WORK, "Videos producidos", true)).replace("{{SHOTS}}", shotsHTML())
+    .replace("{{REELS}}", reelsHTML(WORK.filter(w => w.type === "video"), "Videos producidos", true))
+    .replace("{{BACKSTAGE}}", reelsHTML(BACK, "Detrás de cámaras", true)).replace("{{SHOTS}}", shotsHTML())
     .replace("{{WA_PORTAFOLIO}}", waText("Hola Vector, vi su portafolio y quiero cotizar producción de video o fotografía."))
     .replace("{{SVC_GRID}}", grid)
     .replace("{{MARQUEE}}", [1, 2].map(() => SV.map(s => `<span>${s.title}</span><i></i>`).join("")).join(""))
@@ -315,12 +319,12 @@ function buildDirector() {
   const url = SITE + "/director-creativo/";
   let body = fs.readFileSync("src/director.body.html", "utf8");
   body = body.replace("{{HEADER}}", siteHeader("director")).replace(/{{ARROW}}/g, ICON.arrow)
-    .replace("{{EVENTOS}}", reelsHTML(EV, "Capacitaciones y eventos impartidos"))
+    .replace("{{EVENTOS}}", reelsHTML(EV, "Algunas capacitaciones brindadas", true))
     .replace("{{WA_CAPACITACION}}", waText("Hola Vector, quiero cotizar una capacitación para mi empresa o equipo."))
     .replace(/{{ICON_WA}}/g, ICON.wa)
     .replace("{{FOOTER}}", siteFooter())
     .replace("{{CTABAR}}", ctaBar(waText("Hola Edgardo, quiero información de los talleres y asesorías."), "Escribir a Edgardo por WhatsApp"));
-  const evLD = EV.map(w => ({ "@type": "VideoObject", name: `${w.title}: ${w.caption}`, description: `${w.caption}. Capacitación impartida por Edgardo A. López, Estudio Vector.`, thumbnailUrl: SITE + w.poster, contentUrl: SITE + w.src, uploadDate: TODAY, publisher: { "@id": ORG_ID } }));
+  const evLD = EV.filter(w => w.type === "video").map(w => ({ "@type": "VideoObject", name: `${w.title}: ${w.caption}`, description: `${w.caption}. Capacitación impartida por Edgardo A. López, Estudio Vector.`, thumbnailUrl: SITE + w.poster, contentUrl: SITE + w.src, uploadDate: TODAY, publisher: { "@id": ORG_ID } }));
   const graph = [ORG, PERSON, ...evLD, crumbsLD([["Inicio", "/"], ["Director Creativo", "/director-creativo/"]]),
     { "@type": "ProfilePage", url, name: "Edgardo A. López · Director Creativo de Estudio Vector", mainEntity: { "@id": PERSON_ID }, dateModified: TODAY, inLanguage: "es-HN" }];
   const html = head({

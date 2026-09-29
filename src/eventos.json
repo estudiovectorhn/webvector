@@ -1,5 +1,107 @@
 [
- { "type": "video", "id": "forum-ruta-copan", "title": "Forum Ruta Copán 2026", "caption": "Primer seminario de IA para empresarios en Honduras · Cámara de Comercio e Industrias de Copán y Banco de Occidente", "src": "/video/evento-forum-ruta-copan.mp4", "poster": "/img/trabajos/evento-forum-ruta-copan.jpg" },
- { "type": "video", "id": "diagro", "title": "Diagro", "caption": "Capacitación en marketing digital e inteligencia artificial para la empresa, en Copán", "src": "/video/evento-diagro.mp4", "poster": "/img/trabajos/evento-diagro.jpg" },
- { "type": "video", "id": "la-union-copan", "title": "Municipalidad de La Unión, Copán", "caption": "Capacitación en herramientas de IA y marketing digital para el equipo municipal", "src": "/video/evento-la-union-copan.mp4", "poster": "/img/trabajos/evento-la-union-copan.jpg" }
+ {
+  "type": "video",
+  "id": "forum-ruta-copan",
+  "title": "Forum Ruta Copán 2026",
+  "caption": "Primer seminario de IA para empresarios en Honduras · Cámara de Comercio e Industrias de Copán y Banco de Occidente",
+  "src": "/video/evento-forum-ruta-copan.mp4",
+  "poster": "/img/trabajos/evento-forum-ruta-copan.jpg"
+ },
+ {
+  "type": "foto",
+  "id": "cap-contenido-certificados",
+  "title": "Taller de creación de contenido",
+  "caption": "Entrega de certificados a los participantes",
+  "src": "/img/trabajos/cap-contenido-certificados.jpg",
+  "w": 1080,
+  "h": 1080
+ },
+ {
+  "type": "video",
+  "id": "diagro",
+  "title": "Diagro",
+  "caption": "Capacitación en marketing digital e inteligencia artificial para la empresa, en Copán",
+  "src": "/video/evento-diagro.mp4",
+  "poster": "/img/trabajos/evento-diagro.jpg"
+ },
+ {
+  "type": "foto",
+  "id": "cap-capcut-aula",
+  "title": "Taller de CapCut",
+  "caption": "Edición de video para redes en el aula de Estudio Vector",
+  "src": "/img/trabajos/cap-capcut-aula.jpg",
+  "w": 1200,
+  "h": 800
+ },
+ {
+  "type": "foto",
+  "id": "cap-taller-luces",
+  "title": "Taller de creación de contenido",
+  "caption": "Sesión práctica de grabación con luces",
+  "src": "/img/trabajos/cap-taller-luces.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "video",
+  "id": "la-union-copan",
+  "title": "Municipalidad de La Unión, Copán",
+  "caption": "Capacitación en herramientas de IA y marketing digital para el equipo municipal",
+  "src": "/video/evento-la-union-copan.mp4",
+  "poster": "/img/trabajos/evento-la-union-copan.jpg"
+ },
+ {
+  "type": "foto",
+  "id": "cap-mag-pollo",
+  "title": "MAG Pollo",
+  "caption": "Capacitación en ventas por WhatsApp para el equipo comercial",
+  "src": "/img/trabajos/cap-mag-pollo.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "cap-edgardo-exponiendo",
+  "title": "Capacitación empresarial",
+  "caption": "Edgardo impartiendo una sesión de marketing digital",
+  "src": "/img/trabajos/cap-edgardo-exponiendo.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "cap-capcut-alumnos",
+  "title": "Taller de CapCut",
+  "caption": "Alumnos editando sus primeros videos",
+  "src": "/img/trabajos/cap-capcut-alumnos.jpg",
+  "w": 1080,
+  "h": 720
+ },
+ {
+  "type": "foto",
+  "id": "cap-unicalza",
+  "title": "Unicalza",
+  "caption": "Capacitación en marketing digital para el equipo de la tienda",
+  "src": "/img/trabajos/cap-unicalza.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "cap-entrega-certificado",
+  "title": "Taller de creación de contenido",
+  "caption": "Certificado oficial Vector MKT",
+  "src": "/img/trabajos/cap-entrega-certificado.jpg",
+  "w": 1080,
+  "h": 1080
+ },
+ {
+  "type": "foto",
+  "id": "cap-capcut-edicion",
+  "title": "Taller de CapCut",
+  "caption": "Práctica de edición en CapCut PC",
+  "src": "/img/trabajos/cap-capcut-edicion.jpg",
+  "w": 1200,
+  "h": 800
+ }
 ]
