@@ -1,6 +1,6 @@
 # Estudio Vector · estudiovector.com
 
-Sitio de Estudio Vector (Vector Marketing): talleres del mes y servicios de marketing digital.
+Sitio de Estudio Vector (Vector Marketing): portafolio de la agencia, talleres del mes y servicios de marketing digital.
 HTML estático pre-renderizado, optimizado para buscadores y asistentes de IA (ChatGPT, Claude, Gemini, Perplexity).
 
 ## Probar en tu computadora
@@ -20,8 +20,10 @@ node server.js    # abre http://localhost:3000
 | Iconos de las apps (Meta, Facebook, Instagram, WhatsApp, ChatGPT, Claude, Canva, CapCut, TikTok, Zoom, Supabase, YouTube) | `img/tools/*.svg`, nombres y notas en `assets/js/render.js` (`TOOLS`) |
 | Programa del mes en PDF (portada con calendario + lista con precios y botones) | `build-pdf.js` → `talleres-octubre-2026.pdf` |
 | Servicios | `src/servicios.json` |
-| Portafolio "Nuestro trabajo" en /servicios/ (videos en `video/`, fotos y pósters en `img/trabajos/`) | `src/trabajos.json` |
-| Estructura de la página de inicio | `src/index.body.html` |
+| Portafolio de la página de inicio (videos en `video/`, fotos y pósters en `img/trabajos/`) | `src/trabajos.json` |
+| Estructura de la página de inicio | `src/home.body.html` |
+| Estructura de la página de talleres | `src/talleres.body.html` |
+| Página del Director Creativo | `src/director.body.html` |
 | Encabezado, pie, preguntas frecuentes, página de taller y de servicios | `build.js` |
 | Estilos | `assets/css/site.css` |
 | Interacción (filtros, calendario, ficha) | `assets/js/app.js`, `assets/js/render.js` |
@@ -30,7 +32,9 @@ Después de editar, corre `node build.js` y sube los cambios. Para regenerar el 
 
 ## Páginas generadas
 
-- `/` talleres del mes (calendario, filtros, instructor, preguntas frecuentes)
+- `/` inicio de la agencia: videos y fotos de trabajos, servicios, director y botón a los talleres
+- `/talleres/` talleres del mes (calendario, filtros, preguntas frecuentes)
+- `/director-creativo/` perfil de Edgardo A. López
 - `/talleres/<taller>/` una página por taller
 - `/servicios/` servicios de la agencia
 - `/talleres-octubre-2026.pdf` programa del mes para compartir con interesados (enlaces a cada taller y a WhatsApp)
