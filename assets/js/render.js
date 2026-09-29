@@ -113,9 +113,7 @@
      <div><small>Inversión</small><b class="big">${fmt(t.price)}</b></div>
    </div>
    <div class="seats"><div class="seatbar">${"<i></i>".repeat(10)}</div><span><b style="color:var(--text)">10 cupos</b> · capacidad máxima del aula</span></div>
-   ${opts.page
-      ? `<a class="inst" href="/#instructor"><span class="av"><img src="${AV}" alt="Edgardo A. López" width="52" height="52"></span><div><small>Imparte</small><b>Edgardo A. López</b><span>Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial</span></div><span class="go">Perfil ${ICON.arrow}</span></a>`
-      : `<button class="inst" id="goinst" type="button"><span class="av"><img src="${AV}" alt="Edgardo A. López"></span><div><small>Imparte</small><b>Edgardo A. López</b><span>Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial</span></div><span class="go">Perfil ${ICON.arrow}</span></button>`}
+   <a class="inst" href="/director-creativo/"><span class="av"><img src="${AV}" alt="Edgardo A. López" width="52" height="52"></span><div><small>Imparte</small><b>Edgardo A. López</b><span>Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial</span></div><span class="go">Perfil ${ICON.arrow}</span></a>
    <div class="takeaway">${ICON.trophy}<div><small>Al terminar te llevas</small><b>${t.take}</b></div></div>
    ${toolsHTML(t, H)}
    ${gearHTML(t, H)}

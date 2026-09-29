@@ -153,7 +153,7 @@ module.exports = function buildAnuncios(c) {
       <a class="btn light wa-go" data-name="${pr.title} (presencial)" data-value="${pr.price}" href="${waText("Hola Vector, vengo del anuncio. Quiero reservar mi cupo en el taller de Meta Ads PRESENCIAL del domingo 11 de octubre.")}" target="_blank" rel="noopener">Presencial · ${fmt(pr.price)}</a>
     </div>
   </section>
-  <p class="an-more">¿Te interesan otros temas? Mira <a href="/">todos los talleres de octubre</a> o nuestros <a href="/servicios/">servicios de marketing</a>.</p>
+  <p class="an-more">¿Te interesan otros temas? Mira <a href="/talleres/">todos los talleres de octubre</a> o nuestros <a href="/servicios/">servicios de marketing</a>.</p>
   ${siteFooter()}
 </main>
 <div class="cta-bar an-bar"><a class="btn wa-go" data-name="Barra inferior" href="#opciones">${ICON.wa}Reservar mi cupo</a></div>`;

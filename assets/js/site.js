@@ -1,22 +1,78 @@
 /* Comportamiento común de todas las páginas: menú, copiar WhatsApp, animaciones al hacer scroll */
 (function () {
-  /* Portafolio: los videos cargan y se reproducen en silencio solo cuando están en pantalla; un toque activa el sonido */
-  const reels = document.querySelectorAll(".reel");
-  if (reels.length && "IntersectionObserver" in window) {
-    const vo = new IntersectionObserver(es => es.forEach(e => {
-      const v = e.target.querySelector("video");
-      if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
-      else { v.pause(); }
-    }), { threshold: .35 });
-    reels.forEach(r => {
-      vo.observe(r);
-      const v = r.querySelector("video");
-      r.querySelector(".snd").addEventListener("click", () => {
-        v.muted = !v.muted; r.classList.toggle("on", !v.muted);
-        if (!v.muted) reels.forEach(o => { if (o !== r) { o.querySelector("video").muted = true; o.classList.remove("on"); } });
-        if (!v.src) v.src = v.dataset.src; v.play().catch(() => {});
-      });
+  /* Portafolio: entrada animada, reproducción en silencio al estar en pantalla y visor centrado al tocar */
+  const items = [...document.querySelectorAll(".reel,.shot")];
+  if (items.length) {
+    const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const load = v => { if (v && !v.src) v.src = v.dataset.src; };
+    if ("IntersectionObserver" in window) {
+      const seen = new IntersectionObserver(es => es.forEach((e, n) => {
+        if (!e.isIntersecting) return;
+        const el = e.target, idx = [...el.parentNode.children].indexOf(el);
+        el.style.transitionDelay = reduce ? "0s" : Math.min(idx, 8) * 70 + "ms";
+        el.classList.add("in"); seen.unobserve(el);
+      }), { threshold: .15 });
+      const play = new IntersectionObserver(es => es.forEach(e => {
+        const v = e.target.querySelector("video"); if (!v) return;
+        if (e.isIntersecting) { load(v); v.play().catch(() => {}); } else v.pause();
+      }), { threshold: .4 });
+      items.forEach(el => { seen.observe(el); if (el.classList.contains("reel")) play.observe(el); });
+    } else items.forEach(el => { el.classList.add("in"); load(el.querySelector("video")); });
+
+    /* Visor */
+    const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+    const L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg>';
+    const R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>';
+    let lb = null, cur = -1, lastFocus = null;
+    function render(i) {
+      const el = items[i], v = el.querySelector("video"), img = el.querySelector("img");
+      const box = lb.querySelector(".lb-box");
+      box.classList.toggle("wide", el.classList.contains("wide"));
+      box.innerHTML = (v
+        ? `<video src="${v.dataset.src}" poster="${v.poster}" controls autoplay playsinline loop></video>`
+        : `<img src="${img.src}" alt="${img.alt}">`) +
+        `<div class="lb-cap"><b>${el.dataset.title || ""}</b><span>${el.dataset.cap || ""}</span></div>`;
+      const nv = box.querySelector("video"); if (nv) { nv.muted = false; nv.play().catch(() => {}); }
+      cur = i;
+    }
+    function open(i) {
+      lastFocus = document.activeElement;
+      if (!lb) {
+        lb = document.createElement("div"); lb.className = "lb"; lb.setAttribute("role", "dialog"); lb.setAttribute("aria-modal", "true"); lb.setAttribute("aria-label", "Visor de trabajos");
+        lb.innerHTML = `<button class="lb-x" type="button" aria-label="Cerrar">${X}</button><button class="lb-nav prev" type="button" aria-label="Anterior">${L}</button><div class="lb-box"></div><button class="lb-nav next" type="button" aria-label="Siguiente">${R}</button>`;
+        document.body.appendChild(lb);
+        lb.addEventListener("click", e => { if (e.target === lb) close(); });
+        lb.querySelector(".lb-x").addEventListener("click", close);
+        lb.querySelector(".prev").addEventListener("click", () => render((cur - 1 + items.length) % items.length));
+        lb.querySelector(".next").addEventListener("click", () => render((cur + 1) % items.length));
+        document.addEventListener("keydown", e => {
+          if (lb.hidden) return;
+          if (e.key === "Escape") close();
+          if (e.key === "ArrowLeft") render((cur - 1 + items.length) % items.length);
+          if (e.key === "ArrowRight") render((cur + 1) % items.length);
+        });
+      }
+      lb.hidden = false; render(i);
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => requestAnimationFrame(() => lb.classList.add("on")));
+      lb.querySelector(".lb-x").focus({ preventScroll: true });
+    }
+    function close() {
+      lb.classList.remove("on"); document.body.style.overflow = "";
+      setTimeout(() => { lb.hidden = true; lb.querySelector(".lb-box").innerHTML = ""; }, 260);
+      if (lastFocus) lastFocus.focus({ preventScroll: true });
+    }
+    items.forEach((el, i) => {
+      el.tabIndex = 0; el.setAttribute("role", "button");
+      el.addEventListener("click", () => open(i));
+      el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); } });
     });
+  }
+  /* Enlaces antiguos al inicio (#calendario, #talleres, #instructor) siguen funcionando */
+  if (location.pathname === "/" && location.hash) {
+    const h = location.hash.slice(1);
+    if (h === "calendario" || h === "talleres") location.replace("/talleres/#" + h);
+    if (h === "instructor") location.replace("/director-creativo/");
   }
   const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const counted = new WeakSet();
@@ -39,7 +95,7 @@
     io.unobserve(el);
   }), { threshold: .12, rootMargin: "0px 0px -40px 0px" }) : null;
 
-  const SEL = ".sechead,.goals,.includes,.steps,.cal,.weekends,.prof .stats,.forum,.allies,.skills,.quote,.contact,.facts,.faq,.seo-block,.svc-grid,.work,.svc,.process,.why,.ctaband,.tp-main,.tp-side";
+  const SEL = ".sechead,.goals,.includes,.steps,.cal,.weekends,.prof .stats,.forum,.allies,.skills,.quote,.contact,.facts,.faq,.seo-block,.svc-grid,.work,.home-svc,.home-dir,.svc,.process,.why,.ctaband,.tp-main,.tp-side";
   function watch() {
     document.querySelectorAll(SEL).forEach(el => {
       if (el.dataset.rv) return; el.dataset.rv = 1; el.classList.add("rv");

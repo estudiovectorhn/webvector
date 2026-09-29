@@ -80,7 +80,6 @@
     requestAnimationFrame(() => requestAnimationFrame(() => { scrim.classList.add("on"); sheet.classList.add("on"); }));
     document.body.style.overflow = "hidden";
     $("shclose").addEventListener("click", closeSheet);
-    $("goinst").addEventListener("click", () => { closeSheet(); show("instructor"); });
     $("shclose").focus({ preventScroll: true });
   }
   function closeSheet() {
@@ -98,7 +97,7 @@
   /* ---------- PESTAÑAS ---------- */
   function show(v) {
     document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.v === v));
-    ["talleres", "calendario", "instructor"].forEach(k => $("v-" + k).hidden = k !== v);
+    ["talleres", "calendario"].forEach(k => $("v-" + k).hidden = k !== v);
     const nav = document.querySelector(".tabs");
     const hh = (document.querySelector(".sitehead") || { offsetHeight: 0 }).offsetHeight;
     const y = nav.getBoundingClientRect().top + window.scrollY - hh;
@@ -109,9 +108,7 @@
     show(t.dataset.v);
     try { history.replaceState(null, "", t.dataset.v === "talleres" ? location.pathname : "#" + t.dataset.v); } catch (e) {}
   }));
-  $("trustbtn").addEventListener("click", () => show("instructor"));
-  document.querySelectorAll('a[href="/#instructor"],a[href="#instructor"]').forEach(a => a.addEventListener("click", e => { e.preventDefault(); show("instructor"); }));
-  window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (["talleres", "calendario", "instructor"].includes(h)) show(h); });
+  window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (["talleres", "calendario"].includes(h)) show(h); });
 
   /* ---------- ANIMACIONES ---------- */
   const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -121,5 +118,5 @@
 
   renderList(); renderCal();
   const h = (location.hash || "").slice(1);
-  if (["talleres", "calendario", "instructor"].includes(h)) show(h);
+  if (["talleres", "calendario"].includes(h)) show(h);
 })();
