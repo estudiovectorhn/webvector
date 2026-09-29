@@ -24,7 +24,17 @@ fbq('init','${CFG.metaPixelId}');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${CFG.metaPixelId}&ev=PageView&noscript=1"></noscript>` : "";
 
-const write = (p, s) => { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, s); console.log("  ✓", p); };
+/* Versión de caché para imágenes: /img/foto.jpg → /img/foto.jpg?v=<hash del archivo>.
+ * Así, al reemplazar una imagen conservando el nombre, navegadores y CDN piden la nueva. */
+const crypto = require("crypto");
+const imgHash = {};
+const imgv = f => {
+  if (!(f in imgHash)) imgHash[f] = fs.existsSync(`img/${f}`) ? crypto.createHash("md5").update(fs.readFileSync(`img/${f}`)).digest("hex").slice(0, 8) : "";
+  return imgHash[f] ? `/img/${f}?v=${imgHash[f]}` : `/img/${f}`;
+};
+const versionImgs = s => s.replace(/\/img\/([\w.-]+\.(?:jpe?g|png|webp|svg))(?![\w?])/g, (_, f) => imgv(f));
+
+const write = (p, s) => { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, p.endsWith(".html") ? versionImgs(s) : s); console.log("  ✓", p); };
 const strip = s => String(s).replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 const ld = obj => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`;
 
