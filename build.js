@@ -278,7 +278,7 @@ function reelsHTML(items, label, loop) {
     : `<figure class="reel" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><video playsinline muted loop preload="none" poster="${w.poster}" data-src="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><span class="play" aria-hidden="true">${ICON_PLAY}</span><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`;
   /* loop: carrusel infinito en movimiento; la lista se duplica para que el desplazamiento no tenga cortes */
   return loop
-    ? `<div class="reels loop" aria-label="${label || "Videos producidos"}"><div class="reels-track">${items.map(w => reel(w)).join("")}${items.map(w => reel(w, true)).join("")}</div></div>`
+    ? `<div class="reelbox"><div class="reels loop" aria-label="${label || "Videos producidos"}"><div class="reels-track">${items.map(w => reel(w)).join("")}${items.map(w => reel(w, true)).join("")}</div></div><button class="rnav prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button><button class="rnav next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button></div>`
     : `<div class="reels" aria-label="${label || "Videos producidos"}">${items.map(w => reel(w)).join("")}</div>`;
 }
 function shotsHTML() {
