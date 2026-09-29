@@ -211,7 +211,7 @@ section.view{padding-top:20px}
 .prof{border-radius:24px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .prof .ph{position:relative;aspect-ratio:1/1;max-width:100%;overflow:hidden;isolation:isolate}
 .prof .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.prof .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(44,2,164,.45) 68%,var(--surface) 100%)}
+.prof .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(44,2,164,.35) 70%,rgba(14,6,48,.88) 100%)}
 .prof .ph .wm{position:absolute;left:-40px;top:14px;width:170px;aspect-ratio:600/464;opacity:.22;z-index:1;transform:rotate(-12deg)}
 .prof .nm{position:absolute;left:18px;right:18px;bottom:14px;z-index:2}
 .prof .nm small{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fuchsia-soft);font-weight:800}
@@ -336,7 +336,8 @@ body{background:
 .day .dots i.live{background:var(--fuchsia)}
 .legend i[style*="#fff"]{background:var(--violet)!important}
 .prof{box-shadow:var(--shadow)}
-.prof .nm h2{color:var(--ink)}
+.prof .nm h2{color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.55)}
+.prof .nm small{color:#FF9AD2}
 .sh-sub,.ideal{color:var(--muted)}
 .sheet{background:var(--bg)}
 .sh-cta{background:var(--surface)}
@@ -412,7 +413,7 @@ html,body{overflow-x:clip}
   .contact .foot{grid-column:1/-1}
   .prof{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start;overflow:visible}
   .prof .ph{aspect-ratio:4/5;position:sticky;top:86px;border-radius:24px 0 0 24px}
-  .prof .ph::after{background:linear-gradient(90deg,transparent 55%,var(--surface) 100%),linear-gradient(180deg,transparent 55%,rgba(44,2,164,.55) 100%)}
+  .prof .ph::after{background:linear-gradient(90deg,transparent 60%,var(--surface) 100%),linear-gradient(180deg,transparent 50%,rgba(14,6,48,.85) 100%)}
   .prof .body{padding:28px 32px 32px}
   .prof .nm h2{font-size:58px}
   .cta-bar{left:auto;right:24px;bottom:20px;padding:0;background:none;width:auto}
