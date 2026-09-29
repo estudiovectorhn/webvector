@@ -107,10 +107,13 @@
     }));
     window.addEventListener("resize", measure);
     measure(); setTimeout(measure, 800);
-    if (!still) (function step() {
-      if (!paused && half > 0) { pos += 0.55; if (pos >= half) pos -= half; if (Math.abs(box.scrollLeft - pos) > 2 && Math.abs(box.scrollLeft - pos) < half - 2) { stop(); go(); } else box.scrollLeft = pos; }
+    const SPEED = 80; /* píxeles por segundo */
+    let last = 0;
+    if (!still) (function step(now) {
+      const dt = last ? Math.min(50, now - last) : 16; last = now;
+      if (!paused && half > 0) { pos += SPEED * dt / 1000; if (pos >= half) pos -= half; if (Math.abs(box.scrollLeft - pos) > 3 && Math.abs(box.scrollLeft - pos) < half - 3) { stop(); go(); } else box.scrollLeft = pos; }
       requestAnimationFrame(step);
-    })();
+    })(0);
   });
   /* Enlaces antiguos al inicio (#calendario, #talleres, #instructor) siguen funcionando */
   if (location.pathname === "/" && location.hash) {
