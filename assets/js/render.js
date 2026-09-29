@@ -82,7 +82,9 @@
     tiktok: { name: "TikTok", note: "Formato vertical" },
     zoom: { name: "Zoom", note: "Clase en vivo" },
     supabase: { name: "Supabase", note: "Base de datos gratuita" },
-    youtube: { name: "YouTube", note: "Video largo y Shorts" }
+    youtube: { name: "YouTube", note: "Video largo y Shorts" },
+    sony: { name: "Sony", note: "Cámaras Alpha (mirrorless)" },
+    canon: { name: "Canon", note: "Cámaras EOS (réflex y mirrorless)" }
   };
   const toolIcon = (k, size) => `<img src="/img/tools/${k}.svg" alt="${TOOLS[k].name}" width="${size}" height="${size}" loading="lazy">`;
   /* Tira de iconos pequeños para la portada de la tarjeta */
@@ -91,6 +93,11 @@
   const toolsHTML = (t, H) => (t.tools && t.tools.length) ? `
    <${H} class="sh-h">Herramientas que usarás</${H}>
    <div class="tools n${Math.min(t.tools.length, 4)}">${t.tools.map(k => `<div class="tool"><span class="ticon">${toolIcon(k, 64)}</span><b>${TOOLS[k].name}</b><small>${TOOLS[k].note}</small></div>`).join("")}</div>` : "";
+
+  /* Equipo con el que se practica (campo "gear": imágenes PNG sin fondo en /img/gear/) */
+  const gearHTML = (t, H) => (t.gear && t.gear.length) ? `
+   <${H} class="sh-h">Cámaras con las que practicarás</${H}>
+   <div class="gear">${t.gear.map(g => `<figure class="gitem"><img src="${g.img}" alt="${esc(g.name)}" loading="lazy"><figcaption><b>${esc(g.name)}</b><small>${esc(g.note)}</small></figcaption></figure>`).join("")}<p class="gnote">Puedes traer tu propia cámara o celular: el método es el mismo.</p></div>` : "";
 
   const INCLUYE = t => ["Grabación de la clase", "Grupo privado de WhatsApp", "Certificado oficial Vector MKT", t.mode === "Online" ? "Clase en vivo por Zoom" : "Clase presencial en aula Vector"];
 
@@ -111,6 +118,7 @@
       : `<button class="inst" id="goinst" type="button"><span class="av"><img src="${AV}" alt="Edgardo A. López"></span><div><small>Imparte</small><b>Edgardo A. López</b><span>Fundador y Director Creativo de Estudio Vector · Capacitador de equipos de marketing empresarial</span></div><span class="go">Perfil ${ICON.arrow}</span></button>`}
    <div class="takeaway">${ICON.trophy}<div><small>Al terminar te llevas</small><b>${t.take}</b></div></div>
    ${toolsHTML(t, H)}
+   ${gearHTML(t, H)}
    <${H} class="sh-h">Lo que aprenderás</${H}>
    <ol class="path">${t.learn.map(l => `<li><span>${l}</span></li>`).join("")}</ol>
    <${H} class="sh-h">Resultados para tu negocio</${H}>
@@ -122,7 +130,7 @@
    ${t.note ? `<div class="note">${t.note}</div>` : ""}`;
   }
 
-  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, toolsStrip, INCLUYE };
+  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, toolsStrip, gearHTML, INCLUYE };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.VR = api;
 })(typeof window !== "undefined" ? window : globalThis);
