@@ -1,0 +1,89 @@
+[
+ {
+  "type": "video",
+  "id": "backstage-3",
+  "title": "Marca personal",
+  "caption": "Sesión de video para marca personal",
+  "src": "/video/backstage-3.mp4",
+  "poster": "/img/trabajos/backstage-3.jpg"
+ },
+ {
+  "type": "foto",
+  "id": "bts-flash-comida",
+  "title": "Fotografía gastronómica",
+  "caption": "Flash y cámara en sesión de producto",
+  "src": "/img/trabajos/bts-flash-comida.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-set-entrevista",
+  "title": "Set de entrevista",
+  "caption": "Luces y cámara listas para grabar",
+  "src": "/img/trabajos/bts-set-entrevista.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "video",
+  "id": "backstage-1",
+  "title": "Grabación en locación",
+  "caption": "Producción de contenido para marca",
+  "src": "/video/backstage-1.mp4",
+  "poster": "/img/trabajos/backstage-1.jpg"
+ },
+ {
+  "type": "foto",
+  "id": "bts-set-mesa",
+  "title": "Set de grabación",
+  "caption": "Sesión de marca personal con iluminación de estudio",
+  "src": "/img/trabajos/bts-set-mesa.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-monitor-set",
+  "title": "Set de grabación",
+  "caption": "Monitor de cámara en sesión de entrevista",
+  "src": "/img/trabajos/bts-monitor-set.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "video",
+  "id": "backstage-2",
+  "title": "Grabación en locación",
+  "caption": "Producción de video en sala de juegos",
+  "src": "/video/backstage-2.mp4",
+  "poster": "/img/trabajos/backstage-2.jpg"
+ },
+ {
+  "type": "foto",
+  "id": "bts-set-luces",
+  "title": "Estudio",
+  "caption": "Iluminación para sesión de video",
+  "src": "/img/trabajos/bts-set-luces.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-oficina-verde",
+  "title": "Grabación en oficina",
+  "caption": "Producción de video corporativo",
+  "src": "/img/trabajos/bts-oficina-verde.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-camara-detras",
+  "title": "Detrás de cámaras",
+  "caption": "Grabación de contenido en tienda",
+  "src": "/img/trabajos/bts-camara-detras.jpg",
+  "w": 900,
+  "h": 1200
+ }
+]

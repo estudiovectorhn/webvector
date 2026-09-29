@@ -771,7 +771,12 @@ a.inst{text-decoration:none;color:inherit}
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
 .reels-track{display:flex;width:max-content;animation:reelscroll 70s linear infinite;will-change:transform}
 .reels.loop:hover .reels-track,.reels.loop:focus-within .reels-track{animation-play-state:paused}
-.reels.loop .reel{flex:0 0 190px;max-width:none;margin:0 12px 0 0;transition-property:opacity,transform,box-shadow}
+.reels.loop .reel{flex:0 0 auto;width:auto;height:var(--rh,338px);max-width:none;margin:0 12px 0 0;transition-property:opacity,transform,box-shadow}
+.reels.loop .reel.photo{aspect-ratio:3/4}.reels.loop .reel.photo.wide{aspect-ratio:4/3}.reels.loop .reel.photo.sq{aspect-ratio:1}
+.reel.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.st-sub{margin:10px 0 0;color:rgba(255,255,255,.75);font-size:14px;max-width:60ch}
+.bts{margin-top:34px}
+.bts .reels.loop{padding-top:14px}
 .reels.loop .reel.in:hover,.reels.loop .reel.in:focus-visible{transform:translateY(-14px) scale(1.07)}
 @keyframes reelscroll{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.reels-track{animation:none}.reels.loop{overflow-x:auto}}
@@ -849,8 +854,7 @@ a.trust{text-decoration:none;color:inherit}
   .st-head h1{font-size:clamp(26px,3vw,36px)}
   .stage .reels:not(.loop){display:grid;grid-template-columns:repeat(5,1fr);overflow:visible;padding:8px 0 4px;gap:14px}
   .reels.loop{margin-inline:calc(-1 * (50vw - 50% + 28px));padding:26px 0 14px}
-  .reels.loop .reel{flex-basis:240px;margin-right:16px}
-  .stage.ev .reels{grid-template-columns:repeat(3,1fr);max-width:760px;margin-inline:auto;gap:16px}
+  .reels.loop .reel{--rh:426px;margin-right:16px}
   .reel{flex:none;max-width:none}
   .shots{grid-template-columns:repeat(4,1fr);gap:12px}
   .shot.wide{grid-column:span 2;aspect-ratio:3/2}
@@ -859,10 +863,7 @@ a.trust{text-decoration:none;color:inherit}
 }
 @media (min-width:1200px){
   .stage .reels:not(.loop){grid-template-columns:repeat(9,1fr);gap:10px}
-  .reels.loop .reel{flex-basis:260px}
-  .stage.ev .reels{grid-template-columns:repeat(3,1fr);gap:18px}
-  .stage.ev .reel figcaption b{font-size:14px}.stage.ev .reel figcaption span{display:block}
-  .stage.ev .reel .play{width:34px;height:34px}.stage.ev .reel .play svg{width:18px;height:18px}
+  .reels.loop .reel{--rh:462px}
   .reels:not(.loop) .reel figcaption b{font-size:12.5px}.reels:not(.loop) .reel figcaption span{display:none}
   .reels:not(.loop) .reel .play{width:28px;height:28px}.reels:not(.loop) .reel .play svg{width:14px;height:14px}
 }

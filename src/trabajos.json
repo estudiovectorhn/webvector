@@ -72,6 +72,30 @@
   "poster": "/img/trabajos/rtn-empresarial.jpg"
  },
  {
+  "type": "video",
+  "id": "caja-morazanica",
+  "title": "Caja Morazánica",
+  "caption": "Video gastronómico de producto",
+  "src": "/video/caja-morazanica.mp4",
+  "poster": "/img/trabajos/caja-morazanica.jpg"
+ },
+ {
+  "type": "video",
+  "id": "dr-orellana",
+  "title": "Dr. Manuel Orellana",
+  "caption": "Video de marca personal para profesional de la salud",
+  "src": "/video/dr-orellana.mp4",
+  "poster": "/img/trabajos/dr-orellana.jpg"
+ },
+ {
+  "type": "video",
+  "id": "stand-first-logistics",
+  "title": "First Logistics City",
+  "caption": "Montaje de stand para evento",
+  "src": "/video/stand-first-logistics.mp4",
+  "poster": "/img/trabajos/stand-first-logistics.jpg"
+ },
+ {
   "type": "foto",
   "id": "corte-de-carne",
   "title": "Fotografía gastronómica",
