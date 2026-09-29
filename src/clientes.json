@@ -1,0 +1,104 @@
+[
+ {
+  "name": "DIAGRO",
+  "img": "/img/clientes/diagro.png",
+  "w": 389,
+  "h": 260
+ },
+ {
+  "name": "Dr. Manuel Orellana",
+  "img": "/img/clientes/dr-manuel-orellana.png",
+  "w": 420,
+  "h": 192
+ },
+ {
+  "name": "Fumyim",
+  "img": "/img/clientes/fumyim.png",
+  "w": 240,
+  "h": 260
+ },
+ {
+  "name": "Il Romano",
+  "img": "/img/clientes/il-romano.png",
+  "w": 420,
+  "h": 233
+ },
+ {
+  "name": "Importaciones HyP",
+  "img": "/img/clientes/importaciones-hyp.png",
+  "w": 414,
+  "h": 260
+ },
+ {
+  "name": "Kiv Detailing",
+  "img": "/img/clientes/kiv-detailing.png",
+  "w": 295,
+  "h": 260
+ },
+ {
+  "name": "MegaTools",
+  "img": "/img/clientes/megatools.png",
+  "w": 262,
+  "h": 260
+ },
+ {
+  "name": "Ornamentos Comerciales",
+  "img": "/img/clientes/ornamentos-comerciales.png",
+  "w": 420,
+  "h": 244
+ },
+ {
+  "name": "Piña Loca",
+  "img": "/img/clientes/pina-loca.png",
+  "w": 264,
+  "h": 260
+ },
+ {
+  "name": "Polarizados La Guardia",
+  "img": "/img/clientes/polarizados-la-guardia.png",
+  "w": 420,
+  "h": 246
+ },
+ {
+  "name": "Pollos El Pechugón",
+  "img": "/img/clientes/pollos-el-pechugon.png",
+  "w": 305,
+  "h": 260
+ },
+ {
+  "name": "Punto Ferretero",
+  "img": "/img/clientes/punto-ferretero.png",
+  "w": 279,
+  "h": 260
+ },
+ {
+  "name": "RS",
+  "img": "/img/clientes/rs.png",
+  "w": 364,
+  "h": 260
+ },
+ {
+  "name": "Slide Pizza",
+  "img": "/img/clientes/slide-pizza.png",
+  "w": 242,
+  "h": 260
+ },
+ {
+  "name": "Toby's Pet Shop",
+  "img": "/img/clientes/toby-s-pet-shop.png",
+  "w": 271,
+  "h": 260
+ },
+ {
+  "name": "Unicalza",
+  "img": "/img/clientes/unicalza.png",
+  "w": 420,
+  "h": 156
+ },
+ {
+  "name": "Workkafe",
+  "img": "/img/clientes/workkafe.png",
+  "w": 420,
+  "h": 102
+ }
+]

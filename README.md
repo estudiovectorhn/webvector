@@ -25,6 +25,7 @@ node server.js    # abre http://localhost:3000
 | Estructura de la página de talleres | `src/talleres.body.html` |
 | Página del Director Creativo (carrusel "Algunas capacitaciones brindadas": videos y fotos en `src/eventos.json`) | `src/director.body.html` |
 | Sección "Así trabajamos" de la portada (detrás de cámaras: videos y fotos) | `src/backstage.json` |
+| Cintillo de marcas (logos de clientes en `img/clientes/`) en portada y servicios | `src/clientes.json` |
 | Encabezado, pie, preguntas frecuentes, página de taller y de servicios | `build.js` |
 | Estilos | `assets/css/site.css` |
 | Interacción (filtros, calendario, ficha) | `assets/js/app.js`, `assets/js/render.js` |
