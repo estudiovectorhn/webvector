@@ -766,6 +766,15 @@ a.inst{text-decoration:none;color:inherit}
 .st-actions .btn{margin:0;padding:12px 16px;font-size:14px}
 .st-hint{margin:12px 0 0;font-size:12px;color:rgba(255,255,255,.65);text-align:center}
 .stage .reels{margin-top:20px}
+/* carrusel infinito de videos (portada) */
+.reels.loop{display:block;overflow:hidden;padding:22px 0 12px;margin-inline:calc(-1 * (50vw - 50% + 16px));scroll-snap-type:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.reels-track{display:flex;width:max-content;animation:reelscroll 70s linear infinite;will-change:transform}
+.reels.loop:hover .reels-track,.reels.loop:focus-within .reels-track{animation-play-state:paused}
+.reels.loop .reel{flex:0 0 190px;max-width:none;margin:0 12px 0 0;transition-property:opacity,transform,box-shadow}
+.reels.loop .reel.in:hover,.reels.loop .reel.in:focus-visible{transform:translateY(-14px) scale(1.07)}
+@keyframes reelscroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.reels-track{animation:none}.reels.loop{overflow-x:auto}}
 .reels{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .reels::-webkit-scrollbar{display:none}
 .reel{position:relative;flex:0 0 58%;max-width:230px;margin:0;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#0E0630;scroll-snap-align:start;cursor:pointer;isolation:isolate;
@@ -838,7 +847,9 @@ a.trust{text-decoration:none;color:inherit}
 @media (min-width:760px){
   .stage{padding:34px calc(50vw - 50% + 28px) 30px}
   .st-head h1{font-size:clamp(26px,3vw,36px)}
-  .stage .reels{display:grid;grid-template-columns:repeat(5,1fr);overflow:visible;padding:8px 0 4px;gap:14px}
+  .stage .reels:not(.loop){display:grid;grid-template-columns:repeat(5,1fr);overflow:visible;padding:8px 0 4px;gap:14px}
+  .reels.loop{margin-inline:calc(-1 * (50vw - 50% + 28px));padding:26px 0 14px}
+  .reels.loop .reel{flex-basis:240px;margin-right:16px}
   .stage.ev .reels{grid-template-columns:repeat(3,1fr);max-width:760px;margin-inline:auto;gap:16px}
   .reel{flex:none;max-width:none}
   .shots{grid-template-columns:repeat(4,1fr);gap:12px}
@@ -847,10 +858,12 @@ a.trust{text-decoration:none;color:inherit}
   .dir-ph{aspect-ratio:4/5}
 }
 @media (min-width:1200px){
-  .stage .reels{grid-template-columns:repeat(9,1fr);gap:10px}
+  .stage .reels:not(.loop){grid-template-columns:repeat(9,1fr);gap:10px}
+  .reels.loop .reel{flex-basis:260px}
   .stage.ev .reels{grid-template-columns:repeat(3,1fr);gap:18px}
   .stage.ev .reel figcaption b{font-size:14px}.stage.ev .reel figcaption span{display:block}
   .stage.ev .reel .play{width:34px;height:34px}.stage.ev .reel .play svg{width:18px;height:18px}
-  .reel figcaption b{font-size:12.5px}.reel figcaption span{display:none}
-  .reel .play{width:28px;height:28px}.reel .play svg{width:14px;height:14px}
+  .reels:not(.loop) .reel figcaption b{font-size:12.5px}.reels:not(.loop) .reel figcaption span{display:none}
+  .reels:not(.loop) .reel .play{width:28px;height:28px}.reels:not(.loop) .reel .play svg{width:14px;height:14px}
 }
+@media (hover:none){.st-hint .hov{display:none}}
