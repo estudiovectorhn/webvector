@@ -78,15 +78,18 @@
       const measure = () => { half = box.scrollWidth / 2; };
       const wrap = () => { if (half > 0) { if (box.scrollLeft >= half) box.scrollLeft -= half; else if (box.scrollLeft < 1) box.scrollLeft += half; } };
       const stop = () => { paused = true; clearTimeout(resume); };
-      const go = () => { clearTimeout(resume); resume = setTimeout(() => { pos = box.scrollLeft; paused = false; }, 2200); };
+      const go = () => { clearTimeout(resume); resume = setTimeout(() => { pos = box.scrollLeft; paused = false; }, 2500); };
       box.addEventListener("touchstart", stop, { passive: true });
+      box.addEventListener("pointerdown", stop, { passive: true });
       box.addEventListener("touchend", go, { passive: true });
       box.addEventListener("touchcancel", go, { passive: true });
-      box.addEventListener("scroll", () => { if (paused) wrap(); }, { passive: true });
+      box.addEventListener("pointerup", go, { passive: true });
+      /* Cualquier desplazamiento que no sea nuestro (dedo, inercia) pausa el avance y lo reanuda después */
+      box.addEventListener("scroll", () => { if (paused) { wrap(); go(); } else if (Math.abs(box.scrollLeft - pos) > 2) { stop(); go(); } }, { passive: true });
       window.addEventListener("resize", measure);
-      measure();
+      measure(); setTimeout(measure, 800);
       (function step() {
-        if (!paused && half > 0) { pos += 0.55; if (pos >= half) pos -= half; box.scrollLeft = pos; }
+        if (!paused && half > 0) { pos += 0.55; if (pos >= half) pos -= half; if (Math.abs(box.scrollLeft - pos) > 2 && Math.abs(box.scrollLeft - pos) < half - 2) { stop(); go(); } else box.scrollLeft = pos; }
         requestAnimationFrame(step);
       })();
     });
