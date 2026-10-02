@@ -675,7 +675,9 @@ function buildGaleria() {
   const url = SITE + "/portafolio/";
   const cats = GAL.categorias.map(c => ({ ...c, list: c.items.map(id => MEDIA[id]).filter(Boolean) }));
   const total = cats.reduce((n, c) => n + c.list.length, 0);
-  const tile = w => reel(w, false, w.type !== "foto").replace("<figcaption>", `<span class="kind">${KIND(w)}</span><figcaption>`);
+  /* --ar: proporción de cada pieza; la galería arma filas de igual alto (un video horizontal ocupa más ancho, no menos alto) */
+  const ar = w => w.type === "foto" ? +(w.w / w.h).toFixed(4) : w.w > w.h ? 1.7778 : 0.5625;
+  const tile = w => reel(w, false, w.type !== "foto").replace("<figure ", `<figure style="--ar:${ar(w)}" `).replace("<figcaption>", `<span class="kind">${KIND(w)}</span><figcaption>`);
   const vids = cats.flatMap(c => c.list.filter(w => w.type === "video").map(w => ({ "@type": "VideoObject", name: `${w.title}: ${w.caption}`, description: `${w.caption}. Producido por Estudio Vector para ${c.name.toLowerCase()}.`, thumbnailUrl: SITE + w.poster, contentUrl: SITE + w.src, uploadDate: TODAY, publisher: { "@id": ORG_ID } })));
   const graph = [ORG, PERSON, ...vids, faqLD(FAQ_GAL), crumbsLD([["Inicio", "/"], ["Portafolio", "/portafolio/"]]),
     { "@type": "CollectionPage", "@id": url + "#pagina", url, name: "Portafolio de Estudio Vector por tipo de negocio", description: "Reels, videos, fotografía y artes producidos por Estudio Vector para negocios de Honduras, ordenados por rubro.", isPartOf: { "@id": SITE + "/#web" }, about: { "@id": ORG_ID }, dateModified: TODAY, inLanguage: "es-HN",

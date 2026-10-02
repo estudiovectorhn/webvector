@@ -961,15 +961,15 @@ a.trust{text-decoration:none;color:inherit}
 .gal-chips button[aria-pressed="true"]{background:var(--grad);color:#fff;border-color:transparent}
 .gal-chips button[aria-pressed="true"] i{opacity:.85}
 .gal-sec{margin-top:34px;scroll-margin-top:calc(var(--hh) + 70px)}
-.gal-grid{columns:2;column-gap:10px;margin-top:6px}
-.gal-grid .reel{display:block;width:100%;max-width:none;margin:0 0 10px;break-inside:avoid;scroll-snap-align:none}
-.gal-grid .reel.photo{aspect-ratio:auto}
-.gal-grid .reel.photo img{position:static;height:auto}
+/* filas justificadas: todas las piezas de una fila con el mismo alto; el ancho sale de su proporción (--ar) */
+.gal-grid{--rowh:300px;display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.gal-grid::after{content:"";flex-grow:1000}
+.gal-grid .reel{flex:var(--ar) 1 calc(var(--ar) * var(--rowh));width:auto;max-width:100%;min-width:0;margin:0;scroll-snap-align:none}
+.gal-grid .reel,.gal-grid .reel.wide:not(.photo){aspect-ratio:var(--ar)}
 .gal-grid .reel .kind{position:absolute;left:10px;top:10px;z-index:2;padding:3px 8px;border-radius:999px;background:rgba(14,6,48,.55);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(6px)}
 .gal-grid .reel figcaption b{font-size:13px}
 .gal-grid .reel figcaption span{font-size:11px}
 .gal-cta{margin-top:6px}
-@media (min-width:640px){.gal-grid{columns:3;column-gap:12px}.gal-grid .reel{margin-bottom:12px}}
-@media (min-width:1000px){.gal-grid{columns:4;column-gap:14px}.gal-grid .reel{margin-bottom:14px}.gal-chips{margin:0;padding:2px 0;mask-image:linear-gradient(90deg,#000 92%,transparent)}}
-@media (min-width:1300px){.gal-grid{columns:5}}
+@media (min-width:640px){.gal-grid{--rowh:320px;gap:12px}}
+@media (min-width:1000px){.gal-grid{--rowh:360px;gap:14px}.gal-chips{margin:0;padding:2px 0;mask-image:linear-gradient(90deg,#000 92%,transparent)}}
 @media (max-width:999px){.gal-chips{mask-image:linear-gradient(90deg,#000 85%,transparent)}}
