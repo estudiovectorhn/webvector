@@ -643,5 +643,60 @@
   "caption": "Reel de producto: herramientas y seguridad vial para el carro",
   "src": "/video/megatools-seguridad-vial.mp4",
   "poster": "/img/trabajos/megatools-seguridad-vial.jpg"
+ },
+ {
+  "type": "video",
+  "id": "menu-digital-tdk",
+  "title": "TDK Turkish Döner Kebab",
+  "caption": "Menú digital en pantallas · Mall Multiplaza Tegucigalpa",
+  "src": "/video/menu-digital-tdk.mp4",
+  "poster": "/img/trabajos/menu-digital-tdk.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "menu-digital-vector",
+  "title": "Pantallas de menú digital",
+  "caption": "Decisiones más rápidas en caja con el menú en pantalla",
+  "src": "/video/menu-digital-vector.mp4",
+  "poster": "/img/trabajos/menu-digital-vector.jpg"
+ },
+ {
+  "type": "video",
+  "id": "menu-digital-mostrador",
+  "title": "Menú digital sobre el mostrador",
+  "caption": "Pantallas de menú instaladas en restaurante",
+  "src": "/video/menu-digital-mostrador.mp4",
+  "poster": "/img/trabajos/menu-digital-mostrador.jpg"
+ },
+ {
+  "type": "foto",
+  "kind": "arte",
+  "id": "menu-tdk-pantallas",
+  "title": "TDK Turkish Döner Kebab",
+  "caption": "Menú digital de cinco pantallas con fotografía de producto",
+  "src": "/img/trabajos/menu-tdk-pantallas.jpg",
+  "w": 670,
+  "h": 350
+ },
+ {
+  "type": "foto",
+  "kind": "arte",
+  "id": "menu-tdk-mostrador",
+  "title": "TDK Turkish Döner Kebab",
+  "caption": "El cliente elige en caja viendo platos y precios",
+  "src": "/img/trabajos/menu-tdk-mostrador.jpg",
+  "w": 670,
+  "h": 350
+ },
+ {
+  "type": "foto",
+  "kind": "arte",
+  "id": "menu-tdk-instalacion",
+  "title": "TDK Turkish Döner Kebab",
+  "caption": "Ajuste final de las pantallas de menú",
+  "src": "/img/trabajos/menu-tdk-instalacion.jpg",
+  "w": 747,
+  "h": 393
  }
 ]
