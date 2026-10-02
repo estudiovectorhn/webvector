@@ -10,11 +10,11 @@
  },
  {
   "type": "video",
-  "id": "blees-coffee",
+  "id": "bless-coffee",
   "title": "Bless Coffee",
   "caption": "Video gastronómico para redes",
-  "src": "/video/blees-coffee.mp4",
-  "poster": "/img/trabajos/blees-coffee.jpg",
+  "src": "/video/bless-coffee.mp4",
+  "poster": "/img/trabajos/bless-coffee.jpg",
   "home": true
  },
  {
