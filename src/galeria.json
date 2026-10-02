@@ -32,6 +32,19 @@
    ]
   },
   {
+   "id": "pantallas-menu",
+   "name": "Pantallas de menú digital",
+   "lead": "Menús en pantalla para restaurantes y food courts: vendemos las pantallas, fotografiamos los platos y diseñamos el menú listo para usar.",
+   "items": [
+    "menu-digital-tdk",
+    "menu-tdk-pantallas",
+    "menu-digital-vector",
+    "menu-tdk-mostrador",
+    "menu-digital-mostrador",
+    "menu-tdk-instalacion"
+   ]
+  },
+  {
    "id": "cafeterias",
    "name": "Cafeterías y bares",
    "lead": "Ambiente, bebidas y desayunos grabados para que la gente quiera ir hoy mismo.",

@@ -32,6 +32,7 @@
     asesoria: `<svg viewBox="0 0 120 90" ${L}><circle cx="40" cy="30" r="12"/><path d="M18 76a22 22 0 0 1 44 0"/><path d="M70 14h40v28H86l-10 10V42h-6z"/><path d="M80 24h20M80 32h14"/></svg>`,
     empresa: `<svg viewBox="0 0 120 90" ${L}><rect x="10" y="10" width="100" height="56" rx="6"/><path d="M34 80h52M60 66v14"/><path d="M26 50l18-18 14 12 24-22"/><circle cx="92" cy="26" r="4" fill="currentColor"/></svg>`,
     podcast: `<svg viewBox="0 0 120 90" ${L}><rect x="46" y="6" width="28" height="46" rx="14"/><path d="M34 40a26 26 0 0 0 52 0M60 66v16M44 82h32"/><path d="M16 32v16M24 26v28M96 26v28M104 32v16"/></svg>`,
+    menu: `<svg viewBox="0 0 120 90" ${L}><rect x="6" y="10" width="34" height="50" rx="3"/><rect x="43" y="10" width="34" height="50" rx="3"/><rect x="80" y="10" width="34" height="50" rx="3"/><path d="M13 20h20M13 28h14M50 20h20M50 28h14M87 20h20M87 28h14"/><circle cx="23" cy="44" r="7"/><circle cx="60" cy="44" r="7"/><circle cx="97" cy="44" r="7"/><path d="M23 60v10M97 60v10M14 80h92"/></svg>`,
     eventos: `<svg viewBox="0 0 120 90" ${L}><path d="M8 82h104"/><rect x="18" y="30" width="84" height="36" rx="4"/><path d="M30 30L20 8M90 30l10-22"/><circle cx="20" cy="8" r="3" fill="currentColor"/><circle cx="100" cy="8" r="3" fill="currentColor"/><path d="M40 66v16M80 66v16M36 48h48"/></svg>`
   };
   const DOW = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];

@@ -78,7 +78,7 @@ const ORG = {
   priceRange: "L 1,500 - L 40,000",
   founder: { "@id": PERSON_ID },
   sameAs: ["https://www.instagram.com/estudiovectormarketing/"],
-  knowsAbout: ["Marketing digital", "Meta Ads", "Publicidad en Facebook e Instagram", "Manejo de redes sociales", "Producción audiovisual", "Producción de video", "Reels y TikTok", "Fotografía comercial", "Fotografía gastronómica", "Producción de podcast", "Eventos corporativos", "Inteligencia artificial para negocios", "Diseño gráfico", "Branding", "Ventas por WhatsApp", "Capacitación empresarial"],
+  knowsAbout: ["Marketing digital", "Meta Ads", "Publicidad en Facebook e Instagram", "Manejo de redes sociales", "Producción audiovisual", "Producción de video", "Reels y TikTok", "Fotografía comercial", "Fotografía gastronómica", "Menú digital en pantallas para restaurantes", "Producción de podcast", "Eventos corporativos", "Inteligencia artificial para negocios", "Diseño gráfico", "Branding", "Ventas por WhatsApp", "Capacitación empresarial"],
   contactPoint: { "@type": "ContactPoint", telephone: "+504 9569-1481", contactType: "ventas", areaServed: "HN", availableLanguage: "es" },
   hasOfferCatalog: {
     "@type": "OfferCatalog", name: "Servicios de Estudio Vector",
@@ -223,7 +223,7 @@ function siteFooter() {
       <b>Talleres</b>${T.slice(0, 5).map(t => `<a href="/talleres/${t.slug}/">${t.title}</a>`).join("")}<a href="/talleres/#calendario">Ver calendario completo</a>
     </nav>
     <nav class="ft-nav" aria-label="Servicios">
-      <b>Servicios</b>${["marketing-digital", "redes-sociales", "meta-ads", "produccion-audiovisual", "fotografia", "eventos", "capacitaciones"].map(id => `<a href="${psURL(psById(id))}">${psById(id).nav}</a>`).join("")}<a href="/servicios/">Todos los servicios</a>
+      <b>Servicios</b>${["marketing-digital", "redes-sociales", "meta-ads", "produccion-audiovisual", "pantallas-menu", "eventos", "capacitaciones"].map(id => `<a href="${psURL(psById(id))}">${psById(id).nav}</a>`).join("")}<a href="/servicios/">Todos los servicios</a>
     </nav>
     <div class="ft-contact">
       <b>Contacto</b>
@@ -294,7 +294,7 @@ const FAQ_AG = [
   ["¿Qué es Estudio Vector?",
     `Estudio Vector (también conocido como Vector Marketing o Vector MKT) es una agencia de marketing, producción de contenido, eventos y capacitación con sede en San Pedro Sula, Honduras. La dirige <a href="/director-creativo/">Edgardo A. López</a> y trabaja con empresas de todo el país.`],
   ["¿Qué servicios ofrece una agencia de marketing en San Pedro Sula como Vector?",
-    `Manejo de redes sociales, publicidad en Meta Ads, diseño y branding, asesoría comercial, producción audiovisual, reels, fotografía comercial, podcast, eventos corporativos, capacitaciones para empresas e inteligencia artificial para equipos. Puedes ver cada uno en <a href="/servicios/">servicios</a>.`],
+    `Manejo de redes sociales, publicidad en Meta Ads, diseño y branding, asesoría comercial, producción audiovisual, reels, fotografía comercial, pantallas de menú digital para restaurantes, podcast, eventos corporativos, capacitaciones para empresas e inteligencia artificial para equipos. Puedes ver cada uno en <a href="/servicios/">servicios</a>.`],
   ["¿Hacen videos y reels para negocios?",
     `Sí. Grabamos y editamos videos comerciales, reels y TikToks con guion, iluminación y edición profesional. Mira ejemplos en esta página y el detalle en ${svLink("reels")} y ${svLink("produccion-audiovisual")}.`],
   ["¿Dan capacitaciones de marketing digital e inteligencia artificial?",

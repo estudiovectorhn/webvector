@@ -478,10 +478,10 @@
     ]
    ],
    "rel": [
+    "pantallas-menu",
     "redes-sociales",
     "marketing-digital",
-    "fotografia",
-    "produccion-audiovisual"
+    "fotografia"
    ],
    "kw": [
     "diseño gráfico San Pedro Sula",
@@ -913,10 +913,10 @@
     ]
    ],
    "rel": [
+    "pantallas-menu",
     "produccion-audiovisual",
     "redes-sociales",
-    "diseno-grafico",
-    "reels"
+    "diseno-grafico"
    ],
    "kw": [
     "fotografía comercial San Pedro Sula",
@@ -924,6 +924,113 @@
     "fotografía gastronómica",
     "fotografía para restaurantes",
     "fotografía corporativa"
+   ]
+  },
+  {
+   "id": "pantallas-menu",
+   "slug": "pantallas-menu-digital-restaurantes-honduras",
+   "pilar": "contenido",
+   "icon": "menu",
+   "nav": "Pantallas de menú digital",
+   "st": "Pantallas de menú digital para restaurantes",
+   "title": "Pantallas de Menú Digital para Restaurantes en Honduras: Pantallas, Fotos y Diseño | Estudio Vector",
+   "desc": "Menú digital en pantallas para restaurantes, cafeterías y food courts en Honduras: vendemos las pantallas, fotografiamos tus platos y diseñamos el menú listo para usar. Cambia precios y agrega platos sin reimprimir. Proyecto real: TDK en Mall Multiplaza Tegucigalpa.",
+   "h1": "Pantallas de menú digital",
+   "h1g": "para restaurantes en Honduras",
+   "lead": "Estudio Vector instala menús digitales en pantallas para restaurantes, cafeterías y locales de food court en Honduras. Vendemos las pantallas, fotografiamos tus platos y diseñamos todo el menú listo para usar, para que tus clientes vean tus productos y decidan más rápido en caja. Así lo hicimos para TDK Turkish Döner Kebab en Mall Multiplaza Tegucigalpa.",
+   "body": [
+    "En caja cada segundo cuenta. Cuando el cliente ve el plato con una buena foto y el precio claro, decide más rápido, pregunta menos y muchas veces elige el combo o el producto que quieres destacar. Un menú impreso o un rótulo viejo no logra eso.",
+    "Con el menú en pantalla el dueño puede cambiar precios rápidamente, agregar platos nuevos, quitar lo que se agotó y lanzar promociones sin reimprimir nada. Tu oferta gastronómica se ve moderna, ordenada y siempre al día."
+   ],
+   "que": [
+    [
+     "Pantallas para tu local",
+     "Te vendemos las pantallas según el espacio de tu mostrador y la cantidad de productos que quieres mostrar."
+    ],
+    [
+     "Fotografía de tus platos",
+     "Fotografiamos tu menú con iluminación profesional para que cada producto se vea apetitoso."
+    ],
+    [
+     "Diseño del menú",
+     "Organizamos categorías, combos, precios y promociones con la imagen de tu marca."
+    ],
+    [
+     "Menú listo para usar",
+     "Te entregamos el menú cargado y funcionando en las pantallas."
+    ],
+    [
+     "Cambios de precios y platos",
+     "Actualiza precios, agrega platos nuevos o cambia promociones sin reimprimir."
+    ],
+    [
+     "Contenido animado",
+     "Promociones y productos destacados que llaman la atención de quien hace fila."
+    ]
+   ],
+   "ideal": "Restaurantes, cafeterías, comida rápida y locales de food court que quieren vender más en caja y actualizar su menú sin reimprimir.",
+   "industrias": [
+    "Comida rápida",
+    "Food courts y centros comerciales",
+    "Restaurantes",
+    "Cafeterías",
+    "Heladerías y postres",
+    "Minisúpers"
+   ],
+   "work": [
+    "menu-digital-tdk",
+    "menu-tdk-pantallas",
+    "menu-digital-vector",
+    "menu-tdk-mostrador",
+    "menu-digital-mostrador",
+    "menu-tdk-instalacion"
+   ],
+   "logos": [
+    "tdk"
+   ],
+   "faq": [
+    [
+     "¿Qué es un menú digital en pantallas?",
+     "Es el menú de tu restaurante mostrado en pantallas sobre el mostrador o en la zona de caja, con fotos de los platos, precios, combos y promociones. Reemplaza al menú impreso o al rótulo fijo y se puede actualizar cuando lo necesites."
+    ],
+    [
+     "¿Quién instala menús digitales para restaurantes en Honduras?",
+     "Estudio Vector, agencia de San Pedro Sula, vende las pantallas, fotografía los platos y diseña el menú digital listo para usar para restaurantes de todo Honduras. Uno de nuestros proyectos es el menú digital de TDK Turkish Döner Kebab en Mall Multiplaza Tegucigalpa."
+    ],
+    [
+     "¿Qué incluye el servicio de pantallas de menú?",
+     "Las pantallas, la fotografía profesional de tus platos, el diseño completo del menú con tu marca y la entrega del menú listo para usar en tu local."
+    ],
+    [
+     "¿Puedo cambiar precios y agregar platos después?",
+     "Sí. Esa es una de las mayores ventajas: los precios, los platos y las promociones se actualizan rápido y sin reimprimir, así tu menú siempre está al día."
+    ],
+    [
+     "¿Por qué un menú digital ayuda a vender más?",
+     "Porque el cliente ve el producto con una foto atractiva y el precio claro mientras hace fila, decide más rápido en caja y es más fácil destacar combos, productos nuevos y promociones."
+    ],
+    [
+     "¿Cuánto cuestan las pantallas de menú digital?",
+     "Depende de la cantidad y el tamaño de las pantallas, de cuántos platos hay que fotografiar y del diseño del menú. Te enviamos una cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+    ],
+    [
+     "¿Trabajan fuera de San Pedro Sula?",
+     "Sí. Atendemos restaurantes en todo Honduras; el menú digital de TDK, por ejemplo, está en Mall Multiplaza Tegucigalpa."
+    ]
+   ],
+   "rel": [
+    "fotografia",
+    "diseno-grafico",
+    "reels",
+    "meta-ads"
+   ],
+   "kw": [
+    "menú digital para restaurantes Honduras",
+    "pantallas de menú digital",
+    "menu board digital",
+    "pantallas para restaurante San Pedro Sula",
+    "menú digital Tegucigalpa",
+    "digital signage restaurantes"
    ]
   },
   {
