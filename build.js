@@ -828,11 +828,21 @@ ${siteHeader("")}
 }
 
 /* ---------------- sitemap, robots, llms ---------------- */
+/* Videos en el sitemap: cada video se declara una sola vez, en su página principal */
+const xml = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const videoXML = w => `
+    <video:video><video:thumbnail_loc>${SITE}${w.poster}</video:thumbnail_loc><video:title>${xml(w.title + ": " + w.caption)}</video:title><video:description>${xml(w.caption + ". Producido por Estudio Vector, agencia de marketing y producción audiovisual en San Pedro Sula, Honduras.")}</video:description><video:content_loc>${SITE}${w.src}</video:content_loc><video:publication_date>${TODAY}</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>`;
+const VIDEO_PAGES = (() => {
+  const home = WORK.filter(w => w.type === "video" && w.home), dir = EV.filter(w => w.type === "video");
+  const seen = new Set([...home, ...dir].map(w => w.id));
+  const gal = GAL.categorias.flatMap(c => c.items).map(id => MEDIA[id]).filter(w => { if (!w || w.type !== "video" || seen.has(w.id)) return false; seen.add(w.id); return true; });
+  return { "/": home, "/director-creativo/": dir, "/portafolio/": gal };
+})();
 function buildMeta() {
   const urls = [["/", "1.0", "weekly"], ["/talleres/", "0.9", "weekly"], ["/director-creativo/", "0.7", "monthly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ["/portafolio/", "0.9", "monthly"], ...RB.map(r => [rbURL(r), "0.8", "monthly"]), ...PS.map(p => [psURL(p), "0.9", "monthly"]), ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
   write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(([u, p, f]) => `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority></url>`).join("\n")}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${urls.map(([u, p, f]) => `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${(VIDEO_PAGES[u] || []).map(videoXML).join("")}</url>`).join("\n")}
 </urlset>
 `);
   const bots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "Claude-SearchBot", "anthropic-ai", "PerplexityBot", "Perplexity-User", "Google-Extended", "Googlebot", "Bingbot", "Applebot", "Applebot-Extended", "Meta-ExternalAgent", "DuckAssistBot", "cohere-ai", "YouBot", "CCBot"];
