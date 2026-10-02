@@ -1,0 +1,65 @@
+{
+ "titulo": "Galería de trabajos por tipo de negocio",
+ "categorias": [
+  {
+   "id": "restaurantes",
+   "name": "Restaurantes y comida",
+   "lead": "Reels de menú, fotografía de platos y artes para redes que abren el apetito y llevan pedidos al WhatsApp.",
+   "items": ["slice-burger", "il-romano-entrada", "il-romano-canelones", "mar-y-tierra", "caja-morazanica", "il-romano-arte-romanisima", "il-romano-arte-pizzas", "fum-yim-arte-wok", "fum-yim-arte-arroz", "il-romano-arte-spaguetti", "il-romano-arte-trifili", "fum-yim-arte-llevar", "il-romano-arte-pizza", "corte-de-carne", "slice-pizza", "hamburguesa", "pasta", "gratinado", "canastas-de-platano", "sarten-de-hierro", "fum-yim-vitrina-1", "fum-yim-vitrina-2", "fum-yim-fachada"]
+  },
+  {
+   "id": "cafeterias",
+   "name": "Cafeterías y bares",
+   "lead": "Ambiente, bebidas y desayunos grabados para que la gente quiera ir hoy mismo.",
+   "items": ["workafe-menu", "bless-coffee-tienda", "blees-coffee", "pina-loca", "frutos-rojos", "workafe-arte-desayuno", "workafe-arte-espacio", "workafe-arte-bebida", "workafe-arte-postre", "bless-arte-minimarket", "bless-arte-autoservicio", "coctel-azul", "postre-y-bebida", "desayuno-tipico"]
+  },
+  {
+   "id": "ferreterias-retail",
+   "name": "Ferreterías, tiendas y retail",
+   "lead": "Recorridos de tienda, artes de producto con precio y spots comerciales para vender catálogo.",
+   "items": ["megatools", "harol-mayoreo", "tiempo-valioso", "megatools-arte-cubos", "megatools-arte-motosierra", "megatools-arte-taladro", "megatools-arte-compresor", "megatools-arte-hidrolavadora", "megatools-arte-cortadora", "megatools-arte-capote"]
+  },
+  {
+   "id": "mascotas",
+   "name": "Pet shops y mascotas",
+   "lead": "Producto, catálogo y promociones para tiendas de mascotas y marcas de alimento.",
+   "items": ["tobys-milk-bone", "tobys-alimentos", "balance"]
+  },
+  {
+   "id": "automotriz",
+   "name": "Automotriz",
+   "lead": "Servicios de polarizado, detailing y talleres mostrados con ritmo y antes y después.",
+   "items": ["la-guardia", "bts-detailing"]
+  },
+  {
+   "id": "agro-jardineria",
+   "name": "Agro, viveros y jardinería",
+   "lead": "Videos institucionales y reels comerciales para empresas agroindustriales, viveros y diseño de jardines.",
+   "items": ["diagro-institucional", "ornamentos-vivero", "ornamentos-plantas"]
+  },
+  {
+   "id": "bienes-raices-empresas",
+   "name": "Bienes raíces, logística y empresas",
+   "lead": "Videos corporativos, presentadoras, stands y artes para proyectos inmobiliarios, parques logísticos y servicios profesionales.",
+   "items": ["altos-de-valencia", "rtn-empresarial", "stand-first-logistics", "quintara5-arte-1", "quintara5-arte-2"]
+  },
+  {
+   "id": "salud-marca-personal",
+   "name": "Salud, marca personal y podcast",
+   "lead": "Contenido para médicos y profesionales: entrevistas, clips de podcast y videos de autoridad.",
+   "items": ["dr-orellana", "podcast-orellana", "backstage-3", "bts-podcast", "bts-podcast-mesa", "bts-podcast-camara"]
+  },
+  {
+   "id": "capacitaciones-eventos",
+   "name": "Capacitaciones y eventos",
+   "lead": "Seminarios, capacitaciones para empresas e instituciones y talleres en el aula de Vector.",
+   "items": ["forum-ruta-copan", "diagro", "la-union-copan", "cap-edgardo-videos", "cap-aula-vector", "cap-sala-empresa", "cap-edgardo-pantalla", "cap-contenido-certificados", "cap-mag-pollo", "cap-unicalza", "cap-capcut-aula", "cap-asesoria-equipo"]
+  },
+  {
+   "id": "detras-de-camaras",
+   "name": "Detrás de cámaras",
+   "lead": "Así trabajamos: sets, luces, cámaras y equipo en cada producción.",
+   "items": ["bts-entrevista-estudio", "bts-entrevista-oficina", "bts-set-producto", "backstage-1", "backstage-2", "bts-entrevista-set", "bts-estudio-luces", "bts-producto-set", "bts-flash-comida", "bts-set-luces", "bts-set-entrevista", "bts-oficina-verde"]
+  }
+ ]
+}

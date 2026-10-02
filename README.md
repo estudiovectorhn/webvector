@@ -19,8 +19,9 @@ node server.js    # abre http://localhost:3000
 | Talleres (fechas, precios, contenido, apps que se usan: campo `tools`; cámaras u otro equipo en PNG sin fondo: campo `gear` con imágenes en `img/gear/`) | `src/talleres.json` |
 | Iconos de las apps (Meta, Facebook, Instagram, WhatsApp, ChatGPT, Claude, Canva, CapCut, TikTok, Zoom, Supabase, YouTube) | `img/tools/*.svg`, nombres y notas en `assets/js/render.js` (`TOOLS`) |
 | Programa del mes en PDF (portada con calendario + lista con precios y botones) | `build-pdf.js` → `talleres-octubre-2026.pdf` |
+| Portafolio por tipo de negocio (`/portafolio/`): categorías y qué piezas van en cada una | `src/galeria.json` |
 | Servicios: 4 pilares y una página por servicio (texto, trabajos, logos, preguntas frecuentes, palabras clave) | `src/paginas.json` |
-| Portafolio de la página de inicio (videos en `video/`, fotos y pósters en `img/trabajos/`) | `src/trabajos.json` |
+| Trabajos: videos (en `video/`), fotos y artes (en `img/trabajos/`). `"home": true` = sale en el carrusel de la portada; `"kind": "arte"` = arte de diseño (no sale en "Fotografía que vende") | `src/trabajos.json` |
 | Estructura de la página de inicio | `src/home.body.html` |
 | Estructura de la página de talleres | `src/talleres.body.html` |
 | Página del Director Creativo (carrusel "Algunas capacitaciones brindadas": videos y fotos en `src/eventos.json`) | `src/director.body.html` |
@@ -38,6 +39,7 @@ Después de editar, corre `node build.js` y sube los cambios. Para regenerar el 
 - `/talleres/` talleres del mes (calendario, filtros, preguntas frecuentes)
 - `/director-creativo/` perfil de Edgardo A. López
 - `/talleres/<taller>/` una página por taller
+- `/portafolio/` galería de reels, videos, fotos y artes por tipo de negocio, con filtro (enlace directo: `/portafolio/#restaurantes`)
 - `/servicios/` índice de servicios por pilar (Marketing · Contenido · Eventos · Capacitación)
 - `/<slug>/` una página por servicio, por ejemplo `/produccion-audiovisual-san-pedro-sula/` o `/publicidad-meta-ads-honduras/` (se generan desde `src/paginas.json`)
 - `/talleres-octubre-2026.pdf` programa del mes para compartir con interesados (enlaces a cada taller y a WhatsApp)

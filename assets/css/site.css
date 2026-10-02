@@ -943,3 +943,33 @@ a.trust{text-decoration:none;color:inherit}
 .sp-note{margin:18px 0 0;text-align:center;color:var(--muted);font-size:14px}
 @media (min-width:640px){.sp-grid{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:900px){.sp-grid{grid-template-columns:repeat(3,1fr)}.sp-para{grid-template-columns:1.3fr 1fr}}
+
+/* videos horizontales dentro de carruseles y galería */
+.reel.wide:not(.photo){aspect-ratio:16/9}
+.reels.loop .reel.wide:not(.photo){aspect-ratio:16/9}
+/* botón a la galería desde la portada */
+.st-gal{display:flex;width:fit-content;margin:14px auto 0;background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.st-gal:hover{background:#fff;color:var(--deep)}
+
+/* portafolio por tipo de negocio */
+.gal-bar{position:sticky;top:var(--hh);z-index:20;margin:22px calc(50% - 50vw) 0;padding:10px calc(50vw - 50%);background:color-mix(in srgb,var(--bg,#F7F4FF) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.gal-chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 16px;margin-inline:-16px}
+.gal-chips::-webkit-scrollbar{display:none}
+.gal-chips button{flex:none;font:inherit;font-size:13.5px;font-weight:800;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--deep);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.gal-chips button i{font-style:normal;font-weight:700;opacity:.55;margin-left:4px}
+.gal-chips button:hover{border-color:var(--violet)}
+.gal-chips button[aria-pressed="true"]{background:var(--grad);color:#fff;border-color:transparent}
+.gal-chips button[aria-pressed="true"] i{opacity:.85}
+.gal-sec{margin-top:34px;scroll-margin-top:calc(var(--hh) + 70px)}
+.gal-grid{columns:2;column-gap:10px;margin-top:6px}
+.gal-grid .reel{display:block;width:100%;max-width:none;margin:0 0 10px;break-inside:avoid;scroll-snap-align:none}
+.gal-grid .reel.photo{aspect-ratio:auto}
+.gal-grid .reel.photo img{position:static;height:auto}
+.gal-grid .reel .kind{position:absolute;left:10px;top:10px;z-index:2;padding:3px 8px;border-radius:999px;background:rgba(14,6,48,.55);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.gal-grid .reel figcaption b{font-size:13px}
+.gal-grid .reel figcaption span{font-size:11px}
+.gal-cta{margin-top:6px}
+@media (min-width:640px){.gal-grid{columns:3;column-gap:12px}.gal-grid .reel{margin-bottom:12px}}
+@media (min-width:1000px){.gal-grid{columns:4;column-gap:14px}.gal-grid .reel{margin-bottom:14px}.gal-chips{margin:0;padding:2px 0;mask-image:linear-gradient(90deg,#000 92%,transparent)}}
+@media (min-width:1300px){.gal-grid{columns:5}}
+@media (max-width:999px){.gal-chips{mask-image:linear-gradient(90deg,#000 85%,transparent)}}

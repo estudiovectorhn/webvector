@@ -1,9 +1,29 @@
 {
  "pilares": [
-  { "id": "marketing", "name": "Marketing", "lead": "Estrategia, redes sociales, publicidad en Meta Ads, diseño de marca y asesoría comercial.", "grad": "linear-gradient(135deg,#2C02A4,#7B4DFF 55%,#E0169B)" },
-  { "id": "contenido", "name": "Contenido", "lead": "Producción audiovisual, reels, fotografía comercial y podcast para marcas.", "grad": "linear-gradient(135deg,#3A0CC9,#C4107C)" },
-  { "id": "eventos", "name": "Eventos", "lead": "Montaje, producción y cobertura audiovisual de eventos corporativos.", "grad": "linear-gradient(135deg,#12044F,#6A3BF5 60%,#E0169B)" },
-  { "id": "educacion", "name": "Capacitación", "lead": "Talleres, capacitaciones empresariales e inteligencia artificial para equipos.", "grad": "linear-gradient(135deg,#2C02A4,#E0169B)" }
+  {
+   "id": "marketing",
+   "name": "Marketing",
+   "lead": "Estrategia, redes sociales, publicidad en Meta Ads, diseño de marca y asesoría comercial.",
+   "grad": "linear-gradient(135deg,#2C02A4,#7B4DFF 55%,#E0169B)"
+  },
+  {
+   "id": "contenido",
+   "name": "Contenido",
+   "lead": "Producción audiovisual, reels, fotografía comercial y podcast para marcas.",
+   "grad": "linear-gradient(135deg,#3A0CC9,#C4107C)"
+  },
+  {
+   "id": "eventos",
+   "name": "Eventos",
+   "lead": "Montaje, producción y cobertura audiovisual de eventos corporativos.",
+   "grad": "linear-gradient(135deg,#12044F,#6A3BF5 60%,#E0169B)"
+  },
+  {
+   "id": "educacion",
+   "name": "Capacitación",
+   "lead": "Talleres, capacitaciones empresariales e inteligencia artificial para equipos.",
+   "grad": "linear-gradient(135deg,#2C02A4,#E0169B)"
+  }
  ],
  "servicios": [
   {
@@ -23,27 +43,102 @@
     "Trabajamos con restaurantes, ferreterías, tiendas de calzado, pet shops, clínicas, proyectos inmobiliarios, empresas agroindustriales e instituciones. A cada una le armamos un plan distinto, porque no se vende igual una hamburguesa que una herramienta industrial."
    ],
    "que": [
-    ["Estrategia y plan de marketing", "Definimos objetivos, público, mensajes y el calendario de acciones del mes."],
-    ["Manejo de redes sociales", "Plan de contenido, diseño, copys de venta, programación y reporte mensual."],
-    ["Publicidad en Meta Ads", "Campañas en Facebook e Instagram a WhatsApp, mensajes, tráfico o alcance, optimizadas cada semana."],
-    ["Producción de contenido", "Videos comerciales, reels y fotografía de producto grabados por nuestro equipo."],
-    ["Diseño y branding", "Logotipo, manual de marca, artes para redes y material impreso."],
-    ["Ventas y atención por WhatsApp", "Revisamos cómo atiende tu equipo y lo capacitamos para cerrar más ventas."]
+    [
+     "Estrategia y plan de marketing",
+     "Definimos objetivos, público, mensajes y el calendario de acciones del mes."
+    ],
+    [
+     "Manejo de redes sociales",
+     "Plan de contenido, diseño, copys de venta, programación y reporte mensual."
+    ],
+    [
+     "Publicidad en Meta Ads",
+     "Campañas en Facebook e Instagram a WhatsApp, mensajes, tráfico o alcance, optimizadas cada semana."
+    ],
+    [
+     "Producción de contenido",
+     "Videos comerciales, reels y fotografía de producto grabados por nuestro equipo."
+    ],
+    [
+     "Diseño y branding",
+     "Logotipo, manual de marca, artes para redes y material impreso."
+    ],
+    [
+     "Ventas y atención por WhatsApp",
+     "Revisamos cómo atiende tu equipo y lo capacitamos para cerrar más ventas."
+    ]
    ],
    "ideal": "Negocios que quieren crecer con un plan de marketing ordenado y medible, sin tener que coordinar a varios proveedores por separado.",
-   "industrias": ["Restaurantes y cafeterías", "Ferreterías y herramientas", "Retail y calzado", "Pet shops", "Salud y clínicas", "Bienes raíces", "Agroindustria", "Instituciones"],
-   "work": ["pina-loca", "harol-mayoreo", "altos-de-valencia", "blees-coffee", "dr-orellana", "balance", "caja-morazanica"],
-   "logos": ["pina-loca", "punto-ferretero", "unicalza", "diagro", "toby-s-pet-shop", "megatools", "dr-manuel-orellana", "il-romano"],
-   "faq": [
-    ["¿Hay agencias de marketing digital en San Pedro Sula?", "Sí. Estudio Vector es una agencia de marketing digital en San Pedro Sula, Cortés, que maneja redes sociales, publicidad en Meta Ads, producción de video y fotografía, diseño de marca y capacitación para empresas de todo Honduras."],
-    ["¿Qué hace una agencia de marketing digital?", "Planifica y ejecuta la comunicación de tu negocio en internet: define a quién hablarle y qué decir, produce el contenido, lo publica en tus redes, invierte en anuncios para llegar a más clientes y mide los resultados para mejorar cada mes."],
-    ["¿Cuánto cuesta contratar una agencia de marketing en Honduras?", "Depende del alcance: cuántas redes, cuántas publicaciones y videos al mes, si incluye producción en locación y cuánto se invertirá en anuncios. En Estudio Vector te enviamos una cotización formal por escrito después de una conversación corta por WhatsApp."],
-    ["¿Trabajan con negocios pequeños?", "Sí. Trabajamos con emprendimientos, negocios familiares y empresas medianas. Si todavía no es momento de contratar una agencia, también puedes aprender a hacerlo tú mismo en nuestros <a href='/talleres/'>talleres de marketing digital</a>."],
-    ["¿Atienden empresas fuera de San Pedro Sula?", "Sí. Los servicios digitales se trabajan a distancia con empresas de todo Honduras, y la producción de video, los eventos y las capacitaciones presenciales se coordinan según la ubicación."],
-    ["¿Cómo empiezo?", "Escríbenos por WhatsApp al +504 9569-1481. Hacemos un diagnóstico corto de tu negocio, te enviamos la propuesta y, al aprobarla, arrancamos."]
+   "industrias": [
+    "Restaurantes y cafeterías",
+    "Ferreterías y herramientas",
+    "Retail y calzado",
+    "Pet shops",
+    "Salud y clínicas",
+    "Bienes raíces",
+    "Agroindustria",
+    "Instituciones"
    ],
-   "rel": ["redes-sociales", "meta-ads", "produccion-audiovisual", "diseno-grafico"],
-   "kw": ["agencia de marketing digital San Pedro Sula", "agencia de marketing Honduras", "marketing digital para empresas", "agencia de publicidad San Pedro Sula"]
+   "work": [
+    "slice-burger",
+    "megatools",
+    "la-guardia",
+    "pina-loca",
+    "harol-mayoreo",
+    "altos-de-valencia",
+    "tobys-milk-bone",
+    "megatools-arte-taladro",
+    "il-romano-arte-romanisima",
+    "dr-orellana"
+   ],
+   "logos": [
+    "pina-loca",
+    "punto-ferretero",
+    "unicalza",
+    "diagro",
+    "toby-s-pet-shop",
+    "megatools",
+    "dr-manuel-orellana",
+    "il-romano"
+   ],
+   "faq": [
+    [
+     "¿Hay agencias de marketing digital en San Pedro Sula?",
+     "Sí. Estudio Vector es una agencia de marketing digital en San Pedro Sula, Cortés, que maneja redes sociales, publicidad en Meta Ads, producción de video y fotografía, diseño de marca y capacitación para empresas de todo Honduras."
+    ],
+    [
+     "¿Qué hace una agencia de marketing digital?",
+     "Planifica y ejecuta la comunicación de tu negocio en internet: define a quién hablarle y qué decir, produce el contenido, lo publica en tus redes, invierte en anuncios para llegar a más clientes y mide los resultados para mejorar cada mes."
+    ],
+    [
+     "¿Cuánto cuesta contratar una agencia de marketing en Honduras?",
+     "Depende del alcance: cuántas redes, cuántas publicaciones y videos al mes, si incluye producción en locación y cuánto se invertirá en anuncios. En Estudio Vector te enviamos una cotización formal por escrito después de una conversación corta por WhatsApp."
+    ],
+    [
+     "¿Trabajan con negocios pequeños?",
+     "Sí. Trabajamos con emprendimientos, negocios familiares y empresas medianas. Si todavía no es momento de contratar una agencia, también puedes aprender a hacerlo tú mismo en nuestros <a href='/talleres/'>talleres de marketing digital</a>."
+    ],
+    [
+     "¿Atienden empresas fuera de San Pedro Sula?",
+     "Sí. Los servicios digitales se trabajan a distancia con empresas de todo Honduras, y la producción de video, los eventos y las capacitaciones presenciales se coordinan según la ubicación."
+    ],
+    [
+     "¿Cómo empiezo?",
+     "Escríbenos por WhatsApp al +504 9569-1481. Hacemos un diagnóstico corto de tu negocio, te enviamos la propuesta y, al aprobarla, arrancamos."
+    ]
+   ],
+   "rel": [
+    "redes-sociales",
+    "meta-ads",
+    "produccion-audiovisual",
+    "diseno-grafico"
+   ],
+   "kw": [
+    "agencia de marketing digital San Pedro Sula",
+    "agencia de marketing Honduras",
+    "marketing digital para empresas",
+    "agencia de publicidad San Pedro Sula"
+   ]
   },
   {
    "id": "redes-sociales",
@@ -62,27 +157,100 @@
     "Como también somos productora audiovisual, el plan incluye videos y reels grabados por nuestro equipo, no solo artes con fotos de internet. Y si además inviertes en anuncios, conectamos el contenido con las campañas de Meta Ads para que todo empuje en la misma dirección."
    ],
    "que": [
-    ["Plan de contenido mensual", "Calendario con temas, formatos y fechas, enviado para tu aprobación."],
-    ["Diseño de artes y copys de venta", "Piezas con la identidad de tu marca y textos pensados para generar mensajes."],
-    ["Videos y reels", "Grabados y editados por nuestro equipo según el plan del mes."],
-    ["Programación en Facebook, Instagram y TikTok", "Publicamos en los días y horarios que mejor funcionan para tu público."],
-    ["Historias y fechas especiales", "Contenido para temporadas, feriados y promociones."],
-    ["Reporte mensual de resultados", "Alcance, interacción y mensajes, con recomendaciones para el mes siguiente."]
+    [
+     "Plan de contenido mensual",
+     "Calendario con temas, formatos y fechas, enviado para tu aprobación."
+    ],
+    [
+     "Diseño de artes y copys de venta",
+     "Piezas con la identidad de tu marca y textos pensados para generar mensajes."
+    ],
+    [
+     "Videos y reels",
+     "Grabados y editados por nuestro equipo según el plan del mes."
+    ],
+    [
+     "Programación en Facebook, Instagram y TikTok",
+     "Publicamos en los días y horarios que mejor funcionan para tu público."
+    ],
+    [
+     "Historias y fechas especiales",
+     "Contenido para temporadas, feriados y promociones."
+    ],
+    [
+     "Reporte mensual de resultados",
+     "Alcance, interacción y mensajes, con recomendaciones para el mes siguiente."
+    ]
    ],
    "ideal": "Negocios que quieren presencia profesional y constante en redes sin contratar un equipo interno.",
-   "industrias": ["Restaurantes y cafeterías", "Retail", "Ferreterías", "Pet shops", "Salud y estética", "Servicios profesionales"],
-   "work": ["pina-loca", "blees-coffee", "mar-y-tierra", "frutos-rojos", "balance", "harol-mayoreo"],
-   "logos": ["pina-loca", "slide-pizza", "fumyim", "il-romano", "pollos-el-pechugon", "toby-s-pet-shop", "workkafe", "kiv-detailing"],
-   "faq": [
-    ["¿Quién maneja redes sociales en San Pedro Sula?", "Estudio Vector maneja las redes sociales de empresas en San Pedro Sula y Honduras: plan de contenido, diseño, videos, copys, programación en Facebook, Instagram y TikTok y reporte mensual."],
-    ["¿Cuánto cuesta el manejo de redes sociales de una empresa en Honduras?", "Depende de cuántas redes, cuántas publicaciones y videos al mes, y si el plan incluye grabación en tu negocio. Te enviamos una cotización formal por escrito después de conocer tu negocio por WhatsApp."],
-    ["¿Es mejor una agencia o un community manager?", "Un community manager suele publicar y responder. Una agencia como Estudio Vector además define la estrategia, produce videos y fotos profesionales, maneja la pauta en Meta Ads y mide resultados con un equipo detrás, sin que dependas de una sola persona."],
-    ["¿Yo apruebo lo que se publica?", "Sí. Cada mes te enviamos el plan de contenido para aprobación antes de producirlo y programarlo."],
-    ["¿Incluye responder mensajes?", "El servicio se enfoca en generar contenido y conversaciones. La atención de mensajes la hace tu equipo, y te ayudamos a hacerlo mejor con nuestro <a href='/talleres/taller-ventas-por-whatsapp/'>taller de ventas por WhatsApp</a> o una asesoría comercial."],
-    ["¿Incluye publicidad pagada?", "La inversión en anuncios es aparte y la pagas directamente a Meta. Si quieres que la administremos, lo sumamos con nuestro servicio de <a href='/publicidad-meta-ads-honduras/'>publicidad en Meta Ads</a>."]
+   "industrias": [
+    "Restaurantes y cafeterías",
+    "Retail",
+    "Ferreterías",
+    "Pet shops",
+    "Salud y estética",
+    "Servicios profesionales"
    ],
-   "rel": ["meta-ads", "reels", "diseno-grafico", "marketing-digital"],
-   "kw": ["manejo de redes sociales San Pedro Sula", "community manager Honduras", "agencia de redes sociales", "contenido para redes sociales"]
+   "work": [
+    "il-romano-entrada",
+    "workafe-menu",
+    "tobys-milk-bone",
+    "pina-loca",
+    "fum-yim-arte-wok",
+    "workafe-arte-desayuno",
+    "megatools-arte-cubos",
+    "bless-arte-minimarket",
+    "balance",
+    "harol-mayoreo"
+   ],
+   "logos": [
+    "pina-loca",
+    "slide-pizza",
+    "fumyim",
+    "il-romano",
+    "pollos-el-pechugon",
+    "toby-s-pet-shop",
+    "workkafe",
+    "kiv-detailing"
+   ],
+   "faq": [
+    [
+     "¿Quién maneja redes sociales en San Pedro Sula?",
+     "Estudio Vector maneja las redes sociales de empresas en San Pedro Sula y Honduras: plan de contenido, diseño, videos, copys, programación en Facebook, Instagram y TikTok y reporte mensual."
+    ],
+    [
+     "¿Cuánto cuesta el manejo de redes sociales de una empresa en Honduras?",
+     "Depende de cuántas redes, cuántas publicaciones y videos al mes, y si el plan incluye grabación en tu negocio. Te enviamos una cotización formal por escrito después de conocer tu negocio por WhatsApp."
+    ],
+    [
+     "¿Es mejor una agencia o un community manager?",
+     "Un community manager suele publicar y responder. Una agencia como Estudio Vector además define la estrategia, produce videos y fotos profesionales, maneja la pauta en Meta Ads y mide resultados con un equipo detrás, sin que dependas de una sola persona."
+    ],
+    [
+     "¿Yo apruebo lo que se publica?",
+     "Sí. Cada mes te enviamos el plan de contenido para aprobación antes de producirlo y programarlo."
+    ],
+    [
+     "¿Incluye responder mensajes?",
+     "El servicio se enfoca en generar contenido y conversaciones. La atención de mensajes la hace tu equipo, y te ayudamos a hacerlo mejor con nuestro <a href='/talleres/taller-ventas-por-whatsapp/'>taller de ventas por WhatsApp</a> o una asesoría comercial."
+    ],
+    [
+     "¿Incluye publicidad pagada?",
+     "La inversión en anuncios es aparte y la pagas directamente a Meta. Si quieres que la administremos, lo sumamos con nuestro servicio de <a href='/publicidad-meta-ads-honduras/'>publicidad en Meta Ads</a>."
+    ]
+   ],
+   "rel": [
+    "meta-ads",
+    "reels",
+    "diseno-grafico",
+    "marketing-digital"
+   ],
+   "kw": [
+    "manejo de redes sociales San Pedro Sula",
+    "community manager Honduras",
+    "agencia de redes sociales",
+    "contenido para redes sociales"
+   ]
   },
   {
    "id": "meta-ads",
@@ -101,27 +269,100 @@
     "Además de administrar campañas, Estudio Vector enseña Meta Ads. Edgardo A. López, director de la agencia, imparte los <a href='/talleres/taller-meta-ads-presencial/'>talleres de Meta Ads</a> a dueños de negocio y equipos de marketing en Honduras, así que trabajamos con el mismo método que enseñamos."
    ],
    "que": [
-    ["Configuración de portafolio y cuenta publicitaria", "Portafolio comercial, cuenta, píxel y métodos de pago en orden."],
-    ["Estrategia y estructura de campañas", "Objetivo, presupuesto y estructura según lo que quieres vender."],
-    ["Segmentación de públicos", "Intereses, ubicación, edad y públicos de clientes y visitantes."],
-    ["Anuncios que detienen el scroll", "Videos y artes producidos por nuestro equipo para cada campaña."],
-    ["Campañas a WhatsApp, mensajes, tráfico o alcance", "El objetivo correcto para cada etapa de tu negocio."],
-    ["Optimización semanal e informes", "Ajustes cada semana e informe técnico de resultados y costo por resultado."]
+    [
+     "Configuración de portafolio y cuenta publicitaria",
+     "Portafolio comercial, cuenta, píxel y métodos de pago en orden."
+    ],
+    [
+     "Estrategia y estructura de campañas",
+     "Objetivo, presupuesto y estructura según lo que quieres vender."
+    ],
+    [
+     "Segmentación de públicos",
+     "Intereses, ubicación, edad y públicos de clientes y visitantes."
+    ],
+    [
+     "Anuncios que detienen el scroll",
+     "Videos y artes producidos por nuestro equipo para cada campaña."
+    ],
+    [
+     "Campañas a WhatsApp, mensajes, tráfico o alcance",
+     "El objetivo correcto para cada etapa de tu negocio."
+    ],
+    [
+     "Optimización semanal e informes",
+     "Ajustes cada semana e informe técnico de resultados y costo por resultado."
+    ]
    ],
    "ideal": "Negocios que ya invierten en anuncios o quieren empezar a hacerlo con criterio y medir cada lempira invertido.",
-   "industrias": ["Restaurantes", "Retail y calzado", "Ferreterías", "Bienes raíces", "Salud", "Educación y cursos"],
-   "work": ["harol-mayoreo", "altos-de-valencia", "pina-loca", "rtn-empresarial", "caja-morazanica", "tiempo-valioso"],
-   "logos": ["importaciones-hyp", "unicalza", "pina-loca", "punto-ferretero", "megatools", "polarizados-la-guardia", "rs", "ornamentos-comerciales"],
-   "faq": [
-    ["¿Hay agencias que administren Meta Ads en San Pedro Sula?", "Sí. Estudio Vector administra campañas publicitarias en Facebook e Instagram para empresas de San Pedro Sula y Honduras, incluyendo planificación, creación de anuncios, segmentación, seguimiento y optimización."],
-    ["¿Cuánto hay que invertir en Meta Ads en Honduras?", "Hay dos costos: la inversión que pagas directamente a Meta y la administración de la agencia. La inversión depende de tu objetivo, tu zona y tu competencia; te recomendamos un monto inicial después de revisar tu negocio y lo ajustamos con los resultados de las primeras semanas."],
-    ["¿Qué tipo de campañas funcionan mejor para negocios en Honduras?", "Para la mayoría de negocios locales, las campañas a WhatsApp o mensajes, porque convierten el interés en una conversación de venta. Para lanzamientos o marcas nuevas también usamos campañas de alcance y video."],
-    ["¿Cada cuánto me entregan resultados?", "Optimizamos cada semana y entregamos un informe técnico con alcance, resultados y costo por resultado de cada campaña."],
-    ["¿Ustedes hacen los anuncios?", "Sí. Como también somos productora audiovisual, grabamos y diseñamos los anuncios para que la creatividad esté a la altura de la inversión."],
-    ["¿Puedo aprender a manejar mis propias campañas?", "Sí. Impartimos el <a href='/talleres/taller-meta-ads-presencial/'>taller presencial de Meta Ads</a> y el taller online de <a href='/talleres/taller-anuncios-redes-sociales-online/'>creación de anuncios en redes sociales</a>."]
+   "industrias": [
+    "Restaurantes",
+    "Retail y calzado",
+    "Ferreterías",
+    "Bienes raíces",
+    "Salud",
+    "Educación y cursos"
    ],
-   "rel": ["redes-sociales", "produccion-audiovisual", "asesorias", "capacitaciones"],
-   "kw": ["agencia Meta Ads Honduras", "publicidad en Facebook Honduras", "anuncios en Instagram San Pedro Sula", "campañas a WhatsApp", "manejo de pauta"]
+   "work": [
+    "megatools",
+    "la-guardia",
+    "harol-mayoreo",
+    "altos-de-valencia",
+    "tobys-alimentos",
+    "megatools-arte-motosierra",
+    "fum-yim-arte-llevar",
+    "pina-loca",
+    "rtn-empresarial"
+   ],
+   "logos": [
+    "importaciones-hyp",
+    "unicalza",
+    "pina-loca",
+    "punto-ferretero",
+    "megatools",
+    "polarizados-la-guardia",
+    "rs",
+    "ornamentos-comerciales"
+   ],
+   "faq": [
+    [
+     "¿Hay agencias que administren Meta Ads en San Pedro Sula?",
+     "Sí. Estudio Vector administra campañas publicitarias en Facebook e Instagram para empresas de San Pedro Sula y Honduras, incluyendo planificación, creación de anuncios, segmentación, seguimiento y optimización."
+    ],
+    [
+     "¿Cuánto hay que invertir en Meta Ads en Honduras?",
+     "Hay dos costos: la inversión que pagas directamente a Meta y la administración de la agencia. La inversión depende de tu objetivo, tu zona y tu competencia; te recomendamos un monto inicial después de revisar tu negocio y lo ajustamos con los resultados de las primeras semanas."
+    ],
+    [
+     "¿Qué tipo de campañas funcionan mejor para negocios en Honduras?",
+     "Para la mayoría de negocios locales, las campañas a WhatsApp o mensajes, porque convierten el interés en una conversación de venta. Para lanzamientos o marcas nuevas también usamos campañas de alcance y video."
+    ],
+    [
+     "¿Cada cuánto me entregan resultados?",
+     "Optimizamos cada semana y entregamos un informe técnico con alcance, resultados y costo por resultado de cada campaña."
+    ],
+    [
+     "¿Ustedes hacen los anuncios?",
+     "Sí. Como también somos productora audiovisual, grabamos y diseñamos los anuncios para que la creatividad esté a la altura de la inversión."
+    ],
+    [
+     "¿Puedo aprender a manejar mis propias campañas?",
+     "Sí. Impartimos el <a href='/talleres/taller-meta-ads-presencial/'>taller presencial de Meta Ads</a> y el taller online de <a href='/talleres/taller-anuncios-redes-sociales-online/'>creación de anuncios en redes sociales</a>."
+    ]
+   ],
+   "rel": [
+    "redes-sociales",
+    "produccion-audiovisual",
+    "asesorias",
+    "capacitaciones"
+   ],
+   "kw": [
+    "agencia Meta Ads Honduras",
+    "publicidad en Facebook Honduras",
+    "anuncios en Instagram San Pedro Sula",
+    "campañas a WhatsApp",
+    "manejo de pauta"
+   ]
   },
   {
    "id": "diseno-grafico",
@@ -140,26 +381,101 @@
     "Si tu marca ya existe, la ordenamos: documentamos colores, tipografías y usos del logo en un manual para que cualquier proveedor la aplique igual."
    ],
    "que": [
-    ["Diseño de logotipo", "Propuestas, ajustes y versiones para fondos claros, oscuros y redes."],
-    ["Manual de marca", "Colores, tipografías, usos correctos e incorrectos del logo."],
-    ["Artes para redes sociales", "Plantillas y piezas con la identidad de tu marca."],
-    ["Catálogos y material de venta", "Catálogos digitales, menús, fichas y presentaciones."],
-    ["Impresos", "Rótulos, banners, tarjetas, viniles y material para puntos de venta."],
-    ["Adaptación a cada formato", "Cada pieza lista para el medio donde se va a usar."]
+    [
+     "Diseño de logotipo",
+     "Propuestas, ajustes y versiones para fondos claros, oscuros y redes."
+    ],
+    [
+     "Manual de marca",
+     "Colores, tipografías, usos correctos e incorrectos del logo."
+    ],
+    [
+     "Artes para redes sociales",
+     "Plantillas y piezas con la identidad de tu marca."
+    ],
+    [
+     "Catálogos y material de venta",
+     "Catálogos digitales, menús, fichas y presentaciones."
+    ],
+    [
+     "Impresos",
+     "Rótulos, banners, tarjetas, viniles y material para puntos de venta."
+    ],
+    [
+     "Adaptación a cada formato",
+     "Cada pieza lista para el medio donde se va a usar."
+    ]
    ],
    "ideal": "Marcas nuevas o negocios que quieren verse más profesionales y coherentes en redes, en el local y en sus impresos.",
-   "industrias": ["Emprendimientos", "Restaurantes", "Retail", "Servicios profesionales", "Salud", "Industria"],
-   "work": ["caja-morazanica", "mar-y-tierra", "rtn-empresarial", "frutos-rojos"],
-   "logos": ["punto-ferretero", "slide-pizza", "toby-s-pet-shop", "megatools", "kiv-detailing", "fumyim", "workkafe", "ornamentos-comerciales"],
-   "faq": [
-    ["¿Dónde puedo hacer un logotipo profesional en San Pedro Sula?", "En Estudio Vector diseñamos logotipos e identidades de marca completas para negocios de San Pedro Sula y Honduras, con manual de marca y archivos listos para redes e impresión."],
-    ["¿Qué incluye un manual de marca?", "Las versiones del logotipo, la paleta de colores con sus códigos, las tipografías, el área de protección, el tamaño mínimo y los usos correctos e incorrectos de la marca."],
-    ["¿Cuánto cuesta diseñar una marca?", "Depende de si se crea desde cero o se renueva una existente, y de cuántas piezas se aplican después. Te enviamos una cotización por escrito después de conocer tu proyecto."],
-    ["¿Me entregan los archivos editables?", "Sí. Entregamos el logotipo en los formatos necesarios para redes, web e impresión."],
-    ["¿Puedo aprender a diseñar mis propias artes?", "Sí. En el <a href='/talleres/taller-diseno-en-canva/'>taller de diseño en Canva</a> aprendes a crear artes para tus redes con tu kit de marca."]
+   "industrias": [
+    "Emprendimientos",
+    "Restaurantes",
+    "Retail",
+    "Servicios profesionales",
+    "Salud",
+    "Industria"
    ],
-   "rel": ["redes-sociales", "marketing-digital", "fotografia", "produccion-audiovisual"],
-   "kw": ["diseño gráfico San Pedro Sula", "diseño de logotipo Honduras", "manual de marca", "branding", "identidad corporativa"]
+   "work": [
+    "il-romano-arte-romanisima",
+    "fum-yim-arte-wok",
+    "megatools-arte-cubos",
+    "workafe-arte-desayuno",
+    "quintara5-arte-1",
+    "bless-arte-minimarket",
+    "il-romano-arte-trifili",
+    "megatools-arte-taladro",
+    "fum-yim-arte-arroz",
+    "workafe-arte-espacio",
+    "quintara5-arte-2",
+    "megatools-arte-cortadora",
+    "fum-yim-vitrina-1",
+    "fum-yim-fachada"
+   ],
+   "logos": [
+    "punto-ferretero",
+    "slide-pizza",
+    "toby-s-pet-shop",
+    "megatools",
+    "kiv-detailing",
+    "fumyim",
+    "workkafe",
+    "ornamentos-comerciales"
+   ],
+   "faq": [
+    [
+     "¿Dónde puedo hacer un logotipo profesional en San Pedro Sula?",
+     "En Estudio Vector diseñamos logotipos e identidades de marca completas para negocios de San Pedro Sula y Honduras, con manual de marca y archivos listos para redes e impresión."
+    ],
+    [
+     "¿Qué incluye un manual de marca?",
+     "Las versiones del logotipo, la paleta de colores con sus códigos, las tipografías, el área de protección, el tamaño mínimo y los usos correctos e incorrectos de la marca."
+    ],
+    [
+     "¿Cuánto cuesta diseñar una marca?",
+     "Depende de si se crea desde cero o se renueva una existente, y de cuántas piezas se aplican después. Te enviamos una cotización por escrito después de conocer tu proyecto."
+    ],
+    [
+     "¿Me entregan los archivos editables?",
+     "Sí. Entregamos el logotipo en los formatos necesarios para redes, web e impresión."
+    ],
+    [
+     "¿Puedo aprender a diseñar mis propias artes?",
+     "Sí. En el <a href='/talleres/taller-diseno-en-canva/'>taller de diseño en Canva</a> aprendes a crear artes para tus redes con tu kit de marca."
+    ]
+   ],
+   "rel": [
+    "redes-sociales",
+    "marketing-digital",
+    "fotografia",
+    "produccion-audiovisual"
+   ],
+   "kw": [
+    "diseño gráfico San Pedro Sula",
+    "diseño de logotipo Honduras",
+    "manual de marca",
+    "branding",
+    "identidad corporativa"
+   ]
   },
   {
    "id": "asesorias",
@@ -178,25 +494,86 @@
     "El resultado es un informe con hallazgos ordenados por prioridad y un plan que tu equipo puede ejecutar, con sesiones de seguimiento para comprobar que se aplica."
    ],
    "que": [
-    ["Diagnóstico comercial y de marketing", "Cómo te encuentran, qué comunicas y dónde se pierden las ventas."],
-    ["Cliente incógnito", "Inspecciones de servicio en tu local, por teléfono o por WhatsApp."],
-    ["Revisión de atención por WhatsApp y redes", "Tiempos, guiones, seguimiento y cierre."],
-    ["Informe de hallazgos y prioridades", "Lo que hay que corregir primero y por qué."],
-    ["Plan de acción para el equipo", "Tareas concretas, responsables y guiones de atención."],
-    ["Sesiones de seguimiento", "Revisamos avances y ajustamos el plan."]
+    [
+     "Diagnóstico comercial y de marketing",
+     "Cómo te encuentran, qué comunicas y dónde se pierden las ventas."
+    ],
+    [
+     "Cliente incógnito",
+     "Inspecciones de servicio en tu local, por teléfono o por WhatsApp."
+    ],
+    [
+     "Revisión de atención por WhatsApp y redes",
+     "Tiempos, guiones, seguimiento y cierre."
+    ],
+    [
+     "Informe de hallazgos y prioridades",
+     "Lo que hay que corregir primero y por qué."
+    ],
+    [
+     "Plan de acción para el equipo",
+     "Tareas concretas, responsables y guiones de atención."
+    ],
+    [
+     "Sesiones de seguimiento",
+     "Revisamos avances y ajustamos el plan."
+    ]
    ],
    "ideal": "Dueños de negocio que sienten que venden menos de lo que podrían y quieren saber exactamente por qué.",
-   "industrias": ["Retail", "Restaurantes", "Distribuidoras", "Salud", "Servicios", "Concesionarios y automotriz"],
-   "work": ["cap-mag-pollo", "cap-unicalza", "cap-edgardo-exponiendo"],
-   "logos": ["unicalza", "importaciones-hyp", "pollos-el-pechugon", "diagro", "rs", "polarizados-la-guardia"],
-   "faq": [
-    ["¿Qué es un cliente incógnito?", "Es una persona que se presenta como cliente real para evaluar la atención, los tiempos, la información y el cierre de venta de tu negocio, sin que el equipo lo sepa. Con eso se obtiene una foto fiel de la experiencia del cliente."],
-    ["¿Para qué sirve una asesoría comercial?", "Para saber qué está frenando tus ventas y qué corregir primero. Termina en un plan de acción concreto para tu equipo, no en recomendaciones generales."],
-    ["¿Revisan la atención por WhatsApp?", "Sí. Revisamos tiempos de respuesta, guiones, manejo de objeciones de precio y seguimiento a clientes que no respondieron."],
-    ["¿Capacitan al equipo después?", "Sí. Podemos complementar la asesoría con una <a href='/capacitaciones-marketing-digital-honduras/'>capacitación empresarial</a> en ventas y atención por WhatsApp para tu equipo."]
+   "industrias": [
+    "Retail",
+    "Restaurantes",
+    "Distribuidoras",
+    "Salud",
+    "Servicios",
+    "Concesionarios y automotriz"
    ],
-   "rel": ["capacitaciones", "marketing-digital", "meta-ads", "redes-sociales"],
-   "kw": ["asesoría comercial Honduras", "consultoría de marketing San Pedro Sula", "cliente incógnito", "estrategia de ventas"]
+   "work": [
+    "cap-asesoria-equipo",
+    "cap-asesoria-laptop",
+    "cap-sala-empresa",
+    "cap-edgardo-pantalla",
+    "cap-mag-pollo",
+    "cap-unicalza"
+   ],
+   "logos": [
+    "unicalza",
+    "importaciones-hyp",
+    "pollos-el-pechugon",
+    "diagro",
+    "rs",
+    "polarizados-la-guardia"
+   ],
+   "faq": [
+    [
+     "¿Qué es un cliente incógnito?",
+     "Es una persona que se presenta como cliente real para evaluar la atención, los tiempos, la información y el cierre de venta de tu negocio, sin que el equipo lo sepa. Con eso se obtiene una foto fiel de la experiencia del cliente."
+    ],
+    [
+     "¿Para qué sirve una asesoría comercial?",
+     "Para saber qué está frenando tus ventas y qué corregir primero. Termina en un plan de acción concreto para tu equipo, no en recomendaciones generales."
+    ],
+    [
+     "¿Revisan la atención por WhatsApp?",
+     "Sí. Revisamos tiempos de respuesta, guiones, manejo de objeciones de precio y seguimiento a clientes que no respondieron."
+    ],
+    [
+     "¿Capacitan al equipo después?",
+     "Sí. Podemos complementar la asesoría con una <a href='/capacitaciones-marketing-digital-honduras/'>capacitación empresarial</a> en ventas y atención por WhatsApp para tu equipo."
+    ]
+   ],
+   "rel": [
+    "capacitaciones",
+    "marketing-digital",
+    "meta-ads",
+    "redes-sociales"
+   ],
+   "kw": [
+    "asesoría comercial Honduras",
+    "consultoría de marketing San Pedro Sula",
+    "cliente incógnito",
+    "estrategia de ventas"
+   ]
   },
   {
    "id": "produccion-audiovisual",
@@ -215,27 +592,105 @@
     "Producimos pensando en vender: cada video tiene un objetivo, un gancho en los primeros segundos y una llamada a la acción. Por eso muchos terminan siendo los anuncios que después pautamos en Meta Ads."
    ],
    "que": [
-    ["Videos comerciales", "Piezas promocionales para redes, pantallas y anuncios."],
-    ["Reels y TikToks", "Contenido vertical con ritmo, subtítulos y música."],
-    ["Videos corporativos y testimonios", "Tu empresa, tu equipo y tus clientes contando su historia."],
-    ["Videos de producto y gastronómicos", "Producto y comida grabados para que se antojen."],
-    ["Tomas con dron", "Para proyectos inmobiliarios, locales y eventos (según proyecto)."],
-    ["Edición, color, subtítulos y música", "Formatos listos para Reels, TikTok, Facebook y YouTube."]
+    [
+     "Videos comerciales",
+     "Piezas promocionales para redes, pantallas y anuncios."
+    ],
+    [
+     "Reels y TikToks",
+     "Contenido vertical con ritmo, subtítulos y música."
+    ],
+    [
+     "Videos corporativos y testimonios",
+     "Tu empresa, tu equipo y tus clientes contando su historia."
+    ],
+    [
+     "Videos de producto y gastronómicos",
+     "Producto y comida grabados para que se antojen."
+    ],
+    [
+     "Tomas con dron",
+     "Para proyectos inmobiliarios, locales y eventos (según proyecto)."
+    ],
+    [
+     "Edición, color, subtítulos y música",
+     "Formatos listos para Reels, TikTok, Facebook y YouTube."
+    ]
    ],
    "ideal": "Marcas que quieren destacar con video, lanzar productos, renovar su imagen o tener anuncios que realmente detengan el scroll.",
-   "industrias": ["Restaurantes y bares", "Bienes raíces", "Retail y calzado", "Salud", "Productos de consumo", "Instituciones"],
-   "work": ["pina-loca", "blees-coffee", "altos-de-valencia", "harol-mayoreo", "mar-y-tierra", "frutos-rojos", "balance", "tiempo-valioso", "rtn-empresarial", "caja-morazanica", "dr-orellana", "stand-first-logistics"],
-   "logos": ["pina-loca", "importaciones-hyp", "dr-manuel-orellana", "il-romano", "slide-pizza", "fumyim", "kiv-detailing", "polarizados-la-guardia"],
-   "faq": [
-    ["¿Dónde puedo contratar una agencia que haga videos para mi negocio en San Pedro Sula?", "Estudio Vector produce videos para negocios en San Pedro Sula y Honduras: guion, grabación en tu local con equipo profesional, edición y entrega en los formatos de cada red social."],
-    ["¿Cuánto cuesta un video publicitario en Honduras?", "Depende de la duración, cuántas locaciones y horas de grabación, si lleva actores o dron y cuántas versiones se editan. Te enviamos una cotización por escrito según tu proyecto."],
-    ["¿Ustedes escriben el guion?", "Sí. Escribimos el guion con lenguaje comercial y dirigimos a cámara a ti y a tu equipo durante la grabación."],
-    ["¿Graban en mi negocio?", "Sí. Grabamos en locación, en tu negocio o donde lo pida el proyecto, con cámaras, luces y audio profesional."],
-    ["¿Hacen tomas con dron?", "Sí, según el proyecto, por ejemplo en proyectos inmobiliarios, locales y eventos."],
-    ["¿En qué formatos entregan los videos?", "Vertical para Reels, TikTok e historias, y horizontal para YouTube, Facebook y pantallas, con subtítulos y música."]
+   "industrias": [
+    "Restaurantes y bares",
+    "Bienes raíces",
+    "Retail y calzado",
+    "Salud",
+    "Productos de consumo",
+    "Instituciones"
    ],
-   "rel": ["reels", "fotografia", "eventos", "meta-ads"],
-   "kw": ["productora audiovisual San Pedro Sula", "producción de video Honduras", "videos comerciales para empresas", "video corporativo", "videos para redes sociales"]
+   "work": [
+    "diagro-institucional",
+    "slice-burger",
+    "la-guardia",
+    "pina-loca",
+    "altos-de-valencia",
+    "il-romano-canelones",
+    "megatools",
+    "harol-mayoreo",
+    "ornamentos-vivero",
+    "dr-orellana",
+    "rtn-empresarial",
+    "tobys-milk-bone",
+    "bts-entrevista-estudio",
+    "stand-first-logistics"
+   ],
+   "logos": [
+    "pina-loca",
+    "importaciones-hyp",
+    "dr-manuel-orellana",
+    "il-romano",
+    "slide-pizza",
+    "fumyim",
+    "kiv-detailing",
+    "polarizados-la-guardia"
+   ],
+   "faq": [
+    [
+     "¿Dónde puedo contratar una agencia que haga videos para mi negocio en San Pedro Sula?",
+     "Estudio Vector produce videos para negocios en San Pedro Sula y Honduras: guion, grabación en tu local con equipo profesional, edición y entrega en los formatos de cada red social."
+    ],
+    [
+     "¿Cuánto cuesta un video publicitario en Honduras?",
+     "Depende de la duración, cuántas locaciones y horas de grabación, si lleva actores o dron y cuántas versiones se editan. Te enviamos una cotización por escrito según tu proyecto."
+    ],
+    [
+     "¿Ustedes escriben el guion?",
+     "Sí. Escribimos el guion con lenguaje comercial y dirigimos a cámara a ti y a tu equipo durante la grabación."
+    ],
+    [
+     "¿Graban en mi negocio?",
+     "Sí. Grabamos en locación, en tu negocio o donde lo pida el proyecto, con cámaras, luces y audio profesional."
+    ],
+    [
+     "¿Hacen tomas con dron?",
+     "Sí, según el proyecto, por ejemplo en proyectos inmobiliarios, locales y eventos."
+    ],
+    [
+     "¿En qué formatos entregan los videos?",
+     "Vertical para Reels, TikTok e historias, y horizontal para YouTube, Facebook y pantallas, con subtítulos y música."
+    ]
+   ],
+   "rel": [
+    "reels",
+    "fotografia",
+    "eventos",
+    "meta-ads"
+   ],
+   "kw": [
+    "productora audiovisual San Pedro Sula",
+    "producción de video Honduras",
+    "videos comerciales para empresas",
+    "video corporativo",
+    "videos para redes sociales"
+   ]
   },
   {
    "id": "reels",
@@ -254,26 +709,97 @@
     "Si estás en Honduras, grabamos contigo y te dirigimos a cámara. Si estás fuera, tú grabas con tu celular siguiendo nuestras indicaciones y nos envías el material: nosotros lo convertimos en reels y TikToks listos para publicar."
    ],
    "que": [
-    ["Grabación en tu negocio", "En San Pedro Sula y Honduras, con dirección a cámara."],
-    ["Edición remota", "Para negocios hispanos en Estados Unidos y otros países: tú grabas, nosotros editamos."],
-    ["Entrega en 48 horas", "En la edición remota, desde que recibimos tu material."],
-    ["Precio fijo en dólares", "Para clientes fuera de Honduras, sin sorpresas."],
-    ["Subtítulos, música y ritmo", "Ganchos, cortes y textos pensados para retener."],
-    ["Formatos para cada red", "Reels de Instagram y Facebook, TikTok, historias y Shorts."]
+    [
+     "Grabación en tu negocio",
+     "En San Pedro Sula y Honduras, con dirección a cámara."
+    ],
+    [
+     "Edición remota",
+     "Para negocios hispanos en Estados Unidos y otros países: tú grabas, nosotros editamos."
+    ],
+    [
+     "Entrega en 48 horas",
+     "En la edición remota, desde que recibimos tu material."
+    ],
+    [
+     "Precio fijo en dólares",
+     "Para clientes fuera de Honduras, sin sorpresas."
+    ],
+    [
+     "Subtítulos, música y ritmo",
+     "Ganchos, cortes y textos pensados para retener."
+    ],
+    [
+     "Formatos para cada red",
+     "Reels de Instagram y Facebook, TikTok, historias y Shorts."
+    ]
    ],
    "ideal": "Negocios que necesitan contenido corto constante para redes y no tienen tiempo de editar, en Honduras o en Estados Unidos.",
-   "industrias": ["Restaurantes y cafeterías", "Tiendas y emprendimientos", "Servicios profesionales", "Salud y estética", "Bienes raíces", "Negocios hispanos en EE. UU."],
-   "work": ["pina-loca", "harol-mayoreo", "frutos-rojos", "mar-y-tierra", "blees-coffee", "tiempo-valioso", "balance"],
-   "logos": ["pina-loca", "importaciones-hyp", "slide-pizza", "toby-s-pet-shop", "kiv-detailing", "workkafe"],
-   "faq": [
-    ["¿Quién hace reels para empresas en San Pedro Sula?", "Estudio Vector graba y edita reels y TikToks para empresas en San Pedro Sula y Honduras, con guion, dirección a cámara, subtítulos y música."],
-    ["¿Editan reels para negocios en Estados Unidos?", "Sí. Editamos a distancia los videos que grabas, con entrega en 48 horas, precio fijo en dólares y atención en español."],
-    ["¿Cómo les envío mis videos?", "Por un enlace de Google Drive, WeTransfer o WhatsApp. Te indicamos cómo grabar para que el material funcione bien."],
-    ["¿Cuántos reels conviene publicar a la semana?", "Lo ideal es publicar con constancia, aunque sean dos o tres por semana. Es mejor sostener un ritmo que publicar mucho un mes y desaparecer el siguiente."],
-    ["¿Puedo aprender a grabar y editar yo mismo?", "Sí. Tenemos el <a href='/talleres/taller-grabar-videos-con-celular/'>taller de videos con celular</a> y el <a href='/talleres/taller-edicion-de-video-capcut/'>taller de edición con CapCut</a>."]
+   "industrias": [
+    "Restaurantes y cafeterías",
+    "Tiendas y emprendimientos",
+    "Servicios profesionales",
+    "Salud y estética",
+    "Bienes raíces",
+    "Negocios hispanos en EE. UU."
    ],
-   "rel": ["produccion-audiovisual", "redes-sociales", "meta-ads", "fotografia"],
-   "kw": ["reels para negocios", "hacer reels para empresas", "edición de TikToks", "editor de reels en español", "videos cortos para redes"]
+   "work": [
+    "slice-burger",
+    "il-romano-entrada",
+    "workafe-menu",
+    "megatools",
+    "tobys-milk-bone",
+    "la-guardia",
+    "ornamentos-plantas",
+    "bless-coffee-tienda",
+    "pina-loca",
+    "frutos-rojos",
+    "mar-y-tierra",
+    "il-romano-canelones"
+   ],
+   "logos": [
+    "pina-loca",
+    "importaciones-hyp",
+    "slide-pizza",
+    "toby-s-pet-shop",
+    "kiv-detailing",
+    "workkafe"
+   ],
+   "faq": [
+    [
+     "¿Quién hace reels para empresas en San Pedro Sula?",
+     "Estudio Vector graba y edita reels y TikToks para empresas en San Pedro Sula y Honduras, con guion, dirección a cámara, subtítulos y música."
+    ],
+    [
+     "¿Editan reels para negocios en Estados Unidos?",
+     "Sí. Editamos a distancia los videos que grabas, con entrega en 48 horas, precio fijo en dólares y atención en español."
+    ],
+    [
+     "¿Cómo les envío mis videos?",
+     "Por un enlace de Google Drive, WeTransfer o WhatsApp. Te indicamos cómo grabar para que el material funcione bien."
+    ],
+    [
+     "¿Cuántos reels conviene publicar a la semana?",
+     "Lo ideal es publicar con constancia, aunque sean dos o tres por semana. Es mejor sostener un ritmo que publicar mucho un mes y desaparecer el siguiente."
+    ],
+    [
+     "¿Puedo aprender a grabar y editar yo mismo?",
+     "Sí. Tenemos el <a href='/talleres/taller-grabar-videos-con-celular/'>taller de videos con celular</a> y el <a href='/talleres/taller-edicion-de-video-capcut/'>taller de edición con CapCut</a>."
+    ]
+   ],
+   "rel": [
+    "produccion-audiovisual",
+    "redes-sociales",
+    "meta-ads",
+    "fotografia"
+   ],
+   "kw": [
+    "reels para negocios",
+    "hacer reels para empresas",
+    "edición de TikToks",
+    "editor de reels en español",
+    "videos cortos para redes"
+   ]
   },
   {
    "id": "fotografia",
@@ -292,26 +818,96 @@
     "Llevamos el equipo a tu negocio, con flashes, luces continuas y fondos, y entregamos las fotos editadas y listas para redes, menús, catálogos, tienda en línea o anuncios."
    ],
    "que": [
-    ["Fotografía gastronómica", "Platos, bebidas y postres para menús, redes y delivery."],
-    ["Fotografía de producto", "Catálogos, tienda en línea y anuncios."],
-    ["Fotografía corporativa", "Instalaciones, equipo de trabajo y procesos."],
-    ["Marca personal", "Retratos profesionales para líderes, médicos y emprendedores."],
-    ["Iluminación de estudio en locación", "Llevamos flashes, luces y fondos a tu negocio."],
-    ["Edición y entrega por formato", "Fotos listas para cada uso."]
+    [
+     "Fotografía gastronómica",
+     "Platos, bebidas y postres para menús, redes y delivery."
+    ],
+    [
+     "Fotografía de producto",
+     "Catálogos, tienda en línea y anuncios."
+    ],
+    [
+     "Fotografía corporativa",
+     "Instalaciones, equipo de trabajo y procesos."
+    ],
+    [
+     "Marca personal",
+     "Retratos profesionales para líderes, médicos y emprendedores."
+    ],
+    [
+     "Iluminación de estudio en locación",
+     "Llevamos flashes, luces y fondos a tu negocio."
+    ],
+    [
+     "Edición y entrega por formato",
+     "Fotos listas para cada uso."
+    ]
    ],
    "ideal": "Restaurantes, tiendas y marcas que necesitan fotos propias de calidad en lugar de imágenes de internet.",
-   "industrias": ["Restaurantes y cafeterías", "Retail y catálogos", "Salud y estética", "Bienes raíces", "Marca personal"],
-   "work": ["corte-de-carne", "slice-pizza", "gratinado", "coctel-azul", "hamburguesa", "pasta", "canastas-de-platano", "postre-y-bebida", "sarten-de-hierro", "desayuno-tipico", "bts-flash-comida", "bts-set-luces"],
-   "logos": ["slide-pizza", "il-romano", "fumyim", "pollos-el-pechugon", "pina-loca", "workkafe"],
-   "faq": [
-    ["¿Dónde puedo contratar fotografía profesional de productos en San Pedro Sula?", "Estudio Vector realiza fotografía de producto, gastronómica y corporativa en San Pedro Sula, con iluminación de estudio en tu negocio y edición profesional."],
-    ["¿Hacen fotografía para menús de restaurantes?", "Sí. Fotografiamos platos, bebidas y postres para menús, redes sociales, plataformas de delivery y anuncios."],
-    ["¿Van a mi negocio o tengo que ir a un estudio?", "Llevamos el equipo a tu negocio. Para algunos productos también podemos trabajar en nuestro set."],
-    ["¿Cuánto cuesta una sesión de fotos para mi negocio?", "Depende de la cantidad de productos o platos, el tiempo de sesión y el uso de las fotos. Te enviamos una cotización por escrito según tu necesidad."],
-    ["¿Puedo aprender a tomar mejores fotos de mis productos?", "Sí. En el <a href='/talleres/taller-fotografia-para-negocios/'>taller de fotografía para negocios</a> aprendes producto, comida y retrato."]
+   "industrias": [
+    "Restaurantes y cafeterías",
+    "Retail y catálogos",
+    "Salud y estética",
+    "Bienes raíces",
+    "Marca personal"
    ],
-   "rel": ["produccion-audiovisual", "redes-sociales", "diseno-grafico", "reels"],
-   "kw": ["fotografía comercial San Pedro Sula", "fotografía de producto Honduras", "fotografía gastronómica", "fotografía para restaurantes", "fotografía corporativa"]
+   "work": [
+    "corte-de-carne",
+    "slice-pizza",
+    "gratinado",
+    "coctel-azul",
+    "hamburguesa",
+    "pasta",
+    "canastas-de-platano",
+    "postre-y-bebida",
+    "sarten-de-hierro",
+    "desayuno-tipico",
+    "bts-flash-comida",
+    "bts-set-luces"
+   ],
+   "logos": [
+    "slide-pizza",
+    "il-romano",
+    "fumyim",
+    "pollos-el-pechugon",
+    "pina-loca",
+    "workkafe"
+   ],
+   "faq": [
+    [
+     "¿Dónde puedo contratar fotografía profesional de productos en San Pedro Sula?",
+     "Estudio Vector realiza fotografía de producto, gastronómica y corporativa en San Pedro Sula, con iluminación de estudio en tu negocio y edición profesional."
+    ],
+    [
+     "¿Hacen fotografía para menús de restaurantes?",
+     "Sí. Fotografiamos platos, bebidas y postres para menús, redes sociales, plataformas de delivery y anuncios."
+    ],
+    [
+     "¿Van a mi negocio o tengo que ir a un estudio?",
+     "Llevamos el equipo a tu negocio. Para algunos productos también podemos trabajar en nuestro set."
+    ],
+    [
+     "¿Cuánto cuesta una sesión de fotos para mi negocio?",
+     "Depende de la cantidad de productos o platos, el tiempo de sesión y el uso de las fotos. Te enviamos una cotización por escrito según tu necesidad."
+    ],
+    [
+     "¿Puedo aprender a tomar mejores fotos de mis productos?",
+     "Sí. En el <a href='/talleres/taller-fotografia-para-negocios/'>taller de fotografía para negocios</a> aprendes producto, comida y retrato."
+    ]
+   ],
+   "rel": [
+    "produccion-audiovisual",
+    "redes-sociales",
+    "diseno-grafico",
+    "reels"
+   ],
+   "kw": [
+    "fotografía comercial San Pedro Sula",
+    "fotografía de producto Honduras",
+    "fotografía gastronómica",
+    "fotografía para restaurantes",
+    "fotografía corporativa"
+   ]
   },
   {
    "id": "podcast",
@@ -330,25 +926,84 @@
     "Te ayudamos desde la idea: a quién le hablas, qué formato tiene el programa, quiénes son los invitados y cómo se ve tu set."
    ],
    "que": [
-    ["Concepto y formato del programa", "Nombre, estructura, duración e invitados."],
-    ["Grabación multicámara", "Video con varias cámaras y audio profesional."],
-    ["Edición del episodio completo", "Cortes, color, audio y gráficos."],
-    ["Clips para Reels y TikTok", "Los mejores momentos en formato vertical con subtítulos."],
-    ["Portadas y diseño del programa", "Identidad visual del podcast y miniaturas."],
-    ["Publicación", "YouTube y plataformas de audio."]
+    [
+     "Concepto y formato del programa",
+     "Nombre, estructura, duración e invitados."
+    ],
+    [
+     "Grabación multicámara",
+     "Video con varias cámaras y audio profesional."
+    ],
+    [
+     "Edición del episodio completo",
+     "Cortes, color, audio y gráficos."
+    ],
+    [
+     "Clips para Reels y TikTok",
+     "Los mejores momentos en formato vertical con subtítulos."
+    ],
+    [
+     "Portadas y diseño del programa",
+     "Identidad visual del podcast y miniaturas."
+    ],
+    [
+     "Publicación",
+     "YouTube y plataformas de audio."
+    ]
    ],
    "ideal": "Marcas personales, profesionales, empresas y líderes que quieren posicionarse con contenido de valor.",
-   "industrias": ["Salud", "Servicios profesionales", "Educación", "Empresas", "Marca personal"],
-   "work": ["backstage-3", "bts-set-entrevista", "bts-set-mesa", "bts-monitor-set", "dr-orellana", "rtn-empresarial"],
-   "logos": ["dr-manuel-orellana", "diagro", "unicalza"],
-   "faq": [
-    ["¿Quién produce podcasts en Honduras?", "Estudio Vector produce podcasts y videopodcasts en San Pedro Sula: grabación multicámara, audio profesional, edición, clips para redes y publicación."],
-    ["¿Qué necesito para empezar un podcast?", "Un tema que domines, un público al que le hables y constancia. Nosotros nos encargamos del formato, la grabación, la edición y la publicación."],
-    ["¿Puedo sacar contenido para redes de un podcast?", "Sí. De cada episodio editamos clips cortos en vertical con subtítulos para Reels, TikTok y Shorts."],
-    ["¿Dónde se publica el podcast?", "En YouTube en video y en plataformas de audio como Spotify."]
+   "industrias": [
+    "Salud",
+    "Servicios profesionales",
+    "Educación",
+    "Empresas",
+    "Marca personal"
    ],
-   "rel": ["produccion-audiovisual", "reels", "redes-sociales", "eventos"],
-   "kw": ["producción de podcast Honduras", "videopodcast San Pedro Sula", "grabar podcast", "podcast para empresas"]
+   "work": [
+    "podcast-orellana",
+    "bts-podcast",
+    "bts-podcast-mesa",
+    "bts-podcast-camara",
+    "backstage-3",
+    "dr-orellana",
+    "bts-entrevista-estudio",
+    "bts-entrevista-set"
+   ],
+   "logos": [
+    "dr-manuel-orellana",
+    "diagro",
+    "unicalza"
+   ],
+   "faq": [
+    [
+     "¿Quién produce podcasts en Honduras?",
+     "Estudio Vector produce podcasts y videopodcasts en San Pedro Sula: grabación multicámara, audio profesional, edición, clips para redes y publicación."
+    ],
+    [
+     "¿Qué necesito para empezar un podcast?",
+     "Un tema que domines, un público al que le hables y constancia. Nosotros nos encargamos del formato, la grabación, la edición y la publicación."
+    ],
+    [
+     "¿Puedo sacar contenido para redes de un podcast?",
+     "Sí. De cada episodio editamos clips cortos en vertical con subtítulos para Reels, TikTok y Shorts."
+    ],
+    [
+     "¿Dónde se publica el podcast?",
+     "En YouTube en video y en plataformas de audio como Spotify."
+    ]
+   ],
+   "rel": [
+    "produccion-audiovisual",
+    "reels",
+    "redes-sociales",
+    "eventos"
+   ],
+   "kw": [
+    "producción de podcast Honduras",
+    "videopodcast San Pedro Sula",
+    "grabar podcast",
+    "podcast para empresas"
+   ]
   },
   {
    "id": "eventos",
@@ -367,25 +1022,83 @@
     "Hemos producido y cubierto montajes de stands, seminarios empresariales y capacitaciones con cientos de asistentes, como el Forum Ruta Copán 2026."
    ],
    "que": [
-    ["Planificación y concepto del evento", "Objetivo, experiencia, agenda y comunicación."],
-    ["Montaje y ambientación de marca", "Stands, escenografía y señalización con tu identidad."],
-    ["Coordinación de producción", "Logística y control el día del evento."],
-    ["Cobertura en fotografía y video", "Registro profesional de todo el evento."],
-    ["Contenido para redes en tiempo real", "Historias y publicaciones mientras ocurre."],
-    ["Video resumen", "Una pieza para seguir comunicando después."]
+    [
+     "Planificación y concepto del evento",
+     "Objetivo, experiencia, agenda y comunicación."
+    ],
+    [
+     "Montaje y ambientación de marca",
+     "Stands, escenografía y señalización con tu identidad."
+    ],
+    [
+     "Coordinación de producción",
+     "Logística y control el día del evento."
+    ],
+    [
+     "Cobertura en fotografía y video",
+     "Registro profesional de todo el evento."
+    ],
+    [
+     "Contenido para redes en tiempo real",
+     "Historias y publicaciones mientras ocurre."
+    ],
+    [
+     "Video resumen",
+     "Una pieza para seguir comunicando después."
+    ]
    ],
    "ideal": "Empresas con lanzamientos, aperturas, seminarios, ferias, stands o eventos corporativos.",
-   "industrias": ["Empresas e industria", "Cámaras de comercio", "Instituciones públicas", "Logística", "Retail", "Educación"],
-   "work": ["stand-first-logistics", "forum-ruta-copan", "la-union-copan", "cap-contenido-certificados", "bts-oficina-verde"],
-   "logos": ["diagro", "unicalza", "importaciones-hyp"],
-   "faq": [
-    ["¿Quién hace cobertura de eventos corporativos en San Pedro Sula?", "Estudio Vector hace la cobertura en fotografía y video de eventos corporativos en San Pedro Sula y Honduras, con contenido para redes en tiempo real y video resumen."],
-    ["¿Montan stands para ferias?", "Sí. Diseñamos y montamos stands con la identidad de tu marca, como el stand de First Logistics City."],
-    ["¿Qué tipo de eventos trabajan?", "Lanzamientos de producto, aperturas, seminarios, capacitaciones, ferias y eventos corporativos."],
-    ["¿Pueden también capacitar en el evento?", "Sí. Edgardo A. López fue el capacitador del Forum Ruta Copán 2026, el primer seminario de IA para empresarios en Honduras. Conoce más en la página de <a href='/inteligencia-artificial-empresas-honduras/'>IA para empresas</a>."]
+   "industrias": [
+    "Empresas e industria",
+    "Cámaras de comercio",
+    "Instituciones públicas",
+    "Logística",
+    "Retail",
+    "Educación"
    ],
-   "rel": ["produccion-audiovisual", "fotografia", "capacitaciones", "ia"],
-   "kw": ["eventos corporativos San Pedro Sula", "cobertura de eventos Honduras", "montaje de stands", "producción de eventos"]
+   "work": [
+    "stand-first-logistics",
+    "forum-ruta-copan",
+    "la-union-copan",
+    "cap-aula-vector",
+    "cap-contenido-certificados",
+    "bts-oficina-verde"
+   ],
+   "logos": [
+    "diagro",
+    "unicalza",
+    "importaciones-hyp"
+   ],
+   "faq": [
+    [
+     "¿Quién hace cobertura de eventos corporativos en San Pedro Sula?",
+     "Estudio Vector hace la cobertura en fotografía y video de eventos corporativos en San Pedro Sula y Honduras, con contenido para redes en tiempo real y video resumen."
+    ],
+    [
+     "¿Montan stands para ferias?",
+     "Sí. Diseñamos y montamos stands con la identidad de tu marca, como el stand de First Logistics City."
+    ],
+    [
+     "¿Qué tipo de eventos trabajan?",
+     "Lanzamientos de producto, aperturas, seminarios, capacitaciones, ferias y eventos corporativos."
+    ],
+    [
+     "¿Pueden también capacitar en el evento?",
+     "Sí. Edgardo A. López fue el capacitador del Forum Ruta Copán 2026, el primer seminario de IA para empresarios en Honduras. Conoce más en la página de <a href='/inteligencia-artificial-empresas-honduras/'>IA para empresas</a>."
+    ]
+   ],
+   "rel": [
+    "produccion-audiovisual",
+    "fotografia",
+    "capacitaciones",
+    "ia"
+   ],
+   "kw": [
+    "eventos corporativos San Pedro Sula",
+    "cobertura de eventos Honduras",
+    "montaje de stands",
+    "producción de eventos"
+   ]
   },
   {
    "id": "capacitaciones",
@@ -404,28 +1117,94 @@
     "Las capacitaciones las imparte Edgardo A. López, fundador y director creativo de Estudio Vector, que ha capacitado a más de 500 alumnos en Honduras y fue el capacitador del Forum Ruta Copán 2026. Para empresas adaptamos el contenido al rubro y al equipo, en sus instalaciones o en línea."
    ],
    "que": [
-    ["Talleres abiertos cada mes", "Calendario mensual en San Pedro Sula y en línea."],
-    ["Capacitaciones privadas para empresas", "Contenido adaptado a tu rubro y a tu equipo."],
-    ["Meta Ads y publicidad en redes", "Campañas a WhatsApp, públicos, presupuesto y métricas."],
-    ["Contenido: video, CapCut, Canva y fotografía", "Producción de contenido con las herramientas que ya tienes."],
-    ["Ventas y atención por WhatsApp", "Guiones, etiquetas, objeciones y seguimiento."],
-    ["Inteligencia artificial", "ChatGPT, Claude y apps creadas con IA para el trabajo diario."]
+    [
+     "Talleres abiertos cada mes",
+     "Calendario mensual en San Pedro Sula y en línea."
+    ],
+    [
+     "Capacitaciones privadas para empresas",
+     "Contenido adaptado a tu rubro y a tu equipo."
+    ],
+    [
+     "Meta Ads y publicidad en redes",
+     "Campañas a WhatsApp, públicos, presupuesto y métricas."
+    ],
+    [
+     "Contenido: video, CapCut, Canva y fotografía",
+     "Producción de contenido con las herramientas que ya tienes."
+    ],
+    [
+     "Ventas y atención por WhatsApp",
+     "Guiones, etiquetas, objeciones y seguimiento."
+    ],
+    [
+     "Inteligencia artificial",
+     "ChatGPT, Claude y apps creadas con IA para el trabajo diario."
+    ]
    ],
    "ideal": "Dueños de negocio, emprendedores, equipos de marketing y ventas, cámaras de comercio e instituciones.",
-   "industrias": ["Empresas", "Cámaras de comercio", "Municipalidades e instituciones", "Emprendedores", "Equipos de ventas"],
-   "work": ["forum-ruta-copan", "cap-contenido-certificados", "diagro", "cap-capcut-aula", "cap-taller-luces", "la-union-copan", "cap-mag-pollo", "cap-unicalza", "cap-capcut-alumnos"],
-   "logos": ["diagro", "unicalza", "pollos-el-pechugon"],
+   "industrias": [
+    "Empresas",
+    "Cámaras de comercio",
+    "Municipalidades e instituciones",
+    "Emprendedores",
+    "Equipos de ventas"
+   ],
+   "work": [
+    "forum-ruta-copan",
+    "cap-edgardo-videos",
+    "diagro",
+    "cap-aula-vector",
+    "cap-sala-empresa",
+    "la-union-copan",
+    "cap-edgardo-pantalla",
+    "cap-mag-pollo",
+    "cap-unicalza",
+    "cap-contenido-certificados",
+    "cap-capcut-aula"
+   ],
+   "logos": [
+    "diagro",
+    "unicalza",
+    "pollos-el-pechugon"
+   ],
    "talleres": true,
    "precio": "Los talleres abiertos tienen precio fijo por persona y se publican en el <a href='/talleres/'>calendario del mes</a>. Las capacitaciones privadas para empresas se cotizan según el número de participantes, la duración y la modalidad.",
    "faq": [
-    ["¿Quién da capacitaciones de Meta Ads en Honduras?", "Estudio Vector imparte capacitaciones de Meta Ads en San Pedro Sula y en línea, en talleres abiertos cada mes y en capacitaciones privadas para empresas. Las imparte Edgardo A. López."],
-    ["¿Dónde se imparten los talleres?", "Los talleres abiertos se imparten en el aula de Estudio Vector en San Pedro Sula o en vivo por Zoom. Las capacitaciones privadas, en las instalaciones de tu empresa o en línea."],
-    ["¿Qué incluyen los talleres?", "Grabación de la clase para repasar, grupo privado de WhatsApp, certificado de Vector MKT y grupos de máximo 10 personas."],
-    ["¿Pueden capacitar a mi equipo en mi empresa?", "Sí. Llevamos cualquiera de los talleres a tu empresa, adaptado a tu rubro y a tu equipo, con manual del participante y certificado."],
-    ["¿Cuándo son los próximos talleres?", "Consulta el <a href='/talleres/'>calendario de talleres del mes</a> con fechas, horarios y precios."]
+    [
+     "¿Quién da capacitaciones de Meta Ads en Honduras?",
+     "Estudio Vector imparte capacitaciones de Meta Ads en San Pedro Sula y en línea, en talleres abiertos cada mes y en capacitaciones privadas para empresas. Las imparte Edgardo A. López."
+    ],
+    [
+     "¿Dónde se imparten los talleres?",
+     "Los talleres abiertos se imparten en el aula de Estudio Vector en San Pedro Sula o en vivo por Zoom. Las capacitaciones privadas, en las instalaciones de tu empresa o en línea."
+    ],
+    [
+     "¿Qué incluyen los talleres?",
+     "Grabación de la clase para repasar, grupo privado de WhatsApp, certificado de Vector MKT y grupos de máximo 10 personas."
+    ],
+    [
+     "¿Pueden capacitar a mi equipo en mi empresa?",
+     "Sí. Llevamos cualquiera de los talleres a tu empresa, adaptado a tu rubro y a tu equipo, con manual del participante y certificado."
+    ],
+    [
+     "¿Cuándo son los próximos talleres?",
+     "Consulta el <a href='/talleres/'>calendario de talleres del mes</a> con fechas, horarios y precios."
+    ]
    ],
-   "rel": ["ia", "meta-ads", "asesorias", "eventos"],
-   "kw": ["capacitaciones marketing digital Honduras", "curso de Meta Ads Honduras", "talleres de marketing San Pedro Sula", "capacitación empresarial", "cursos de redes sociales"]
+   "rel": [
+    "ia",
+    "meta-ads",
+    "asesorias",
+    "eventos"
+   ],
+   "kw": [
+    "capacitaciones marketing digital Honduras",
+    "curso de Meta Ads Honduras",
+    "talleres de marketing San Pedro Sula",
+    "capacitación empresarial",
+    "cursos de redes sociales"
+   ]
   },
   {
    "id": "ia",
@@ -444,28 +1223,86 @@
     "Las imparte Edgardo A. López, fundador de Estudio Vector y de VCloud Multisystems, empresa de desarrollo de software. Fue el capacitador del Forum Ruta Copán 2026, el primer seminario de inteligencia artificial para empresarios en Honduras, y ha capacitado a equipos de empresas como Diagro y a instituciones como la Municipalidad de La Unión, Copán."
    ],
    "que": [
-    ["ChatGPT y Claude para el trabajo diario", "Cuándo usar cada uno y cómo pedirle lo que necesitas."],
-    ["IA para marketing", "Copys, guiones, planes de contenido e ideas de campañas."],
-    ["IA para ventas y atención", "Respuestas, cotizaciones y seguimiento a clientes."],
-    ["Análisis de datos con IA", "Ventas, clientes y resultados explicados en minutos."],
-    ["Automatización de tareas", "Procesos repetitivos que la IA puede hacer por tu equipo."],
-    ["Apps con IA sin programar", "Herramientas propias para inventarios, citas o pedidos."]
+    [
+     "ChatGPT y Claude para el trabajo diario",
+     "Cuándo usar cada uno y cómo pedirle lo que necesitas."
+    ],
+    [
+     "IA para marketing",
+     "Copys, guiones, planes de contenido e ideas de campañas."
+    ],
+    [
+     "IA para ventas y atención",
+     "Respuestas, cotizaciones y seguimiento a clientes."
+    ],
+    [
+     "Análisis de datos con IA",
+     "Ventas, clientes y resultados explicados en minutos."
+    ],
+    [
+     "Automatización de tareas",
+     "Procesos repetitivos que la IA puede hacer por tu equipo."
+    ],
+    [
+     "Apps con IA sin programar",
+     "Herramientas propias para inventarios, citas o pedidos."
+    ]
    ],
    "ideal": "Empresas, cámaras de comercio, instituciones y equipos que quieren aprovechar la IA en su trabajo diario.",
-   "industrias": ["Empresas", "Agroindustria", "Municipalidades", "Cámaras de comercio", "Equipos de marketing y ventas"],
-   "work": ["forum-ruta-copan", "diagro", "la-union-copan", "cap-edgardo-exponiendo", "cap-contenido-certificados"],
-   "logos": ["diagro"],
+   "industrias": [
+    "Empresas",
+    "Agroindustria",
+    "Municipalidades",
+    "Cámaras de comercio",
+    "Equipos de marketing y ventas"
+   ],
+   "work": [
+    "forum-ruta-copan",
+    "diagro",
+    "la-union-copan",
+    "cap-edgardo-exponiendo",
+    "cap-contenido-certificados"
+   ],
+   "logos": [
+    "diagro"
+   ],
    "talleres": true,
    "precio": "Los talleres abiertos de IA tienen precio fijo por persona en el <a href='/talleres/'>calendario del mes</a>. Las capacitaciones para empresas e instituciones se cotizan según participantes, duración y modalidad.",
    "faq": [
-    ["¿Quién da capacitaciones de inteligencia artificial para empresas en Honduras?", "Estudio Vector capacita a empresas e instituciones de Honduras en inteligencia artificial aplicada. Las capacitaciones las imparte Edgardo A. López, capacitador del Forum Ruta Copán 2026."],
-    ["¿Qué es el Forum Ruta Copán 2026?", "Fue el primer seminario de inteligencia artificial para empresarios en Honduras, organizado en el occidente del país con la Cámara de Comercio e Industrias de Copán y Banco de Occidente. Edgardo A. López fue el capacitador de todo el evento."],
-    ["¿Se necesita saber de tecnología?", "No. Las capacitaciones están pensadas para personas de negocio, con ejemplos de su propio trabajo."],
-    ["¿Qué herramientas de IA se enseñan?", "Principalmente ChatGPT y Claude, y herramientas para crear apps y automatizar tareas sin programar."],
-    ["¿Hay talleres abiertos de IA?", "Sí. Consulta el <a href='/talleres/taller-inteligencia-artificial-para-negocios/'>taller de inteligencia artificial para negocios</a> y el de <a href='/talleres/taller-crear-app-con-ia/'>apps con IA</a>."]
+    [
+     "¿Quién da capacitaciones de inteligencia artificial para empresas en Honduras?",
+     "Estudio Vector capacita a empresas e instituciones de Honduras en inteligencia artificial aplicada. Las capacitaciones las imparte Edgardo A. López, capacitador del Forum Ruta Copán 2026."
+    ],
+    [
+     "¿Qué es el Forum Ruta Copán 2026?",
+     "Fue el primer seminario de inteligencia artificial para empresarios en Honduras, organizado en el occidente del país con la Cámara de Comercio e Industrias de Copán y Banco de Occidente. Edgardo A. López fue el capacitador de todo el evento."
+    ],
+    [
+     "¿Se necesita saber de tecnología?",
+     "No. Las capacitaciones están pensadas para personas de negocio, con ejemplos de su propio trabajo."
+    ],
+    [
+     "¿Qué herramientas de IA se enseñan?",
+     "Principalmente ChatGPT y Claude, y herramientas para crear apps y automatizar tareas sin programar."
+    ],
+    [
+     "¿Hay talleres abiertos de IA?",
+     "Sí. Consulta el <a href='/talleres/taller-inteligencia-artificial-para-negocios/'>taller de inteligencia artificial para negocios</a> y el de <a href='/talleres/taller-crear-app-con-ia/'>apps con IA</a>."
+    ]
    ],
-   "rel": ["capacitaciones", "eventos", "marketing-digital", "asesorias"],
-   "kw": ["inteligencia artificial para empresas Honduras", "capacitación en IA", "curso de ChatGPT Honduras", "IA para negocios", "Forum Ruta Copán"]
+   "rel": [
+    "capacitaciones",
+    "eventos",
+    "marketing-digital",
+    "asesorias"
+   ],
+   "kw": [
+    "inteligencia artificial para empresas Honduras",
+    "capacitación en IA",
+    "curso de ChatGPT Honduras",
+    "IA para negocios",
+    "Forum Ruta Copán"
+   ]
   }
  ]
 }
