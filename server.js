@@ -25,7 +25,7 @@ const TYPES = {
   ".ico": "image/x-icon",
 };
 // Carpetas y archivos internos que no se publican
-const PRIVATE = /^\/(src|node_modules|\.git)(\/|$)|^\/(server\.js|build\.js|build-pdf\.js|package\.json|package-lock\.json|README\.md|\.gitignore)$/;
+const PRIVATE = /^\/(src|node_modules|\.git)(\/|$)|^\/(server\.js|build\.js|build-pdf\.js|indexnow\.js|package\.json|package-lock\.json|README\.md|\.gitignore)$/;
 
 function send(req, res, status, file, extraHeaders) {
   const ext = path.extname(file).toLowerCase();

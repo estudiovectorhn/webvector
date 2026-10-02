@@ -53,3 +53,7 @@ Cada página lleva datos estructurados schema.org (organización, persona, curso
 
 Hostinger despliega automáticamente cada push a `main` (archivo de entrada `server.js`, sin comando de build).
 Trabajamos en la rama `desarrollo` y pasamos a `main` cuando está aprobado.
+
+## Avisar a Bing de los cambios (IndexNow)
+
+Después de publicar (cuando Hostinger ya subió los cambios), corre `node indexnow.js` para avisar a Bing de todas las URL del sitemap, o `node indexnow.js /ruta/` para avisar solo de algunas. ChatGPT usa el índice de Bing, así que esto acelera que las páginas nuevas aparezcan en sus respuestas. La clave está en `0b03397bbb82a948a6dcb14e8ae830ec.txt` (no la borres).
