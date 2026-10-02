@@ -18,7 +18,8 @@ const EV = JSON.parse(fs.readFileSync("src/eventos.json", "utf8")); // capacitac
 const BACK = JSON.parse(fs.readFileSync("src/backstage.json", "utf8")); // detrás de cámaras: cómo trabajamos
 const CLI = JSON.parse(fs.readFileSync("src/clientes.json", "utf8")); // logos de clientes para el cintillo de marcas
 const GAL = JSON.parse(fs.readFileSync("src/galeria.json", "utf8")); // galería de trabajos por tipo de negocio
-const PG = JSON.parse(fs.readFileSync("src/paginas.json", "utf8")); // pilares y páginas de servicio (una URL por servicio)
+const PG = JSON.parse(fs.readFileSync("src/paginas.json", "utf8"));
+const RB = JSON.parse(fs.readFileSync("src/rubros.json", "utf8")); // páginas por tipo de negocio (restaurantes, ferreterías, etc.) // pilares y páginas de servicio (una URL por servicio)
 const PIL = PG.pilares, PS = PG.servicios;
 const psById = id => PS.find(s => s.id === id);
 const psURL = s => `/${s.slug}/`;
@@ -586,6 +587,7 @@ ${logos.length ? `
   </section>
 ${s.talleres ? `
   <p class="sp-note">¿Prefieres un taller abierto? Mira el <a href="/talleres/#calendario">calendario de talleres del mes</a>.</p>` : ""}
+  ${rubrosLinksHTML("Marketing por tipo de negocio")}
   ${siteFooter()}
 </main>
 ${ctaBar(wa, "Cotizar por WhatsApp")}`;
@@ -619,6 +621,7 @@ function buildServicios() {
     <div class="sechead"><h2 id="svg-t">Nuestros 4 pilares</h2><p>Toca un servicio para ver el detalle.</p></div>
     ${pillarsHTML("h2")}
   </section>
+  ${rubrosLinksHTML("Marketing por tipo de negocio")}
 ${brandsHTML()}
 
   <section class="process" aria-labelledby="pr-t">
@@ -657,6 +660,90 @@ ${ctaBar(waText("Hola Vector, quiero una cotización de servicios de marketing."
     canonical: url, ldGraph: graph
   }) + "\n" + body + scripts();
   write("servicios/index.html", html);
+}
+
+/* ---------------- Páginas por tipo de negocio (rubro) ---------------- */
+const rbURL = r => `/${r.slug}/`;
+function rubrosLinksHTML(title) {
+  return `<section class="rb-links" aria-labelledby="rbl-t">
+    <h2 id="rbl-t" class="sh-h">${title || "Marketing por tipo de negocio"}</h2>
+    <ul class="chips rb-chips">${RB.map(r => `<li><a href="${rbURL(r)}">${r.nav}</a></li>`).join("")}</ul>
+  </section>`;
+}
+function buildRubro(r) {
+  const url = SITE + rbURL(r);
+  const cat = GAL.categorias.find(c => c.id === r.id);
+  const items = (cat ? cat.items : []).map(id => MEDIA[id]).filter(Boolean);
+  const logos = r.logos.map(sl => CLI.find(c => cliSlug(c) === sl)).filter(Boolean);
+  const svs = r.servicios.map(psById).filter(Boolean);
+  const wa = waText(`Hola Vector, tengo un negocio de ${r.nav.toLowerCase()} y quiero información de marketing y contenido.`);
+  const vids = items.filter(w => w.type === "video");
+  const cover = items.find(w => w.type === "foto" ? w.src : w.poster);
+  const graph = [ORG, PERSON,
+    {
+      "@type": "Service", "@id": url + "#servicio", name: r.st, serviceType: r.st, description: strip(r.lead), url,
+      provider: { "@id": ORG_ID }, areaServed: ORG.areaServed,
+      audience: { "@type": "BusinessAudience", audienceType: r.nav },
+      hasOfferCatalog: { "@type": "OfferCatalog", name: r.st, itemListElement: svs.map(s => ({ "@type": "Offer", itemOffered: { "@id": SITE + psURL(s) + "#servicio" } })) },
+      keywords: r.kw.join(", ")
+    },
+    ...vids.map(w => ({ "@type": "VideoObject", name: `${w.title}: ${w.caption}`, description: `${w.caption}. Producido por Estudio Vector.`, thumbnailUrl: SITE + w.poster, contentUrl: SITE + w.src, uploadDate: TODAY, publisher: { "@id": ORG_ID } })),
+    faqLD(r.faq),
+    crumbsLD([["Inicio", "/"], ["Portafolio", "/portafolio/"], [r.nav, rbURL(r)]]),
+    { "@type": "WebPage", "@id": url + "#pagina", url, name: r.title, description: r.desc, isPartOf: { "@id": SITE + "/#web" }, about: { "@id": url + "#servicio" }, mainEntity: { "@id": url + "#servicio" }, dateModified: TODAY, inLanguage: "es-HN" }
+  ];
+  const body = `${siteHeader("portafolio")}
+<main class="wrap svpage spage" id="contenido">
+  <nav class="crumbs" aria-label="Ruta"><a href="/">Inicio</a><span>/</span><a href="/portafolio/">Portafolio</a><span>/</span><span aria-current="page">${r.nav}</span></nav>
+  <section class="sv-hero sp-hero">
+    <span class="eyebrow">Por tipo de negocio · Estudio Vector · San Pedro Sula</span>
+    <h1>${r.h1} <span class="g">${r.h1g}</span></h1>
+    <p class="lead">${r.lead}</p>
+    <div class="tp-actions">
+      <a class="btn" href="${wa}" target="_blank" rel="noopener">${ICON.wa}Cotizar por WhatsApp</a>
+      ${items.length ? `<a class="btn ghost" href="#trabajos">Ver trabajos ${ICON.arrow}</a>` : ""}
+    </div>
+  </section>
+${items.length ? `
+  <section class="sp-work" id="trabajos" aria-labelledby="rbw-t">
+    <div class="sechead"><h2 id="rbw-t">Trabajos reales para ${r.nav.toLowerCase()}</h2><p>${items.some(w => w.type !== "foto") ? "Toca un video o una foto para verlo en grande." : "Toca una foto para verla en grande."}</p></div>
+    ${reelsHTML(items, r.st, items.length > 3)}
+    <a class="btn ghost gal-cta" href="/portafolio/#${r.id}">Ver en el portafolio ${ICON.arrow}</a>
+  </section>` : ""}
+
+  <section class="sp-intro">
+    ${r.body.map(p => `<p>${p}</p>`).join("\n    ")}
+  </section>
+
+  <section class="sp-que" aria-labelledby="rbt-t">
+    <h2 id="rbt-t" class="sectitle">Lo que funciona en ${r.nav.toLowerCase()}</h2>
+    <div class="sp-grid">${r.tips.map(([t, d]) => `<div class="sp-item">${ICON.check}<b>${t}</b><span>${d}</span></div>`).join("")}</div>
+  </section>
+
+  <section class="more" aria-labelledby="rbs-t">
+    <h2 id="rbs-t" class="sectitle">Servicios para tu negocio</h2>
+    <div class="svc-grid">${svs.map(s => `<a class="svc-card" href="${psURL(s)}" style="--g:${PIL.find(p => p.id === s.pilar).grad}"><span class="svc-ico">${ART[s.icon]}</span><b>${s.nav}</b><small>${PIL.find(p => p.id === s.pilar).name}</small></a>`).join("")}</div>
+  </section>
+${logos.length ? `
+  <section class="sp-logos" aria-labelledby="rbl2-t">
+    <h2 id="rbl2-t" class="sh-h">Marcas del rubro que han confiado en nosotros</h2>
+    <div class="sp-logos-row">${logos.map(c => `<span class="blogo"><img src="${c.img}" alt="${esc(c.name)}" width="${c.w}" height="${c.h}" loading="lazy"></span>`).join("")}</div>
+  </section>` : ""}
+
+  ${faqHTML(r.faq, `Preguntas frecuentes sobre marketing para ${r.nav.toLowerCase()}`)}
+
+  <section class="ctaband">
+    <div class="wm logo-img"></div>
+    <div><h2>¿Hablamos de tu negocio?</h2><p>Escríbenos por WhatsApp al 9569-1481. Te proponemos un plan de contenido y publicidad pensado para ${r.nav.toLowerCase()}.</p></div>
+    <a class="btn light" href="${wa}" target="_blank" rel="noopener">${ICON.wa}Escribir por WhatsApp</a>
+  </section>
+
+  ${rubrosLinksHTML("Otros tipos de negocio")}
+  ${siteFooter()}
+</main>
+${ctaBar(wa, "Cotizar por WhatsApp")}`;
+  const html = head({ title: r.title, desc: r.desc, keywords: r.kw.join(", "), canonical: url, image: cover ? SITE + (cover.type === "foto" ? cover.src : cover.poster) : undefined, ldGraph: graph }) + "\n" + body + scripts();
+  write(`${r.slug}/index.html`, html);
 }
 
 /* ---------------- Página: portafolio por tipo de negocio ---------------- */
@@ -699,7 +786,7 @@ ${cats.map(c => `
   <section class="gal-sec" id="${c.id}" data-cat="${c.id}" aria-labelledby="g-${c.id}">
     <div class="sechead"><h2 id="g-${c.id}">${c.name}</h2><p>${c.lead}</p></div>
     <div class="gal-grid">${c.list.map(tile).join("")}</div>
-    <a class="btn ghost gal-cta" href="${waText(`Hola Vector, vi su portafolio de ${c.name.toLowerCase()} y quiero contenido así para mi negocio.`)}" target="_blank" rel="noopener">${ICON.wa}Quiero algo así para mi negocio</a>
+    <div class="gal-actions"><a class="btn ghost gal-cta" href="${waText(`Hola Vector, vi su portafolio de ${c.name.toLowerCase()} y quiero contenido así para mi negocio.`)}" target="_blank" rel="noopener">${ICON.wa}Quiero algo así para mi negocio</a>${RB.some(r => r.id === c.id) ? `<a class="gal-more" href="${rbURL(RB.find(r => r.id === c.id))}">Marketing para ${RB.find(r => r.id === c.id).nav.toLowerCase()} ${ICON.arrow}</a>` : ""}</div>
   </section>`).join("")}
 
   ${faqHTML(FAQ_GAL, "Preguntas sobre nuestro trabajo")}
@@ -742,7 +829,7 @@ ${siteHeader("")}
 
 /* ---------------- sitemap, robots, llms ---------------- */
 function buildMeta() {
-  const urls = [["/", "1.0", "weekly"], ["/talleres/", "0.9", "weekly"], ["/director-creativo/", "0.7", "monthly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ["/portafolio/", "0.9", "monthly"], ...PS.map(p => [psURL(p), "0.9", "monthly"]), ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
+  const urls = [["/", "1.0", "weekly"], ["/talleres/", "0.9", "weekly"], ["/director-creativo/", "0.7", "monthly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ["/portafolio/", "0.9", "monthly"], ...RB.map(r => [rbURL(r), "0.8", "monthly"]), ...PS.map(p => [psURL(p), "0.9", "monthly"]), ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
   write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(([u, p, f]) => `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority></url>`).join("\n")}
@@ -776,6 +863,10 @@ Todos incluyen grabación de la clase, grupo privado de WhatsApp y certificado o
 
 ${T.map(t => `- [${t.title}](${SITE}/talleres/${t.slug}/): ${t.dayLabel}, ${t.time}. ${t.mode === "Online" ? "En línea por Zoom" : "Presencial en San Pedro Sula"}. ${fmt(t.price)}. ${t.sub}`).join("\n")}
 
+## Marketing por tipo de negocio
+
+${RB.map(r => `- [${r.st}](${SITE}${rbURL(r)}): ${strip(r.desc)}`).join("\n")}
+
 ## Portafolio por tipo de negocio (${SITE}/portafolio/)
 
 ${GAL.categorias.map(c => `### [${c.name}](${SITE}/portafolio/#${c.id})\n${c.lead}\n\n${c.items.map(id => MEDIA[id]).filter(Boolean).map(w => `- ${KIND(w)}: ${w.title}, ${w.caption}`).join("\n")}`).join("\n\n")}
@@ -790,7 +881,7 @@ ${PIL.map(p => `### ${p.name}\n${p.lead}\n\n${PS.filter(s => s.pilar === p.id).m
 
 ## Preguntas frecuentes
 
-${[...FAQ_AG, ...FAQ_HOME, ...FAQ_SV].map(([q, a]) => `### ${q}\n${strip(a)}`).join("\n\n")}
+${[...FAQ_AG, ...FAQ_HOME, ...FAQ_SV, ...RB.flatMap(r => r.faq)].map(([q, a]) => `### ${q}\n${strip(a)}`).join("\n\n")}
 `;
   write("llms.txt", llms);
 }
@@ -803,6 +894,7 @@ T.forEach(buildTaller);
 buildServicios();
 PS.forEach(buildServicio);
 buildGaleria();
+RB.forEach(buildRubro);
 buildAnuncios();
 build404();
 buildMeta();
