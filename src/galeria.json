@@ -11,7 +11,7 @@
    "id": "cafeterias",
    "name": "Cafeterías y bares",
    "lead": "Ambiente, bebidas y desayunos grabados para que la gente quiera ir hoy mismo.",
-   "items": ["workafe-menu", "bless-coffee-tienda", "blees-coffee", "pina-loca", "frutos-rojos", "workafe-arte-desayuno", "workafe-arte-espacio", "workafe-arte-bebida", "workafe-arte-postre", "bless-arte-minimarket", "bless-arte-autoservicio", "coctel-azul", "postre-y-bebida", "desayuno-tipico"]
+   "items": ["workafe-menu", "bless-coffee-tienda", "bless-coffee", "pina-loca", "frutos-rojos", "workafe-arte-desayuno", "workafe-arte-espacio", "workafe-arte-bebida", "workafe-arte-postre", "bless-arte-minimarket", "bless-arte-autoservicio", "coctel-azul", "postre-y-bebida", "desayuno-tipico"]
   },
   {
    "id": "ferreterias-retail",
