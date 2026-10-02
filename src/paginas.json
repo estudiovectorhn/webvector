@@ -99,7 +99,10 @@
     "toby-s-pet-shop",
     "megatools",
     "dr-manuel-orellana",
-    "il-romano"
+    "il-romano",
+    "compasa",
+    "du-bai",
+    "bodega-benjamin"
    ],
    "faq": [
     [
@@ -195,6 +198,7 @@
     "il-romano-entrada",
     "workafe-menu",
     "tobys-milk-bone",
+    "megatools-carpinteria",
     "pina-loca",
     "fum-yim-arte-wok",
     "workafe-arte-desayuno",
@@ -211,7 +215,10 @@
     "pollos-el-pechugon",
     "toby-s-pet-shop",
     "workafe",
-    "kiv-detailing"
+    "kiv-detailing",
+    "plaza-bless-coffee",
+    "pollos-furia",
+    "tdk"
    ],
    "faq": [
     [
@@ -306,6 +313,8 @@
    "work": [
     "megatools",
     "la-guardia",
+    "megatools-generador",
+    "pf-valvulas",
     "harol-mayoreo",
     "altos-de-valencia",
     "tobys-alimentos",
@@ -322,7 +331,9 @@
     "megatools",
     "polarizados-la-guardia",
     "rs",
-    "ornamentos-comerciales"
+    "ornamentos-comerciales",
+    "bodega-benjamin",
+    "la-colada"
    ],
    "faq": [
     [
@@ -439,7 +450,10 @@
     "kiv-detailing",
     "fumyim",
     "workafe",
-    "ornamentos-comerciales"
+    "ornamentos-comerciales",
+    "du-bai",
+    "centuria",
+    "cros2go"
    ],
    "faq": [
     [
@@ -630,6 +644,7 @@
     "diagro-institucional",
     "slice-burger",
     "la-guardia",
+    "pf-hierro",
     "pina-loca",
     "altos-de-valencia",
     "il-romano-canelones",
@@ -746,6 +761,8 @@
    "work": [
     "slice-burger",
     "il-romano-entrada",
+    "megatools-taladros",
+    "pf-soldaduras",
     "workafe-menu",
     "megatools",
     "tobys-milk-bone",

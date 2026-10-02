@@ -570,5 +570,78 @@
   "w": 864,
   "h": 1080,
   "kind": "arte"
+ },
+ {
+  "type": "video",
+  "id": "pf-soldaduras",
+  "title": "Punto Ferretero",
+  "caption": "Reel con presentadora: electrodos y soldaduras para cada trabajo",
+  "src": "/video/pf-soldaduras.mp4",
+  "poster": "/img/trabajos/pf-soldaduras.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "pf-valvulas",
+  "title": "Punto Ferretero",
+  "caption": "Reel con presentadora: válvulas para controlar el flujo",
+  "src": "/video/pf-valvulas.mp4",
+  "poster": "/img/trabajos/pf-valvulas.jpg"
+ },
+ {
+  "type": "video",
+  "id": "pf-hierro",
+  "title": "Punto Ferretero",
+  "caption": "Reel de producto: tubería de hierro negro, galvanizado e inoxidable",
+  "src": "/video/pf-hierro.mp4",
+  "poster": "/img/trabajos/pf-hierro.jpg"
+ },
+ {
+  "type": "video",
+  "id": "pf-laminas",
+  "title": "Punto Ferretero",
+  "caption": "Reel de producto: láminas para techos, paredes y acabados",
+  "src": "/video/pf-laminas.mp4",
+  "poster": "/img/trabajos/pf-laminas.jpg"
+ },
+ {
+  "type": "video",
+  "id": "megatools-taladros",
+  "title": "MegaTools",
+  "caption": "Reel con vendedor: taladros inalámbricos y de impacto",
+  "src": "/video/megatools-taladros.mp4",
+  "poster": "/img/trabajos/megatools-taladros.jpg"
+ },
+ {
+  "type": "video",
+  "id": "megatools-generador",
+  "title": "MegaTools",
+  "caption": "Reel con vendedor: generadores para cuando se va la luz",
+  "src": "/video/megatools-generador.mp4",
+  "poster": "/img/trabajos/megatools-generador.jpg"
+ },
+ {
+  "type": "video",
+  "id": "megatools-carpinteria",
+  "title": "MegaTools",
+  "caption": "Reel con vendedor: herramientas para carpintería",
+  "src": "/video/megatools-carpinteria.mp4",
+  "poster": "/img/trabajos/megatools-carpinteria.jpg"
+ },
+ {
+  "type": "video",
+  "id": "megatools-soldadura",
+  "title": "MegaTools",
+  "caption": "Reel de producto: soldadoras inverter y accesorios",
+  "src": "/video/megatools-soldadura.mp4",
+  "poster": "/img/trabajos/megatools-soldadura.jpg"
+ },
+ {
+  "type": "video",
+  "id": "megatools-seguridad-vial",
+  "title": "MegaTools",
+  "caption": "Reel de producto: herramientas y seguridad vial para el carro",
+  "src": "/video/megatools-seguridad-vial.mp4",
+  "poster": "/img/trabajos/megatools-seguridad-vial.jpg"
  }
 ]
