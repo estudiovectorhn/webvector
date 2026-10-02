@@ -103,5 +103,59 @@
   "src": "/img/trabajos/cap-capcut-edicion.jpg",
   "w": 1200,
   "h": 800
+ },
+ {
+  "type": "foto",
+  "id": "cap-edgardo-videos",
+  "title": "Capacitación empresarial",
+  "caption": "Edgardo enseñando planificación de contenido en video",
+  "src": "/img/trabajos/cap-edgardo-videos.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "cap-edgardo-pantalla",
+  "title": "Capacitación empresarial",
+  "caption": "Sesión de estrategia digital con presentación en pantalla",
+  "src": "/img/trabajos/cap-edgardo-pantalla.jpg",
+  "w": 1200,
+  "h": 800
+ },
+ {
+  "type": "foto",
+  "id": "cap-aula-vector",
+  "title": "Taller en el aula de Vector",
+  "caption": "Grupo práctico de marketing digital en San Pedro Sula",
+  "src": "/img/trabajos/cap-aula-vector.jpg",
+  "w": 1200,
+  "h": 800
+ },
+ {
+  "type": "foto",
+  "id": "cap-sala-empresa",
+  "title": "Capacitación in company",
+  "caption": "Sesión con el equipo de una empresa en su sala de juntas",
+  "src": "/img/trabajos/cap-sala-empresa.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "cap-asesoria-equipo",
+  "title": "Asesoría comercial",
+  "caption": "Revisión de estrategia con el equipo de ventas",
+  "src": "/img/trabajos/cap-asesoria-equipo.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "cap-asesoria-laptop",
+  "title": "Asesoría comercial",
+  "caption": "Sesión de trabajo uno a uno con el cliente",
+  "src": "/img/trabajos/cap-asesoria-laptop.jpg",
+  "w": 800,
+  "h": 1200
  }
 ]

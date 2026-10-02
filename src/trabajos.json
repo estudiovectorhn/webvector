@@ -5,15 +5,17 @@
   "title": "Piña Loca",
   "caption": "Video de ambiente para bar y restaurante",
   "src": "/video/pina-loca.mp4",
-  "poster": "/img/trabajos/pina-loca.jpg"
+  "poster": "/img/trabajos/pina-loca.jpg",
+  "home": true
  },
  {
   "type": "video",
   "id": "blees-coffee",
-  "title": "Blees Coffee",
+  "title": "Bless Coffee",
   "caption": "Video gastronómico para redes",
   "src": "/video/blees-coffee.mp4",
-  "poster": "/img/trabajos/blees-coffee.jpg"
+  "poster": "/img/trabajos/blees-coffee.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -21,7 +23,8 @@
   "title": "Altos de Valencia",
   "caption": "Video corporativo para proyecto residencial",
   "src": "/video/altos-de-valencia.mp4",
-  "poster": "/img/trabajos/altos-de-valencia.jpg"
+  "poster": "/img/trabajos/altos-de-valencia.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -29,7 +32,8 @@
   "title": "Harol Mayoreo",
   "caption": "Video comercial de calzado al por mayor",
   "src": "/video/harol-mayoreo.mp4",
-  "poster": "/img/trabajos/harol-mayoreo.jpg"
+  "poster": "/img/trabajos/harol-mayoreo.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -37,7 +41,8 @@
   "title": "Mar y Tierra",
   "caption": "Video gastronómico: camarones con carne",
   "src": "/video/mar-y-tierra.mp4",
-  "poster": "/img/trabajos/mar-y-tierra.jpg"
+  "poster": "/img/trabajos/mar-y-tierra.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -45,7 +50,8 @@
   "title": "Coctelería",
   "caption": "Video de producto: trago de frutos rojos",
   "src": "/video/frutos-rojos.mp4",
-  "poster": "/img/trabajos/frutos-rojos.jpg"
+  "poster": "/img/trabajos/frutos-rojos.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -53,7 +59,8 @@
   "title": "Balance",
   "caption": "Video de producto para alimento de mascotas",
   "src": "/video/balance.mp4",
-  "poster": "/img/trabajos/balance.jpg"
+  "poster": "/img/trabajos/balance.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -61,7 +68,8 @@
   "title": "El tiempo es valioso",
   "caption": "Spot comercial con guion de venta",
   "src": "/video/tiempo-valioso.mp4",
-  "poster": "/img/trabajos/tiempo-valioso.jpg"
+  "poster": "/img/trabajos/tiempo-valioso.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -69,7 +77,8 @@
   "title": "RTN Empresarial",
   "caption": "Video corporativo educativo con presentadora",
   "src": "/video/rtn-empresarial.mp4",
-  "poster": "/img/trabajos/rtn-empresarial.jpg"
+  "poster": "/img/trabajos/rtn-empresarial.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -77,7 +86,8 @@
   "title": "Caja Morazánica",
   "caption": "Video gastronómico de producto",
   "src": "/video/caja-morazanica.mp4",
-  "poster": "/img/trabajos/caja-morazanica.jpg"
+  "poster": "/img/trabajos/caja-morazanica.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -85,7 +95,8 @@
   "title": "Dr. Manuel Orellana",
   "caption": "Video de marca personal para profesional de la salud",
   "src": "/video/dr-orellana.mp4",
-  "poster": "/img/trabajos/dr-orellana.jpg"
+  "poster": "/img/trabajos/dr-orellana.jpg",
+  "home": true
  },
  {
   "type": "video",
@@ -93,7 +104,8 @@
   "title": "First Logistics City",
   "caption": "Montaje de stand para evento",
   "src": "/video/stand-first-logistics.mp4",
-  "poster": "/img/trabajos/stand-first-logistics.jpg"
+  "poster": "/img/trabajos/stand-first-logistics.jpg",
+  "home": true
  },
  {
   "type": "foto",
@@ -186,5 +198,377 @@
   "src": "/img/trabajos/desayuno-tipico.jpg",
   "w": 675,
   "h": 1200
+ },
+ {
+  "type": "video",
+  "id": "slice-burger",
+  "title": "Slice Pizza",
+  "caption": "Reel gastronómico: papa slice y hamburguesa",
+  "src": "/video/slice-burger.mp4",
+  "poster": "/img/trabajos/slice-burger.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "il-romano-entrada",
+  "title": "Il Romano",
+  "caption": "Reel de menú: entrada de tres piezas y pizza familiar",
+  "src": "/video/il-romano-entrada.mp4",
+  "poster": "/img/trabajos/il-romano-entrada.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "il-romano-canelones",
+  "title": "Il Romano",
+  "caption": "Reel gastronómico: canelones a la jalapeña",
+  "src": "/video/il-romano-canelones.mp4",
+  "poster": "/img/trabajos/il-romano-canelones.jpg"
+ },
+ {
+  "type": "video",
+  "id": "workafe-menu",
+  "title": "Workafe",
+  "caption": "Reel de menú: wraps, croissants, almuerzos y café",
+  "src": "/video/workafe-menu.mp4",
+  "poster": "/img/trabajos/workafe-menu.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "bless-coffee-tienda",
+  "title": "Bless Coffee",
+  "caption": "Reel promocional: café y minimarket en un solo lugar",
+  "src": "/video/bless-coffee-tienda.mp4",
+  "poster": "/img/trabajos/bless-coffee-tienda.jpg"
+ },
+ {
+  "type": "video",
+  "id": "megatools",
+  "title": "MegaTools",
+  "caption": "Reel de tienda: herramientas, accesorios y complementos",
+  "src": "/video/megatools.mp4",
+  "poster": "/img/trabajos/megatools.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "tobys-milk-bone",
+  "title": "Toby's Pet Shop",
+  "caption": "Reel de producto: premios Milk-Bone para perros",
+  "src": "/video/tobys-milk-bone.mp4",
+  "poster": "/img/trabajos/tobys-milk-bone.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "tobys-alimentos",
+  "title": "Toby's Pet Shop",
+  "caption": "Reel de catálogo: alimento para mascotas con envío gratis",
+  "src": "/video/tobys-alimentos.mp4",
+  "poster": "/img/trabajos/tobys-alimentos.jpg"
+ },
+ {
+  "type": "video",
+  "id": "la-guardia",
+  "title": "Polarizados La Guardia",
+  "caption": "Reel de servicio: polarizado automotriz con película 3M",
+  "src": "/video/la-guardia.mp4",
+  "poster": "/img/trabajos/la-guardia.jpg",
+  "home": true
+ },
+ {
+  "type": "video",
+  "id": "ornamentos-vivero",
+  "title": "Ornamentos Comerciales",
+  "caption": "Reel de ubicación: vivero, diseño y mantenimiento de jardines",
+  "src": "/video/ornamentos-vivero.mp4",
+  "poster": "/img/trabajos/ornamentos-vivero.jpg"
+ },
+ {
+  "type": "video",
+  "id": "ornamentos-plantas",
+  "title": "Ornamentos Comerciales",
+  "caption": "Reel comercial: plantas de exterior e interior",
+  "src": "/video/ornamentos-plantas.mp4",
+  "poster": "/img/trabajos/ornamentos-plantas.jpg"
+ },
+ {
+  "type": "video",
+  "id": "podcast-orellana",
+  "title": "Podcast con el Dr. Orellana",
+  "caption": "Clip vertical de podcast: «Descifrando la mente del corredor»",
+  "src": "/video/podcast-orellana.mp4",
+  "poster": "/img/trabajos/podcast-orellana.jpg"
+ },
+ {
+  "type": "video",
+  "id": "diagro-institucional",
+  "title": "Diagro",
+  "caption": "Video institucional: productores, plantas, granjas y maquinaria",
+  "src": "/video/diagro-institucional.mp4",
+  "poster": "/img/trabajos/diagro-institucional.jpg",
+  "w": 16,
+  "h": 9
+ },
+ {
+  "type": "foto",
+  "id": "workafe-arte-desayuno",
+  "title": "Workafe",
+  "caption": "Arte para redes: desayuno de la casa",
+  "src": "/img/trabajos/workafe-arte-desayuno.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "workafe-arte-espacio",
+  "title": "Workafe",
+  "caption": "Arte para redes: un espacio para crear",
+  "src": "/img/trabajos/workafe-arte-espacio.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "workafe-arte-bebida",
+  "title": "Workafe",
+  "caption": "Arte para redes: bebida de temporada",
+  "src": "/img/trabajos/workafe-arte-bebida.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "workafe-arte-postre",
+  "title": "Workafe",
+  "caption": "Arte para redes: endulza tu jornada",
+  "src": "/img/trabajos/workafe-arte-postre.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "il-romano-arte-romanisima",
+  "title": "Il Romano",
+  "caption": "Arte para redes: pizza Romanísima",
+  "src": "/img/trabajos/il-romano-arte-romanisima.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "il-romano-arte-pizza",
+  "title": "Il Romano",
+  "caption": "Arte de producto: pizza de la casa",
+  "src": "/img/trabajos/il-romano-arte-pizza.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "il-romano-arte-spaguetti",
+  "title": "Il Romano",
+  "caption": "Arte de menú: spaguetti al pomodoro",
+  "src": "/img/trabajos/il-romano-arte-spaguetti.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "il-romano-arte-trifili",
+  "title": "Il Romano",
+  "caption": "Arte de menú: filete de res Trifili",
+  "src": "/img/trabajos/il-romano-arte-trifili.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "il-romano-arte-pizzas",
+  "title": "Il Romano",
+  "caption": "Arte para redes: pizzas y entradas para compartir",
+  "src": "/img/trabajos/il-romano-arte-pizzas.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "fum-yim-arte-wok",
+  "title": "Fum Yim",
+  "caption": "Arte para redes: tallarines de arroz al wok",
+  "src": "/img/trabajos/fum-yim-arte-wok.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "fum-yim-arte-llevar",
+  "title": "Fum Yim",
+  "caption": "Arte para redes: pídelo para llevar",
+  "src": "/img/trabajos/fum-yim-arte-llevar.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "fum-yim-arte-arroz",
+  "title": "Fum Yim",
+  "caption": "Arte para redes: arroz frito con camarones",
+  "src": "/img/trabajos/fum-yim-arte-arroz.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "fum-yim-vitrina-1",
+  "title": "Fum Yim",
+  "caption": "Rotulación de vitrinas del restaurante",
+  "src": "/img/trabajos/fum-yim-vitrina-1.jpg",
+  "w": 810,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "fum-yim-vitrina-2",
+  "title": "Fum Yim",
+  "caption": "Vinil decorativo con platillos en vitrina",
+  "src": "/img/trabajos/fum-yim-vitrina-2.jpg",
+  "w": 810,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "fum-yim-fachada",
+  "title": "Fum Yim",
+  "caption": "Imagen de fachada y rotulación",
+  "src": "/img/trabajos/fum-yim-fachada.jpg",
+  "w": 810,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "bless-arte-minimarket",
+  "title": "Bless Coffee",
+  "caption": "Arte para redes: tu minimarket de confianza",
+  "src": "/img/trabajos/bless-arte-minimarket.jpg",
+  "w": 863,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "bless-arte-autoservicio",
+  "title": "Bless Coffee",
+  "caption": "Arte para redes: servicio al auto",
+  "src": "/img/trabajos/bless-arte-autoservicio.jpg",
+  "w": 863,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "quintara5-arte-1",
+  "title": "Quintara 5 · First Logistics City",
+  "caption": "Arte para redes: crece desde Honduras hacia nuevos mercados",
+  "src": "/img/trabajos/quintara5-arte-1.jpg",
+  "w": 863,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "quintara5-arte-2",
+  "title": "Quintara 5 · First Logistics City",
+  "caption": "Arte para redes: tu marca en una ubicación estratégica",
+  "src": "/img/trabajos/quintara5-arte-2.jpg",
+  "w": 863,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "megatools-arte-cubos",
+  "title": "MegaTools",
+  "caption": "Arte de producto con precio: juego de cubos 156 piezas",
+  "src": "/img/trabajos/megatools-arte-cubos.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "megatools-arte-motosierra",
+  "title": "MegaTools",
+  "caption": "Arte de producto con precio: motosierra 18\"",
+  "src": "/img/trabajos/megatools-arte-motosierra.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "megatools-arte-taladro",
+  "title": "MegaTools",
+  "caption": "Arte de producto con precio: taladro de impacto",
+  "src": "/img/trabajos/megatools-arte-taladro.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "megatools-arte-compresor",
+  "title": "MegaTools",
+  "caption": "Arte de producto con precio: compresor para auto",
+  "src": "/img/trabajos/megatools-arte-compresor.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "megatools-arte-hidrolavadora",
+  "title": "MegaTools",
+  "caption": "Arte de producto con precio: bomba hidrolavadora",
+  "src": "/img/trabajos/megatools-arte-hidrolavadora.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "megatools-arte-capote",
+  "title": "MegaTools",
+  "caption": "Arte de producto con precio: capote de 2 piezas",
+  "src": "/img/trabajos/megatools-arte-capote.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
+ },
+ {
+  "type": "foto",
+  "id": "megatools-arte-cortadora",
+  "title": "MegaTools",
+  "caption": "Arte de producto con precio: cortadora de concreto",
+  "src": "/img/trabajos/megatools-arte-cortadora.jpg",
+  "w": 864,
+  "h": 1080,
+  "kind": "arte"
  }
 ]

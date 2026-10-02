@@ -13,25 +13,34 @@
         el.style.transitionDelay = reduce ? "0s" : Math.min(idx, 8) * 70 + "ms";
         el.classList.add("in"); seen.unobserve(el);
       }), { threshold: .15 });
+      /* portadas diferidas (galería): se cargan poco antes de entrar en pantalla */
+      const poster = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        const v = e.target.querySelector("video[data-poster]"); if (v && !v.getAttribute("poster")) v.poster = v.dataset.poster;
+        poster.unobserve(e.target);
+      }), { rootMargin: "300px 0px" });
+      items.forEach(el => { if (el.querySelector("video[data-poster]")) poster.observe(el); });
       const play = new IntersectionObserver(es => es.forEach(e => {
         const v = e.target.querySelector("video"); if (!v) return;
         if (e.isIntersecting) { load(v); v.play().catch(() => {}); } else v.pause();
       }), { threshold: .4 });
       items.forEach(el => { seen.observe(el); if (el.classList.contains("reel")) play.observe(el); });
       dups.forEach(el => { seen.observe(el); play.observe(el); });
-    } else [...items, ...dups].forEach(el => { el.classList.add("in"); load(el.querySelector("video")); });
+    } else [...items, ...dups].forEach(el => { el.classList.add("in"); const v = el.querySelector("video"); if (v && v.dataset.poster) v.poster = v.dataset.poster; load(v); });
 
     /* Visor */
     const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
     const L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg>';
     const R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>';
     let lb = null, cur = -1, lastFocus = null;
+    /* siguiente o anterior visible (la galería oculta las categorías filtradas) */
+    const step = d => { let i = cur; for (let n = 0; n < items.length; n++) { i = (i + d + items.length) % items.length; if (!items[i].closest("[hidden]")) break; } render(i); };
     function render(i) {
       const el = items[i], v = el.querySelector("video"), img = el.querySelector("img");
       const box = lb.querySelector(".lb-box");
       box.classList.toggle("wide", el.classList.contains("wide"));
       box.innerHTML = (v
-        ? `<video src="${v.dataset.src}" poster="${v.poster}" controls autoplay playsinline loop></video>`
+        ? `<video src="${v.dataset.src}" poster="${v.dataset.poster || v.poster}" controls autoplay playsinline loop></video>`
         : `<img src="${img.src}" alt="${img.alt}">`) +
         `<div class="lb-cap"><b>${el.dataset.title || ""}</b><span>${el.dataset.cap || ""}</span></div>`;
       const nv = box.querySelector("video"); if (nv) { nv.muted = false; nv.play().catch(() => {}); }
@@ -45,13 +54,13 @@
         document.body.appendChild(lb);
         lb.addEventListener("click", e => { if (e.target === lb) close(); });
         lb.querySelector(".lb-x").addEventListener("click", close);
-        lb.querySelector(".prev").addEventListener("click", () => render((cur - 1 + items.length) % items.length));
-        lb.querySelector(".next").addEventListener("click", () => render((cur + 1) % items.length));
+        lb.querySelector(".prev").addEventListener("click", () => step(-1));
+        lb.querySelector(".next").addEventListener("click", () => step(1));
         document.addEventListener("keydown", e => {
           if (lb.hidden) return;
           if (e.key === "Escape") close();
-          if (e.key === "ArrowLeft") render((cur - 1 + items.length) % items.length);
-          if (e.key === "ArrowRight") render((cur + 1) % items.length);
+          if (e.key === "ArrowLeft") step(-1);
+          if (e.key === "ArrowRight") step(1);
         });
       }
       lb.hidden = false; render(i);
@@ -115,6 +124,27 @@
       requestAnimationFrame(step);
     })(0);
   });
+  /* Galería: filtro por tipo de negocio (con enlace directo: /portafolio/#restaurantes) */
+  const chips = [...document.querySelectorAll(".gal-chips button")];
+  if (chips.length) {
+    const secs = [...document.querySelectorAll(".gal-sec")];
+    const pick = (cat, scroll) => {
+      if (!secs.some(s => s.dataset.cat === cat)) cat = "todos";
+      chips.forEach(b => b.setAttribute("aria-pressed", b.dataset.cat === cat));
+      secs.forEach(s => { s.hidden = cat !== "todos" && s.dataset.cat !== cat; });
+      const on = chips.find(b => b.dataset.cat === cat); if (on) on.scrollIntoView({ block: "nearest", inline: "center" });
+      if (scroll) {
+        const bar = document.querySelector(".gal-bar"), hdr = document.querySelector(".sitehead");
+        const top = bar.getBoundingClientRect().top + scrollY - (hdr ? hdr.offsetHeight : 0) - 8;
+        if (scrollY > top) window.scrollTo({ top, behavior: "smooth" });
+      }
+    };
+    chips.forEach(b => b.addEventListener("click", () => {
+      pick(b.dataset.cat, true);
+      try { history.replaceState(null, "", b.dataset.cat === "todos" ? location.pathname : "#" + b.dataset.cat); } catch (e) {}
+    }));
+    if (location.hash) pick(location.hash.slice(1), false);
+  }
   /* Enlaces antiguos al inicio (#calendario, #talleres, #instructor) siguen funcionando */
   if (location.pathname === "/" && location.hash) {
     const h = location.hash.slice(1);

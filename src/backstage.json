@@ -85,5 +85,91 @@
   "src": "/img/trabajos/bts-camara-detras.jpg",
   "w": 900,
   "h": 1200
+ },
+ {
+  "type": "video",
+  "id": "bts-entrevista-estudio",
+  "title": "Entrevista en estudio",
+  "caption": "Grabación con iluminación de estudio y monitor",
+  "src": "/video/bts-entrevista-estudio.mp4",
+  "poster": "/img/trabajos/bts-entrevista-estudio.jpg"
+ },
+ {
+  "type": "video",
+  "id": "bts-podcast",
+  "title": "Grabación de podcast",
+  "caption": "Detrás de cámaras de un episodio",
+  "src": "/video/bts-podcast.mp4",
+  "poster": "/img/trabajos/bts-podcast.jpg"
+ },
+ {
+  "type": "video",
+  "id": "bts-entrevista-oficina",
+  "title": "Entrevista corporativa",
+  "caption": "Grabación en la oficina del cliente",
+  "src": "/video/bts-entrevista-oficina.mp4",
+  "poster": "/img/trabajos/bts-entrevista-oficina.jpg"
+ },
+ {
+  "type": "video",
+  "id": "bts-set-producto",
+  "title": "Set de producto",
+  "caption": "Montaje de luces para video de producto",
+  "src": "/video/bts-set-producto.mp4",
+  "poster": "/img/trabajos/bts-set-producto.jpg"
+ },
+ {
+  "type": "foto",
+  "id": "bts-entrevista-set",
+  "title": "Set de entrevista",
+  "caption": "Cámara, softbox y monitor listos para grabar",
+  "src": "/img/trabajos/bts-entrevista-set.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-podcast-mesa",
+  "title": "Podcast",
+  "caption": "Grabación de episodio con dos invitados",
+  "src": "/img/trabajos/bts-podcast-mesa.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-podcast-camara",
+  "title": "Podcast",
+  "caption": "Cámara y luz principal en el set del podcast",
+  "src": "/img/trabajos/bts-podcast-camara.jpg",
+  "w": 675,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-estudio-luces",
+  "title": "Estudio",
+  "caption": "Iluminación de color para video de marca",
+  "src": "/img/trabajos/bts-estudio-luces.jpg",
+  "w": 675,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-producto-set",
+  "title": "Set de producto",
+  "caption": "Mesa, luces y fondo para grabación de producto",
+  "src": "/img/trabajos/bts-producto-set.jpg",
+  "w": 900,
+  "h": 1200
+ },
+ {
+  "type": "foto",
+  "id": "bts-detailing",
+  "title": "Grabación automotriz",
+  "caption": "Sesión de video en taller de detailing",
+  "src": "/img/trabajos/bts-detailing.jpg",
+  "w": 675,
+  "h": 1200
  }
 ]
