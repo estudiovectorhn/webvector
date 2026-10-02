@@ -1,5 +1,29 @@
 [
  {
+  "name": "Bodega Benjamín",
+  "img": "/img/clientes/bodega-benjamin.png",
+  "w": 284,
+  "h": 260
+ },
+ {
+  "name": "Centuria Soluciones Contables",
+  "img": "/img/clientes/centuria.png",
+  "w": 223,
+  "h": 260
+ },
+ {
+  "name": "Compasa",
+  "img": "/img/clientes/compasa.png",
+  "w": 173,
+  "h": 195
+ },
+ {
+  "name": "Cros2Go",
+  "img": "/img/clientes/cros2go.png",
+  "w": 420,
+  "h": 155
+ },
+ {
   "name": "DIAGRO",
   "img": "/img/clientes/diagro.png",
   "w": 389,
@@ -10,6 +34,12 @@
   "img": "/img/clientes/dr-manuel-orellana.png",
   "w": 420,
   "h": 192
+ },
+ {
+  "name": "Du-bai Restaurant & Bar",
+  "img": "/img/clientes/du-bai.png",
+  "w": 399,
+  "h": 260
  },
  {
   "name": "Fumyim",
@@ -36,6 +66,12 @@
   "h": 260
  },
  {
+  "name": "La Colada Autolavado",
+  "img": "/img/clientes/la-colada.png",
+  "w": 420,
+  "h": 168
+ },
+ {
   "name": "MegaTools",
   "img": "/img/clientes/megatools.png",
   "w": 262,
@@ -54,6 +90,12 @@
   "h": 260
  },
  {
+  "name": "Plaza Bless Coffee",
+  "img": "/img/clientes/plaza-bless-coffee.png",
+  "w": 149,
+  "h": 196
+ },
+ {
   "name": "Polarizados La Guardia",
   "img": "/img/clientes/polarizados-la-guardia.png",
   "w": 420,
@@ -63,6 +105,12 @@
   "name": "Pollos El Pechugón",
   "img": "/img/clientes/pollos-el-pechugon.png",
   "w": 305,
+  "h": 260
+ },
+ {
+  "name": "Pollos Furia",
+  "img": "/img/clientes/pollos-furia.png",
+  "w": 234,
   "h": 260
  },
  {
@@ -84,6 +132,12 @@
   "h": 260
  },
  {
+  "name": "TDK",
+  "img": "/img/clientes/tdk.png",
+  "w": 420,
+  "h": 152
+ },
+ {
   "name": "Toby's Pet Shop",
   "img": "/img/clientes/toby-s-pet-shop.png",
   "w": 271,
@@ -94,6 +148,12 @@
   "img": "/img/clientes/unicalza.png",
   "w": 420,
   "h": 156
+ },
+ {
+  "name": "Vivian Rivera, Psicología",
+  "img": "/img/clientes/vivian-rivera.png",
+  "w": 261,
+  "h": 260
  },
  {
   "name": "Workafe",

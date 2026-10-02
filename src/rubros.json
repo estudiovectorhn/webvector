@@ -14,23 +14,77 @@
    "Después convertimos ese material en un sistema: reels para la semana, artes de promoción con precio, historias para el fin de semana y anuncios segmentados por zona para que el contenido llegue a gente que puede pedir hoy."
   ],
   "tips": [
-   ["Muestra el plato en movimiento", "Cortes, vapor, queso que se estira y bebidas sirviéndose. Los reels de menú retienen más que una foto fija."],
-   ["Un plato estrella por pieza", "Cada video o arte habla de un solo producto con su precio o su promoción, para que la decisión sea fácil."],
-   ["Llamada a la acción a WhatsApp", "Pedir debe ser un toque: botón a WhatsApp, menú claro y respuesta rápida."],
-   ["Anuncios por zona y por hora", "En Meta Ads segmentamos por cercanía y reforzamos en horas de almuerzo y cena."],
-   ["Constancia semanal", "Mejor 3 piezas buenas por semana todo el año que 20 en un mes y luego silencio."]
+   [
+    "Muestra el plato en movimiento",
+    "Cortes, vapor, queso que se estira y bebidas sirviéndose. Los reels de menú retienen más que una foto fija."
+   ],
+   [
+    "Un plato estrella por pieza",
+    "Cada video o arte habla de un solo producto con su precio o su promoción, para que la decisión sea fácil."
+   ],
+   [
+    "Llamada a la acción a WhatsApp",
+    "Pedir debe ser un toque: botón a WhatsApp, menú claro y respuesta rápida."
+   ],
+   [
+    "Anuncios por zona y por hora",
+    "En Meta Ads segmentamos por cercanía y reforzamos en horas de almuerzo y cena."
+   ],
+   [
+    "Constancia semanal",
+    "Mejor 3 piezas buenas por semana todo el año que 20 en un mes y luego silencio."
+   ]
   ],
-  "servicios": ["reels", "fotografia", "diseno-grafico", "meta-ads", "redes-sociales"],
-  "logos": ["slide-pizza", "il-romano", "fumyim", "pollos-el-pechugon", "pina-loca"],
+  "servicios": [
+   "reels",
+   "fotografia",
+   "diseno-grafico",
+   "meta-ads",
+   "redes-sociales"
+  ],
+  "logos": [
+   "slide-pizza",
+   "il-romano",
+   "fumyim",
+   "pollos-el-pechugon",
+   "pina-loca",
+   "du-bai",
+   "pollos-furia",
+   "tdk"
+  ],
   "faq": [
-   ["¿Qué agencia hace videos y fotos para restaurantes en San Pedro Sula?", "Estudio Vector produce reels de menú, videos gastronómicos y fotografía de platos para restaurantes en San Pedro Sula y el resto de Honduras. Grabamos en tu local con equipo de iluminación y entregamos el contenido editado para Instagram, Facebook y TikTok. En esta página puedes ver trabajos para Slice Pizza, Il Romano y Fum Yim."],
-   ["¿Cómo puede un restaurante vender más por redes sociales?", "Con tres cosas al mismo tiempo: contenido apetitoso y constante (sobre todo video de los platos), anuncios en Meta Ads segmentados por zona que lleven a WhatsApp, y una atención rápida que cierre el pedido. Si una de las tres falla, las otras dos rinden menos."],
-   ["¿Qué tipo de contenido funciona mejor para un restaurante?", "Los reels cortos de un solo plato en movimiento, las promociones con precio claro, el detrás de cocina y los videos de ambiente para quienes buscan dónde ir. Las fotos de alta calidad sirven para el menú, las artes y las plataformas de delivery."],
-   ["¿Cuánto cuesta el marketing para un restaurante?", "Depende de cuántos reels, fotos y artes necesitas al mes, si incluye manejo de redes y cuánto se invertirá en anuncios. Te enviamos una cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."],
-   ["¿Hacen artes de menú, promociones y rotulación?", "Sí. Diseñamos artes de menú y de promociones para redes, materiales impresos y rotulación de vitrinas y fachadas, como la que hicimos para Fum Yim."],
-   ["¿Pueden manejar las redes y los anuncios del restaurante?", "Sí. Nos encargamos del plan de contenido, la publicación, los anuncios en Facebook e Instagram y el reporte mensual, o solo de la parte que necesites."]
+   [
+    "¿Qué agencia hace videos y fotos para restaurantes en San Pedro Sula?",
+    "Estudio Vector produce reels de menú, videos gastronómicos y fotografía de platos para restaurantes en San Pedro Sula y el resto de Honduras. Grabamos en tu local con equipo de iluminación y entregamos el contenido editado para Instagram, Facebook y TikTok. En esta página puedes ver trabajos para Slice Pizza, Il Romano y Fum Yim."
+   ],
+   [
+    "¿Cómo puede un restaurante vender más por redes sociales?",
+    "Con tres cosas al mismo tiempo: contenido apetitoso y constante (sobre todo video de los platos), anuncios en Meta Ads segmentados por zona que lleven a WhatsApp, y una atención rápida que cierre el pedido. Si una de las tres falla, las otras dos rinden menos."
+   ],
+   [
+    "¿Qué tipo de contenido funciona mejor para un restaurante?",
+    "Los reels cortos de un solo plato en movimiento, las promociones con precio claro, el detrás de cocina y los videos de ambiente para quienes buscan dónde ir. Las fotos de alta calidad sirven para el menú, las artes y las plataformas de delivery."
+   ],
+   [
+    "¿Cuánto cuesta el marketing para un restaurante?",
+    "Depende de cuántos reels, fotos y artes necesitas al mes, si incluye manejo de redes y cuánto se invertirá en anuncios. Te enviamos una cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ],
+   [
+    "¿Hacen artes de menú, promociones y rotulación?",
+    "Sí. Diseñamos artes de menú y de promociones para redes, materiales impresos y rotulación de vitrinas y fachadas, como la que hicimos para Fum Yim."
+   ],
+   [
+    "¿Pueden manejar las redes y los anuncios del restaurante?",
+    "Sí. Nos encargamos del plan de contenido, la publicación, los anuncios en Facebook e Instagram y el reporte mensual, o solo de la parte que necesites."
+   ]
   ],
-  "kw": ["marketing para restaurantes San Pedro Sula", "videos para restaurantes Honduras", "fotografía de comida San Pedro Sula", "reels para restaurantes", "publicidad para restaurantes en Facebook"]
+  "kw": [
+   "marketing para restaurantes San Pedro Sula",
+   "videos para restaurantes Honduras",
+   "fotografía de comida San Pedro Sula",
+   "reels para restaurantes",
+   "publicidad para restaurantes en Facebook"
+  ]
  },
  {
   "id": "cafeterias",
@@ -47,22 +101,67 @@
    "Grabamos recorridos del local, momentos de barra y platos del menú, y los convertimos en reels, historias y artes de temporada para que tu marca aparezca cada semana en el celular de quienes viven o trabajan cerca."
   ],
   "tips": [
-   ["Vende el ambiente", "Reels del local, la terraza o la barra con gente real ayudan a decidir dónde ir hoy."],
-   ["Bebidas y postres como protagonistas", "Café sirviéndose, cócteles, postres: piezas cortas con buena luz y sonido."],
-   ["Ocasiones claras", "Desayuno, trabajo remoto, after office, fin de semana: cada pieza habla de un momento."],
-   ["Ubicación siempre visible", "Cómo llegar, horarios y estacionamiento en cada publicación importante."],
-   ["Anuncios a la zona", "Segmentación por cercanía para que te vea quien puede llegar en minutos."]
+   [
+    "Vende el ambiente",
+    "Reels del local, la terraza o la barra con gente real ayudan a decidir dónde ir hoy."
+   ],
+   [
+    "Bebidas y postres como protagonistas",
+    "Café sirviéndose, cócteles, postres: piezas cortas con buena luz y sonido."
+   ],
+   [
+    "Ocasiones claras",
+    "Desayuno, trabajo remoto, after office, fin de semana: cada pieza habla de un momento."
+   ],
+   [
+    "Ubicación siempre visible",
+    "Cómo llegar, horarios y estacionamiento en cada publicación importante."
+   ],
+   [
+    "Anuncios a la zona",
+    "Segmentación por cercanía para que te vea quien puede llegar en minutos."
+   ]
   ],
-  "servicios": ["reels", "fotografia", "redes-sociales", "diseno-grafico", "meta-ads"],
-  "logos": ["workafe", "pina-loca"],
+  "servicios": [
+   "reels",
+   "fotografia",
+   "redes-sociales",
+   "diseno-grafico",
+   "meta-ads"
+  ],
+  "logos": [
+   "workafe",
+   "pina-loca",
+   "plaza-bless-coffee"
+  ],
   "faq": [
-   ["¿Quién hace videos para cafeterías en San Pedro Sula?", "Estudio Vector produce reels de ambiente, videos de menú y fotografía de bebidas para cafeterías y bares en San Pedro Sula. Mira en esta página trabajos para Workafe, Bless Coffee y Piña Loca."],
-   ["¿Cómo atraer más clientes a una cafetería con redes sociales?", "Mostrando el lugar y los momentos, no solo el menú: reels del ambiente, bebidas en movimiento, promociones por horario y anuncios segmentados a la zona. La constancia semanal es lo que hace que la gente te recuerde."],
-   ["¿Qué publicar en las redes de un bar o cafetería?", "Ambiente del local, bebidas y postres estrella, novedades del menú, promociones por día u horario, eventos y detrás de barra. Cada pieza con ubicación y una invitación clara a visitar."],
-   ["¿Cuánto cuesta el contenido para una cafetería?", "Depende de la cantidad de reels, fotos y artes al mes y de si incluye manejo de redes y anuncios. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."],
-   ["¿Hacen fotografía de bebidas y cócteles?", "Sí. Iluminamos y fotografiamos bebidas, cócteles y postres para menú, redes y plataformas de delivery, como las piezas de coctelería y postres de esta galería."]
+   [
+    "¿Quién hace videos para cafeterías en San Pedro Sula?",
+    "Estudio Vector produce reels de ambiente, videos de menú y fotografía de bebidas para cafeterías y bares en San Pedro Sula. Mira en esta página trabajos para Workafe, Bless Coffee y Piña Loca."
+   ],
+   [
+    "¿Cómo atraer más clientes a una cafetería con redes sociales?",
+    "Mostrando el lugar y los momentos, no solo el menú: reels del ambiente, bebidas en movimiento, promociones por horario y anuncios segmentados a la zona. La constancia semanal es lo que hace que la gente te recuerde."
+   ],
+   [
+    "¿Qué publicar en las redes de un bar o cafetería?",
+    "Ambiente del local, bebidas y postres estrella, novedades del menú, promociones por día u horario, eventos y detrás de barra. Cada pieza con ubicación y una invitación clara a visitar."
+   ],
+   [
+    "¿Cuánto cuesta el contenido para una cafetería?",
+    "Depende de la cantidad de reels, fotos y artes al mes y de si incluye manejo de redes y anuncios. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ],
+   [
+    "¿Hacen fotografía de bebidas y cócteles?",
+    "Sí. Iluminamos y fotografiamos bebidas, cócteles y postres para menú, redes y plataformas de delivery, como las piezas de coctelería y postres de esta galería."
+   ]
   ],
-  "kw": ["marketing para cafeterías Honduras", "videos para bares San Pedro Sula", "fotografía de bebidas Honduras", "redes sociales para cafetería"]
+  "kw": [
+   "marketing para cafeterías Honduras",
+   "videos para bares San Pedro Sula",
+   "fotografía de bebidas Honduras",
+   "redes sociales para cafetería"
+  ]
  },
  {
   "id": "ferreterias-retail",
@@ -70,7 +169,7 @@
   "nav": "Ferreterías y tiendas",
   "st": "Marketing para ferreterías, tiendas y retail",
   "title": "Marketing para Ferreterías y Tiendas en Honduras: Artes con Precio, Reels y Meta Ads | Estudio Vector",
-  "desc": "Agencia de marketing para ferreterías, tiendas y retail en Honduras: artes de producto con precio, reels de tienda, catálogo en redes y anuncios en Meta Ads a WhatsApp. Trabajos reales para MegaTools y Harol Mayoreo.",
+  "desc": "Agencia de marketing para ferreterías, tiendas y retail en Honduras: artes de producto con precio, reels de tienda, catálogo en redes y anuncios en Meta Ads a WhatsApp. Trabajos reales para MegaTools, Punto Ferretero y Harol Mayoreo.",
   "h1": "Marketing para ferreterías",
   "h1g": "y tiendas en Honduras",
   "lead": "Estudio Vector ayuda a ferreterías, tiendas y negocios de retail en Honduras a vender su catálogo por redes: artes de producto con precio, reels de recorrido de tienda, videos comerciales y anuncios en Facebook e Instagram que llevan consultas al WhatsApp. Hemos trabajado para MegaTools, Punto Ferretero, Harol Mayoreo, Unicalza e Importaciones HyP.",
@@ -79,22 +178,71 @@
    "Diseñamos una línea de artes de producto que se reconoce en el feed, grabamos reels de tienda que muestran variedad y marcas, y pautamos en Meta Ads para que esas piezas lleguen a contratistas, talleres y hogares de tu zona."
   ],
   "tips": [
-   ["Precio y código en cada arte", "Las artes con precio visible generan consultas más concretas y ventas más rápidas."],
-   ["Recorridos de tienda", "Un reel de pasillos y marcas comunica variedad mejor que cien fotos sueltas."],
-   ["Producto en uso", "Mostrar la herramienta funcionando responde dudas antes de que pregunten."],
-   ["Catálogo por temporadas", "Lluvias, construcción, regreso a clases: campañas que siguen lo que el cliente necesita."],
-   ["Anuncios a WhatsApp", "Campañas de mensajes con respuestas rápidas preparadas para precio y existencia."]
+   [
+    "Precio y código en cada arte",
+    "Las artes con precio visible generan consultas más concretas y ventas más rápidas."
+   ],
+   [
+    "Recorridos de tienda",
+    "Un reel de pasillos y marcas comunica variedad mejor que cien fotos sueltas."
+   ],
+   [
+    "Producto en uso",
+    "Mostrar la herramienta funcionando responde dudas antes de que pregunten."
+   ],
+   [
+    "Catálogo por temporadas",
+    "Lluvias, construcción, regreso a clases: campañas que siguen lo que el cliente necesita."
+   ],
+   [
+    "Anuncios a WhatsApp",
+    "Campañas de mensajes con respuestas rápidas preparadas para precio y existencia."
+   ]
   ],
-  "servicios": ["diseno-grafico", "reels", "meta-ads", "redes-sociales", "asesorias"],
-  "logos": ["megatools", "punto-ferretero", "unicalza", "importaciones-hyp"],
+  "servicios": [
+   "diseno-grafico",
+   "reels",
+   "meta-ads",
+   "redes-sociales",
+   "asesorias"
+  ],
+  "logos": [
+   "megatools",
+   "punto-ferretero",
+   "unicalza",
+   "importaciones-hyp",
+   "compasa",
+   "bodega-benjamin"
+  ],
   "faq": [
-   ["¿Qué agencia hace marketing para ferreterías en Honduras?", "Estudio Vector, en San Pedro Sula, diseña artes de producto con precio, graba reels de tienda y maneja anuncios en Meta Ads para ferreterías y tiendas de todo Honduras. En esta página hay trabajos reales para MegaTools."],
-   ["¿Cómo vender más productos de una ferretería por Facebook e Instagram?", "Publicando el catálogo de forma constante con artes que muestren producto, precio y código, reels que enseñen la tienda y los productos en uso, y anuncios que lleven a WhatsApp, donde un vendedor responda rápido con precio y existencia."],
-   ["¿Conviene poner precios en las publicaciones?", "En la mayoría de productos de ferretería y retail, sí. El precio filtra a quien no va a comprar y acelera a quien sí. Para productos con mucha variación de precio se puede usar \"desde\" o promociones puntuales."],
-   ["¿Cuánto cuesta manejar las redes de una tienda?", "Depende de cuántas artes y reels se necesitan al mes y de la inversión en anuncios. Te enviamos una cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."],
-   ["¿También capacitan a los vendedores para atender por WhatsApp?", "Sí. Tenemos asesoría comercial y capacitaciones de ventas por WhatsApp para que el equipo convierta las consultas que generan los anuncios en ventas."]
+   [
+    "¿Qué agencia hace marketing para ferreterías en Honduras?",
+    "Estudio Vector, en San Pedro Sula, diseña artes de producto con precio, graba reels de tienda y maneja anuncios en Meta Ads para ferreterías y tiendas de todo Honduras. En esta página hay trabajos reales para MegaTools y Punto Ferretero."
+   ],
+   [
+    "¿Cómo vender más productos de una ferretería por Facebook e Instagram?",
+    "Publicando el catálogo de forma constante con artes que muestren producto, precio y código, reels que enseñen la tienda y los productos en uso, y anuncios que lleven a WhatsApp, donde un vendedor responda rápido con precio y existencia."
+   ],
+   [
+    "¿Conviene poner precios en las publicaciones?",
+    "En la mayoría de productos de ferretería y retail, sí. El precio filtra a quien no va a comprar y acelera a quien sí. Para productos con mucha variación de precio se puede usar \"desde\" o promociones puntuales."
+   ],
+   [
+    "¿Cuánto cuesta manejar las redes de una tienda?",
+    "Depende de cuántas artes y reels se necesitan al mes y de la inversión en anuncios. Te enviamos una cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ],
+   [
+    "¿También capacitan a los vendedores para atender por WhatsApp?",
+    "Sí. Tenemos asesoría comercial y capacitaciones de ventas por WhatsApp para que el equipo convierta las consultas que generan los anuncios en ventas."
+   ]
   ],
-  "kw": ["marketing para ferreterías Honduras", "publicidad para tiendas San Pedro Sula", "artes de producto con precio", "redes sociales para ferretería", "Meta Ads para tiendas"]
+  "kw": [
+   "marketing para ferreterías Honduras",
+   "publicidad para tiendas San Pedro Sula",
+   "artes de producto con precio",
+   "redes sociales para ferretería",
+   "Meta Ads para tiendas"
+  ]
  },
  {
   "id": "mascotas",
@@ -111,20 +259,56 @@
    "Grabamos reels de producto y de tienda, armamos promociones de envío y sucursales, y pautamos para dueños de mascotas en tu ciudad."
   ],
   "tips": [
-   ["La mascota como protagonista", "Un perro o gato disfrutando el producto vende más que el empaque solo."],
-   ["Beneficio en una frase", "Proteína, digestión, dientes, premio: cada pieza explica para qué sirve."],
-   ["Envío y sucursales visibles", "Envío gratis, ubicaciones y teléfono en cada publicación de venta."],
-   ["Recompra", "Recordatorios de alimento y promociones para clientes que ya compraron."]
+   [
+    "La mascota como protagonista",
+    "Un perro o gato disfrutando el producto vende más que el empaque solo."
+   ],
+   [
+    "Beneficio en una frase",
+    "Proteína, digestión, dientes, premio: cada pieza explica para qué sirve."
+   ],
+   [
+    "Envío y sucursales visibles",
+    "Envío gratis, ubicaciones y teléfono en cada publicación de venta."
+   ],
+   [
+    "Recompra",
+    "Recordatorios de alimento y promociones para clientes que ya compraron."
+   ]
   ],
-  "servicios": ["reels", "redes-sociales", "meta-ads", "diseno-grafico", "fotografia"],
-  "logos": ["toby-s-pet-shop"],
+  "servicios": [
+   "reels",
+   "redes-sociales",
+   "meta-ads",
+   "diseno-grafico",
+   "fotografia"
+  ],
+  "logos": [
+   "toby-s-pet-shop"
+  ],
   "faq": [
-   ["¿Quién hace marketing para pet shops en Honduras?", "Estudio Vector, agencia de San Pedro Sula, produce reels de producto, contenido de catálogo y anuncios para pet shops y marcas de alimento para mascotas. Mira trabajos reales para Toby's Pet Shop y Balance en esta página."],
-   ["¿Qué contenido publicar en las redes de un pet shop?", "Reels de productos con la mascota usándolos, novedades y marcas disponibles, promociones de envío, consejos de cuidado y recordatorios de recompra de alimento."],
-   ["¿Cómo vender alimento para mascotas por redes?", "Con piezas que expliquen el beneficio de cada alimento, precio o promoción visible, envío fácil y anuncios a dueños de mascotas en tu zona que lleven a WhatsApp."],
-   ["¿Cuánto cuesta el contenido para una tienda de mascotas?", "Depende de la cantidad de reels y artes al mes y de la inversión en anuncios. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."]
+   [
+    "¿Quién hace marketing para pet shops en Honduras?",
+    "Estudio Vector, agencia de San Pedro Sula, produce reels de producto, contenido de catálogo y anuncios para pet shops y marcas de alimento para mascotas. Mira trabajos reales para Toby's Pet Shop y Balance en esta página."
+   ],
+   [
+    "¿Qué contenido publicar en las redes de un pet shop?",
+    "Reels de productos con la mascota usándolos, novedades y marcas disponibles, promociones de envío, consejos de cuidado y recordatorios de recompra de alimento."
+   ],
+   [
+    "¿Cómo vender alimento para mascotas por redes?",
+    "Con piezas que expliquen el beneficio de cada alimento, precio o promoción visible, envío fácil y anuncios a dueños de mascotas en tu zona que lleven a WhatsApp."
+   ],
+   [
+    "¿Cuánto cuesta el contenido para una tienda de mascotas?",
+    "Depende de la cantidad de reels y artes al mes y de la inversión en anuncios. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ]
   ],
-  "kw": ["marketing para pet shop Honduras", "videos para tienda de mascotas", "publicidad alimento para perros Honduras"]
+  "kw": [
+   "marketing para pet shop Honduras",
+   "videos para tienda de mascotas",
+   "publicidad alimento para perros Honduras"
+  ]
  },
  {
   "id": "automotriz",
@@ -141,20 +325,59 @@
    "Grabamos en tu taller el paso a paso, el resultado final y a tu equipo trabajando, y lo convertimos en reels y anuncios para dueños de vehículos de tu ciudad."
   ],
   "tips": [
-   ["Antes y después", "El cambio visible es el mejor argumento de venta en servicios para vehículos."],
-   ["Muestra materiales y marcas", "Películas, ceras y productos reconocidos dan confianza y justifican el precio."],
-   ["Tu equipo en acción", "Personal capacitado trabajando con cuidado reduce el miedo a dejar el carro."],
-   ["Citas por WhatsApp", "Anuncios de mensajes con preguntas rápidas: modelo, servicio y fecha."]
+   [
+    "Antes y después",
+    "El cambio visible es el mejor argumento de venta en servicios para vehículos."
+   ],
+   [
+    "Muestra materiales y marcas",
+    "Películas, ceras y productos reconocidos dan confianza y justifican el precio."
+   ],
+   [
+    "Tu equipo en acción",
+    "Personal capacitado trabajando con cuidado reduce el miedo a dejar el carro."
+   ],
+   [
+    "Citas por WhatsApp",
+    "Anuncios de mensajes con preguntas rápidas: modelo, servicio y fecha."
+   ]
   ],
-  "servicios": ["reels", "produccion-audiovisual", "meta-ads", "redes-sociales", "diseno-grafico"],
-  "logos": ["polarizados-la-guardia", "kiv-detailing"],
+  "servicios": [
+   "reels",
+   "produccion-audiovisual",
+   "meta-ads",
+   "redes-sociales",
+   "diseno-grafico"
+  ],
+  "logos": [
+   "polarizados-la-guardia",
+   "kiv-detailing",
+   "la-colada"
+  ],
   "faq": [
-   ["¿Quién hace videos para talleres y negocios de carros en San Pedro Sula?", "Estudio Vector graba reels de servicio y videos de antes y después para talleres, polarizados y detailing en San Pedro Sula y Honduras. En esta página está el trabajo para Polarizados La Guardia."],
-   ["¿Cómo conseguir más clientes para un taller con redes sociales?", "Mostrando el trabajo terminado y el proceso en reels, publicando con constancia y pautando anuncios de mensajes para dueños de vehículos de tu zona, con respuesta rápida para agendar."],
-   ["¿Qué publicar en las redes de un negocio automotriz?", "Antes y después, procesos de trabajo, materiales y marcas que usas, promociones por temporada, testimonios de clientes y tu ubicación."],
-   ["¿Cuánto cuesta un reel para mi taller?", "Depende de cuántos videos necesitas, de la locación y de la edición. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."]
+   [
+    "¿Quién hace videos para talleres y negocios de carros en San Pedro Sula?",
+    "Estudio Vector graba reels de servicio y videos de antes y después para talleres, polarizados y detailing en San Pedro Sula y Honduras. En esta página está el trabajo para Polarizados La Guardia."
+   ],
+   [
+    "¿Cómo conseguir más clientes para un taller con redes sociales?",
+    "Mostrando el trabajo terminado y el proceso en reels, publicando con constancia y pautando anuncios de mensajes para dueños de vehículos de tu zona, con respuesta rápida para agendar."
+   ],
+   [
+    "¿Qué publicar en las redes de un negocio automotriz?",
+    "Antes y después, procesos de trabajo, materiales y marcas que usas, promociones por temporada, testimonios de clientes y tu ubicación."
+   ],
+   [
+    "¿Cuánto cuesta un reel para mi taller?",
+    "Depende de cuántos videos necesitas, de la locación y de la edición. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ]
   ],
-  "kw": ["marketing para talleres Honduras", "videos para polarizados San Pedro Sula", "publicidad detailing automotriz", "reels para negocios de carros"]
+  "kw": [
+   "marketing para talleres Honduras",
+   "videos para polarizados San Pedro Sula",
+   "publicidad detailing automotriz",
+   "reels para negocios de carros"
+  ]
  },
  {
   "id": "agro-jardineria",
@@ -171,20 +394,58 @@
    "Para viveros y jardinería, el contenido vende la variedad, la ubicación y la asesoría: reels recorriendo el vivero, plantas por tipo y cómo llegar."
   ],
   "tips": [
-   ["Video institucional", "Instalaciones, procesos y personas en un video que sirva para ventas, ferias y redes."],
-   ["Tomas aéreas", "La escala de una operación o un vivero se entiende mejor desde el aire."],
-   ["Educar vende", "Consejos de cultivo, cuidado y uso de productos posicionan a la empresa como experta."],
-   ["Ubicación y variedad", "Para viveros: recorridos, categorías de plantas y cómo llegar."]
+   [
+    "Video institucional",
+    "Instalaciones, procesos y personas en un video que sirva para ventas, ferias y redes."
+   ],
+   [
+    "Tomas aéreas",
+    "La escala de una operación o un vivero se entiende mejor desde el aire."
+   ],
+   [
+    "Educar vende",
+    "Consejos de cultivo, cuidado y uso de productos posicionan a la empresa como experta."
+   ],
+   [
+    "Ubicación y variedad",
+    "Para viveros: recorridos, categorías de plantas y cómo llegar."
+   ]
   ],
-  "servicios": ["produccion-audiovisual", "reels", "capacitaciones", "redes-sociales", "meta-ads"],
-  "logos": ["diagro", "ornamentos-comerciales"],
+  "servicios": [
+   "produccion-audiovisual",
+   "reels",
+   "capacitaciones",
+   "redes-sociales",
+   "meta-ads"
+  ],
+  "logos": [
+   "diagro",
+   "ornamentos-comerciales"
+  ],
   "faq": [
-   ["¿Quién hace videos institucionales para empresas agrícolas en Honduras?", "Estudio Vector produce videos institucionales para empresas agroindustriales en Honduras, con grabación en planta, granja y campo, entrevistas y tomas aéreas. Mira el video institucional de Diagro en esta página."],
-   ["¿Cómo puede un vivero vender más por redes sociales?", "Mostrando la variedad de plantas en reels, explicando cuidados, publicando la ubicación y los horarios, y pautando anuncios a personas y empresas de la zona que buscan plantas o diseño de jardines."],
-   ["¿También capacitan a equipos de empresas del agro?", "Sí. Capacitamos a equipos de empresas como Diagro en marketing digital e inteligencia artificial, adaptado a su rubro."],
-   ["¿Cuánto cuesta un video institucional?", "Depende de las locaciones, los días de grabación, las entrevistas, las tomas aéreas y la duración final. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."]
+   [
+    "¿Quién hace videos institucionales para empresas agrícolas en Honduras?",
+    "Estudio Vector produce videos institucionales para empresas agroindustriales en Honduras, con grabación en planta, granja y campo, entrevistas y tomas aéreas. Mira el video institucional de Diagro en esta página."
+   ],
+   [
+    "¿Cómo puede un vivero vender más por redes sociales?",
+    "Mostrando la variedad de plantas en reels, explicando cuidados, publicando la ubicación y los horarios, y pautando anuncios a personas y empresas de la zona que buscan plantas o diseño de jardines."
+   ],
+   [
+    "¿También capacitan a equipos de empresas del agro?",
+    "Sí. Capacitamos a equipos de empresas como Diagro en marketing digital e inteligencia artificial, adaptado a su rubro."
+   ],
+   [
+    "¿Cuánto cuesta un video institucional?",
+    "Depende de las locaciones, los días de grabación, las entrevistas, las tomas aéreas y la duración final. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ]
   ],
-  "kw": ["video institucional empresa agrícola Honduras", "marketing para viveros", "marketing agroindustria Honduras", "videos para empresas del agro"]
+  "kw": [
+   "video institucional empresa agrícola Honduras",
+   "marketing para viveros",
+   "marketing agroindustria Honduras",
+   "videos para empresas del agro"
+  ]
  },
  {
   "id": "bienes-raices-empresas",
@@ -201,20 +462,57 @@
    "Para empresas de servicios grabamos videos educativos con presentadora o vocero que explican lo que hacen y por qué elegirlos."
   ],
   "tips": [
-   ["Ubicación estratégica", "Mapas, accesos y tomas del entorno responden la primera pregunta del cliente."],
-   ["Avance y respaldo", "Mostrar obra, equipo y aliados da seguridad para invertir."],
-   ["Vocero o presentadora", "Una cara que explique el proyecto o el servicio humaniza a la empresa."],
-   ["Presencia en eventos", "Stands y material coherente con la campaña digital."]
+   [
+    "Ubicación estratégica",
+    "Mapas, accesos y tomas del entorno responden la primera pregunta del cliente."
+   ],
+   [
+    "Avance y respaldo",
+    "Mostrar obra, equipo y aliados da seguridad para invertir."
+   ],
+   [
+    "Vocero o presentadora",
+    "Una cara que explique el proyecto o el servicio humaniza a la empresa."
+   ],
+   [
+    "Presencia en eventos",
+    "Stands y material coherente con la campaña digital."
+   ]
   ],
-  "servicios": ["produccion-audiovisual", "diseno-grafico", "eventos", "meta-ads", "marketing-digital"],
-  "logos": [],
+  "servicios": [
+   "produccion-audiovisual",
+   "diseno-grafico",
+   "eventos",
+   "meta-ads",
+   "marketing-digital"
+  ],
+  "logos": [
+   "centuria"
+  ],
   "faq": [
-   ["¿Quién hace videos para proyectos inmobiliarios en San Pedro Sula?", "Estudio Vector produce videos corporativos y de proyecto para desarrolladoras y parques logísticos en Honduras. En esta página están los trabajos para Altos de Valencia y Quintara 5 · First Logistics City."],
-   ["¿Cómo promocionar un proyecto inmobiliario en redes sociales?", "Con un video del proyecto y su entorno, artes que expliquen ubicación y beneficios, anuncios segmentados por perfil de comprador o inversionista y un proceso rápido de atención por WhatsApp para agendar visitas."],
-   ["¿Hacen stands y material para ferias y eventos?", "Sí. Diseñamos y montamos stands y material gráfico para eventos, como el stand de First Logistics City."],
-   ["¿Cuánto cuesta un video corporativo?", "Depende de las locaciones, la duración, si lleva presentadora, entrevistas o tomas aéreas. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."]
+   [
+    "¿Quién hace videos para proyectos inmobiliarios en San Pedro Sula?",
+    "Estudio Vector produce videos corporativos y de proyecto para desarrolladoras y parques logísticos en Honduras. En esta página están los trabajos para Altos de Valencia y Quintara 5 · First Logistics City."
+   ],
+   [
+    "¿Cómo promocionar un proyecto inmobiliario en redes sociales?",
+    "Con un video del proyecto y su entorno, artes que expliquen ubicación y beneficios, anuncios segmentados por perfil de comprador o inversionista y un proceso rápido de atención por WhatsApp para agendar visitas."
+   ],
+   [
+    "¿Hacen stands y material para ferias y eventos?",
+    "Sí. Diseñamos y montamos stands y material gráfico para eventos, como el stand de First Logistics City."
+   ],
+   [
+    "¿Cuánto cuesta un video corporativo?",
+    "Depende de las locaciones, la duración, si lleva presentadora, entrevistas o tomas aéreas. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ]
   ],
-  "kw": ["marketing inmobiliario Honduras", "video corporativo San Pedro Sula", "publicidad proyectos inmobiliarios", "stands para eventos Honduras"]
+  "kw": [
+   "marketing inmobiliario Honduras",
+   "video corporativo San Pedro Sula",
+   "publicidad proyectos inmobiliarios",
+   "stands para eventos Honduras"
+  ]
  },
  {
   "id": "salud-marca-personal",
@@ -231,19 +529,58 @@
    "Grabamos en estudio o en tu consultorio con iluminación y audio profesional, y convertimos cada sesión en varios clips verticales para redes."
   ],
   "tips": [
-   ["Educa, no solo anuncies", "Responder dudas frecuentes en video posiciona al profesional como referente."],
-   ["Una sesión, muchos clips", "Una grabación de entrevista o podcast rinde contenido para semanas."],
-   ["Audio impecable", "En contenido hablado, el sonido limpio es lo que retiene a la audiencia."],
-   ["Agenda fácil", "Cada pieza termina con cómo agendar: WhatsApp, teléfono o ubicación."]
+   [
+    "Educa, no solo anuncies",
+    "Responder dudas frecuentes en video posiciona al profesional como referente."
+   ],
+   [
+    "Una sesión, muchos clips",
+    "Una grabación de entrevista o podcast rinde contenido para semanas."
+   ],
+   [
+    "Audio impecable",
+    "En contenido hablado, el sonido limpio es lo que retiene a la audiencia."
+   ],
+   [
+    "Agenda fácil",
+    "Cada pieza termina con cómo agendar: WhatsApp, teléfono o ubicación."
+   ]
   ],
-  "servicios": ["podcast", "produccion-audiovisual", "reels", "redes-sociales", "meta-ads"],
-  "logos": ["dr-manuel-orellana"],
+  "servicios": [
+   "podcast",
+   "produccion-audiovisual",
+   "reels",
+   "redes-sociales",
+   "meta-ads"
+  ],
+  "logos": [
+   "dr-manuel-orellana",
+   "vivian-rivera"
+  ],
   "faq": [
-   ["¿Quién hace marketing para médicos en San Pedro Sula?", "Estudio Vector produce videos de marca personal, podcast y contenido educativo para médicos y clínicas en San Pedro Sula y Honduras. En esta página está el trabajo para el Dr. Manuel Orellana."],
-   ["¿Qué contenido debe publicar un médico en redes sociales?", "Respuestas a preguntas frecuentes de pacientes, explicaciones sencillas de procedimientos, mitos y verdades, presentación del equipo y del consultorio, y testimonios cuando el paciente lo autoriza."],
-   ["¿Graban podcast para profesionales?", "Sí. Montamos el set con cámaras, luces y micrófonos, grabamos el episodio y entregamos la versión completa y clips verticales para redes."],
-   ["¿Cuánto cuesta el contenido para una clínica?", "Depende de la cantidad de sesiones de grabación, clips y manejo de redes. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."]
+   [
+    "¿Quién hace marketing para médicos en San Pedro Sula?",
+    "Estudio Vector produce videos de marca personal, podcast y contenido educativo para médicos y clínicas en San Pedro Sula y Honduras. En esta página está el trabajo para el Dr. Manuel Orellana."
+   ],
+   [
+    "¿Qué contenido debe publicar un médico en redes sociales?",
+    "Respuestas a preguntas frecuentes de pacientes, explicaciones sencillas de procedimientos, mitos y verdades, presentación del equipo y del consultorio, y testimonios cuando el paciente lo autoriza."
+   ],
+   [
+    "¿Graban podcast para profesionales?",
+    "Sí. Montamos el set con cámaras, luces y micrófonos, grabamos el episodio y entregamos la versión completa y clips verticales para redes."
+   ],
+   [
+    "¿Cuánto cuesta el contenido para una clínica?",
+    "Depende de la cantidad de sesiones de grabación, clips y manejo de redes. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ]
   ],
-  "kw": ["marketing para médicos Honduras", "marketing para clínicas San Pedro Sula", "videos para doctores", "marca personal profesional Honduras", "podcast para médicos"]
+  "kw": [
+   "marketing para médicos Honduras",
+   "marketing para clínicas San Pedro Sula",
+   "videos para doctores",
+   "marca personal profesional Honduras",
+   "podcast para médicos"
+  ]
  }
 ]

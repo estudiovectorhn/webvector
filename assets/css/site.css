@@ -887,12 +887,12 @@ a.trust{text-decoration:none;color:inherit}
 .br-head .eyebrow{margin-top:0}
 .br-head h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(22px,4.5vw,30px);line-height:1;margin:6px 0 0}
 .brand-mq{margin-inline:calc(50% - 50vw);overflow:hidden;padding:10px 0 14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.brand-track{display:flex;width:max-content;animation:mq 60s linear infinite}
+.brand-track{display:flex;width:max-content;animation:mq 95s linear infinite}
 .brand-mq:hover .brand-track{animation-play-state:paused}
 .blogo{flex:none;display:flex;align-items:center;justify-content:center;width:150px;height:84px;margin-right:12px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .25s}
 .blogo:hover{transform:translateY(-4px)}
 .blogo img{height:56px;width:auto;max-width:118px;object-fit:contain;display:block}
-@media (min-width:760px){.brands{margin-top:40px}.blogo{width:190px;height:104px;margin-right:16px}.blogo img{height:72px;max-width:150px}.brand-track{animation-duration:75s}}
+@media (min-width:760px){.brands{margin-top:40px}.blogo{width:190px;height:104px;margin-right:16px}.blogo img{height:72px;max-width:150px}.brand-track{animation-duration:120s}}
 @media (prefers-reduced-motion:reduce){.brand-track{animation:none}.brand-mq{overflow-x:auto}}
 .svpage .brands{margin-top:6px}
 
