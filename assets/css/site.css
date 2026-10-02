@@ -973,3 +973,14 @@ a.trust{text-decoration:none;color:inherit}
 @media (min-width:640px){.gal-grid{--rowh:320px;gap:12px}}
 @media (min-width:1000px){.gal-grid{--rowh:360px;gap:14px}.gal-chips{margin:0;padding:2px 0;mask-image:linear-gradient(90deg,#000 92%,transparent)}}
 @media (max-width:999px){.gal-chips{mask-image:linear-gradient(90deg,#000 85%,transparent)}}
+
+/* enlaces por tipo de negocio */
+.rb-links{margin-top:34px}
+.rb-chips a{color:inherit;text-decoration:none}
+.rb-chips li{transition:background .2s,color .2s}
+.rb-chips li:hover{background:var(--grad);color:#fff}
+.gal-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:6px}
+.gal-actions .gal-cta{margin:0}
+.gal-more{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--violet);text-decoration:none;font-size:14.5px}
+.gal-more svg{width:16px;height:16px;transition:transform .2s}
+.gal-more:hover svg{transform:translateX(4px)}

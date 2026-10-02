@@ -19,6 +19,7 @@ node server.js    # abre http://localhost:3000
 | Talleres (fechas, precios, contenido, apps que se usan: campo `tools`; cámaras u otro equipo en PNG sin fondo: campo `gear` con imágenes en `img/gear/`) | `src/talleres.json` |
 | Iconos de las apps (Meta, Facebook, Instagram, WhatsApp, ChatGPT, Claude, Canva, CapCut, TikTok, Zoom, Supabase, YouTube) | `img/tools/*.svg`, nombres y notas en `assets/js/render.js` (`TOOLS`) |
 | Programa del mes en PDF (portada con calendario + lista con precios y botones) | `build-pdf.js` → `talleres-octubre-2026.pdf` |
+| Páginas por tipo de negocio (marketing para restaurantes, ferreterías, médicos, etc.): texto, consejos, servicios, logos y preguntas frecuentes; los trabajos salen de la categoría del mismo `id` en `galeria.json` | `src/rubros.json` |
 | Portafolio por tipo de negocio (`/portafolio/`): categorías y qué piezas van en cada una | `src/galeria.json` |
 | Servicios: 4 pilares y una página por servicio (texto, trabajos, logos, preguntas frecuentes, palabras clave) | `src/paginas.json` |
 | Trabajos: videos (en `video/`), fotos y artes (en `img/trabajos/`). `"home": true` = sale en el carrusel de la portada; `"kind": "arte"` = arte de diseño (no sale en "Fotografía que vende") | `src/trabajos.json` |
