@@ -231,6 +231,21 @@
   const hdr = document.querySelector(".sitehead");
   if (hdr) { const f = () => hdr.classList.toggle("scrolled", scrollY > 10); addEventListener("scroll", f, { passive: true }); f(); }
 
+  /* Visitas que llegan desde asistentes de IA (ChatGPT, Perplexity, Gemini, Copilot, Claude…): evento ai_referral, una vez por visita */
+  const AI = [["chatgpt.com", "ChatGPT"], ["openai.com", "ChatGPT"], ["perplexity.ai", "Perplexity"], ["copilot.microsoft.com", "Copilot"], ["gemini.google.com", "Gemini"], ["bard.google.com", "Gemini"], ["claude.ai", "Claude"], ["deepseek.com", "DeepSeek"], ["meta.ai", "Meta AI"], ["grok.com", "Grok"], ["x.ai", "Grok"], ["chat.mistral.ai", "Le Chat"], ["you.com", "You.com"], ["poe.com", "Poe"]];
+  let aiSource = "";
+  try {
+    aiSource = sessionStorage.getItem("ai_source") || "";
+    if (!aiSource) {
+      const ref = document.referrer, utm = (new URLSearchParams(location.search).get("utm_source") || "").toLowerCase();
+      const hit = AI.find(([d]) => (ref && new URL(ref).hostname.endsWith(d)) || utm.includes(d));
+      if (hit) {
+        aiSource = hit[1]; sessionStorage.setItem("ai_source", aiSource);
+        if (window.gtag) gtag("event", "ai_referral", { ai_source: aiSource, landing_page: location.pathname });
+      }
+    }
+  } catch (err) {}
+
   /* Cada clic a WhatsApp cuenta como cliente potencial: Lead en el píxel de Meta y generate_lead en Google Analytics */
   document.addEventListener("click", e => {
     const a = e.target.closest('a[href*="wa.me/"]');
@@ -246,6 +261,7 @@
     if (window.gtag) {
       const where = a.closest(".cta-bar") ? "barra inferior" : a.closest(".sitehead") ? "menú" : a.closest(".tv-card") ? "catálogo de pantallas" : a.closest("footer") ? "pie" : "contenido";
       const data = { method: "WhatsApp", content_name: name, link_location: where, page_path: location.pathname };
+      if (aiSource) data.ai_source = aiSource;
       if (value) { data.value = value; data.currency = "HNL"; }
       try { gtag("event", "generate_lead", data); } catch (err) {}
     }

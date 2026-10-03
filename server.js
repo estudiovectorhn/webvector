@@ -73,6 +73,9 @@ function send(req, res, status, file, extraHeaders) {
 }
 
 http.createServer((req, res) => {
+  /* www.estudiovector.com → estudiovector.com (una sola versión del sitio para Google) */
+  const host = String(req.headers["x-forwarded-host"] || req.headers.host || "").toLowerCase();
+  if (host.startsWith("www.")) { res.writeHead(301, { Location: "https://" + host.slice(4).replace(/:\d+$/, "") + req.url, "Cache-Control": "public, max-age=86400" }); return res.end(); }
   let urlPath;
   try { urlPath = decodeURIComponent(req.url.split("?")[0]); } catch (e) { res.writeHead(400); return res.end(); }
   if (PRIVATE.test(urlPath)) return send(req, res, 404, path.join(ROOT, "404.html"));
