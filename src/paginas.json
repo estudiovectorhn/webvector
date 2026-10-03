@@ -934,7 +934,7 @@
    "nav": "Pantallas de menú digital",
    "st": "Pantallas de menú digital para restaurantes",
    "title": "Pantallas de Menú Digital para Restaurantes en Honduras: Pantallas, Fotos y Diseño | Estudio Vector",
-   "desc": "Menú digital en pantallas para restaurantes, cafeterías y food courts en Honduras: vendemos las pantallas, fotografiamos tus platos y diseñamos el menú listo para usar. Cambia precios y agrega platos sin reimprimir. Proyecto real: TDK en Mall Multiplaza Tegucigalpa.",
+   "desc": "Menú digital en pantallas para restaurantes en Honduras: pantallas JVC Signage MENU TV con Android desde L 5,690, fotografía de tus platos y diseño del menú listo para usar. Cambia precios sin reimprimir. Proyecto real: TDK en Mall Multiplaza Tegucigalpa.",
    "h1": "Pantallas de menú digital",
    "h1g": "para restaurantes en Honduras",
    "lead": "Estudio Vector instala menús digitales en pantallas para restaurantes, cafeterías y locales de food court en Honduras. Vendemos las pantallas, fotografiamos tus platos y diseñamos todo el menú listo para usar, para que tus clientes vean tus productos y decidan más rápido en caja. Así lo hicimos para TDK Turkish Döner Kebab en Mall Multiplaza Tegucigalpa.",
@@ -944,8 +944,8 @@
    ],
    "que": [
     [
-     "Pantallas para tu local",
-     "Te vendemos las pantallas según el espacio de tu mostrador y la cantidad de productos que quieres mostrar."
+     "Pantallas JVC Signage MENU TV",
+     "Smart TV con Android de 32 a 75 pulgadas, en el tamaño que necesita tu mostrador. Mira el catálogo con precios en esta página."
     ],
     [
      "Fotografía de tus platos",
@@ -1011,7 +1011,7 @@
     ],
     [
      "¿Cuánto cuestan las pantallas de menú digital?",
-     "Depende de la cantidad y el tamaño de las pantallas, de cuántos platos hay que fotografiar y del diseño del menú. Te enviamos una cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+     "Las pantallas JVC Signage MENU TV con Android van desde L 5,690 (32 pulgadas) hasta L 28,490 (75 pulgadas) por pantalla. La fotografía de tus platos y el diseño del menú se cotizan según la cantidad de productos; te enviamos la cotización completa por escrito por WhatsApp al +504 9569-1481."
     ],
     [
      "¿Trabajan fuera de San Pedro Sula?",
@@ -1031,7 +1031,62 @@
     "pantallas para restaurante San Pedro Sula",
     "menú digital Tegucigalpa",
     "digital signage restaurantes"
-   ]
+   ],
+   "catalogo": {
+    "titulo": "Catálogo de pantallas para tu menú",
+    "lead": "Elige el tamaño según tu mostrador y la cantidad de productos que quieres mostrar. Todas son Smart TV con Android (Google TV), listas para mostrar tu menú en fotos y video.",
+    "nota": "Precios en lempiras por pantalla, sujetos a disponibilidad. Pregunta por el paquete completo con fotografía de tus platos y diseño del menú.",
+    "items": [
+     {
+      "in": 32,
+      "res": "HD",
+      "panel": "QLED",
+      "precio": 5690
+     },
+     {
+      "in": 40,
+      "res": "Full HD",
+      "panel": "QLED",
+      "precio": 7490
+     },
+     {
+      "in": 43,
+      "res": "Full HD",
+      "panel": "QLED",
+      "precio": 8990
+     },
+     {
+      "in": 50,
+      "res": "Full HD",
+      "panel": "QLED",
+      "precio": 11990
+     },
+     {
+      "in": 55,
+      "res": "4K UHD",
+      "panel": "LED",
+      "precio": 13490
+     },
+     {
+      "in": 58,
+      "res": "4K UHD",
+      "panel": "QLED",
+      "precio": 14390
+     },
+     {
+      "in": 65,
+      "res": "4K UHD",
+      "panel": "LED",
+      "precio": 19490
+     },
+     {
+      "in": 75,
+      "res": "4K UHD",
+      "panel": "Mini LED",
+      "precio": 28490
+     }
+    ]
+   }
   },
   {
    "id": "podcast",
