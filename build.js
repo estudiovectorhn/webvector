@@ -498,6 +498,26 @@ const DEF_STEPS = [
   ["Medición", "Revisamos resultados y costos, y ajustamos para mejorar."]
 ];
 
+/* Catálogo de pantallas (servicio de menú digital): cada TV dibujada a escala con un menú real en pantalla */
+const tvName = t => `JVC Signage MENU TV - Android ${t.in} pulgadas`;
+function catalogoHTML(s) {
+  const c = s.catalogo, max = Math.max(...c.items.map(t => t.in));
+  return `
+  <section class="tvcat" id="catalogo" aria-labelledby="tvc-t">
+    <div class="sechead"><h2 id="tvc-t">${c.titulo}</h2><p>${c.lead}</p></div>
+    <div class="tv-grid">${c.items.map(t => `
+      <article class="tv-card">
+        <div class="tv-stage"><div class="tv" style="--w:${Math.round(t.in / max * 100)}%"><div class="tv-screen"></div><span class="tv-in">${t.in}"</span></div><div class="tv-foot"></div></div>
+        <h3>${tvName(t)}</h3>
+        <ul class="tv-specs"><li>${t.in} pulgadas</li><li>${t.res}</li><li>${t.panel}</li><li>Android · Google TV</li></ul>
+        <b class="tv-price">${fmt(t.precio)}</b>
+        <a class="btn" href="${waText(`Hola Vector, me interesa la ${tvName(t)} (${fmt(t.precio)}) para el menú digital de mi negocio.`)}" target="_blank" rel="noopener" data-name="${esc(tvName(t))}" data-value="${t.precio}">${ICON.wa}Cotizar</a>
+      </article>`).join("")}
+    </div>
+    <p class="tv-note">${c.nota}</p>
+  </section>`;
+}
+
 /* ---------------- Página: cada servicio (una URL por servicio) ---------------- */
 function buildServicio(s) {
   const url = SITE + psURL(s);
@@ -518,6 +538,11 @@ function buildServicio(s) {
       keywords: s.kw.join(", ")
     },
     ...vids.map(w => ({ "@type": "VideoObject", name: `${w.title}: ${w.caption}`, description: `${w.caption}. Producido por Estudio Vector.`, thumbnailUrl: SITE + w.poster, contentUrl: SITE + w.src, uploadDate: TODAY, publisher: { "@id": ORG_ID } })),
+    ...(s.catalogo ? s.catalogo.items.map(t => ({
+      "@type": "Product", "@id": `${url}#tv-${t.in}`, name: tvName(t), brand: { "@type": "Brand", name: "JVC" }, category: "Pantallas de menú digital",
+      description: `Pantalla Smart TV con Android de ${t.in} pulgadas, ${t.res}, ${t.panel}, para menú digital de restaurante.`, image: SITE + "/img/trabajos/menu-tdk-pantallas.jpg",
+      offers: { "@type": "Offer", price: t.precio, priceCurrency: "HNL", availability: "https://schema.org/InStock", url: `${url}#catalogo`, seller: { "@id": ORG_ID } }
+    })) : []),
     faqLD(s.faq),
     crumbsLD([["Inicio", "/"], ["Servicios", "/servicios/"], [s.nav, psURL(s)]]),
     { "@type": "WebPage", "@id": url + "#pagina", url, name: s.title, description: s.desc, isPartOf: { "@id": SITE + "/#web" }, about: { "@id": url + "#servicio" }, mainEntity: { "@id": url + "#servicio" }, dateModified: TODAY, inLanguage: "es-HN" }
@@ -531,7 +556,7 @@ function buildServicio(s) {
     <p class="lead">${s.lead}</p>
     <div class="tp-actions">
       <a class="btn" href="${wa}" target="_blank" rel="noopener">${ICON.wa}Cotizar por WhatsApp</a>
-      ${items.length ? `<a class="btn ghost" href="#trabajos">Ver trabajos ${ICON.arrow}</a>` : ""}
+      ${s.catalogo ? `<a class="btn ghost" href="#catalogo">Ver catálogo y precios ${ICON.arrow}</a>` : items.length ? `<a class="btn ghost" href="#trabajos">Ver trabajos ${ICON.arrow}</a>` : ""}
     </div>
   </section>
 ${items.length ? `
@@ -541,6 +566,7 @@ ${items.length ? `
     <a class="btn ghost gal-cta" href="/portafolio/">Ver portafolio por tipo de negocio ${ICON.arrow}</a>
   </section>` : ""}
 
+${s.catalogo ? catalogoHTML(s) : ""}
   <section class="sp-intro">
     ${s.body.map(p => `<p>${p}</p>`).join("\n    ")}
   </section>
