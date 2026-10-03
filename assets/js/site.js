@@ -231,15 +231,29 @@
   const hdr = document.querySelector(".sitehead");
   if (hdr) { const f = () => hdr.classList.toggle("scrolled", scrollY > 10); addEventListener("scroll", f, { passive: true }); f(); }
 
-  /* Píxel de Meta: cada clic a WhatsApp cuenta como cliente potencial (Lead) */
+  /* Cada clic a WhatsApp cuenta como cliente potencial: Lead en el píxel de Meta y generate_lead en Google Analytics */
   document.addEventListener("click", e => {
     const a = e.target.closest('a[href*="wa.me/"]');
-    if (!a || !window.fbq) return;
+    if (!a) return;
     const card = a.closest("[data-id]");
-    const name = a.dataset.name || (card && card.dataset.id) || (document.querySelector("h1") || {}).textContent || "WhatsApp";
-    const data = { content_name: String(name).trim().slice(0, 80), currency: "HNL" };
-    if (a.dataset.value) data.value = +a.dataset.value;
-    try { fbq("track", "Lead", data); fbq("track", "Contact"); } catch (err) {}
+    const name = String(a.dataset.name || (card && card.dataset.id) || (document.querySelector("h1") || {}).textContent || "WhatsApp").trim().slice(0, 80);
+    const value = a.dataset.value ? +a.dataset.value : undefined;
+    if (window.fbq) {
+      const data = { content_name: name, currency: "HNL" };
+      if (value) data.value = value;
+      try { fbq("track", "Lead", data); fbq("track", "Contact"); } catch (err) {}
+    }
+    if (window.gtag) {
+      const where = a.closest(".cta-bar") ? "barra inferior" : a.closest(".sitehead") ? "menú" : a.closest(".tv-card") ? "catálogo de pantallas" : a.closest("footer") ? "pie" : "contenido";
+      const data = { method: "WhatsApp", content_name: name, link_location: where, page_path: location.pathname };
+      if (value) { data.value = value; data.currency = "HNL"; }
+      try { gtag("event", "generate_lead", data); } catch (err) {}
+    }
+  });
+  /* Google Analytics: videos abiertos en el visor */
+  document.addEventListener("click", e => {
+    const r = e.target.closest(".reel[data-title]");
+    if (r && window.gtag) try { gtag("event", "video_open", { content_name: r.dataset.title, page_path: location.pathname }); } catch (err) {}
   });
 
   watch();
