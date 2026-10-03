@@ -189,7 +189,9 @@ ${keywords ? `<meta name="keywords" content="${esc(keywords)}">` : ""}
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
 <link rel="stylesheet" href="/assets/css/site.css?v=${V}">
 ${ld({ "@context": "https://schema.org", "@graph": ldGraph })}
 ${pixel()}
@@ -309,14 +311,19 @@ const FAQ_AG = [
 const ICON_PLAY = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
 const shape = w => w.w > w.h ? " wide" : w.w === w.h ? " sq" : "";
 /* una pieza del portafolio (video o foto); lazyPoster deja la portada del video para cuando aparece en pantalla */
+/* Video liviano para reproducir en carruseles y galería (7 s, sin audio); el video completo se abre en el visor */
+const prevSrc = w => fs.existsSync(`video/p/${w.id}.mp4`) ? `/video/p/${w.id}.mp4` : w.src;
+const prevPoster = w => fs.existsSync(`img/p/${w.id}.webp`) ? `/img/p/${w.id}.webp` : w.poster;
+/* versión webp liviana de cada foto (img/p/), si existe */
+const webp = w => { const id = path.basename(w.src, path.extname(w.src)); return fs.existsSync(`img/p/${id}.webp`) ? `/img/p/${id}.webp` : w.src; };
 const reel = (w, dup, lazyPoster) => w.type === "foto"
-  ? `<figure class="reel photo${shape(w)}" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><img src="${w.src}" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`
-  : `<figure class="reel${shape(w)}" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><video playsinline muted loop preload="none" ${lazyPoster ? "data-poster" : "poster"}="${w.poster}" data-src="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><span class="play" aria-hidden="true">${ICON_PLAY}</span><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`;
+  ? `<figure class="reel photo${shape(w)}" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><img src="${webp(w)}" decoding="async" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`
+  : `<figure class="reel${shape(w)}" data-id="${w.id}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"${dup ? ' data-dup="1" aria-hidden="true"' : ""}><video playsinline muted loop preload="none" ${lazyPoster ? "data-poster" : "poster"}="${prevPoster(w)}" data-src="${prevSrc(w)}" data-full="${w.src}" aria-label="${esc(w.title)}: ${esc(w.caption)}"></video><span class="play" aria-hidden="true">${ICON_PLAY}</span><figcaption><b>${esc(w.title)}</b><span>${esc(w.caption)}</span></figcaption></figure>`;
 function reelsHTML(items, label, loop) {
   /* loop: carrusel infinito en movimiento; la lista se duplica para que el desplazamiento no tenga cortes */
   return loop
-    ? `<div class="reelbox"><div class="reels loop" aria-label="${label || "Videos producidos"}"><div class="reels-track">${items.map(w => reel(w)).join("")}${items.map(w => reel(w, true)).join("")}</div></div><button class="rnav prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button><button class="rnav next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button></div>`
-    : `<div class="reels" aria-label="${label || "Videos producidos"}">${items.map(w => reel(w)).join("")}</div>`;
+    ? `<div class="reelbox"><div class="reels loop" aria-label="${label || "Videos producidos"}"><div class="reels-track">${items.map((w, i) => reel(w, false, i >= 4)).join("")}${items.map(w => reel(w, true, true)).join("")}</div></div><button class="rnav prev" type="button" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button><button class="rnav next" type="button" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button></div>`
+    : `<div class="reels" aria-label="${label || "Videos producidos"}">${items.map((w, i) => reel(w, false, i >= 4)).join("")}</div>`;
 }
 /* Cintillo de marcas: logos de clientes en movimiento continuo (la lista se duplica para el bucle) */
 function brandsHTML() {
@@ -328,7 +335,7 @@ function brandsHTML() {
   </section>`;
 }
 function shotsHTML() {
-  return `<div class="shots" aria-label="Fotografías producidas">${WORK.filter(w => w.type === "foto" && w.kind !== "arte").map(w => `<figure class="shot${w.wide || w.w > w.h ? " wide" : ""}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"><img src="${w.src}" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption>${esc(w.caption)}</figcaption></figure>`).join("")}</div>`;
+  return `<div class="shots" aria-label="Fotografías producidas">${WORK.filter(w => w.type === "foto" && w.kind !== "arte").map(w => `<figure class="shot${w.wide || w.w > w.h ? " wide" : ""}" data-title="${esc(w.title)}" data-cap="${esc(w.caption)}"><img src="${webp(w)}" decoding="async" alt="${esc(w.title)}: ${esc(w.caption)}" width="${w.w}" height="${w.h}" loading="lazy"><figcaption>${esc(w.caption)}</figcaption></figure>`).join("")}</div>`;
 }
 
 /* ---------------- Página: inicio (agencia y portafolio) ---------------- */

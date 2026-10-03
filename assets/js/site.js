@@ -20,10 +20,35 @@
         poster.unobserve(e.target);
       }), { rootMargin: "300px 0px" });
       items.forEach(el => { if (el.querySelector("video[data-poster]")) poster.observe(el); });
-      const play = new IntersectionObserver(es => es.forEach(e => {
-        const v = e.target.querySelector("video"); if (!v) return;
-        if (e.isIntersecting) { load(v); v.play().catch(() => {}); } else v.pause();
-      }), { threshold: .4 });
+      /* Solo reproducen los videos bien visibles y como máximo unos pocos a la vez (2 en celular, 5 en computadora):
+       * así el teléfono no descarga ni decodifica decenas de videos al mismo tiempo */
+      const MAXP = matchMedia("(max-width: 759px)").matches ? 2 : 5;
+      const vis = new Set();
+      const sync = () => {
+        let n = 0;
+        [...vis].sort((a, b) => (a.compareDocumentPosition(b) & 4 ? -1 : 1)).forEach(el => {
+          const v = el.querySelector("video");
+          if (n < MAXP && !document.hidden) { load(v); if (v.paused) v.play().catch(() => {}); n++; }
+          else if (!v.paused) v.pause();
+        });
+      };
+      const play = new IntersectionObserver(es => {
+        es.forEach(e => {
+          const v = e.target.querySelector("video"); if (!v) return;
+          if (e.intersectionRatio >= .6) vis.add(e.target); else { vis.delete(e.target); v.pause(); }
+        });
+        sync();
+      }, { threshold: [0, .6] });
+      document.addEventListener("visibilitychange", () => { if (document.hidden) vis.forEach(el => el.querySelector("video").pause()); else sync(); });
+      /* portadas de los carruseles: se cargan poco antes de entrar por el costado */
+      document.querySelectorAll(".reels.loop").forEach(box => {
+        const io = new IntersectionObserver(es => es.forEach(e => {
+          if (!e.isIntersecting) return;
+          const v = e.target.querySelector("video[data-poster]"); if (v && !v.getAttribute("poster")) v.poster = v.dataset.poster;
+          io.unobserve(e.target);
+        }), { root: box, rootMargin: "0px 900px" });
+        box.querySelectorAll(".reel").forEach(el => { if (el.querySelector("video[data-poster]")) io.observe(el); });
+      });
       items.forEach(el => { seen.observe(el); if (el.classList.contains("reel")) play.observe(el); });
       dups.forEach(el => { seen.observe(el); play.observe(el); });
     } else [...items, ...dups].forEach(el => { el.classList.add("in"); const v = el.querySelector("video"); if (v && v.dataset.poster) v.poster = v.dataset.poster; load(v); });
@@ -40,7 +65,7 @@
       const box = lb.querySelector(".lb-box");
       box.classList.toggle("wide", el.classList.contains("wide"));
       box.innerHTML = (v
-        ? `<video src="${v.dataset.src}" poster="${v.dataset.poster || v.poster}" controls autoplay playsinline loop></video>`
+        ? `<video src="${v.dataset.full || v.dataset.src}" poster="${v.dataset.poster || v.poster}" controls autoplay playsinline loop></video>`
         : `<img src="${img.src}" alt="${img.alt}">`) +
         `<div class="lb-cap"><b>${el.dataset.title || ""}</b><span>${el.dataset.cap || ""}</span></div>`;
       const nv = box.querySelector("video"); if (nv) { nv.muted = false; nv.play().catch(() => {}); }
@@ -116,11 +141,14 @@
     }));
     window.addEventListener("resize", measure);
     measure(); setTimeout(measure, 800);
+    /* fuera de pantalla no se mueve (ahorra batería y procesador) */
+    let onscreen = true;
+    if ("IntersectionObserver" in window) new IntersectionObserver(es => { onscreen = es[0].isIntersecting; if (onscreen) pos = box.scrollLeft; }).observe(box);
     const SPEED = 80; /* píxeles por segundo */
     let last = 0;
     if (!still) (function step(now) {
       const dt = last ? Math.min(50, now - last) : 16; last = now;
-      if (!paused && half > 0) { pos += SPEED * dt / 1000; if (pos >= half) pos -= half; if (Math.abs(box.scrollLeft - pos) > 3 && Math.abs(box.scrollLeft - pos) < half - 3) { stop(); go(); } else box.scrollLeft = pos; }
+      if (!paused && onscreen && half > 0) { pos += SPEED * dt / 1000; if (pos >= half) pos -= half; if (Math.abs(box.scrollLeft - pos) > 3 && Math.abs(box.scrollLeft - pos) < half - 3) { stop(); go(); } else box.scrollLeft = pos; }
       requestAnimationFrame(step);
     })(0);
   });

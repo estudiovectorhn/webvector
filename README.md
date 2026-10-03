@@ -57,3 +57,7 @@ Trabajamos en la rama `desarrollo` y pasamos a `main` cuando está aprobado.
 ## Avisar a Bing de los cambios (IndexNow)
 
 Después de publicar (cuando Hostinger ya subió los cambios), corre `node indexnow.js` para avisar a Bing de todas las URL del sitemap, o `node indexnow.js /ruta/` para avisar solo de algunas. ChatGPT usa el índice de Bing, así que esto acelera que las páginas nuevas aparezcan en sus respuestas. La clave está en `0b03397bbb82a948a6dcb14e8ae830ec.txt` (no la borres).
+
+## Rendimiento: vistas previas de video y fotos livianas
+
+Los carruseles y la galería reproducen una **vista previa** de cada video (`video/p/<id>.mp4`: 7 s, sin audio, 360×640) con un **póster webp** (`img/p/<id>.webp`); el video completo con sonido solo se descarga al abrirlo en el visor. Las fotos también se sirven en webp desde `img/p/`. Al agregar un video o una foto nueva, genera su versión en `video/p/` o `img/p/`; si no existe, el sitio usa el archivo original (funciona igual, solo pesa más). En el celular se reproducen como máximo 2 videos a la vez (5 en computadora) y los carruseles se detienen cuando no están en pantalla.
