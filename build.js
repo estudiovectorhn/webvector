@@ -35,6 +35,10 @@ fbq('init','${CFG.metaPixelId}');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=${CFG.metaPixelId}&ev=PageView&noscript=1"></noscript>` : "";
 
+/* Google Analytics 4: visitas, páginas, origen del tráfico y clics a WhatsApp (evento generate_lead) */
+const ga = () => CFG.gaId ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${CFG.gaId}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${CFG.gaId}');</script>` : "";
+
 /* Versión de caché para imágenes: /img/foto.jpg → /img/foto.jpg?v=<hash del archivo>.
  * Así, al reemplazar una imagen conservando el nombre, navegadores y CDN piden la nueva. */
 const crypto = require("crypto");
@@ -194,6 +198,7 @@ ${keywords ? `<meta name="keywords" content="${esc(keywords)}">` : ""}
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
 <link rel="stylesheet" href="/assets/css/site.css?v=${V}">
 ${ld({ "@context": "https://schema.org", "@graph": ldGraph })}
+${ga()}
 ${pixel()}
 </head>
 <body>
