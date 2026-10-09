@@ -9,6 +9,33 @@
  },
  {
   "type": "foto",
+  "id": "forum-2026-01",
+  "title": "Forum Ruta Copán 2026",
+  "caption": "Edgardo A. López abre el seminario ante el banner oficial de la Cámara de Comercio e Industrias de Copán y Banco de Occidente",
+  "src": "/img/trabajos/forum-2026-01.jpg",
+  "w": 1600,
+  "h": 900
+ },
+ {
+  "type": "foto",
+  "id": "forum-2026-03",
+  "title": "Forum Ruta Copán 2026",
+  "caption": "Empresarios y dueños de negocio de Copán durante el seminario de inteligencia artificial",
+  "src": "/img/trabajos/forum-2026-03.jpg",
+  "w": 1600,
+  "h": 900
+ },
+ {
+  "type": "foto",
+  "id": "forum-2026-05",
+  "title": "Forum Ruta Copán 2026",
+  "caption": "Sesión práctica de anuncios en Meta Ads: campaña y presupuesto en vivo",
+  "src": "/img/trabajos/forum-2026-05.jpg",
+  "w": 900,
+  "h": 1600
+ },
+ {
+  "type": "foto",
   "id": "cap-contenido-certificados",
   "title": "Taller de creación de contenido",
   "caption": "Entrega de certificados a los participantes",

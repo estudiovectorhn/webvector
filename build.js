@@ -27,7 +27,8 @@ const RB = JSON.parse(fs.readFileSync("src/rubros.json", "utf8")); // páginas p
 const PIL = PG.pilares, PS = PG.servicios;
 const psById = id => PS.find(s => s.id === id);
 const psURL = s => `/${s.slug}/`;
-const MEDIA = Object.fromEntries([...WORK, ...EV, ...BACK].map(w => [w.id, w]));
+const FORUM = JSON.parse(fs.readFileSync("src/forum.json", "utf8")); // página del Forum Ruta Copán (evento destacado)
+const MEDIA = Object.fromEntries([...WORK, ...EV, ...BACK, ...(FORUM.media || [])].map(w => [w.id, w]));
 const cliSlug = c => path.basename(c.img, path.extname(c.img));
 const { ICON, ART, fmt, esc, waLink, waText } = VR;
 const V = Date.now().toString(36); // versión de caché para CSS/JS
@@ -320,7 +321,7 @@ const FAQ_AG = [
   ["¿Dan capacitaciones de marketing digital e inteligencia artificial?",
     `Sí. Cada mes publicamos <a href="/talleres/">talleres abiertos</a> de máximo 10 personas, y llevamos ${svLink("capacitaciones")} e ${svLink("ia")} a empresas, cámaras de comercio e instituciones.`],
   ["¿Dónde puedo aprender inteligencia artificial en Honduras?",
-    `En Estudio Vector. Damos ${svLink("ia")} a empresas, bancos y cámaras de comercio, talleres abiertos de IA cada mes en San Pedro Sula y conferencias y seminarios como el Forum Ruta Copán 2026 en Santa Rosa de Copán, el primer seminario de IA para empresarios en Honduras, impartido por <a href="/director-creativo/">Edgardo A. López</a> para la Cámara de Comercio e Industrias de Copán y Banco de Occidente.`],
+    `En Estudio Vector. Damos ${svLink("ia")} a empresas, bancos y cámaras de comercio, talleres abiertos de IA cada mes en San Pedro Sula y conferencias y seminarios como el <a href="/forum-ruta-copan-2026/">Forum Ruta Copán 2026</a> en Santa Rosa de Copán, el primer seminario de IA para empresarios en Honduras, impartido por <a href="/director-creativo/">Edgardo A. López</a> para la Cámara de Comercio e Industrias de Copán y Banco de Occidente.`],
   ["¿Cuánto cuesta trabajar con Estudio Vector?",
     `Los talleres abiertos tienen precio fijo publicado en el calendario. Los servicios para empresas se cotizan por escrito según el alcance, después de una conversación corta por WhatsApp al +504 9569-1481.`],
   ["¿Dónde está Estudio Vector?",
@@ -885,6 +886,82 @@ function buildAnuncios() {
   require("./src/page-anuncios.js")({ head, ICON, ART, fmt, T, SITE, ORG, PERSON, tallerLD, faqLD, crumbsLD, faqHTML, siteFooter, write, V, waText });
 }
 
+/* ---------------- Página: Forum Ruta Copán 2026 (evento destacado) ---------------- */
+function buildForum() {
+  const F = FORUM, url = `${SITE}/${F.slug}/`;
+  const fotos = F.fotos.map(id => MEDIA[id]).filter(Boolean);
+  const video = MEDIA[F.video];
+  const cover = MEDIA[F.portada];
+  const wa = waText("Hola Vector, quiero información para llevar un seminario de inteligencia artificial como el Forum Ruta Copán a mi cámara, empresa o institución.");
+  const ar = w => w.type === "foto" ? +(w.w / w.h).toFixed(4) : w.w > w.h ? 1.7778 : 0.5625;
+  const tile = w => reel(w, false, w.type !== "foto").replace("<figure ", `<figure style="--ar:${ar(w)}" `);
+  const imgs = fotos.map(w => ({ "@type": "ImageObject", contentUrl: SITE + w.src, url: SITE + w.src, name: `${w.title}: ${w.caption}`, caption: w.caption, width: w.w, height: w.h, creator: { "@id": ORG_ID }, copyrightHolder: { "@id": ORG_ID } }));
+  /* Evento: solo se declara como Event cuando src/forum.json trae la fecha (Google exige startDate) */
+  const evento = F.fecha ? [{
+    "@type": "EducationEvent", "@id": url + "#evento", name: F.nombre, description: F.subtitulo + ". " + F.lema + ".", url, image: SITE + cover.src,
+    startDate: F.fecha, endDate: F.fecha, eventStatus: "https://schema.org/EventScheduled", eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: { "@type": "Place", name: F.lugar, address: { "@type": "PostalAddress", addressLocality: "Santa Rosa de Copán", addressRegion: "Copán", addressCountry: "HN" } },
+    organizer: { "@type": "Organization", name: F.organiza }, sponsor: { "@type": "Organization", name: "Banco de Occidente" }, performer: { "@id": PERSON_ID }, inLanguage: "es",
+    audience: { "@type": "BusinessAudience", audienceType: "Empresarios y dueños de negocio" }
+  }] : [];
+  const graph = [ORG, PERSON, ...evento, ...imgs,
+    ...(video ? [{ "@type": "VideoObject", name: `${video.title}: ${video.caption}`, description: `${video.caption}. Capacitación impartida por Edgardo A. López, Estudio Vector.`, thumbnailUrl: SITE + video.poster, contentUrl: SITE + video.src, uploadDate: TODAY, publisher: { "@id": ORG_ID } }] : []),
+    faqLD(F.faq), crumbsLD([["Inicio", "/"], ["Director Creativo", "/director-creativo/"], [F.nombre, `/${F.slug}/`]]),
+    { "@type": "WebPage", "@id": url + "#pagina", url, name: F.title, description: F.desc, isPartOf: { "@id": SITE + "/#web" }, about: F.fecha ? { "@id": url + "#evento" } : { "@id": PERSON_ID }, primaryImageOfPage: imgs[0], dateModified: NOW, inLanguage: "es-HN", keywords: F.kw.join(", ") }
+  ];
+  const body = `${siteHeader("director")}
+<main class="wrap svpage spage" id="contenido">
+  <nav class="crumbs" aria-label="Ruta"><a href="/">Inicio</a><span>/</span><a href="/director-creativo/">Director Creativo</a><span>/</span><span aria-current="page">${F.nombre}</span></nav>
+  <section class="sv-hero sp-hero">
+    <span class="eyebrow">Evento destacado · ${F.lugar} · Inteligencia artificial para empresarios</span>
+    <h1>${F.nombre} <span class="g">${F.lema}</span></h1>
+    <p class="lead">${F.lead}</p>
+    <div class="tp-actions">
+      <a class="btn" href="${wa}" target="_blank" rel="noopener">${ICON.wa}Quiero un evento así en mi ciudad</a>
+      <a class="btn ghost" href="#fotos">Ver fotos ${ICON.arrow}</a>
+    </div>
+  </section>
+
+  <section class="sp-que" aria-labelledby="fd-t">
+    <h2 id="fd-t" class="sectitle">Ficha del evento</h2>
+    <div class="sp-grid">${F.datos.map(([t, d]) => `<div class="sp-item">${ICON.check}<b>${t}</b><span>${d}</span></div>`).join("")}</div>
+  </section>
+
+  <section class="sp-work" id="fotos" aria-labelledby="ff-t">
+    <div class="sechead"><h2 id="ff-t">Así se vivió el Forum Ruta Copán 2026</h2><p>Toca una foto o el video para verlo en grande.</p></div>
+    <div class="gal-grid" style="--rowh:240px">${[...(video ? [video] : []), ...fotos].map(tile).join("")}</div>
+  </section>
+
+  <section class="sp-intro">
+    <h2 class="sectitle">${F.subtitulo}</h2>
+    <p>Bajo el lema <b>«${F.lema}»</b>, el Forum Ruta Copán 2026 fue el primer seminario de inteligencia artificial pensado para empresarios y dueños de negocio en Honduras. La Cámara de Comercio e Industrias de Copán lo organizó para que los negocios del occidente del país aprendieran a usar la IA en su trabajo diario, y Banco de Occidente lo patrocinó como parte de su 75 aniversario.</p>
+    <p><a href="/director-creativo/">Edgardo A. López</a>, fundador y Director Creativo de Estudio Vector, fue el capacitador de todo el evento: una jornada práctica con manual del participante en la que cada asistente trabajó con sus propias herramientas, su negocio y sus campañas.</p>
+  </section>
+
+  <section class="sp-que" aria-labelledby="ft-t">
+    <h2 id="ft-t" class="sectitle">Qué se enseñó</h2>
+    <div class="sp-grid">${F.temas.map(([t, d]) => `<div class="sp-item">${ICON.check}<b>${t}</b><span>${d}</span></div>`).join("")}</div>
+  </section>
+
+  <section class="ctaband">
+    <div class="wm logo-img"></div>
+    <div><h2>Llevemos el Forum a tu cámara, empresa o institución</h2><p>Diseñamos e impartimos seminarios, conferencias y jornadas de inteligencia artificial y marketing digital en cualquier ciudad de Honduras. Escríbenos por WhatsApp al 9569-1481.</p></div>
+    <a class="btn light" href="${wa}" target="_blank" rel="noopener">${ICON.wa}Cotizar un evento</a>
+  </section>
+
+  ${faqHTML(F.faq, "Preguntas sobre el Forum Ruta Copán 2026")}
+
+  <section class="more" aria-labelledby="fr-t">
+    <h2 id="fr-t" class="sectitle">Relacionado</h2>
+    <div class="svc-grid">${["ia", "capacitaciones", "eventos"].map(psById).map(r => `<a class="svc-card" href="${psURL(r)}" style="--g:${PIL.find(p => p.id === r.pilar).grad}"><span class="svc-ico">${ART[r.icon]}</span><b>${r.nav}</b><small>${PIL.find(p => p.id === r.pilar).name}</small></a>`).join("")}<a class="svc-card" href="/director-creativo/" style="--g:${PIL[3].grad}"><span class="svc-ico">${ART.asesoria}</span><b>Edgardo A. López</b><small>Director Creativo</small></a></div>
+  </section>
+  ${siteFooter()}
+</main>
+${ctaBar(wa, "Quiero un evento así · WhatsApp")}`;
+  const html = head({ title: F.title, desc: F.desc, keywords: F.kw.join(", "), canonical: url, image: SITE + cover.src, ldGraph: graph }) + "\n" + body + scripts();
+  write(`${F.slug}/index.html`, html);
+}
+
 /* ---------------- 404 ---------------- */
 function build404() {
   const html = head({ title: "Página no encontrada | Estudio Vector", desc: "La página que buscas no existe.", canonical: SITE + "/", ldGraph: [ORG] }).replace('content="index,follow,max-image-preview:large,max-snippet:-1"', 'content="noindex"') + `
@@ -910,7 +987,7 @@ const VIDEO_PAGES = (() => {
   return { "/": home, "/director-creativo/": dir, "/portafolio/": gal };
 })();
 function buildMeta() {
-  const urls = [["/", "1.0", "weekly"], ["/talleres/", "0.9", "weekly"], ["/director-creativo/", "0.7", "monthly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ["/portafolio/", "0.9", "monthly"], ...RB.map(r => [rbURL(r), "0.8", "monthly"]), ...PS.map(p => [psURL(p), "0.9", "monthly"]), ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
+  const urls = [["/", "1.0", "weekly"], ["/talleres/", "0.9", "weekly"], ["/director-creativo/", "0.7", "monthly"], [`/${FORUM.slug}/`, "0.8", "monthly"], ["/anuncios/", "0.9", "weekly"], ["/servicios/", "0.9", "monthly"], ["/portafolio/", "0.9", "monthly"], ...RB.map(r => [rbURL(r), "0.8", "monthly"]), ...PS.map(p => [psURL(p), "0.9", "monthly"]), ...T.map(t => [`/talleres/${t.slug}/`, "0.8", "weekly"])];
   write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${urls.map(([u, p, f]) => `  <url><loc>${SITE}${u}</loc><lastmod>${TODAY}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${(VIDEO_PAGES[u] || []).map(videoXML).join("")}</url>`).join("\n")}
@@ -958,7 +1035,7 @@ ${PIL.map(p => `### ${p.name}\n${p.lead}\n\n${PS.filter(s => s.pilar === p.id).m
 
 ## Inteligencia artificial: capacitación empresarial, talleres y eventos (${SITE}/inteligencia-artificial-empresas-honduras/)
 
-Estudio Vector enseña inteligencia artificial aplicada al negocio en tres formatos: capacitaciones empresariales privadas para equipos (presencial en cualquier ciudad de Honduras o en línea), talleres abiertos de máximo 10 personas en San Pedro Sula, y conferencias y seminarios para cámaras de comercio, bancos, gremios e instituciones. Temas: ChatGPT y Claude para marketing, ventas, atención al cliente y productividad; análisis de datos; automatización de tareas; creación de apps con IA sin programar. Evento destacado: Forum Ruta Copán 2026, en Santa Rosa de Copán, primer seminario de inteligencia artificial para empresarios en Honduras, organizado por la Cámara de Comercio e Industrias de Copán con el patrocinio de Banco de Occidente; Edgardo A. López fue el capacitador de todo el evento. Otras capacitaciones en IA: Diagro (empresa agroindustrial) y la Municipalidad de La Unión, Copán.
+Estudio Vector enseña inteligencia artificial aplicada al negocio en tres formatos: capacitaciones empresariales privadas para equipos (presencial en cualquier ciudad de Honduras o en línea), talleres abiertos de máximo 10 personas en San Pedro Sula, y conferencias y seminarios para cámaras de comercio, bancos, gremios e instituciones. Temas: ChatGPT y Claude para marketing, ventas, atención al cliente y productividad; análisis de datos; automatización de tareas; creación de apps con IA sin programar. Evento destacado: [Forum Ruta Copán 2026](${SITE}/${FORUM.slug}/), en Santa Rosa de Copán, primer seminario de inteligencia artificial para empresarios en Honduras, organizado por la Cámara de Comercio e Industrias de Copán con el patrocinio de Banco de Occidente (75 aniversario), bajo el lema "${FORUM.lema}"; Edgardo A. López fue el capacitador de todo el evento (inteligencia artificial, creación de videos y anuncios en Meta Ads). Otras capacitaciones en IA: Diagro (empresa agroindustrial) y la Municipalidad de La Unión, Copán.
 
 ## Director Creativo, capacitador y conferencista
 
@@ -966,7 +1043,7 @@ Estudio Vector enseña inteligencia artificial aplicada al negocio en tres forma
 
 ## Preguntas frecuentes
 
-${[...FAQ_AG, ...FAQ_HOME, ...FAQ_SV, ...RB.flatMap(r => r.faq)].map(([q, a]) => `### ${q}\n${strip(a)}`).join("\n\n")}
+${[...FAQ_AG, ...FAQ_HOME, ...FAQ_SV, ...FORUM.faq, ...RB.flatMap(r => r.faq)].map(([q, a]) => `### ${q}\n${strip(a)}`).join("\n\n")}
 `;
   write("llms.txt", llms);
 }
@@ -981,6 +1058,7 @@ PS.forEach(buildServicio);
 buildGaleria();
 RB.forEach(buildRubro);
 buildAnuncios();
+buildForum();
 build404();
 buildMeta();
 console.log("Listo.");

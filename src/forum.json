@@ -1,0 +1,114 @@
+{
+ "slug": "forum-ruta-copan-2026",
+ "nombre": "Forum Ruta Copán 2026",
+ "lema": "Actualízate o quédate atrás",
+ "subtitulo": "Primer seminario de inteligencia artificial para empresarios en Honduras",
+ "lugar": "Santa Rosa de Copán, Honduras",
+ "fecha": null,
+ "organiza": "Cámara de Comercio e Industrias de Copán",
+ "patrocina": "Banco de Occidente (75 aniversario)",
+ "title": "Forum Ruta Copán 2026: Primer Seminario de Inteligencia Artificial para Empresarios en Honduras | Santa Rosa de Copán | Estudio Vector",
+ "desc": "Forum Ruta Copán 2026, en Santa Rosa de Copán: el primer seminario de inteligencia artificial para empresarios y dueños de negocio en Honduras, organizado por la Cámara de Comercio e Industrias de Copán con el patrocinio de Banco de Occidente e impartido por Edgardo A. López, de Estudio Vector. Fotos, temas y cómo llevar un evento así a tu ciudad.",
+ "lead": "El Forum Ruta Copán 2026 reunió en Santa Rosa de Copán a empresarios, dueños de negocio y al equipo de mercadeo de Banco de Occidente para una jornada completa de inteligencia artificial, creación de videos y publicidad en Meta Ads. Lo organizó la Cámara de Comercio e Industrias de Copán, lo patrocinó Banco de Occidente en su 75 aniversario y lo impartió de principio a fin Edgardo A. López, fundador y Director Creativo de Estudio Vector.",
+ "video": "forum-ruta-copan",
+ "portada": "forum-2026-01",
+ "fotos": [
+  "forum-2026-01",
+  "forum-2026-02",
+  "forum-2026-03",
+  "forum-2026-04",
+  "forum-2026-05"
+ ],
+ "datos": [
+  [
+   "Organiza",
+   "Cámara de Comercio e Industrias de Copán"
+  ],
+  [
+   "Patrocina",
+   "Banco de Occidente, en su 75 aniversario"
+  ],
+  [
+   "Capacitador",
+   "Edgardo A. López, Estudio Vector"
+  ],
+  [
+   "Lugar",
+   "Santa Rosa de Copán, occidente de Honduras"
+  ],
+  [
+   "Participantes",
+   "Empresarios y dueños de negocio de la región y el equipo de mercadeo de Banco de Occidente"
+  ],
+  [
+   "Formato",
+   "Jornada completa, práctica, con manual del participante"
+  ]
+ ],
+ "temas": [
+  [
+   "Inteligencia artificial para empresarios",
+   "ChatGPT y Claude aplicados al negocio: redactar, cotizar, responder clientes, analizar datos y automatizar tareas. Cada participante salió con instrucciones listas para su trabajo diario."
+  ],
+  [
+   "Videos para tu negocio y marca personal",
+   "Ángulos de comunicación que venden (dolor, aspiracional y autoridad), cómo elegir el gancho y grabar con el celular contenido que retiene."
+  ],
+  [
+   "Anuncios en Meta Ads",
+   "Configuración de campañas en vivo: objetivo, público, presupuesto en lempiras y cómo leer los resultados para no gastar de más."
+  ]
+ ],
+ "faq": [
+  [
+   "¿Qué fue el Forum Ruta Copán 2026?",
+   "El primer seminario de inteligencia artificial para empresarios en Honduras. Se realizó en Santa Rosa de Copán, organizado por la Cámara de Comercio e Industrias de Copán con el patrocinio de Banco de Occidente, y lo impartió Edgardo A. López, de Estudio Vector."
+  ],
+  [
+   "¿Quién impartió el Forum Ruta Copán 2026?",
+   "Edgardo A. López, fundador y Director Creativo de Estudio Vector, capacitador empresarial en marketing digital e inteligencia artificial. Fue el capacitador de todo el evento."
+  ],
+  [
+   "¿Qué temas se enseñaron?",
+   "Inteligencia artificial aplicada al negocio con ChatGPT y Claude, creación de videos para negocio y marca personal, y publicidad en Meta Ads con campañas configuradas en vivo."
+  ],
+  [
+   "¿Pueden hacer un evento así en mi ciudad o mi institución?",
+   "Sí. Estudio Vector diseña e imparte seminarios, conferencias y jornadas de inteligencia artificial y marketing digital para cámaras de comercio, bancos, gremios, universidades y empresas en cualquier ciudad de Honduras. Escríbenos por WhatsApp al +504 9569-1481."
+  ],
+  [
+   "¿Hay talleres abiertos de inteligencia artificial?",
+   "Sí, cada mes en San Pedro Sula. Consulta el calendario de talleres y la página de capacitación en inteligencia artificial."
+  ]
+ ],
+ "kw": [
+  "Forum Ruta Copán 2026",
+  "seminario de inteligencia artificial Honduras",
+  "inteligencia artificial para empresarios",
+  "Cámara de Comercio e Industrias de Copán",
+  "Banco de Occidente",
+  "Santa Rosa de Copán",
+  "conferencia de IA Honduras",
+  "Edgardo López"
+ ],
+ "media": [
+  {
+   "type": "foto",
+   "id": "forum-2026-02",
+   "title": "Forum Ruta Copán 2026",
+   "caption": "Sesión sobre ángulos de comunicación en videos para negocios y marca personal",
+   "src": "/img/trabajos/forum-2026-02.jpg",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "type": "foto",
+   "id": "forum-2026-04",
+   "title": "Forum Ruta Copán 2026",
+   "caption": "Edgardo explica los tres ángulos clave de un video que vende",
+   "src": "/img/trabajos/forum-2026-04.jpg",
+   "w": 1600,
+   "h": 900
+  }
+ ]
+}
