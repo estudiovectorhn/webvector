@@ -14,10 +14,15 @@
  "portada": "forum-2026-01",
  "fotos": [
   "forum-2026-01",
+  "forum-2026-07",
   "forum-2026-02",
-  "forum-2026-03",
+  "forum-2026-06",
   "forum-2026-04",
-  "forum-2026-05"
+  "forum-2026-09",
+  "forum-2026-03",
+  "forum-2026-05",
+  "forum-2026-08",
+  "forum-2026-10"
  ],
  "datos": [
   [
@@ -38,7 +43,7 @@
   ],
   [
    "Participantes",
-   "Empresarios y dueños de negocio de la región y el equipo de mercadeo de Banco de Occidente"
+   "Más de un salón lleno: empresarios y dueños de negocio de la región, emprendedores y el equipo de mercadeo de Banco de Occidente"
   ],
   [
    "Formato",
@@ -109,6 +114,42 @@
    "src": "/img/trabajos/forum-2026-04.jpg",
    "w": 1600,
    "h": 900
+  },
+  {
+   "type": "foto",
+   "id": "forum-2026-06",
+   "title": "Forum Ruta Copán 2026",
+   "caption": "Empresarios y emprendedores de Copán siguiendo la sesión con laptops y celulares",
+   "src": "/img/trabajos/forum-2026-06.jpg",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "type": "foto",
+   "id": "forum-2026-08",
+   "title": "Forum Ruta Copán 2026",
+   "caption": "Participantes fotografiando la pantalla durante la sesión práctica",
+   "src": "/img/trabajos/forum-2026-08.jpg",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "type": "foto",
+   "id": "forum-2026-09",
+   "title": "Forum Ruta Copán 2026",
+   "caption": "El equipo de Estudio Vector y VCloud Multisystems en el Forum Ruta Copán 2026",
+   "src": "/img/trabajos/forum-2026-09.jpg",
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "type": "foto",
+   "id": "forum-2026-10",
+   "title": "Forum Ruta Copán 2026",
+   "caption": "Edgardo A. López con participantes del Forum en el salón del evento",
+   "src": "/img/trabajos/forum-2026-10.jpg",
+   "w": 900,
+   "h": 1600
   }
  ]
 }
