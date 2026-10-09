@@ -1539,50 +1539,53 @@
    "slug": "inteligencia-artificial-empresas-honduras",
    "pilar": "educacion",
    "icon": "ia",
-   "nav": "IA para empresas",
-   "st": "Capacitación en inteligencia artificial para empresas",
-   "title": "Inteligencia Artificial para Empresas en Honduras | Capacitación en IA | Estudio Vector",
-   "desc": "Capacitación en inteligencia artificial para empresas en Honduras: ChatGPT y Claude para marketing, ventas y productividad, automatización de tareas y apps con IA. Capacitador del Forum Ruta Copán 2026.",
-   "h1": "Inteligencia artificial",
-   "h1g": "para empresas en Honduras",
-   "lead": "Estudio Vector capacita a empresas e instituciones de Honduras en el uso práctico de inteligencia artificial: ChatGPT y Claude para marketing, ventas, atención al cliente y productividad, automatización de tareas repetitivas y creación de herramientas propias con IA sin ser programador.",
+   "nav": "Inteligencia artificial",
+   "st": "Capacitación empresarial en inteligencia artificial",
+   "title": "Capacitación Empresarial en Inteligencia Artificial en Honduras | Eventos, Talleres y Cursos de IA | Estudio Vector",
+   "desc": "Aprende inteligencia artificial en Honduras con Estudio Vector: capacitaciones empresariales privadas, talleres abiertos en San Pedro Sula y eventos como el Forum Ruta Copán 2026 en Santa Rosa de Copán, impartido por Edgardo A. López para la Cámara de Comercio e Industrias de Copán y Banco de Occidente. ChatGPT, Claude, automatización y apps con IA.",
+   "h1": "Capacitación en inteligencia artificial",
+   "h1g": "para empresas: eventos, talleres y cursos en Honduras",
+   "lead": "Estudio Vector es la opción en Honduras para aprender inteligencia artificial aplicada al negocio. Impartimos capacitaciones empresariales privadas, talleres abiertos cada mes en San Pedro Sula y conferencias y seminarios para cámaras de comercio, bancos y gremios, como el Forum Ruta Copán 2026 en Santa Rosa de Copán. Enseñamos ChatGPT y Claude para marketing, ventas, atención al cliente y productividad, automatización de tareas y creación de herramientas propias con IA sin programar.",
    "body": [
     "La IA ya no es una tendencia: es una forma de trabajar más rápido. En nuestras capacitaciones cada participante aprende a darle instrucciones claras a la IA y sale con una biblioteca de instrucciones listas para su trabajo diario: copys, guiones, cotizaciones, correos, respuestas a clientes y análisis de datos.",
-    "Las imparte Edgardo A. López, fundador de Estudio Vector y de VCloud Multisystems, empresa de desarrollo de software. Fue el capacitador del Forum Ruta Copán 2026, el primer seminario de inteligencia artificial para empresarios en Honduras, y ha capacitado a equipos de empresas como Diagro y a instituciones como la Municipalidad de La Unión, Copán."
+    "Ofrecemos tres formatos. <b>Capacitación empresarial privada:</b> programa a la medida para el equipo de una empresa, en sus instalaciones, en nuestra aula o en línea. <b>Talleres abiertos:</b> grupos de máximo 10 personas en San Pedro Sula, como el taller de inteligencia artificial para negocios y el de apps con IA. <b>Eventos y seminarios:</b> conferencias y jornadas completas de IA para cámaras de comercio, bancos, gremios e instituciones.",
+    "El evento más grande hasta hoy fue el <b>Forum Ruta Copán 2026</b>, en Santa Rosa de Copán: el primer seminario de inteligencia artificial para empresarios en Honduras, organizado por la Cámara de Comercio e Industrias de Copán con el patrocinio de Banco de Occidente. Edgardo A. López fue el capacitador de todo el evento, ante empresarios de la región y el equipo de mercadeo del banco. También ha capacitado en IA a empresas como Diagro y a instituciones como la Municipalidad de La Unión, Copán."
    ],
    "que": [
+    [
+     "Capacitación empresarial privada en IA",
+     "Programa a la medida del equipo y del rubro, presencial o en línea."
+    ],
+    [
+     "Eventos y seminarios de IA",
+     "Conferencias y jornadas para cámaras de comercio, bancos, gremios e instituciones."
+    ],
+    [
+     "Talleres abiertos de IA",
+     "Grupos de 10 personas en San Pedro Sula: IA para negocios y apps con IA."
+    ],
     [
      "ChatGPT y Claude para el trabajo diario",
      "Cuándo usar cada uno y cómo pedirle lo que necesitas."
     ],
     [
-     "IA para marketing",
-     "Copys, guiones, planes de contenido e ideas de campañas."
+     "IA para marketing, ventas y atención",
+     "Copys, guiones, cotizaciones, respuestas y seguimiento a clientes."
     ],
     [
-     "IA para ventas y atención",
-     "Respuestas, cotizaciones y seguimiento a clientes."
-    ],
-    [
-     "Análisis de datos con IA",
-     "Ventas, clientes y resultados explicados en minutos."
-    ],
-    [
-     "Automatización de tareas",
-     "Procesos repetitivos que la IA puede hacer por tu equipo."
-    ],
-    [
-     "Apps con IA sin programar",
-     "Herramientas propias para inventarios, citas o pedidos."
+     "Automatización y apps sin programar",
+     "Procesos repetitivos y herramientas propias para inventarios, citas o pedidos."
     ]
    ],
-   "ideal": "Empresas, cámaras de comercio, instituciones y equipos que quieren aprovechar la IA en su trabajo diario.",
+   "ideal": "Empresas, bancos y cooperativas, cámaras de comercio, municipalidades, gremios y equipos de marketing, ventas o administración que quieren usar la IA en su trabajo diario, y personas que quieren aprender inteligencia artificial desde cero con casos reales de negocio.",
    "industrias": [
-    "Empresas",
-    "Agroindustria",
-    "Municipalidades",
+    "Empresas y pymes",
+    "Bancos y cooperativas",
     "Cámaras de comercio",
-    "Equipos de marketing y ventas"
+    "Agroindustria",
+    "Municipalidades e instituciones",
+    "Equipos de marketing y ventas",
+    "Emprendedores"
    ],
    "work": [
     "forum-ruta-copan",
@@ -1598,12 +1601,24 @@
    "precio": "Los talleres abiertos de IA tienen precio fijo por persona en el <a href='/talleres/'>calendario del mes</a>. Las capacitaciones para empresas e instituciones se cotizan según participantes, duración y modalidad.",
    "faq": [
     [
+     "¿Dónde puedo aprender inteligencia artificial en Honduras?",
+     "En Estudio Vector, en San Pedro Sula. Tenemos talleres abiertos de IA cada mes, capacitaciones empresariales privadas para equipos en todo el país y conferencias y seminarios para instituciones. Las imparte Edgardo A. López, capacitador del Forum Ruta Copán 2026."
+    ],
+    [
      "¿Quién da capacitaciones de inteligencia artificial para empresas en Honduras?",
-     "Estudio Vector capacita a empresas e instituciones de Honduras en inteligencia artificial aplicada. Las capacitaciones las imparte Edgardo A. López, capacitador del Forum Ruta Copán 2026."
+     "Estudio Vector capacita a empresas e instituciones de Honduras en inteligencia artificial aplicada. Las capacitaciones las imparte Edgardo A. López, fundador de Estudio Vector y de VCloud Multisystems, y capacitador del Forum Ruta Copán 2026 en Santa Rosa de Copán."
     ],
     [
      "¿Qué es el Forum Ruta Copán 2026?",
-     "Fue el primer seminario de inteligencia artificial para empresarios en Honduras, organizado en el occidente del país con la Cámara de Comercio e Industrias de Copán y Banco de Occidente. Edgardo A. López fue el capacitador de todo el evento."
+     "Fue el primer seminario de inteligencia artificial para empresarios en Honduras, realizado en Santa Rosa de Copán y organizado por la Cámara de Comercio e Industrias de Copán con el patrocinio de Banco de Occidente. Edgardo A. López fue el capacitador de todo el evento, con empresarios de la región y el equipo de mercadeo de Banco de Occidente entre los participantes."
+    ],
+    [
+     "¿Dan conferencias o eventos de inteligencia artificial para empresas?",
+     "Sí. Diseñamos e impartimos conferencias, seminarios y jornadas completas de IA para cámaras de comercio, bancos, gremios, universidades e instituciones, en cualquier ciudad de Honduras."
+    ],
+    [
+     "¿Qué aprende un equipo en una capacitación empresarial de IA?",
+     "A usar ChatGPT y Claude con instrucciones claras para su trabajo real: redactar, cotizar, responder clientes, analizar ventas y datos, automatizar tareas repetitivas y, si lo necesita, crear herramientas propias con IA sin programar. Cada participante sale con su biblioteca de instrucciones lista."
     ],
     [
      "¿Se necesita saber de tecnología?",
@@ -1615,7 +1630,11 @@
     ],
     [
      "¿Hay talleres abiertos de IA?",
-     "Sí. Consulta el <a href='/talleres/taller-inteligencia-artificial-para-negocios/'>taller de inteligencia artificial para negocios</a> y el de <a href='/talleres/taller-crear-app-con-ia/'>apps con IA</a>."
+     "Sí. Consulta el <a href='/talleres/taller-inteligencia-artificial-para-negocios/'>taller de inteligencia artificial para negocios</a> y el de <a href='/talleres/taller-crear-app-con-ia/'>apps con IA</a> en el calendario del mes."
+    ],
+    [
+     "¿Cuánto cuesta una capacitación de IA para mi empresa?",
+     "Se cotiza según el número de participantes, la duración, la modalidad y la ciudad. Escríbenos por WhatsApp al +504 9569-1481 y te enviamos la propuesta por escrito."
     ]
    ],
    "rel": [
@@ -1625,11 +1644,15 @@
     "asesorias"
    ],
    "kw": [
+    "capacitación empresarial en inteligencia artificial",
+    "aprender inteligencia artificial Honduras",
+    "curso de inteligencia artificial San Pedro Sula",
     "inteligencia artificial para empresas Honduras",
-    "capacitación en IA",
+    "capacitación en IA para empresas",
+    "conferencia de inteligencia artificial Honduras",
+    "seminario de IA para empresarios",
     "curso de ChatGPT Honduras",
-    "IA para negocios",
-    "Forum Ruta Copán"
+    "Forum Ruta Copán 2026"
    ]
   }
  ]
