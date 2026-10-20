@@ -1097,14 +1097,20 @@
    ],
    "work": [
     "menu-digital-tdk",
+    "menu-cros2go-comidas",
     "menu-tdk-pantallas",
+    "menu-cros2go-bebidas-frias",
     "menu-digital-vector",
+    "menu-cros2go-bebidas-calientes",
     "menu-tdk-mostrador",
     "menu-digital-mostrador",
     "menu-tdk-instalacion"
    ],
    "logos": [
-    "tdk"
+    "tdk",
+    "cros2go",
+    "pollos-furia",
+    "fumyim"
    ],
    "faq": [
     [
@@ -1133,7 +1139,7 @@
     ],
     [
      "¿Trabajan fuera de San Pedro Sula?",
-     "Sí. Atendemos restaurantes en todo Honduras; el menú digital de TDK, por ejemplo, está en Mall Multiplaza Tegucigalpa."
+     "Sí. Atendemos restaurantes en todo Honduras: el menú digital de TDK está en Mall Multiplaza Tegucigalpa y el de Cros2Go en Puerto Cortés."
     ]
    ],
    "rel": [
