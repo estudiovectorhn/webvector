@@ -698,5 +698,35 @@
   "src": "/img/trabajos/menu-tdk-instalacion.jpg",
   "w": 747,
   "h": 393
+ },
+ {
+  "type": "foto",
+  "kind": "arte",
+  "id": "menu-cros2go-comidas",
+  "title": "Cros2Go",
+  "caption": "Pantalla de menú: hot dogs, pollo frito, nachos y baleadas · Puerto Cortés",
+  "src": "/img/trabajos/menu-cros2go-comidas.jpg",
+  "w": 1280,
+  "h": 720
+ },
+ {
+  "type": "foto",
+  "kind": "arte",
+  "id": "menu-cros2go-bebidas-frias",
+  "title": "Cros2Go",
+  "caption": "Pantalla de menú: granitas, frappés, smoothies y tés fríos",
+  "src": "/img/trabajos/menu-cros2go-bebidas-frias.jpg",
+  "w": 1280,
+  "h": 720
+ },
+ {
+  "type": "foto",
+  "kind": "arte",
+  "id": "menu-cros2go-bebidas-calientes",
+  "title": "Cros2Go",
+  "caption": "Pantalla de menú: espresso, lattes, cappuccino y chocolate",
+  "src": "/img/trabajos/menu-cros2go-bebidas-calientes.jpg",
+  "w": 1280,
+  "h": 720
  }
 ]
