@@ -645,7 +645,7 @@ ${s.catalogo ? catalogoHTML(s) : ""}
   </section>
 ${logos.length ? `
   <section class="sp-logos" aria-labelledby="spl-t">
-    <h2 id="spl-t" class="sh-h">Marcas que han confiado en nosotros</h2>
+    <h2 id="spl-t" class="sh-h">Algunas marcas que han confiado en nosotros</h2>
     <div class="sp-logos-row">${logos.map(c => `<span class="blogo"><img src="${c.img}" alt="${esc(c.name)}" width="${c.w}" height="${c.h}" loading="lazy"></span>`).join("")}</div>
   </section>` : ""}
 
