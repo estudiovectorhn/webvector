@@ -1,6 +1,6 @@
 /* Página de talleres: filtros, calendario, ficha y animaciones */
 (function () {
-  const { ICON, fmt, dowOf, waLink, coverHTML, cardHTML, detailHTML } = window.VR;
+  const { ICON, fmt, dowOf, waLink, coverHTML, cardHTML, programaCard, detailHTML } = window.VR;
   const T = window.TALLERES || [];
   const $ = id => document.getElementById(id);
   let goal = null, filter = "all";
@@ -9,11 +9,15 @@
   function renderList() {
     let f = T.filter(t => filter === "all" || (filter === "sab" || filter === "dom" ? t.dw === filter : t.mode === filter));
     if (goal) f = f.filter(t => t.goals.includes(goal));
-    $("list").innerHTML = f.map(t => cardHTML(t, goal)).join("") || '<p class="resultline">No hay talleres con esa combinación. Prueba otro filtro.</p>';
+    /* El Programa Ejecutivo encabeza la lista; los filtros por día de fin de semana no le aplican (es martes y jueves) */
+    const PGD = window.PROGRAMA_CAL;
+    const verPrograma = !!PGD && (filter === "all" || filter === PGD.modo);
+    $("list").innerHTML = (verPrograma ? programaCard(PGD) : "") + f.map(t => cardHTML(t, goal)).join("")
+      || '<p class="resultline">No hay talleres con esa combinación. Prueba otro filtro.</p>';
     const gname = goal ? document.querySelector(`.goal[data-g="${goal}"] b`).textContent : "";
     $("resultline").innerHTML = goal
       ? `<b>${f.length} taller${f.length !== 1 ? "es" : ""}</b> para: ${gname}. Toca el objetivo otra vez para ver todos.`
-      : `${f.length} talleres disponibles`;
+      : `${f.length} talleres disponibles${verPrograma ? " y el Programa Ejecutivo" : ""}`;
     stagger($("list"));
   }
   document.querySelectorAll(".goal").forEach(g => g.addEventListener("click", () => {
@@ -45,16 +49,6 @@
   const marcados = [...new Set([...Object.keys(byDay).map(Number), ...(PG ? PG.dias : [])])].sort((a, b) => a - b);
   let selDay = marcados[0] || 1;
   const MESNOM = { 1: "enero", 2: "febrero", 3: "marzo", 4: "abril", 5: "mayo", 6: "junio", 7: "julio", 8: "agosto", 9: "septiembre", 10: "octubre", 11: "noviembre", 12: "diciembre" };
-  const programaCard = () => `<a class="card pgcard" href="${PG.url}">
-      <div class="cover" style="background:linear-gradient(135deg,#150660,#5B21F5 45%,#E0169B)"><img class="bgimg" src="${PG.img}" alt="" loading="lazy">
-        <div class="wm logo-img"></div>
-        <div class="covertags"><span class="tag">${PG.academia}</span></div>
-        <div class="coverfoot"><div class="by"><span class="byt"><small>${PG.generacion}</small><b>Programa Ejecutivo</b></span></div></div>
-      </div>
-      <div class="cbody"><h3>${PG.titulo}</h3>
-      <div class="meta"><span>${PG.dias_txt}, ${PG.horario}</span></div>
-      <div class="cardfoot"><div class="price">L ${PG.precio.toLocaleString("en-US")}<small>programa completo</small></div><span class="go">Ver programa</span></div>
-      </div></a>`;
   function renderCal() {
     const heads = ["L", "M", "M", "J", "V", "S", "D"].map((h, i) => `<div class="dow${i > 4 ? " we" : ""}">${h}</div>`).join("");
     const start = (dowOf(1, MES.m) + 6) % 7;
@@ -71,7 +65,7 @@
     }
     $("calgrid").innerHTML = heads + cells;
     const ts = byDay[selDay] || [];
-    $("daypanel").innerHTML = `<h4>${DIAS[dowOf(selDay, MES.m)]} ${selDay} de ${MES.name}</h4><div class="list">${ts.map(t => cardHTML(t)).join("")}${esPrograma(selDay) ? programaCard() : ""}</div>`;
+    $("daypanel").innerHTML = `<h4>${DIAS[dowOf(selDay, MES.m)]} ${selDay} de ${MES.name}</h4><div class="list">${ts.map(t => cardHTML(t)).join("")}${esPrograma(selDay) ? programaCard(PG) : ""}</div>`;
     stagger($("daypanel"));
   }
   if (PG) {

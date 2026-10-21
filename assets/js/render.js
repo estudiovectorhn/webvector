@@ -14,6 +14,7 @@
     cal: `<svg viewBox="0 0 24 24" ${S}><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>`,
     link: `<svg viewBox="0 0 24 24" ${S}><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>`,
     share: `<svg viewBox="0 0 24 24" ${S}><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4M8.6 13.4l6.8 4"/></svg>`,
+    img: `<svg viewBox="0 0 24 24" ${S}><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m5 16 4.5-4.5 3 3L16 11l3 3"/><circle cx="9" cy="9" r="1.4"/><path d="M12 20v2M9 22h6"/></svg>`,
     pdf: `<svg viewBox="0 0 24 24" ${S}><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg>`,
     wa: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg>`
   };
@@ -47,18 +48,28 @@
   const waLink = t => "https://wa.me/" + WA + "?text=" + encodeURIComponent("Hola Vector, quiero reservar mi cupo en el taller: " + t.title + " (" + t.dayLabel + ").");
   const waText = txt => "https://wa.me/" + WA + "?text=" + encodeURIComponent(txt);
 
+  /* Badge de fecha de la portada: una sola fecha, o todas cuando el taller ocupa varios días */
+  function dateBadge(t) {
+    const ds = t.days;
+    const dw = DOW[dowOf(ds[0].d, ds[0].m)].toUpperCase();
+    const meses = [...new Set(ds.map(d => MON[d.m]))].join("·");
+    const nums = ds.map(d => ds.length > 1 ? String(d.d) : String(d.d).padStart(2, "0")).join("·");
+    return `<div class="datebadge${ds.length > 1 ? " multi n" + Math.min(ds.length, 3) : ""}"><div class="dw">${dw}</div><div class="dn">${nums}</div><div class="dm">${meses}</div></div>`;
+  }
+
   function coverHTML(t, cls, withDate, goal) {
     const nd = t.days[0];
     const tags = [];
     if (goal && t.goals.includes(goal)) tags.push('<span class="tag rec">Recomendado</span>');
     if (t.live) tags.push('<span class="tag live">En curso</span>');
     if (t.isNew) tags.push('<span class="tag new">Nuevo</span>');
+    if (t.days.length > 1) tags.push(`<span class="tag multi">${t.days.length} fechas</span>`);
     tags.push(`<span class="tag">${t.mode === "Online" ? "Online · Zoom" : "Presencial"}</span>`);
     const img = t.img ? `<img class="bgimg" src="${t.img}" alt="${esc(t.seoTitle || t.title)}" loading="lazy" width="1280" height="720">` : "";
     return `<div class="cover ${cls || ""} ${img ? "hasimg" : ""}" style="background:${t.grad}">${img}
     <div class="wm logo-img"></div>
     ${img ? "" : `<div class="bigico">${ART[t.id]}</div>`}
-    ${withDate ? `<div class="datebadge"><div class="dw">${DOW[dowOf(nd.d, nd.m)].toUpperCase()}</div><div class="dn">${String(nd.d).padStart(2, "0")}</div><div class="dm">${MON[nd.m]}</div></div>` : ""}
+    ${withDate ? dateBadge(t) : ""}
     <div class="covertags">${tags.join("")}</div>
     <div class="coverfoot"><div class="by"><span class="av"><img src="${AV}" alt="" width="30" height="30"></span><span class="byt"><small>Instructor</small><b>Edgardo López</b></span></div>${toolsStrip(t)}</div></div>`;
   }
@@ -68,7 +79,7 @@
     ${coverHTML(t, "", true, goal)}
     <div class="cbody">
       <h3>${t.title} <em>· ${t.tagline}</em></h3>
-      <div class="meta"><span>${ICON.clock}${t.time}</span><span>${t.mode === "Online" ? ICON.zoom : ICON.pin}${t.mode === "Online" ? "En vivo por Zoom" : "Aula Vector, SPS"}</span><span>${ICON.level}${t.level}</span></div>
+      <div class="meta"><span class="when">${ICON.cal}${t.dayLabel}</span><span>${ICON.clock}${t.time}</span><span>${t.mode === "Online" ? ICON.zoom : ICON.pin}${t.mode === "Online" ? "En vivo por Zoom" : "Aula Vector, SPS"}</span><span>${ICON.level}${t.level}</span></div>
       ${netsLine(t)}
       <div class="cardfoot"><div class="price">${fmt(t.price)}<small>${t.dur}${t.durNote ? " · " + t.durNote : ""}</small></div><span class="go">Ver taller ${ICON.arrow}</span></div>
     </div></a>`;
@@ -80,6 +91,25 @@
     const n = (t.tools || []).filter(k => NETS.includes(k));
     return n.length ? `<div class="netsline">${n.map(k => toolIcon(k, 18)).join("")}<span>Para ${n.map(k => TOOLS[k].name).join(", ").replace(/, ([^,]*)$/, " y $1")}</span></div>` : "";
   };
+
+  /* Tarjeta del Programa Ejecutivo: se muestra junto a los talleres y en el calendario */
+  function programaCard(P) {
+    const fechas = P.sesiones ? `${P.sesiones} sesiones · ${P.horas} horas` : "";
+    return `<a class="card pgcard" href="${P.url}" data-id="programa" id="card-programa">
+    <div class="cover hasimg" style="background:linear-gradient(135deg,#150660,#5B21F5 45%,#E0169B)">
+      <img class="bgimg" src="${P.img}" alt="${esc(P.titulo)}" loading="lazy" width="1280" height="720">
+      <div class="wm logo-img"></div>
+      <div class="datebadge prog"><div class="dw">INICIA</div><div class="dn">${P.diaInicio}</div><div class="dm">${P.mesInicio}</div></div>
+      <div class="covertags"><span class="tag prog">Programa ejecutivo</span><span class="tag">${P.sesiones} sesiones</span></div>
+      <div class="coverfoot"><div class="by"><span class="av"><img src="${AV}" alt="" width="30" height="30"></span><span class="byt"><small>${esc(P.academia)}</small><b>${esc(P.generacion)}</b></span></div></div>
+    </div>
+    <div class="cbody">
+      <h3>${esc(P.titulo)}</h3>
+      <div class="meta"><span class="when">${ICON.cal}Del ${esc(P.inicioCorto)} al ${esc(P.finCorto)}</span><span>${ICON.clock}${esc(P.dias_txt)}, ${esc(P.horario)}</span><span>${ICON.pin}Aula Vector Academy, SPS</span></div>
+      <div class="netsline"><span>${fechas} · ${P.cupos} cupos</span></div>
+      <div class="cardfoot"><div class="price">${fmt(P.precio)}<small>reservas con ${fmt(P.matricula)}</small></div><span class="go">Ver programa ${ICON.arrow}</span></div>
+    </div></a>`;
+  }
 
   /* Apps y plataformas que se usan en cada taller (campo "tools" en src/talleres.json). Iconos en /img/tools/. */
   const TOOLS = {
@@ -151,7 +181,7 @@
    ${t.note ? `<div class="note">${t.note}</div>` : ""}`;
   }
 
-  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, netsLine, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, planHTML, toolsStrip, gearHTML, INCLUYE };
+  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, netsLine, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, programaCard, dateBadge, detailHTML, toolsHTML, planHTML, toolsStrip, gearHTML, INCLUYE };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.VR = api;
 })(typeof window !== "undefined" ? window : globalThis);
