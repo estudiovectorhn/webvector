@@ -1,4 +1,13 @@
 {
   "metaPixelId": "920098997563167",
-  "gaId": "G-WCCELK13K2"
+  "gaId": "G-WCCELK13K2",
+  "mes": {
+    "m": 11,
+    "y": 2026,
+    "name": "noviembre",
+    "Name": "Noviembre"
+  },
+  "inscripciones": {
+    "endpoint": ""
+  }
 }

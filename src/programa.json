@@ -1,0 +1,269 @@
+{
+ "slug": "programa-ejecutivo-marketing-digital-ia",
+ "academia": "Vector Academy",
+ "nombre": "Programa Ejecutivo en Marketing Digital, Contenido e Inteligencia Artificial",
+ "generacion": "Primera generación 2026",
+ "h1": "Domina el marketing de tu negocio",
+ "sub": "Aprende a crear contenido, producir videos, administrar anuncios y utilizar inteligencia artificial para impulsar el marketing de tu empresa.",
+ "modalidad": "Presencial",
+ "ciudad": "San Pedro Sula, Honduras",
+ "inicio": "2026-11-17",
+ "fin": "2026-12-10",
+ "inicioTexto": "martes 17 de noviembre de 2026",
+ "finTexto": "jueves 10 de diciembre de 2026",
+ "dias": "Martes y jueves",
+ "horario": "6:00 p. m. a 9:00 p. m.",
+ "horaInicio": "18:00",
+ "horaFin": "21:00",
+ "semanas": 4,
+ "sesiones": 8,
+ "horas": 24,
+ "cupos": 10,
+ "precio": 7000,
+ "matricula": 2500,
+ "saldo": 4500,
+ "certificado": "Certificado privado de aprobación emitido por Vector Academy",
+ "dirigido": "Dueños de negocio, emprendedores, gerentes y personas responsables de administrar las redes sociales de una empresa.",
+ "publico": [
+  [
+   "Dueños de negocio",
+   "Quieres entender y dirigir el marketing de tu empresa, no solo pagarlo."
+  ],
+  [
+   "Emprendedores",
+   "Llevas tu propia marca y necesitas resolver contenido, anuncios y atención al cliente."
+  ],
+  [
+   "Gerentes",
+   "Diriges un equipo y necesitas criterio para exigir resultados con números."
+  ],
+  [
+   "Encargados de redes",
+   "Administras las redes de la empresa y quieres profesionalizar tu trabajo."
+  ]
+ ],
+ "resultados": [
+  [
+   "Contenido con inteligencia artificial",
+   "Generas ideas, guiones, textos publicitarios y planes de contenido con ChatGPT y voces con ElevenLabs."
+  ],
+  [
+   "Video producido por ti",
+   "Grabas con tu celular con encuadre, luz y audio correctos, y editas reels en CapCut a nivel comercial."
+  ],
+  [
+   "Campañas que venden",
+   "Configuras cuentas y campañas en Meta Ads, defines públicos y presupuestos, y lees el costo por resultado."
+  ],
+  [
+   "Operación ordenada",
+   "Programas tus publicaciones y mides resultados en Metricool, y atiendes y das seguimiento con WhatsApp Business."
+  ]
+ ],
+ "clases": [
+  {
+   "n": 1,
+   "fecha": "2026-11-17",
+   "dia": "Martes 17 de noviembre",
+   "titulo": "ChatGPT + ElevenLabs",
+   "resumen": "Ideas, guiones, textos publicitarios, voces con inteligencia artificial y planes de contenido.",
+   "tools": [
+    "chatgpt"
+   ],
+   "apps": [
+    "ChatGPT",
+    "ElevenLabs"
+   ]
+  },
+  {
+   "n": 2,
+   "fecha": "2026-11-19",
+   "dia": "Jueves 19 de noviembre",
+   "titulo": "Producción audiovisual con celular",
+   "resumen": "Encuadres, iluminación, uso de micrófonos, grabación y práctica en el Content Lab.",
+   "tools": [],
+   "apps": [
+    "Cámara del celular",
+    "Micrófonos",
+    "Iluminación"
+   ]
+  },
+  {
+   "n": 3,
+   "fecha": "2026-11-24",
+   "dia": "Martes 24 de noviembre",
+   "titulo": "CapCut móvil, nivel 1",
+   "resumen": "Cortes, ritmo, textos, subtítulos, música y exportación de reels.",
+   "tools": [
+    "capcut",
+    "tiktok",
+    "instagram"
+   ],
+   "apps": [
+    "CapCut"
+   ]
+  },
+  {
+   "n": 4,
+   "fecha": "2026-11-26",
+   "dia": "Jueves 26 de noviembre",
+   "titulo": "CapCut móvil, nivel 2",
+   "resumen": "Edición comercial, transiciones, animaciones, máscaras, corrección de color y técnicas de retención.",
+   "tools": [
+    "capcut"
+   ],
+   "apps": [
+    "CapCut"
+   ]
+  },
+  {
+   "n": 5,
+   "fecha": "2026-12-01",
+   "dia": "Martes 1 de diciembre",
+   "titulo": "Meta Ads, nivel 1",
+   "resumen": "Configuración de cuentas, campañas, objetivos, públicos, segmentación y presupuestos.",
+   "tools": [
+    "meta",
+    "facebook",
+    "instagram"
+   ],
+   "apps": [
+    "Administrador de anuncios"
+   ]
+  },
+  {
+   "n": 6,
+   "fecha": "2026-12-03",
+   "dia": "Jueves 3 de diciembre",
+   "titulo": "Meta Ads, nivel 2",
+   "resumen": "Campañas para WhatsApp, optimización, métricas, costos por resultado y pruebas publicitarias.",
+   "tools": [
+    "meta",
+    "whatsapp"
+   ],
+   "apps": [
+    "Administrador de anuncios"
+   ]
+  },
+  {
+   "n": 7,
+   "fecha": "2026-12-08",
+   "dia": "Martes 8 de diciembre",
+   "titulo": "Metricool",
+   "resumen": "Conexión de redes compatibles, calendarización, programación de publicaciones, estadísticas y reportes.",
+   "tools": [
+    "facebook",
+    "instagram",
+    "tiktok"
+   ],
+   "apps": [
+    "Metricool"
+   ]
+  },
+  {
+   "n": 8,
+   "fecha": "2026-12-10",
+   "dia": "Jueves 10 de diciembre",
+   "titulo": "WhatsApp Business",
+   "resumen": "Perfil comercial, catálogo, etiquetas, respuestas rápidas, organización de contactos, bases de datos con consentimiento, seguimiento y atención al cliente para aumentar las oportunidades de venta.",
+   "tools": [
+    "whatsapp"
+   ],
+   "apps": [
+    "WhatsApp Business"
+   ]
+  }
+ ],
+ "espacios": [
+  {
+   "id": "classroom",
+   "nombre": "Executive Classroom",
+   "lead": "Aula ejecutiva de aproximadamente 50 m², climatizada, con Wi-Fi, estaciones cómodas y ambiente profesional.",
+   "puntos": [
+    "Aproximadamente 50 m²",
+    "Climatizada y con Wi-Fi",
+    "Estaciones de trabajo cómodas",
+    "Grupos de máximo 10 personas"
+   ],
+   "img": "/img/trabajos/cap-capcut-aula.jpg",
+   "alt": "Grupo de participantes con sus laptops durante una clase en el aula de Vector Academy",
+   "pie": "Clase en el aula de Vector Academy, San Pedro Sula."
+  },
+  {
+   "id": "lab",
+   "nombre": "Content Lab",
+   "lead": "Estudio práctico de aproximadamente 50 m² con sets de grabación, iluminación, micrófonos y fondos preparados para producción de contenido.",
+   "puntos": [
+    "Aproximadamente 50 m²",
+    "Sets de grabación y fondos",
+    "Iluminación y micrófonos",
+    "Práctica real en cada módulo de video"
+   ],
+   "img": "/img/trabajos/cap-taller-luces.jpg",
+   "alt": "Sesión práctica de grabación con iluminación profesional de Vector Academy",
+   "pie": "Sesión práctica con el equipo de iluminación de Vector Academy."
+  }
+ ],
+ "diferenciadores": [
+  [
+   "Coffee experience",
+   "Café durante cada sesión, porque la clase es de noche y después del trabajo."
+  ],
+  [
+   "Grupos reducidos",
+   "Solo 10 cupos por generación, para que a nadie se le pase su duda."
+  ],
+  [
+   "Aprendizaje práctico",
+   "Se graba, se edita y se configuran campañas en clase, no solo se explica."
+  ],
+  [
+   "Atención personalizada",
+   "El instructor revisa el avance de cada participante."
+  ],
+  [
+   "Proyectos aplicados",
+   "Trabajas con tu propio negocio o con el de la empresa donde trabajas."
+  ],
+  [
+   "Certificado de aprobación",
+   "Certificado privado emitido por Vector Academy al completar el programa."
+  ]
+ ],
+ "faq": [
+  [
+   "¿Para quién es este programa?",
+   "Para dueños de negocio, emprendedores, gerentes y personas responsables de administrar las redes sociales de una empresa. No se necesita experiencia previa en marketing digital, pero sí disposición para practicar en cada sesión."
+  ],
+  [
+   "¿Dónde y cuándo se imparte?",
+   "Es presencial, en el Executive Classroom de Vector Academy en San Pedro Sula. Inicia el martes 17 de noviembre de 2026 y termina el jueves 10 de diciembre de 2026, los martes y jueves de 6:00 p. m. a 9:00 p. m. La dirección exacta se comparte al confirmar la matrícula."
+  ],
+  [
+   "¿Cuánto dura?",
+   "Cuatro semanas: 8 sesiones de 3 horas, 24 horas de formación presencial."
+  ],
+  [
+   "¿Cuánto cuesta y cómo se paga?",
+   "La inversión total es de L 7,000. Se reserva el cupo con una matrícula de L 2,500, que se aplica al total, y queda un saldo de L 4,500. Las formas de pago y las fechas del saldo se confirman por WhatsApp al momento de reservar."
+  ],
+  [
+   "¿Qué necesito llevar?",
+   "Tu celular con cámara y, si vas a trabajar con campañas, una laptop para los módulos de Meta Ads y Metricool. También la información de tu negocio: productos, precios y fotos si ya tienes."
+  ],
+  [
+   "¿El certificado tiene aval universitario?",
+   "No. Es un certificado privado de aprobación emitido por Vector Academy; no es un título con aval universitario ni reconocimiento estatal."
+  ],
+  [
+   "¿Qué pasa si falto a una sesión?",
+   "El programa es presencial y práctico, así que la asistencia es parte de la formación. Si surge un imprevisto, coordinamos contigo la forma de ponerte al día; el certificado requiere completar el programa."
+  ],
+  [
+   "¿Cómo reservo mi cupo?",
+   "Llena el formulario de esta página. Te contactamos por WhatsApp para confirmar disponibilidad y coordinar el pago de la matrícula. El cupo queda reservado hasta que la matrícula está confirmada, y solo hay 10 por generación."
+  ]
+ ],
+ "heroImg": "/img/trabajos/cap-edgardo-pantalla.jpg",
+ "heroAlt": "Edgardo A. López impartiendo una sesión sobre inteligencia artificial aplicada al contenido"
+}
