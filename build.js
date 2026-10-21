@@ -45,6 +45,8 @@ const FINDES = (() => {
   return out;
 })();
 const nTalleres = n => `${n} taller${n === 1 ? "" : "es"}`;
+/* Lista en español: "A", "A y B", "A, B y C" */
+const lista = xs => xs.length < 3 ? xs.join(" y ") : xs.slice(0, -1).join(", ") + " y " + xs[xs.length - 1];
 /* Píxel de Meta: se activa solo cuando src/config.json trae metaPixelId */
 const pixel = () => CFG.metaPixelId ? `<script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -295,9 +297,9 @@ const FAQ_HOME = [
   [`¿Qué talleres de marketing digital hay en Honduras en ${MESYA}?`,
     `Estudio Vector tiene ${nTalleres(T.length)} los fines de semana de ${MESNOM} en San Pedro Sula: ${T.map(t => `${t.title} (${t.dayLabel}, ${fmt(t.price)})`).join("; ")}.`],
   ["¿Cómo puedo vender más por redes sociales?",
-    `Vender más en redes depende de tres cosas: publicar contenido constante que muestre tu producto (sobre todo video), invertir en anuncios bien segmentados en Meta Ads que lleven a los clientes a tu WhatsApp, y responder y cerrar rápido esas conversaciones. Para las dos primeras tenemos taller este mes: ${tl("celular")} y ${tl("meta")}. Si prefieres que lo hagamos por ti, revisa nuestros <a href="/servicios/">servicios de marketing digital</a>.`],
+    `Vender más en redes depende de tres cosas: publicar contenido constante que muestre tu producto (sobre todo video), invertir en anuncios bien segmentados en Meta Ads que lleven a los clientes a tu WhatsApp, y responder y cerrar rápido esas conversaciones. Este mes tenemos taller para cada parte: ${tl("celular")}, ${tl("meta")} y ${tl("ia")}. Si prefieres que lo hagamos por ti, revisa nuestros <a href="/servicios/">servicios de marketing digital</a>.`],
   ["¿Hay cursos de inteligencia artificial para negocios en Honduras?",
-    `Sí. La inteligencia artificial es parte del ${tl("celular")}, donde se usa para generar ideas y guiones de video. Para empresas e instituciones damos <a href="/inteligencia-artificial-empresas-honduras/">capacitaciones privadas y conferencias de IA</a>, impartidas por Edgardo A. López, capacitador del Forum Ruta Copán 2026 en Santa Rosa de Copán, el primer seminario de IA para empresarios en Honduras.`],
+    `Sí. El ${tl("ia")} con ChatGPT y Claude es el ${byId("ia").dayLabel.toLowerCase()} de ${byId("ia").time} (${fmt(byId("ia").price)}), enfocado en automatizar el trabajo repetitivo del negocio. La IA también es parte del ${tl("celular")}, donde se usa para generar ideas y guiones de video. Para empresas e instituciones damos <a href="/inteligencia-artificial-empresas-honduras/">capacitaciones privadas y conferencias de IA</a>, impartidas por Edgardo A. López, capacitador del Forum Ruta Copán 2026 en Santa Rosa de Copán, el primer seminario de IA para empresarios en Honduras.`],
   ["¿Cuánto cuestan los talleres?",
     `Este mes van de ${fmt(Math.min(...T.map(t => t.price)))} a ${fmt(Math.max(...T.map(t => t.price)))} por persona según el taller y su duración. Cada ficha muestra la inversión, la fecha y el horario. Se reserva el cupo por WhatsApp al 9569-1481.`],
   ["¿Qué incluyen los talleres de Vector?",
@@ -379,7 +381,7 @@ function shotsHTML() {
 /* ---------------- Página: inicio (agencia y portafolio) ---------------- */
 function buildHome() {
   let body = fs.readFileSync("src/home.body.html", "utf8");
-  const tallerCTA = `Calendario de ${MESYA}: ${nTalleres(T.length)} en el aula de Vector Academy, ${T.map(t => t.title).join(" y ")}. Máximo 10 cupos por taller.`;
+  const tallerCTA = `Calendario de ${MESYA}: ${nTalleres(T.length)} en el aula de Vector Academy, ${lista(T.map(t => t.title))}. Máximo 10 cupos por taller.`;
   body = body.replace("{{PROGRAMA}}", programaBanner())
     .replace("{{TALLERES_HOME}}", tallerCTA)
     .replace("{{HEADER}}", siteHeader("trabajo"))
@@ -486,8 +488,8 @@ ${faqHTML(FAQ_HOME)}`;
     { "@type": "WebPage", "@id": SITE + "/talleres/#pagina", url: SITE + "/talleres/", name: `Talleres de marketing digital en San Pedro Sula · ${MESYACAP}`, about: { "@id": ORG_ID }, dateModified: NOW, inLanguage: "es-HN" }
   ];
   const html = head({
-    title: `Talleres de Marketing Digital, Meta Ads y Video en San Pedro Sula · ${MESYACAP} | Estudio Vector`,
-    desc: `Actualización de conocimientos ${ANIO} para emprendedores, dueños de empresa y equipos de mercadeo: talleres de Meta Ads y de video contenido para TikTok, Facebook e Instagram en San Pedro Sula. ${MESYACAP}, sábados y domingos. Solo 10 cupos por taller.`,
+    title: `Talleres de Marketing Digital, Meta Ads, Video e IA en San Pedro Sula · ${MESYACAP} | Estudio Vector`,
+    desc: `Actualización de conocimientos ${ANIO} para emprendedores, dueños de empresa y equipos de mercadeo: talleres de Meta Ads, de video contenido para TikTok, Facebook e Instagram y de inteligencia artificial con ChatGPT y Claude en San Pedro Sula. ${MESYACAP}, sábados y domingos. Solo 10 cupos por taller.`,
     keywords: "talleres de marketing digital Honduras, curso Meta Ads San Pedro Sula, capacitación inteligencia artificial negocios Honduras, curso de publicidad en Facebook, cómo vender más en redes sociales",
     canonical: SITE + "/talleres/",
     ldGraph: graph
@@ -760,7 +762,7 @@ ${brandsHTML()}
 
   <section class="ctaband">
     <div class="wm logo-img"></div>
-    <div><h2>¿Prefieres aprender a hacerlo tú mismo?</h2><p>Mira los talleres de ${MESNOM}: ${T.map(t => t.title).join(" y ")}.</p></div>
+    <div><h2>¿Prefieres aprender a hacerlo tú mismo?</h2><p>Mira los talleres de ${MESNOM}: ${lista(T.map(t => t.title))}.</p></div>
     <a class="btn light" href="/talleres/">Ver talleres ${ICON.arrow}</a>
   </section>
 

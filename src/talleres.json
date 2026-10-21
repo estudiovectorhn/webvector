@@ -137,5 +137,68 @@
   ],
   "img": "/img/meta.jpg",
   "extra": "Refrigerio incluido"
+ },
+ {
+  "id": "ia",
+  "title": "Inteligencia Artificial para Dueños de Negocio",
+  "tagline": "ChatGPT + Claude y automatizaciones",
+  "tools": [
+   "chatgpt",
+   "claude"
+  ],
+  "grad": "linear-gradient(135deg,#150660,#5B21F5 45%,#E0169B)",
+  "goals": [
+   "ia",
+   "ventas"
+  ],
+  "level": "Todos los niveles",
+  "sub": "Usa ChatGPT y Claude para quitarte de encima el trabajo repetitivo y automatizar tareas de tu negocio. El objetivo del taller es que salgas produciendo cinco veces más en el mismo tiempo.",
+  "days": [
+   {
+    "d": 21,
+    "m": 11
+   }
+  ],
+  "dayLabel": "Sábado 21 de noviembre",
+  "dw": "sab",
+  "time": "1:00 p.m. a 6:00 p.m.",
+  "dur": "5 horas",
+  "mode": "Presencial",
+  "price": 2000,
+  "extra": "Refrigerio incluido",
+  "take": "Tu biblioteca de instrucciones y automatizaciones listas para usar en tu negocio desde el lunes.",
+  "learn": [
+   "Cómo pedirle a la IA lo que necesitas: instrucciones claras que dan buenos resultados",
+   "Cuándo conviene ChatGPT y cuándo conviene Claude",
+   "Crear copys, guiones y planes de contenido para tus redes",
+   "Generar cotizaciones, manuales, correos y documentos en minutos",
+   "Analizar tus ventas, clientes y resultados con la IA",
+   "Automatizar las tareas repetitivas del día a día de tu negocio",
+   "Armar tu propia biblioteca de instrucciones para no empezar de cero cada vez"
+  ],
+  "results": [
+   "Haces en una hora lo que antes te tomaba una tarde",
+   "Produces contenido, cotizaciones y documentos sin bloquearte",
+   "Tu equipo trabaja con las mismas herramientas que ya usan las empresas líderes"
+  ],
+  "ideal": "Dueños de negocio, gerentes, emprendedores y equipos de marketing y ventas que quieren dejar de perder horas en trabajo repetitivo.",
+  "slug": "taller-inteligencia-artificial-para-negocios",
+  "seoTitle": "Taller de inteligencia artificial para dueños de negocio con ChatGPT y Claude",
+  "keywords": [
+   "inteligencia artificial para negocios",
+   "ChatGPT",
+   "Claude",
+   "automatización de tareas",
+   "productividad con IA",
+   "taller de IA San Pedro Sula"
+  ],
+  "sched": [
+   {
+    "date": "2026-11-21",
+    "start": "13:00",
+    "end": "18:00"
+   }
+  ],
+  "img": "/img/ia.jpg"
  }
 ]
