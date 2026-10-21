@@ -6,5 +6,8 @@
     "y": 2026,
     "name": "noviembre",
     "Name": "Noviembre"
+  },
+  "inscripciones": {
+    "endpoint": ""
   }
 }
