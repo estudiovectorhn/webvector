@@ -48,7 +48,7 @@
    "Usas la IA para no quedarte sin ideas ni guiones",
    "Tu negocio publica constante y se ve profesional en TikTok, Facebook e Instagram"
   ],
-  "ideal": "Dueños de negocio, vendedores, community managers y marcas personales que quieren hacer el video contenido de sus redes por su cuenta.",
+  "ideal": "Dueños de negocio, vendedores, community managers y marcas personales que quieren hacer el video contenido de sus redes por su cuenta. El aula es presencial y climatizada, para grupos de máximo 10 personas.",
   "slug": "taller-grabar-videos-con-celular",
   "seoTitle": "Taller de video contenido para TikTok, Facebook e Instagram con tu celular",
   "keywords": [
@@ -72,7 +72,7 @@
   ],
   "img": "/img/celular.jpg",
   "durNote": "2 sábados",
-  "extra": "Aula presencial climatizada",
+  "extra": "Refrigerio incluido",
   "note": "Requisitos para el taller: teléfono con cámara, CapCut instalado y ChatGPT o Claude instalado en tu teléfono."
  },
  {
@@ -135,6 +135,7 @@
     "end": "18:00"
    }
   ],
-  "img": "/img/meta.jpg"
+  "img": "/img/meta.jpg",
+  "extra": "Refrigerio incluido"
  }
 ]

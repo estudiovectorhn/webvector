@@ -484,9 +484,9 @@ function buildTaller(t) {
   const others = T.filter(x => x.id !== t.id).slice(0, 3);
   const faq = [
     [`¿Cuándo es el taller ${t.title}?`, `${t.dayLabel}, de ${t.time}. ${t.durNote ? "Son " + t.durNote + ", " + t.dur + " en total." : "Duración: " + t.dur + "."}`],
-    [`¿Cuánto cuesta?`, `La inversión es de ${fmt(t.price)} por persona.${t.extra ? " Incluye " + t.extra.toLowerCase() + "." : ""}`],
+    [`¿Cuánto cuesta?`, `La inversión es de ${fmt(t.price)} por persona.${t.extra ? " " + t.extra + "." : ""}`],
     [`¿Dónde se imparte?`, t.mode === "Online" ? "En línea, en vivo por Zoom. Puedes conectarte desde cualquier parte de Honduras." : "De forma presencial en el aula de Estudio Vector en San Pedro Sula. La ubicación exacta se comparte al confirmar tu reserva."],
-    [`¿Qué incluye?`, VR.INCLUYE(t).join(", ") + ". Máximo 10 participantes por grupo."],
+    [`¿Qué incluye?`, VR.INCLUYE(t).join(", ") + (t.extra ? ", " + t.extra.toLowerCase() : "") + ". Máximo 10 participantes por grupo."],
     [`¿Cómo reservo?`, `Escríbenos por WhatsApp al 9569-1481 mencionando este taller. Los cupos se asignan por orden de pago.`]
   ];
   const graph = [ORG, PERSON, ...tallerLD(t), faqLD(faq), crumbsLD([["Inicio", "/"], ["Talleres", "/talleres/"], [t.title, `/talleres/${t.slug}/`]])];

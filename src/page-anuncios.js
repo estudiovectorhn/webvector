@@ -55,7 +55,7 @@ module.exports = function buildAnuncios(c) {
       <div class="an-opt-top" style="background:${pr.grad}">
         <img src="${pr.img}" alt="${pr.seoTitle}" width="960" height="640" loading="eager">
         <div class="wm logo-img"></div>
-        <span class="an-badge">Presencial · Vector Academy</span>
+        <span class="an-badge">Presencial · Refrigerio incluido</span>
         <div class="an-date"><b>${pr.sched[0].date.slice(8)}</b><span>${MESABR}</span></div>
       </div>
       <div class="an-opt-body">
@@ -64,6 +64,7 @@ module.exports = function buildAnuncios(c) {
           <li>${ICON.clock}<span>${pr.time} · ${pr.dur}</span></li>
           <li>${ICON.pin}<span>Aula Vector Academy, San Pedro Sula</span></li>
           <li>${ICON.check}<span>Acompañamiento en tu propia laptop</span></li>
+          <li>${ICON.check}<span>Refrigerio incluido</span></li>
           <li>${ICON.check}<span>Certificado, grupo de WhatsApp y clases grabadas</span></li>
         </ul>
         <div class="an-count" data-start="${pr.sched[0].date}T${pr.sched[0].start}:00-06:00"><span>Empieza en</span><b data-u="d">–</b><i>días</i><b data-u="h">–</b><i>horas</i></div>
@@ -105,6 +106,7 @@ module.exports = function buildAnuncios(c) {
       <div>${ICON.check}Grupo privado de WhatsApp</div>
       <div>${ICON.check}Certificado oficial Vector MKT</div>
       <div>${ICON.check}Grupos de máximo 10 personas</div>
+      <div>${ICON.check}Refrigerio durante el taller</div>
     </div>
   </section>
 
@@ -125,7 +127,7 @@ module.exports = function buildAnuncios(c) {
   const graph = [ORG, PERSON, ...tallerLD(pr), faqLD(faq), crumbsLD([["Talleres", "/"], ["Taller de Meta Ads", "/anuncios/"]])];
   const html = head({
     title: "Aprende a Crear Anuncios en Facebook e Instagram | Taller de Meta Ads en Honduras",
-    desc: `Taller práctico y presencial de Meta Ads para dueños de negocio en San Pedro Sula: ${pr.dayLabel}, ${pr.time}, ${fmt(pr.price)}. Sales con tu campaña a WhatsApp lista. Solo 10 cupos.`,
+    desc: `Taller práctico y presencial de Meta Ads para dueños de negocio en San Pedro Sula: ${pr.dayLabel}, ${pr.time}, ${fmt(pr.price)} con refrigerio incluido. Sales con tu campaña a WhatsApp lista. Solo 10 cupos.`,
     keywords: "aprender Meta Ads, curso de anuncios en Facebook, taller de publicidad en Instagram, cómo hacer anuncios para mi negocio, curso Meta Ads Honduras, San Pedro Sula",
     canonical: url, image: SITE + "/img/meta.jpg", ldGraph: graph
   }) + "\n" + body + `
