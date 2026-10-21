@@ -59,6 +59,10 @@ module.exports = function buildPrograma(c) {
         <a class="btn" href="#inscripcion">${ICON.arrow}Reserva tu cupo con ${fmt(P.matricula)}</a>
         <a class="btn ghost" href="#temario">Ver el temario</a>
       </div>
+      <div class="shareline">
+        <button class="sharebtn" type="button" data-share data-title="${esc(P.nombre)} · ${esc(P.academia)}" data-text="${esc(P.nombre)}: inicia el ${esc(P.inicioTexto)}, ${esc(P.dias.toLowerCase())} de ${esc(P.horario)}. ${fmt(P.precio)}, se reserva con ${fmt(P.matricula)}.">${ICON.share}<span>Compartir</span></button>
+        <a class="sharebtn" href="/${P.slug}/${P.slug}.pdf" download>${ICON.pdf}<span>Descargar PDF</span></a>
+      </div>
       <p class="pg-price-note">Inversión total del programa: <b>${fmt(P.precio)}</b>. La matrícula de ${fmt(P.matricula)} se aplica al total y deja un saldo de ${fmt(P.saldo)}.</p>
     </div>
     <div class="pg-hero-ph">

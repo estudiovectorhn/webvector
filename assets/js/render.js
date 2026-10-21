@@ -13,6 +13,8 @@
     trophy: `<svg viewBox="0 0 24 24" ${S}><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3a3 3 0 0 1-3 4M7 5H4a3 3 0 0 0 3 4"/></svg>`,
     cal: `<svg viewBox="0 0 24 24" ${S}><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>`,
     link: `<svg viewBox="0 0 24 24" ${S}><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>`,
+    share: `<svg viewBox="0 0 24 24" ${S}><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4M8.6 13.4l6.8 4"/></svg>`,
+    pdf: `<svg viewBox="0 0 24 24" ${S}><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg>`,
     wa: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg>`
   };
   const L = 'fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
@@ -109,6 +111,16 @@
    <${H} class="sh-h">Cámaras con las que practicarás</${H}>
    <div class="gear">${t.gear.map(g => `<figure class="gitem"><img src="${g.img}" alt="${esc(g.name)}" loading="lazy"><figcaption><b>${esc(g.name)}</b><small>${esc(g.note)}</small></figcaption></figure>`).join("")}<p class="gnote">Puedes traer tu propia cámara o celular: el método es el mismo.</p></div>` : "";
 
+  /* Plan de estudio por bloques (campo "plan" en src/talleres.json). Opcional: solo lo muestran los talleres que lo traen. */
+  const planHTML = (t, H) => (t.plan && t.plan.bloques && t.plan.bloques.length) ? `
+   <${H} class="sh-h">Plan de estudio</${H}>
+   ${t.plan.lead ? `<p class="planlead">${esc(t.plan.lead)}</p>` : ""}
+   <ol class="plan">${t.plan.bloques.map(b => `<li class="plan-b${/pausa|cierre|arranque/i.test(b.nivel) ? " plan-soft" : ""}">
+     <div class="plan-h"><span class="plan-t">${esc(b.hora)}</span><span class="plan-n">${esc(b.nivel)}</span></div>
+     <b>${esc(b.titulo)}</b>
+     <ul>${b.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
+   </li>`).join("")}</ol>` : "";
+
   const INCLUYE = t => ["Grabación de la clase", "Grupo privado de WhatsApp", "Certificado oficial Vector MKT", t.mode === "Online" ? "Clase en vivo por Zoom" : "Clase presencial en aula Vector"];
 
   /* Cuerpo de detalle: se usa en la ficha (modal) y en la página propia de cada taller */
@@ -127,6 +139,7 @@
    <div class="takeaway">${ICON.trophy}<div><small>Al terminar te llevas</small><b>${t.take}</b></div></div>
    ${toolsHTML(t, H)}
    ${gearHTML(t, H)}
+   ${planHTML(t, H)}
    <${H} class="sh-h">Lo que aprenderás</${H}>
    <ol class="path">${t.learn.map(l => `<li><span>${l}</span></li>`).join("")}</ol>
    <${H} class="sh-h">Resultados para tu negocio</${H}>
@@ -138,7 +151,7 @@
    ${t.note ? `<div class="note">${t.note}</div>` : ""}`;
   }
 
-  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, netsLine, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, toolsStrip, gearHTML, INCLUYE };
+  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, netsLine, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, planHTML, toolsStrip, gearHTML, INCLUYE };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.VR = api;
 })(typeof window !== "undefined" ? window : globalThis);

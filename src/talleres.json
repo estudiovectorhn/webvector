@@ -141,7 +141,7 @@
  {
   "id": "ia",
   "title": "Inteligencia Artificial para Dueños de Negocio",
-  "tagline": "ChatGPT + Claude y automatizaciones",
+  "tagline": "ChatGPT, Claude y automatizaciones",
   "tools": [
    "chatgpt",
    "claude"
@@ -152,7 +152,7 @@
    "ventas"
   ],
   "level": "Todos los niveles",
-  "sub": "Usa ChatGPT y Claude para quitarte de encima el trabajo repetitivo y automatizar tareas de tu negocio. El objetivo del taller es que salgas produciendo cinco veces más en el mismo tiempo.",
+  "sub": "Usa ChatGPT y Claude para quitarte de encima el trabajo repetitivo: automatizaciones con los dots de ChatGPT, artefactos de Claude y una introducción a Claude Code. El objetivo del taller es que salgas produciendo cinco veces más en el mismo tiempo.",
   "days": [
    {
     "d": 21,
@@ -172,8 +172,10 @@
    "Cuándo conviene ChatGPT y cuándo conviene Claude",
    "Crear copys, guiones y planes de contenido para tus redes",
    "Generar cotizaciones, manuales, correos y documentos en minutos",
-   "Analizar tus ventas, clientes y resultados con la IA",
-   "Automatizar las tareas repetitivas del día a día de tu negocio",
+   "Analizar tus ventas, tus clientes y tus archivos con la IA",
+   "Artefactos de Claude: calculadoras, plantillas y tableros hechos a tu medida",
+   "Automatizaciones con los dots de ChatGPT, los agentes que trabajan solos",
+   "Claude Code: qué aplicaciones internas puedes resolver con él",
    "Armar tu propia biblioteca de instrucciones para no empezar de cero cada vez"
   ],
   "results": [
@@ -200,6 +202,94 @@
    }
   ],
   "img": "/img/ia.jpg",
-  "note": "Requisito indispensable: lleva tu laptop con cargador. Todo el taller es práctico y se trabaja en tu propia computadora."
+  "note": "Requisito indispensable: lleva tu laptop con cargador. Todo el taller es práctico y se trabaja en tu propia computadora.",
+  "plan": {
+   "lead": "Cinco horas en bloques cortos: cada uno abre con una demostración, sigue con práctica en tu laptop y cierra con algo guardado en tu biblioteca. Se avanza de lo básico a lo intermedio para que salgas con el arranque hecho.",
+   "bloques": [
+    {
+     "hora": "1:00 – 1:30 p.m.",
+     "nivel": "Arranque",
+     "titulo": "Qué cambió y qué sirve para tu negocio",
+     "items": [
+      "Panorama 2026: qué hace mejor ChatGPT y qué hace mejor Claude",
+      "Dónde se pierde tiempo hoy en tu negocio: el diagnóstico que guía el taller",
+      "Reglas de uso responsable: qué información sí y qué información no se le da a la IA"
+     ]
+    },
+    {
+     "hora": "1:30 – 2:30 p.m.",
+     "nivel": "Básico",
+     "titulo": "Hablarle bien a la IA y armar tu biblioteca",
+     "items": [
+      "La estructura de una instrucción que sí da buenos resultados",
+      "Darle contexto de tu negocio para que deje de responder genérico",
+      "Corregir y afinar una respuesta en lugar de empezar de nuevo",
+      "Guardar tus instrucciones para reutilizarlas: tu biblioteca personal"
+     ]
+    },
+    {
+     "hora": "2:30 – 3:15 p.m.",
+     "nivel": "Básico",
+     "titulo": "El trabajo diario: contenido, documentos y datos",
+     "items": [
+      "Copys, guiones y planes de contenido para tus redes",
+      "Cotizaciones, correos, manuales y políticas en minutos",
+      "Analizar tus ventas y tus clientes a partir de un archivo",
+      "Resumir reuniones, mensajes y documentos largos"
+     ]
+    },
+    {
+     "hora": "3:15 – 3:30 p.m.",
+     "nivel": "Pausa",
+     "titulo": "Coffee break",
+     "items": [
+      "Café y preguntas sueltas con el instructor"
+     ]
+    },
+    {
+     "hora": "3:30 – 4:15 p.m.",
+     "nivel": "Intermedio",
+     "titulo": "Artefactos de Claude: herramientas hechas a tu medida",
+     "items": [
+      "Qué es un artefacto y por qué reemplaza a media hoja de cálculo",
+      "Crear una calculadora de precios o de comisiones para tu negocio",
+      "Armar plantillas, formularios y tableros sin programar",
+      "Guardar, editar y compartir lo que creaste con tu equipo"
+     ]
+    },
+    {
+     "hora": "4:15 – 5:00 p.m.",
+     "nivel": "Intermedio",
+     "titulo": "Automatizaciones: los dots de ChatGPT",
+     "items": [
+      "Qué son los dots, los agentes de ChatGPT que siguen trabajando solos",
+      "Casos reales: revisar información, preparar publicaciones, dar seguimiento",
+      "Cómo se le define un objetivo, los permisos y los límites a un agente",
+      "Qué tareas conviene automatizar y cuáles no"
+     ]
+    },
+    {
+     "hora": "5:00 – 5:40 p.m.",
+     "nivel": "Intermedio",
+     "titulo": "Claude Code: aplicaciones internas para tu negocio",
+     "items": [
+      "Qué es Claude Code y qué tipo de aplicaciones resuelve",
+      "Demostración: de una idea a una herramienta interna funcionando",
+      "Cuándo te conviene una app propia y cuándo no vale la pena",
+      "Por dónde seguir si quieres construir la tuya"
+     ]
+    },
+    {
+     "hora": "5:40 – 6:00 p.m.",
+     "nivel": "Cierre",
+     "titulo": "Tu plan de arranque",
+     "items": [
+      "Eliges las tres tareas de tu negocio que vas a automatizar primero",
+      "Te llevas tu biblioteca de instrucciones y lo que creaste en clase",
+      "Entrega de certificados y acceso al grupo de WhatsApp"
+     ]
+    }
+   ]
+  }
  }
 ]

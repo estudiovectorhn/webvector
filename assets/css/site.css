@@ -1221,3 +1221,37 @@ a.trust{text-decoration:none;color:inherit}
 .pgband-ph{position:relative;min-height:220px;order:-1}
 @media (min-width:900px){.pgband-ph{order:0;min-height:100%}}
 .pgband-ph img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Plan de estudio por bloques (ficha y página del taller) */
+.planlead{margin:0 0 14px;font-size:13.5px;line-height:1.65;color:var(--muted)}
+.plan{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:pb}
+.plan-b{position:relative;padding:16px 16px 14px 18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.plan-b::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad)}
+.plan-b.plan-soft{background:var(--surface2)}
+.plan-b.plan-soft::before{background:var(--line)}
+.plan-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.plan-t{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:var(--fuchsia-soft)}
+.plan-n{font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--surface2);border:1px solid var(--line);color:var(--muted)}
+.plan-soft .plan-n{background:#fff}
+.plan-b>b{display:block;font-size:15px;line-height:1.25;margin-bottom:8px}
+.plan-b ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.plan-b ul li{position:relative;padding-left:16px;font-size:13px;line-height:1.55;color:var(--muted)}
+.plan-b ul li::before{content:"";position:absolute;left:3px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--violet-soft)}
+.plan-soft ul li::before{background:var(--dim)}
+
+/* Sesiones del Programa Ejecutivo dentro del calendario del mes */
+.day.prog{background:linear-gradient(180deg,rgba(91,33,245,.14),rgba(91,33,245,.07));border-color:rgba(91,33,245,.35)}
+.dots i.pg{background:var(--violet)}
+.legend .lg-pg{background:var(--violet)}
+.calnote{margin:12px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.calnote a{font-weight:800;color:var(--violet-soft)}
+.pgcard .cover .by{padding:6px 14px 6px 12px}
+.pgcard .cover .by small{color:#FF9AD2}
+
+/* Compartir y descargar la ficha (páginas de taller y del programa) */
+.shareline{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.sharebtn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;padding:9px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12.5px;font-weight:800;cursor:pointer;transition:border-color .2s,color .2s,transform .2s}
+.sharebtn:hover{border-color:var(--violet-soft);color:var(--violet-soft);transform:translateY(-1px)}
+.sharebtn svg{width:16px;height:16px;flex:0 0 auto}
+.pgpage .shareline{margin-top:16px}
+.pgpage .sharebtn{background:rgba(255,255,255,.75)}

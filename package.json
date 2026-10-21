@@ -7,7 +7,11 @@
   "scripts": {
     "build": "node build.js",
     "start": "node server.js",
-    "dev": "node build.js && node server.js"
+    "dev": "node build.js && node server.js",
+    "pdf": "node build-pdf.js",
+    "fichas": "node build-fichas-pdf.js"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }

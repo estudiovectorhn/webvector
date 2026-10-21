@@ -39,8 +39,22 @@
   const MES = window.MES || { m: 10, y: 2026, name: "octubre" };
   const byDay = {};
   T.forEach(t => t.days.forEach(x => { if (x.m === MES.m) (byDay[x.d] = byDay[x.d] || []).push(t); }));
-  const marcados = Object.keys(byDay).map(Number).sort((a, b) => a - b);
+  /* Sesiones del Programa Ejecutivo dentro del mes: se marcan aparte de los talleres */
+  const PG = window.PROGRAMA_CAL && window.PROGRAMA_CAL.m === MES.m ? window.PROGRAMA_CAL : null;
+  const esPrograma = d => !!(PG && PG.dias.indexOf(d) >= 0);
+  const marcados = [...new Set([...Object.keys(byDay).map(Number), ...(PG ? PG.dias : [])])].sort((a, b) => a - b);
   let selDay = marcados[0] || 1;
+  const MESNOM = { 1: "enero", 2: "febrero", 3: "marzo", 4: "abril", 5: "mayo", 6: "junio", 7: "julio", 8: "agosto", 9: "septiembre", 10: "octubre", 11: "noviembre", 12: "diciembre" };
+  const programaCard = () => `<a class="card pgcard" href="${PG.url}">
+      <div class="cover" style="background:linear-gradient(135deg,#150660,#5B21F5 45%,#E0169B)"><img class="bgimg" src="${PG.img}" alt="" loading="lazy">
+        <div class="wm logo-img"></div>
+        <div class="covertags"><span class="tag">${PG.academia}</span></div>
+        <div class="coverfoot"><div class="by"><span class="byt"><small>${PG.generacion}</small><b>Programa Ejecutivo</b></span></div></div>
+      </div>
+      <div class="cbody"><h3>${PG.titulo}</h3>
+      <div class="meta"><span>${PG.dias_txt}, ${PG.horario}</span></div>
+      <div class="cardfoot"><div class="price">L ${PG.precio.toLocaleString("en-US")}<small>programa completo</small></div><span class="go">Ver programa</span></div>
+      </div></a>`;
   function renderCal() {
     const heads = ["L", "M", "M", "J", "V", "S", "D"].map((h, i) => `<div class="dow${i > 4 ? " we" : ""}">${h}</div>`).join("");
     const start = (dowOf(1, MES.m) + 6) % 7;
@@ -48,17 +62,21 @@
     let cells = "";
     for (let i = 0; i < start; i++) cells += '<div class="day empty"></div>';
     for (let d = 1; d <= last; d++) {
-      const w = dowOf(d, MES.m), we = w === 0 || w === 6, ts = byDay[d] || [];
-      const cls = ["day", we ? "we" : "", ts.length ? "has" : "", d === selDay ? "sel" : ""].join(" ");
-      const dots = ts.map(t => `<i class="${t.live ? "live" : ""}"></i>`).join("");
-      cells += ts.length
-        ? `<button class="${cls}" data-d="${d}" id="day-${d}" aria-label="${d} de ${MES.name}, ${ts.length} taller${ts.length > 1 ? "es" : ""}">${d}<span class="dots">${dots}</span></button>`
+      const w = dowOf(d, MES.m), we = w === 0 || w === 6, ts = byDay[d] || [], pg = esPrograma(d);
+      const cls = ["day", we ? "we" : "", ts.length || pg ? "has" : "", pg ? "prog" : "", d === selDay ? "sel" : ""].join(" ");
+      const dots = ts.map(t => `<i class="${t.live ? "live" : ""}"></i>`).join("") + (pg ? '<i class="pg"></i>' : "");
+      cells += (ts.length || pg)
+        ? `<button class="${cls}" data-d="${d}" id="day-${d}" aria-label="${d} de ${MES.name}${ts.length ? ", " + ts.length + " taller" + (ts.length > 1 ? "es" : "") : ""}${pg ? ", sesión del Programa Ejecutivo" : ""}">${d}<span class="dots">${dots}</span></button>`
         : `<div class="${cls}">${d}<span class="dots"></span></div>`;
     }
     $("calgrid").innerHTML = heads + cells;
     const ts = byDay[selDay] || [];
-    $("daypanel").innerHTML = `<h4>${DIAS[dowOf(selDay, MES.m)]} ${selDay} de ${MES.name}</h4><div class="list">${ts.map(t => cardHTML(t)).join("")}</div>`;
+    $("daypanel").innerHTML = `<h4>${DIAS[dowOf(selDay, MES.m)]} ${selDay} de ${MES.name}</h4><div class="list">${ts.map(t => cardHTML(t)).join("")}${esPrograma(selDay) ? programaCard() : ""}</div>`;
     stagger($("daypanel"));
+  }
+  if (PG) {
+    const otros = PG.otrosMeses.map(m => MESNOM[m]).join(" y ");
+    $("calnote").innerHTML = `Los días marcados en morado son sesiones del <a href="${PG.url}">${PG.titulo}</a>, ${PG.dias_txt.toLowerCase()} de ${PG.horario.replace(/\.$/, "")}${otros ? `. El programa continúa en ${otros}` : ""}.`;
   }
   $("calgrid").addEventListener("click", e => { const b = e.target.closest("button.day"); if (b) { selDay = +b.dataset.d; renderCal(); } });
   $("daypanel").addEventListener("click", cardClick);
