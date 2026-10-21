@@ -1033,3 +1033,21 @@ a.trust{text-decoration:none;color:inherit}
 .wk-none{margin:6px 0 0;font-size:12.5px;font-weight:700;color:var(--muted)}
 /* Landing /anuncios/ con una sola modalidad */
 .an-opts.solo{max-width:520px;margin-inline:auto}
+
+/* ¿Esto es para ti?: perfiles que toman los talleres (página /talleres/) */
+.aud{margin-top:34px}
+.aud-head{max-width:720px}
+.aud-head h2{font-family:var(--display);font-size:clamp(26px,4.4vw,40px);line-height:.98;text-transform:uppercase;margin:6px 0 10px}
+.aud-head p{color:var(--muted);font-size:15px;line-height:1.6;margin:0}
+.aud-grid{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(2,1fr)}
+@media (min-width:700px){.aud-grid{grid-template-columns:repeat(3,1fr);gap:12px}}
+@media (min-width:980px){.aud-grid{grid-template-columns:repeat(4,1fr)}}
+.aud-i{display:grid;gap:4px;padding:16px 14px 14px;border-radius:16px;background:var(--surface);border:1px solid var(--line);transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .25s}
+@media (min-width:700px){.aud-i{padding:18px 16px 16px;border-radius:18px}}
+.aud-i:hover{transform:translateY(-3px);border-color:var(--violet-soft)}
+.aud-i svg{width:26px;height:26px;color:var(--violet-soft);margin-bottom:6px}
+.aud-i b{font-size:13.5px;line-height:1.25}
+@media (min-width:700px){.aud-i b{font-size:14.5px}}
+.aud-i span{font-size:12px;line-height:1.5;color:var(--muted)}
+@media (min-width:700px){.aud-i span{font-size:12.5px;line-height:1.55}}
+.aud-foot{margin:16px 0 0;font-size:13px;color:var(--muted)}

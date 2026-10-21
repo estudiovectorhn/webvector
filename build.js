@@ -443,7 +443,7 @@ function buildTalleres() {
   <div class="seo-in">
     <span class="eyebrow">Capacitación en marketing digital</span>
     <h2 id="seo-t">Aprende marketing digital, Meta Ads e inteligencia artificial en San Pedro Sula</h2>
-    <p><b>Estudio Vector</b> (Vector Marketing) es una agencia de marketing digital de San Pedro Sula, Honduras, que además de manejar la publicidad de empresas enseña a dueños de negocio, emprendedores y equipos de venta a hacerlo por su cuenta. Nuestros talleres son prácticos, en grupos de máximo 10 personas, y se imparten los fines de semana de forma presencial y en línea.</p>
+    <p><b>Estudio Vector</b> (Vector Marketing) es una agencia de marketing digital de San Pedro Sula, Honduras, que además de manejar la publicidad de empresas enseña a dueños de negocio, emprendedores y equipos de mercadeo a hacerlo por su cuenta. Son una actualización de conocimientos ${ANIO}: contenido al día en algoritmos, formatos e inteligencia artificial, en grupos de máximo 10 personas y los fines de semana.</p>
     <p>Si tu meta es <b>vender más</b>, atraer clientes con <b>publicidad en Facebook e Instagram</b>, crear contenido en video o usar <b>inteligencia artificial</b> en tu negocio, aquí tienes el calendario de ${MESYA}:</p>
   </div>
   <ul class="seo-links">
@@ -458,7 +458,8 @@ ${faqHTML(FAQ_HOME)}`;
     .replace("{{FOOTER}}", siteFooter())
     .replace(/\{\{NT\}\}/g, String(T.length))
     .replace(/\{\{MESNOM\}\}/g, MESNOM)
-    .replace(/\{\{MESYACAP\}\}/g, MESYACAP);
+    .replace(/\{\{MESYACAP\}\}/g, MESYACAP)
+    .replace(/\{\{ANIO\}\}/g, String(ANIO));
   const itemList = { "@type": "ItemList", name: `Talleres de ${MESYA} en Estudio Vector`, itemListElement: T.map((t, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE}/talleres/${t.slug}/`, name: t.title })) };
   const graph = [
         ORG, PERSON, itemList,
@@ -468,7 +469,7 @@ ${faqHTML(FAQ_HOME)}`;
   ];
   const html = head({
     title: `Talleres de Marketing Digital, Meta Ads y Video en San Pedro Sula · ${MESYACAP} | Estudio Vector`,
-    desc: `Talleres prácticos de Meta Ads y de video contenido para TikTok, Facebook e Instagram en San Pedro Sula, Honduras. ${MESYACAP}, sábados y domingos. Solo 10 cupos por taller.`,
+    desc: `Actualización de conocimientos ${ANIO} para emprendedores, dueños de empresa y equipos de mercadeo: talleres de Meta Ads y de video contenido para TikTok, Facebook e Instagram en San Pedro Sula. ${MESYACAP}, sábados y domingos. Solo 10 cupos por taller.`,
     keywords: "talleres de marketing digital Honduras, curso Meta Ads San Pedro Sula, capacitación inteligencia artificial negocios Honduras, curso de publicidad en Facebook, cómo vender más en redes sociales",
     canonical: SITE + "/talleres/",
     ldGraph: graph
