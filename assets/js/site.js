@@ -274,3 +274,22 @@
 
   watch();
 })();
+
+/* Compartir la página del taller o del programa: usa el menú nativo del teléfono y, si no existe, copia el enlace. */
+(function () {
+  const btns = document.querySelectorAll("[data-share]");
+  if (!btns.length) return;
+  btns.forEach(b => b.addEventListener("click", async () => {
+    const data = { title: b.dataset.title || document.title, text: b.dataset.text || "", url: location.href };
+    const label = b.querySelector("span");
+    const previo = label ? label.textContent : "";
+    try {
+      if (navigator.share) { await navigator.share(data); return; }
+      await navigator.clipboard.writeText(location.href);
+      if (label) { label.textContent = "Enlace copiado"; setTimeout(() => (label.textContent = previo), 2200); }
+    } catch (e) {
+      if (e && e.name === "AbortError") return;
+      if (label) { label.textContent = "Copia el enlace de la barra"; setTimeout(() => (label.textContent = previo), 2600); }
+    }
+  }));
+})();

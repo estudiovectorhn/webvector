@@ -494,7 +494,13 @@ ${faqHTML(FAQ_HOME)}`;
     canonical: SITE + "/talleres/",
     ldGraph: graph
   }) + "\n" + body + `
-<script>window.MES=${JSON.stringify(MES)};window.TALLERES=${JSON.stringify(T).replace(/</g, "\\u003c")};</script>` + scripts(`\n<script src="/assets/js/app.js?v=${V}"></script>`);
+<script>window.MES=${JSON.stringify(MES)};window.PROGRAMA_CAL=${JSON.stringify({
+    m: MES.m,
+    dias: PR.clases.filter(k => +k.fecha.slice(5, 7) === MES.m).map(k => +k.fecha.slice(8)),
+    otrosMeses: [...new Set(PR.clases.filter(k => +k.fecha.slice(5, 7) !== MES.m).map(k => +k.fecha.slice(5, 7)))],
+    titulo: PR.nombre, academia: PR.academia, generacion: PR.generacion,
+    horario: PR.horario, dias_txt: PR.dias, url: `/${PR.slug}/`, precio: PR.precio, img: PR.heroImg
+  })};window.TALLERES=${JSON.stringify(T).replace(/</g, "\\u003c")};</script>` + scripts(`\n<script src="/assets/js/app.js?v=${V}"></script>`);
   write("talleres/index.html", html);
 }
 
@@ -523,6 +529,10 @@ function buildTaller(t) {
       <div class="tp-actions">
         <a class="btn" href="${waLink(t)}" target="_blank" rel="noopener">${ICON.wa}${t.live ? "Consultar disponibilidad" : "Reservar mi cupo · " + fmt(t.price)}</a>
         <a class="btn ghost" href="/talleres/#calendario">${ICON.cal}Ver calendario</a>
+      </div>
+      <div class="shareline">
+        <button class="sharebtn" type="button" data-share data-title="${esc(t.title)} · Estudio Vector" data-text="${esc(t.title)}: ${t.dayLabel}, ${t.time}. ${fmt(t.price)}. Taller de Estudio Vector en San Pedro Sula.">${ICON.share}<span>Compartir</span></button>
+        <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}.pdf" download>${ICON.pdf}<span>Descargar PDF</span></a>
       </div>
     </div>
   </section>
