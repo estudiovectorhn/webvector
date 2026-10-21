@@ -112,9 +112,24 @@ section.view{padding-top:20px}
 .go svg{width:14px;height:14px}
 
 
-.cover .apps{position:absolute;right:12px;bottom:12px;z-index:2;display:flex;gap:5px}
-.cover .app{width:32px;height:32px;border-radius:9px;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px -6px rgba(0,0,0,.6)}
-.cover .app img{width:20px;height:20px;display:block;object-fit:contain}
+/* Fila inferior de la portada: instructor a la izquierda, logos de redes a la derecha, sin encimarse */
+.coverfoot{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:8px;container-type:inline-size}
+@container (max-width:300px){.coverfoot .by .byt{display:none}.coverfoot .by{padding:4px}}
+.cover .apps{display:flex;gap:6px;flex:0 0 auto}
+.cover .app{width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;box-shadow:0 8px 20px -8px rgba(0,0,0,.7)}
+.cover .app img{width:21px;height:21px;display:block;object-fit:contain}
+/* En tarjetas angostas los logos se ajustan un poco */
+@media (max-width:420px){.cover .apps{gap:4px}.cover .app{width:30px;height:30px;border-radius:9px}.cover .app img{width:19px;height:19px}}
+/* Línea de redes dentro de la tarjeta: deja claro para qué plataformas es el taller */
+.netsline{display:flex;align-items:center;gap:6px;margin:10px 0 2px;padding-top:10px;border-top:1px solid var(--line)}
+.netsline img{width:18px;height:18px;display:block;object-fit:contain;flex:0 0 auto}
+.netsline span{font-size:11.5px;font-weight:800;color:var(--muted);letter-spacing:.01em;margin-left:2px}
+/* Logos de redes en la portada de /talleres/ y en la landing /anuncios/ */
+.hero-nets,.an-nets{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero-nets .hn,.an-nets .an-net{width:38px;height:38px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 10px 22px -12px rgba(8,4,26,.8)}
+.hero-nets .hn img,.an-nets .an-net img{width:24px;height:24px;display:block;object-fit:contain}
+.hero-nets b{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.02em}
+@media (max-width:480px){.hero-nets b{width:100%;margin-top:2px}}
 .tools{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 @media (min-width:480px){.tools{grid-template-columns:repeat(4,1fr)}.tools.n1{grid-template-columns:1fr}.tools.n2{grid-template-columns:repeat(2,1fr)}.tools.n3{grid-template-columns:repeat(3,1fr)}}
 .tools.n1{grid-template-columns:1fr}
@@ -132,10 +147,11 @@ section.view{padding-top:20px}
 .gitem b{display:block;font-size:14px;margin-top:8px}
 .gitem small{display:block;font-size:11.5px;color:var(--muted);line-height:1.3}
 .gnote{grid-column:1/-1;margin:0;font-size:12.5px;color:var(--muted);text-align:center}
-.cover .by{position:absolute;left:12px;bottom:12px;z-index:2;display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:99px;background:rgba(8,4,26,.62);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.cover .by{display:flex;min-width:0;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:99px;background:rgba(8,4,26,.62);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .av{width:34px;height:34px;border-radius:50%;padding:2px;background:var(--grad);flex:none}
 .av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:2px solid #120A2C}
-.cover .by b{display:block;font-size:12px;line-height:1.1;color:#fff}
+.cover .by .byt{min-width:0}
+.cover .by b{display:block;font-size:12px;line-height:1.1;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cover .by small{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fuchsia-soft);font-weight:800;line-height:1.2}
 .cover.hasimg::before{background:linear-gradient(180deg,rgba(8,4,26,.35) 0%,transparent 30%,transparent 55%,rgba(8,4,26,.7) 100%)}
 .cover.hasimg .wm{opacity:.2;right:-14%;width:62%}
@@ -1011,3 +1027,9 @@ a.trust{text-decoration:none;color:inherit}
   .gal-bar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(247,244,255,.97)}
 }
 @media (hover:none){.hero h1 .g,.sv-hero h1 .g,.an-hero h1 .g{animation:none;background-position:30% 50%}}
+
+/* Fin de semana del calendario sin taller programado */
+.wk-off{opacity:.55}
+.wk-none{margin:6px 0 0;font-size:12.5px;font-weight:700;color:var(--muted)}
+/* Landing /anuncios/ con una sola modalidad */
+.an-opts.solo{max-width:520px;margin-inline:auto}

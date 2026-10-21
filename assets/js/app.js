@@ -35,25 +35,29 @@
   $("list").addEventListener("click", cardClick);
 
   /* ---------- CALENDARIO ---------- */
+  const DIAS = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  const MES = window.MES || { m: 10, y: 2026, name: "octubre" };
   const byDay = {};
-  T.forEach(t => t.days.forEach(x => { if (x.m === 10) (byDay[x.d] = byDay[x.d] || []).push(t); }));
-  let selDay = 3;
+  T.forEach(t => t.days.forEach(x => { if (x.m === MES.m) (byDay[x.d] = byDay[x.d] || []).push(t); }));
+  const marcados = Object.keys(byDay).map(Number).sort((a, b) => a - b);
+  let selDay = marcados[0] || 1;
   function renderCal() {
     const heads = ["L", "M", "M", "J", "V", "S", "D"].map((h, i) => `<div class="dow${i > 4 ? " we" : ""}">${h}</div>`).join("");
-    const start = (dowOf(1, 10) + 6) % 7;
+    const start = (dowOf(1, MES.m) + 6) % 7;
+    const last = new Date(MES.y, MES.m, 0).getDate();
     let cells = "";
     for (let i = 0; i < start; i++) cells += '<div class="day empty"></div>';
-    for (let d = 1; d <= 31; d++) {
-      const w = dowOf(d, 10), we = w === 0 || w === 6, ts = byDay[d] || [];
+    for (let d = 1; d <= last; d++) {
+      const w = dowOf(d, MES.m), we = w === 0 || w === 6, ts = byDay[d] || [];
       const cls = ["day", we ? "we" : "", ts.length ? "has" : "", d === selDay ? "sel" : ""].join(" ");
       const dots = ts.map(t => `<i class="${t.live ? "live" : ""}"></i>`).join("");
       cells += ts.length
-        ? `<button class="${cls}" data-d="${d}" id="day-${d}" aria-label="${d} de octubre, ${ts.length} taller${ts.length > 1 ? "es" : ""}">${d}<span class="dots">${dots}</span></button>`
+        ? `<button class="${cls}" data-d="${d}" id="day-${d}" aria-label="${d} de ${MES.name}, ${ts.length} taller${ts.length > 1 ? "es" : ""}">${d}<span class="dots">${dots}</span></button>`
         : `<div class="${cls}">${d}<span class="dots"></span></div>`;
     }
     $("calgrid").innerHTML = heads + cells;
     const ts = byDay[selDay] || [];
-    $("daypanel").innerHTML = `<h4>${dowOf(selDay, 10) === 6 ? "Sábado" : "Domingo"} ${selDay} de octubre</h4><div class="list">${ts.map(t => cardHTML(t)).join("")}</div>`;
+    $("daypanel").innerHTML = `<h4>${DIAS[dowOf(selDay, MES.m)]} ${selDay} de ${MES.name}</h4><div class="list">${ts.map(t => cardHTML(t)).join("")}</div>`;
     stagger($("daypanel"));
   }
   $("calgrid").addEventListener("click", e => { const b = e.target.closest("button.day"); if (b) { selDay = +b.dataset.d; renderCal(); } });

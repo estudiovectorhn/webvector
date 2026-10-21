@@ -2,13 +2,22 @@
 <main class="wrap" id="contenido">
   <section class="hero">
     <div class="hero-text">
-    <div class="eyebrow">Talleres de marketing digital · San Pedro Sula · Octubre 2026</div>
-    <h1>Talleres<span class="g">de octubre</span><span class="sr">: capacitaciones de marketing digital, Meta Ads e inteligencia artificial en San Pedro Sula, Honduras</span></h1>
-    <p class="lead">Capacitaciones prácticas de marketing digital, video e inteligencia artificial para dueños de negocio, emprendedores y equipos de venta. Todos los sábados y domingos.</p>
+    <div class="eyebrow">Talleres de marketing digital · San Pedro Sula · {{MESYACAP}}</div>
+    <h1>Talleres<span class="g">de {{MESNOM}}</span><span class="sr">: capacitaciones de marketing digital, Meta Ads e inteligencia artificial en San Pedro Sula, Honduras</span></h1>
+    <p class="lead">Capacitaciones prácticas para dueños de negocio, emprendedores y equipos de venta: anuncios en Facebook e Instagram y video contenido para TikTok, Facebook e Instagram. Fines de semana, en el aula de Vector Academy.</p>
+    <div class="hero-nets" aria-label="Redes y apps que vas a dominar">
+      <span class="hn"><img src="/img/tools/facebook.svg" alt="Facebook" width="24" height="24"></span>
+      <span class="hn"><img src="/img/tools/instagram.svg" alt="Instagram" width="24" height="24"></span>
+      <span class="hn"><img src="/img/tools/tiktok.svg" alt="TikTok" width="24" height="24"></span>
+      <span class="hn"><img src="/img/tools/whatsapp.svg" alt="WhatsApp" width="24" height="24"></span>
+      <span class="hn"><img src="/img/tools/meta.svg" alt="Meta Ads" width="24" height="24"></span>
+      <span class="hn"><img src="/img/tools/capcut.svg" alt="CapCut" width="24" height="24"></span>
+      <b>Facebook · Instagram · TikTok · WhatsApp</b>
+    </div>
     <div class="facts">
       <div class="fact"><b data-count="10">10</b><span>cupos máximo por taller</span></div>
       <div class="fact"><b>100%</b><span>clases grabadas para repaso</span></div>
-      <div class="fact"><b data-count="9">9</b><span>talleres en el mes</span></div>
+      <div class="fact"><b data-count="{{NT}}">{{NT}}</b><span>talleres en el mes</span></div>
     </div>
     <a class="trust" id="trustbtn" href="/director-creativo/"><span class="av"><img src="/img/edgardo-avatar.jpg" alt=""></span><span>Imparte <b>Edgardo A. López</b>, capacitador de <b>+500 alumnos</b> en Honduras y del <b>FORUM RUTA COPÁN 2026</b>.</span></a>
     </div>
@@ -16,13 +25,13 @@
       <div class="hv-main"><img src="/img/meta.jpg" alt=""><div class="wm logo-img"></div></div>
       <div class="hv-sm hv-a"><img src="/img/ia.jpg" alt=""></div>
       <div class="hv-sm hv-b"><img src="/img/celular.jpg" alt=""></div>
-      <div class="hv-badge"><b>Sábados y domingos</b><span>Octubre 2026 · San Pedro Sula</span></div>
+      <div class="hv-badge"><b>Sábados y domingos</b><span>{{MESYACAP}} · San Pedro Sula</span></div>
     </div>
   </section>
 
   <div class="marquee" aria-hidden="true"><div class="mq-track">
-    <span>Meta Ads</span><i></i><span>Inteligencia Artificial</span><i></i><span>Edición de video</span><i></i><span>Contenido con celular</span><i></i><span>Canva</span><i></i><span>Fotografía</span><i></i><span>Ventas por WhatsApp</span><i></i><span>Apps con IA</span><i></i>
-    <span>Meta Ads</span><i></i><span>Inteligencia Artificial</span><i></i><span>Edición de video</span><i></i><span>Contenido con celular</span><i></i><span>Canva</span><i></i><span>Fotografía</span><i></i><span>Ventas por WhatsApp</span><i></i><span>Apps con IA</span><i></i>
+    <span>Meta Ads</span><i></i><span>Anuncios en Facebook</span><i></i><span>Anuncios en Instagram</span><i></i><span>TikTok</span><i></i><span>Reels</span><i></i><span>CapCut</span><i></i><span>Inteligencia Artificial</span><i></i><span>Video con tu celular</span><i></i><span>WhatsApp</span><i></i>
+    <span>Meta Ads</span><i></i><span>Anuncios en Facebook</span><i></i><span>Anuncios en Instagram</span><i></i><span>TikTok</span><i></i><span>Reels</span><i></i><span>CapCut</span><i></i><span>Inteligencia Artificial</span><i></i><span>Video con tu celular</span><i></i><span>WhatsApp</span><i></i>
   </div></div>
 
   <nav class="tabs" aria-label="Secciones">
@@ -48,7 +57,7 @@
       <button class="chip" aria-pressed="false" data-f="sab" id="f-sab">Sábados</button>
       <button class="chip" aria-pressed="false" data-f="dom" id="f-dom">Domingos</button>
     </div>
-    <div class="resultline" id="resultline">9 talleres disponibles</div>
+    <div class="resultline" id="resultline">{{NT}} talleres disponibles</div>
     <div class="list" id="list">{{CARDS}}</div>
 
     <div class="extras">
@@ -75,11 +84,11 @@
 
   <!-- CALENDARIO -->
   <section class="view" id="v-calendario" hidden>
-    <div class="sechead"><h2>Fechas de octubre</h2><p>Toca un día marcado para ver sus talleres.</p></div>
+    <div class="sechead"><h2>Fechas de {{MESNOM}}</h2><p>Toca un día marcado para ver sus talleres.</p></div>
     <div class="calwrap"><div class="calcol">
     <div class="cal">
       <div class="wm logo-img logo-dark"></div>
-      <div class="calhead"><b>Octubre 2026</b><span>Sábados y domingos</span></div>
+      <div class="calhead"><b>{{MESYACAP}}</b><span>Sábados y domingos</span></div>
       <div class="grid7" id="calgrid"></div>
       <div class="legend">
         <span><i style="background:#fff"></i>Taller disponible</span>
@@ -97,7 +106,7 @@
 {{FOOTER}}
 </main>
 
-<div class="cta-bar"><a class="btn" id="maincta" href="https://wa.me/50495691481?text=Hola%20Vector%2C%20quiero%20informaci%C3%B3n%20de%20los%20talleres%20de%20octubre" target="_blank" rel="noopener">
+<div class="cta-bar"><a class="btn" id="maincta" href="https://wa.me/50495691481?text=Hola%20Vector%2C%20quiero%20informaci%C3%B3n%20de%20los%20talleres%20de%20{{MESNOM}}" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg>
   Reservar mi cupo por WhatsApp</a></div>
 

@@ -36,10 +36,11 @@
     eventos: `<svg viewBox="0 0 120 90" ${L}><path d="M8 82h104"/><rect x="18" y="30" width="84" height="36" rx="4"/><path d="M30 30L20 8M90 30l10-22"/><circle cx="20" cy="8" r="3" fill="currentColor"/><circle cx="100" cy="8" r="3" fill="currentColor"/><path d="M40 66v16M80 66v16M36 48h48"/></svg>`
   };
   const DOW = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-  const MON = { 9: "SEP", 10: "OCT" };
+  const MON = { 1: "ENE", 2: "FEB", 3: "MAR", 4: "ABR", 5: "MAY", 6: "JUN", 7: "JUL", 8: "AGO", 9: "SEP", 10: "OCT", 11: "NOV", 12: "DIC" };
   const AV = "/img/edgardo-avatar.jpg";
   const fmt = n => "L " + n.toLocaleString("en-US");
-  const dowOf = (d, m) => new Date(2026, m - 1, d).getDay();
+  const YEAR = 2026;
+  const dowOf = (d, m) => new Date(YEAR, m - 1, d).getDay();
   const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const waLink = t => "https://wa.me/" + WA + "?text=" + encodeURIComponent("Hola Vector, quiero reservar mi cupo en el taller: " + t.title + " (" + t.dayLabel + ").");
   const waText = txt => "https://wa.me/" + WA + "?text=" + encodeURIComponent(txt);
@@ -57,7 +58,7 @@
     ${img ? "" : `<div class="bigico">${ART[t.id]}</div>`}
     ${withDate ? `<div class="datebadge"><div class="dw">${DOW[dowOf(nd.d, nd.m)].toUpperCase()}</div><div class="dn">${String(nd.d).padStart(2, "0")}</div><div class="dm">${MON[nd.m]}</div></div>` : ""}
     <div class="covertags">${tags.join("")}</div>
-    <div class="by"><span class="av"><img src="${AV}" alt="" width="30" height="30"></span><span><small>Instructor</small><b>Edgardo López</b></span></div>${toolsStrip(t)}</div>`;
+    <div class="coverfoot"><div class="by"><span class="av"><img src="${AV}" alt="" width="30" height="30"></span><span class="byt"><small>Instructor</small><b>Edgardo López</b></span></div>${toolsStrip(t)}</div></div>`;
   }
 
   function cardHTML(t, goal) {
@@ -66,9 +67,17 @@
     <div class="cbody">
       <h3>${t.title} <em>· ${t.tagline}</em></h3>
       <div class="meta"><span>${ICON.clock}${t.time}</span><span>${t.mode === "Online" ? ICON.zoom : ICON.pin}${t.mode === "Online" ? "En vivo por Zoom" : "Aula Vector, SPS"}</span><span>${ICON.level}${t.level}</span></div>
+      ${netsLine(t)}
       <div class="cardfoot"><div class="price">${fmt(t.price)}<small>${t.dur}${t.durNote ? " · " + t.durNote : ""}</small></div><span class="go">Ver taller ${ICON.arrow}</span></div>
     </div></a>`;
   }
+
+  /* Redes sociales del taller: se nombran en la tarjeta para que se vea de un vistazo para qué plataformas es */
+  const NETS = ["facebook", "instagram", "tiktok", "whatsapp", "youtube"];
+  const netsLine = t => {
+    const n = (t.tools || []).filter(k => NETS.includes(k));
+    return n.length ? `<div class="netsline">${n.map(k => toolIcon(k, 18)).join("")}<span>Para ${n.map(k => TOOLS[k].name).join(", ").replace(/, ([^,]*)$/, " y $1")}</span></div>` : "";
+  };
 
   /* Apps y plataformas que se usan en cada taller (campo "tools" en src/talleres.json). Iconos en /img/tools/. */
   const TOOLS = {
@@ -89,7 +98,7 @@
   };
   const toolIcon = (k, size) => `<img src="/img/tools/${k}.svg" alt="${TOOLS[k].name}" width="${size}" height="${size}" loading="lazy">`;
   /* Tira de iconos pequeños para la portada de la tarjeta */
-  const toolsStrip = t => (t.tools && t.tools.length) ? `<div class="apps" aria-label="Apps del taller">${t.tools.slice(0, 4).map(k => `<span class="app" title="${TOOLS[k].name}">${toolIcon(k, 22)}</span>`).join("")}</div>` : "";
+  const toolsStrip = t => (t.tools && t.tools.length) ? `<div class="apps" aria-label="Redes y apps del taller">${t.tools.slice(0, 4).map(k => `<span class="app" title="${TOOLS[k].name}">${toolIcon(k, 21)}</span>`).join("")}</div>` : "";
   /* Sección con iconos grandes para la ficha y la página del taller */
   const toolsHTML = (t, H) => (t.tools && t.tools.length) ? `
    <${H} class="sh-h">Herramientas que usarás</${H}>
@@ -129,7 +138,7 @@
    ${t.note ? `<div class="note">${t.note}</div>` : ""}`;
   }
 
-  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, toolsStrip, gearHTML, INCLUYE };
+  const api = { WA, ICON, ART, DOW, MON, AV, TOOLS, netsLine, fmt, dowOf, esc, waLink, waText, coverHTML, cardHTML, detailHTML, toolsHTML, toolsStrip, gearHTML, INCLUYE };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.VR = api;
 })(typeof window !== "undefined" ? window : globalThis);
