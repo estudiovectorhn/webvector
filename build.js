@@ -433,6 +433,23 @@ function buildDirector() {
   write("director-creativo/index.html", html);
 }
 
+/* Datos del Programa Ejecutivo que usan la tarjeta del listado y el calendario */
+const MESCORTO = { 1: "ene", 2: "feb", 3: "mar", 4: "abr", 5: "may", 6: "jun", 7: "jul", 8: "ago", 9: "sep", 10: "oct", 11: "nov", 12: "dic" };
+function programaData() {
+  const ini = PR.inicio.split("-").map(Number), fin = PR.fin.split("-").map(Number);
+  return {
+    m: MES.m,
+    dias: PR.clases.filter(k => +k.fecha.slice(5, 7) === MES.m).map(k => +k.fecha.slice(8)),
+    otrosMeses: [...new Set(PR.clases.filter(k => +k.fecha.slice(5, 7) !== MES.m).map(k => +k.fecha.slice(5, 7)))],
+    titulo: PR.nombre, academia: PR.academia, generacion: PR.generacion,
+    horario: PR.horario, dias_txt: PR.dias, url: `/${PR.slug}/`,
+    precio: PR.precio, matricula: PR.matricula, img: PR.heroImg,
+    sesiones: PR.sesiones, horas: PR.horas, cupos: PR.cupos, modo: PR.modalidad,
+    diaInicio: String(ini[2]).padStart(2, "0"), mesInicio: MESCORTO[ini[1]].toUpperCase(),
+    inicioCorto: `${ini[2]} de ${MESCORTO[ini[1]]}`, finCorto: `${fin[2]} de ${MESCORTO[fin[1]]}`
+  };
+}
+
 /* Banner del Programa Ejecutivo: se muestra en la portada y en la página de talleres */
 function programaBanner() {
   return `<section class="pgband" aria-labelledby="pgb-t">
@@ -471,7 +488,7 @@ function buildTalleres() {
 </section>
 ${faqHTML(FAQ_HOME)}`;
   body = body.replace("{{HEADER}}", siteHeader("talleres"))
-    .replace("{{CARDS}}", T.map(t => VR.cardHTML(t)).join(""))
+    .replace("{{CARDS}}", VR.programaCard(programaData()) + T.map(t => VR.cardHTML(t)).join(""))
     .replace("{{WEEKENDS}}", weekends)
     .replace("{{PROGRAMA}}", programaBanner())
     .replace("{{SEO}}", seo)
@@ -494,13 +511,7 @@ ${faqHTML(FAQ_HOME)}`;
     canonical: SITE + "/talleres/",
     ldGraph: graph
   }) + "\n" + body + `
-<script>window.MES=${JSON.stringify(MES)};window.PROGRAMA_CAL=${JSON.stringify({
-    m: MES.m,
-    dias: PR.clases.filter(k => +k.fecha.slice(5, 7) === MES.m).map(k => +k.fecha.slice(8)),
-    otrosMeses: [...new Set(PR.clases.filter(k => +k.fecha.slice(5, 7) !== MES.m).map(k => +k.fecha.slice(5, 7)))],
-    titulo: PR.nombre, academia: PR.academia, generacion: PR.generacion,
-    horario: PR.horario, dias_txt: PR.dias, url: `/${PR.slug}/`, precio: PR.precio, img: PR.heroImg
-  })};window.TALLERES=${JSON.stringify(T).replace(/</g, "\\u003c")};</script>` + scripts(`\n<script src="/assets/js/app.js?v=${V}"></script>`);
+<script>window.MES=${JSON.stringify(MES)};window.PROGRAMA_CAL=${JSON.stringify(programaData())};window.TALLERES=${JSON.stringify(T).replace(/</g, "\\u003c")};</script>` + scripts(`\n<script src="/assets/js/app.js?v=${V}"></script>`);
   write("talleres/index.html", html);
 }
 
@@ -532,7 +543,9 @@ function buildTaller(t) {
       </div>
       <div class="shareline">
         <button class="sharebtn" type="button" data-share data-title="${esc(t.title)} · Estudio Vector" data-text="${esc(t.title)}: ${t.dayLabel}, ${t.time}. ${fmt(t.price)}. Taller de Estudio Vector en San Pedro Sula.">${ICON.share}<span>Compartir</span></button>
-        <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}.pdf" download>${ICON.pdf}<span>Descargar PDF</span></a>
+        <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}.pdf" download>${ICON.pdf}<span>Ficha en PDF</span></a>
+        <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}.png" download>${ICON.img}<span>Imagen para redes</span></a>
+        <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}-story.png" download>${ICON.img}<span>Historia 9:16</span></a>
       </div>
     </div>
   </section>

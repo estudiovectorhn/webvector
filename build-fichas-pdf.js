@@ -186,6 +186,125 @@ const fichaPrograma = () => `<!doctype html><html lang="es"><head><meta charset=
 </div></section>
 </body></html>`;
 
+/* ---------------- Ficha publicitaria en imagen (PNG) ---------------- */
+const MESCORTO = { 1: "ENE", 2: "FEB", 3: "MAR", 4: "ABR", 5: "MAY", 6: "JUN", 7: "JUL", 8: "AGO", 9: "SEP", 10: "OCT", 11: "NOV", 12: "DIC" };
+const DOWC = ["DOM", "LUN", "MAR", "MIÉ", "JUE", "VIE", "SÁB"];
+
+const PROMO_CSS = `${FONTS}
+:root{--deep:#2C02A4;--violet:#6A3BF5;--fuchsia:#E0169B;--text:#160A3A;--muted:#5E5484;--line:#E4DBFB}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.promo{position:relative;overflow:hidden;background:#0E0630;color:#fff;display:flex;flex-direction:column}
+.ph{position:relative;flex:0 0 auto;overflow:hidden}
+.ph>img.bg{width:100%;height:100%;object-fit:cover;display:block}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,6,48,.55) 0%,rgba(14,6,48,0) 32%,rgba(14,6,48,.25) 62%,#0E0630 100%)}
+.top{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between}
+.top .logo{display:block;width:auto}
+.pill{font-weight:800;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px)}
+.fecha{position:absolute;z-index:2;border-radius:22px;background:var(--grad,linear-gradient(120deg,#3A0CC9,#7B4DFF 45%,#E0169B));text-align:center;box-shadow:0 24px 50px -20px rgba(0,0,0,.8)}
+.fecha .dw{font-weight:800;letter-spacing:.18em;opacity:.95}
+.fecha .dn{font-family:"Anton";line-height:.9}
+.fecha .dm{font-weight:800;letter-spacing:.18em;opacity:.95}
+.body{position:relative;z-index:2;flex:1;min-height:0;display:flex;flex-direction:column;background:#0E0630}
+.barra{flex:0 0 auto}
+.eyebrow{font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#FF9AD2}
+h1{font-family:"Anton";text-transform:uppercase;line-height:.94;color:#fff}
+.tl{font-weight:800;color:#C9B6FF}
+.facts{display:flex;flex-wrap:wrap}
+.facts span{font-weight:700;color:#D6CCF5;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.07)}
+.apps{display:flex;align-items:center}
+.apps img{background:#fff;border-radius:50%;object-fit:contain;display:block}
+.pay{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-top:auto}
+.pay .p b{display:block;font-family:"Anton";line-height:.9;color:#fff}
+.pay .p small{display:block;font-weight:700;color:#C9B6FF}
+.pay .w{text-align:right}
+.pay .w b{display:block;font-family:"Anton";color:#fff;line-height:1}
+.pay .w small{display:block;font-weight:700;color:#C9B6FF}
+.barra{display:flex;align-items:center;justify-content:space-between;flex:0 0 auto;background:var(--grad,linear-gradient(120deg,#3A0CC9,#7B4DFF 45%,#E0169B));font-weight:800;color:#fff}
+`;
+
+/* Medidas por formato: feed 4:5 y story 9:16 */
+const FORMATOS = {
+  feed: { w: 1080, h: 1350, ph: 620, pad: 56, logo: 86, h1: 72, tl: 30, eyebrow: 20, fecha: { t: 34, l: 34, w: 170, p: 18, dw: 17, dn: 62, dm: 17 }, pill: 18, fact: 21, app: 54, price: 92, wa: 34, barra: 24 },
+  story: { w: 1080, h: 1920, ph: 980, pad: 64, logo: 96, h1: 84, tl: 34, eyebrow: 22, fecha: { t: 44, l: 40, w: 196, p: 22, dw: 19, dn: 72, dm: 19 }, pill: 20, fact: 23, app: 60, price: 108, wa: 38, barra: 26 }
+};
+
+const promoHTML = (d, F) => `<!doctype html><html lang="es"><head><meta charset="utf-8"><style>${PROMO_CSS}
+.promo{width:${F.w}px;height:${F.h}px}
+.ph{height:${F.ph}px}
+.top{padding:${F.pad}px ${F.pad}px 0}
+.top .logo{height:${F.logo}px}
+.pill{font-size:${F.pill}px;padding:${Math.round(F.pill * .55)}px ${F.pill}px}
+.fecha{left:${F.pad}px;top:${F.ph - F.fecha.w * .62}px;width:${F.fecha.w}px;padding:${F.fecha.p}px 10px}
+.fecha .dw{font-size:${F.fecha.dw}px}
+.fecha .dn{font-size:${F.fecha.dn}px;margin:${Math.round(F.fecha.p * .25)}px 0}
+.fecha .dm{font-size:${F.fecha.dm}px}
+.body{padding:${Math.round(F.pad * .9)}px ${F.pad}px ${F.pad}px}
+.eyebrow{font-size:${F.eyebrow}px}
+h1{font-size:${F.h1}px;margin:${Math.round(F.pad * .28)}px 0 ${Math.round(F.pad * .2)}px}
+.tl{font-size:${F.tl}px}
+.facts{gap:${Math.round(F.pad * .2)}px;margin-top:${Math.round(F.pad * .5)}px}
+.facts span{font-size:${F.fact}px;padding:${Math.round(F.fact * .5)}px ${Math.round(F.fact * .9)}px}
+.apps{gap:${Math.round(F.app * .22)}px;margin-top:${Math.round(F.pad * .45)}px}
+.apps img{width:${F.app}px;height:${F.app}px;padding:${Math.round(F.app * .17)}px}
+.pay{padding-top:${Math.round(F.pad * .6)}px}
+.pay .p b{font-size:${F.price}px}
+.pay .p small{font-size:${F.fact}px;margin-top:6px}
+.pay .w b{font-size:${F.wa}px}
+.pay .w small{font-size:${Math.round(F.fact * .9)}px;margin-top:6px}
+.barra{font-size:${F.barra}px;padding:${Math.round(F.barra * .8)}px ${F.pad}px;letter-spacing:.04em}
+</style></head><body>
+<div class="promo">
+  <div class="ph">
+    <img class="bg" src="${d.img}" alt="">
+    <div class="top"><img class="logo" src="${img("/img/logo-blanco.png")}" alt=""><span class="pill">${esc(d.pill)}</span></div>
+    <div class="fecha"><div class="dw">${esc(d.dw)}</div><div class="dn">${esc(d.dn)}</div><div class="dm">${esc(d.dm)}</div></div>
+  </div>
+  <div class="body">
+    <div class="eyebrow">${esc(d.eyebrow)}</div>
+    <h1>${esc(d.titulo)}</h1>
+    <div class="tl">${esc(d.tagline)}</div>
+    <div class="facts">${d.facts.map(f => `<span>${esc(f)}</span>`).join("")}</div>
+    ${d.apps.length ? `<div class="apps">${d.apps.map(k => `<img src="${img("/img/tools/" + k + ".svg")}" alt="">`).join("")}</div>` : ""}
+    <div class="pay">
+      <div class="p"><b>${esc(d.precio)}</b><small>${esc(d.precioNota)}</small></div>
+      <div class="w"><b>WhatsApp 9569-1481</b><small>Cupos por orden de pago</small></div>
+    </div>
+  </div>
+  <div class="barra"><span>${esc(d.barra)}</span><span>estudiovector.com</span></div>
+</div>
+</body></html>`;
+
+const promoTaller = t => {
+  const ds = t.days, d0 = ds[0];
+  const dow = DOWC[new Date(2026, d0.m - 1, d0.d).getDay()];
+  return {
+    img: img(t.img), pill: t.mode === "Online" ? "Online" : "Presencial",
+    dw: dow, dn: ds.map(x => ds.length > 1 ? String(x.d) : String(x.d).padStart(2, "0")).join("·"),
+    dm: [...new Set(ds.map(x => MESCORTO[x.m]))].join("·"),
+    eyebrow: "Vector Academy · San Pedro Sula",
+    titulo: t.title, tagline: t.tagline,
+    facts: [t.time, t.dur + (t.durNote ? " · " + t.durNote : ""), "Máximo 10 cupos", t.extra || "Certificado incluido"].filter(Boolean),
+    apps: (t.tools || []).slice(0, 6),
+    precio: fmt(t.price), precioNota: "por persona",
+    barra: t.dayLabel
+  };
+};
+
+const promoPrograma = () => {
+  const ini = PR.inicio.split("-").map(Number);
+  return {
+    img: img(PR.heroImg), pill: PR.generacion,
+    dw: "INICIA", dn: String(ini[2]).padStart(2, "0"), dm: MESCORTO[ini[1]],
+    eyebrow: `${PR.academia} · ${PR.ciudad}`,
+    titulo: PR.h1, tagline: PR.nombre,
+    facts: [`${PR.sesiones} sesiones · ${PR.horas} horas`, `${PR.dias}, ${PR.horario}`, `${PR.cupos} cupos`, "Certificado de aprobación"],
+    apps: ["chatgpt", "claude", "capcut", "meta", "facebook", "whatsapp"],
+    precio: fmt(PR.precio), precioNota: `reservas con ${fmt(PR.matricula)}`,
+    barra: `Del ${ini[2]} de noviembre al 10 de diciembre de ${ini[0]}`
+  };
+};
+
 (async () => {
   let chromium;
   try { ({ chromium } = require("playwright")); }
@@ -235,9 +354,41 @@ const fichaPrograma = () => `<!doctype html><html lang="es"><head><meta charset=
     fs.unlinkSync(tmp);
   };
 
+  const shot = async (datos, out, formato) => {
+    const F = FORMATOS[formato];
+    const tmp = path.join(os.tmpdir(), "promo-" + path.basename(out) + ".html");
+    fs.writeFileSync(tmp, promoHTML(datos, F));
+    const pg = await browser.newPage({ viewport: { width: F.w, height: F.h }, deviceScaleFactor: 1 });
+    await pg.goto(pathToFileURL(tmp).href, { waitUntil: "networkidle" });
+    await pg.evaluate(() => document.fonts.ready);
+    const z = await pg.evaluate(() => {
+      const body = document.querySelector(".body");
+      const hijos = [...body.children];
+      const alto = () => hijos.reduce((a, el) => a + el.getBoundingClientRect().height, 0);
+      const cs = getComputedStyle(body);
+      const libre = body.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      let z = 1;
+      while (alto() > libre && z > 0.62) { z -= 0.02; body.style.zoom = z; }
+      return z;
+    });
+    if (z < 1) console.log("    · ajuste del texto:", Math.round(z * 100) + "%");
+    fs.mkdirSync(path.dirname(out), { recursive: true });
+    await pg.locator(".promo").screenshot({ path: out });
+    await pg.close();
+    console.log("  ✓", out, (fs.statSync(out).size / 1024).toFixed(0) + " KB");
+    fs.unlinkSync(tmp);
+  };
+
   console.log("Generando fichas en PDF…");
   for (const t of T) await render(fichaTaller(t), path.join("talleres", t.slug, t.slug + ".pdf"));
   await render(fichaPrograma(), path.join(PR.slug, PR.slug + ".pdf"));
+  console.log("Generando fichas publicitarias en PNG…");
+  for (const t of T) {
+    await shot(promoTaller(t), path.join("talleres", t.slug, t.slug + ".png"), "feed");
+    await shot(promoTaller(t), path.join("talleres", t.slug, t.slug + "-story.png"), "story");
+  }
+  await shot(promoPrograma(), path.join(PR.slug, PR.slug + ".png"), "feed");
+  await shot(promoPrograma(), path.join(PR.slug, PR.slug + "-story.png"), "story");
   await browser.close();
   console.log("Listo.");
 })().catch(e => { console.error(e); process.exit(1); });
