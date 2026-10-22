@@ -73,7 +73,123 @@
   "img": "/img/celular.jpg",
   "durNote": "2 sábados",
   "extra": "Refrigerio incluido",
-  "note": "Requisitos para el taller: teléfono con cámara, CapCut instalado y ChatGPT o Claude instalado en tu teléfono."
+  "note": "Requisitos para el taller: teléfono con cámara, CapCut instalado y ChatGPT o Claude instalado en tu teléfono.",
+  "plan": {
+   "lead": "Dos sábados de cinco horas. El primero se graba, el segundo se edita y se publica. Cada bloque cierra con algo hecho por ti, no con apuntes.",
+   "bloques": [
+    {
+     "hora": "Sáb 7 · 1:00 – 1:45 p.m.",
+     "nivel": "Día 1",
+     "titulo": "Qué grabar: ideas y guion con inteligencia artificial",
+     "items": [
+      "Los formatos que funcionan hoy en TikTok, Reels y Facebook",
+      "Cómo sacar ideas de tu propio negocio y no quedarte en blanco",
+      "Usar la IA para pasar de la idea al guion en minutos",
+      "La estructura de un video que retiene: primeros 3 segundos, desarrollo y cierre"
+     ],
+     "entrega": "Tres guiones listos para grabar, de tu negocio"
+    },
+    {
+     "hora": "Sáb 7 · 1:45 – 3:00 p.m.",
+     "nivel": "Día 1",
+     "titulo": "Tu celular como cámara",
+     "items": [
+      "Resolución, cuadros por segundo y enfoque: qué tocar y qué dejar quieto",
+      "Exposición y balance de blancos para que no se vea amarillo ni quemado",
+      "Estabilidad: trípode, agarre y movimientos que sí se pueden hacer a mano",
+      "Encuadre y composición: dónde te paras y dónde pones el producto"
+     ],
+     "entrega": "Tu celular configurado para grabar bien, con los ajustes anotados"
+    },
+    {
+     "hora": "Sáb 7 · 3:00 – 3:15 p.m.",
+     "nivel": "Pausa",
+     "titulo": "Coffee break",
+     "items": [
+      "Café y preguntas sueltas con el instructor"
+     ]
+    },
+    {
+     "hora": "Sáb 7 · 3:15 – 4:15 p.m.",
+     "nivel": "Día 1",
+     "titulo": "Luz y audio, lo que separa un video amateur de uno profesional",
+     "items": [
+      "Luz natural: a qué hora y hacia dónde te colocas",
+      "Aro de luz e iluminación de estudio: cuándo hace falta y cómo se arma",
+      "Micrófono de solapa y audio del celular: cómo se oye cada uno",
+      "Errores de luz y sonido que arruinan un video bueno"
+     ],
+     "entrega": "Un set de grabación armado por ti en el Content Lab"
+    },
+    {
+     "hora": "Sáb 7 · 4:15 – 6:00 p.m.",
+     "nivel": "Día 1",
+     "titulo": "Práctica: grabas tus videos",
+     "items": [
+      "Autograbarte con trípode y hablar con seguridad frente a cámara",
+      "Grabar producto, servicio y marca personal",
+      "Planos de apoyo: lo que hace que el video no se vea plano",
+      "Revisión del material con el instructor antes de cerrar el día"
+     ],
+     "entrega": "El material en bruto de tus primeros videos, grabado por ti"
+    },
+    {
+     "hora": "Sáb 14 · 1:00 – 2:30 p.m.",
+     "nivel": "Día 2",
+     "titulo": "CapCut desde cero: el corte y el ritmo",
+     "items": [
+      "La interfaz de CapCut en el celular, sin perderse",
+      "Cortar al ritmo: qué se queda y qué se va",
+      "Textos, títulos y subtítulos automáticos",
+      "Música y efectos de sonido sin bloqueos de derechos"
+     ],
+     "entrega": "Tu primer video editado de principio a fin"
+    },
+    {
+     "hora": "Sáb 14 · 2:30 – 2:45 p.m.",
+     "nivel": "Pausa",
+     "titulo": "Coffee break",
+     "items": [
+      "Café y revisión rápida de lo editado"
+     ]
+    },
+    {
+     "hora": "Sáb 14 · 2:45 – 4:15 p.m.",
+     "nivel": "Día 2",
+     "titulo": "Edición que se ve comercial",
+     "items": [
+      "Transiciones y animaciones que suman y no distraen",
+      "Corrección de color para que tu marca se vea igual siempre",
+      "Plantillas propias para no empezar de cero en cada video",
+      "Formatos y tamaños correctos: 9:16, 4:5 y 1:1"
+     ],
+     "entrega": "Tu plantilla de edición guardada, con tu marca"
+    },
+    {
+     "hora": "Sáb 14 · 4:15 – 5:30 p.m.",
+     "nivel": "Día 2",
+     "titulo": "Publicar: de tu celular a tus redes",
+     "items": [
+      "Exportar en la mejor calidad sin que la red te lo baje",
+      "Subir a TikTok, Reels y Facebook con el formato que cada una pide",
+      "Descripciones y texto en pantalla que ayudan al alcance",
+      "Cada cuánto publicar sin morir en el intento"
+     ],
+     "entrega": "Tus videos publicados en tus redes, el mismo día"
+    },
+    {
+     "hora": "Sáb 14 · 5:30 – 6:00 p.m.",
+     "nivel": "Cierre",
+     "titulo": "Tu plan de contenido",
+     "items": [
+      "Armas tu calendario de publicaciones del mes",
+      "Qué medir para saber si el contenido está funcionando",
+      "Entrega de certificados y acceso al grupo de WhatsApp"
+     ],
+     "entrega": "Tu calendario de contenido del mes, escrito"
+    }
+   ]
+  }
  },
  {
   "id": "meta",
@@ -136,7 +252,91 @@
    }
   ],
   "img": "/img/meta.jpg",
-  "extra": "Refrigerio incluido"
+  "extra": "Refrigerio incluido",
+  "plan": {
+   "lead": "Cinco horas con tu propia cuenta publicitaria en pantalla. No es teoría: sales del taller con una campaña armada y lista para activar.",
+   "bloques": [
+    {
+     "hora": "1:00 – 1:30 p.m.",
+     "nivel": "Arranque",
+     "titulo": "Conceptos de marketing digital que cambian tus resultados",
+     "items": [
+      "Por qué \"promocionar publicación\" casi siempre tira el dinero",
+      "Embudo: quién te conoce, quién te considera y quién te compra",
+      "Qué es un resultado y cuánto deberías estar pagando por él",
+      "Los números que de verdad importan y los que solo adornan"
+     ],
+     "entrega": "Claro cuál es el resultado que tu negocio debe perseguir"
+    },
+    {
+     "hora": "1:30 – 2:30 p.m.",
+     "nivel": "Básico",
+     "titulo": "Tu cuenta publicitaria, bien montada",
+     "items": [
+      "Portafolio comercial: para qué sirve y cómo se crea",
+      "Cuenta publicitaria, página y WhatsApp conectados",
+      "Método de pago y facturación sin errores",
+      "Permisos y accesos: cómo no perder tu cuenta"
+     ],
+     "entrega": "Tu cuenta publicitaria configurada y lista para invertir"
+    },
+    {
+     "hora": "2:30 – 3:15 p.m.",
+     "nivel": "Básico",
+     "titulo": "A quién le hablas: objetivos y públicos",
+     "items": [
+      "Elegir el objetivo correcto: mensajes, ventas, alcance o tráfico",
+      "Segmentar por ubicación, edad, intereses y comportamiento",
+      "Públicos guardados, similares y de retargeting",
+      "El error de segmentar demasiado y el de no segmentar nada"
+     ],
+     "entrega": "Tus públicos creados y guardados en la cuenta"
+    },
+    {
+     "hora": "3:15 – 3:30 p.m.",
+     "nivel": "Pausa",
+     "titulo": "Coffee break",
+     "items": [
+      "Café y preguntas sueltas con el instructor"
+     ]
+    },
+    {
+     "hora": "3:30 – 4:30 p.m.",
+     "nivel": "Intermedio",
+     "titulo": "Armar y lanzar la campaña",
+     "items": [
+      "Presupuesto: cuánto invertir al día y cómo repartirlo",
+      "El anuncio: imagen o video, texto, titular y llamado a la acción",
+      "Campañas a WhatsApp: el mensaje con el que te escriben",
+      "Revisión del anuncio antes de publicarlo"
+     ],
+     "entrega": "Tu primera campaña armada y lista para activar"
+    },
+    {
+     "hora": "4:30 – 5:30 p.m.",
+     "nivel": "Intermedio",
+     "titulo": "Leer resultados y optimizar",
+     "items": [
+      "Costo por resultado, alcance, frecuencia y clics: qué dice cada uno",
+      "Cuándo una campaña está funcionando y cuándo hay que pararla",
+      "Pruebas publicitarias: cómo comparar dos anuncios con criterio",
+      "Escalar lo que funciona sin arruinar el costo"
+     ],
+     "entrega": "Tu tabla de métricas con los números que vas a revisar cada semana"
+    },
+    {
+     "hora": "5:30 – 6:00 p.m.",
+     "nivel": "Cierre",
+     "titulo": "Tu plan de inversión",
+     "items": [
+      "Con cuánto empezar y cuándo subir el presupuesto",
+      "Qué revisar cada semana y qué decidir con esos datos",
+      "Entrega de certificados y acceso al grupo de WhatsApp"
+     ],
+     "entrega": "Tu plan de inversión del primer mes, escrito"
+    }
+   ]
+  }
  },
  {
   "id": "ia",
@@ -214,7 +414,8 @@
       "Panorama 2026: qué hace mejor ChatGPT y qué hace mejor Claude",
       "Dónde se pierde tiempo hoy en tu negocio: el diagnóstico que guía el taller",
       "Reglas de uso responsable: qué información sí y qué información no se le da a la IA"
-     ]
+     ],
+     "entrega": "Tu lista de las tareas que más tiempo te consumen hoy"
     },
     {
      "hora": "1:30 – 2:30 p.m.",
@@ -225,7 +426,8 @@
       "Darle contexto de tu negocio para que deje de responder genérico",
       "Corregir y afinar una respuesta en lugar de empezar de nuevo",
       "Guardar tus instrucciones para reutilizarlas: tu biblioteca personal"
-     ]
+     ],
+     "entrega": "Tres instrucciones tuyas, probadas y guardadas"
     },
     {
      "hora": "2:30 – 3:15 p.m.",
@@ -236,7 +438,8 @@
       "Cotizaciones, correos, manuales y políticas en minutos",
       "Analizar tus ventas y tus clientes a partir de un archivo",
       "Resumir reuniones, mensajes y documentos largos"
-     ]
+     ],
+     "entrega": "Un copy, una cotización y un análisis hechos con tus propios datos"
     },
     {
      "hora": "3:15 – 3:30 p.m.",
@@ -255,7 +458,8 @@
       "Crear una calculadora de precios o de comisiones para tu negocio",
       "Armar plantillas, formularios y tableros sin programar",
       "Guardar, editar y compartir lo que creaste con tu equipo"
-     ]
+     ],
+     "entrega": "Una calculadora o plantilla funcionando, hecha para tu negocio"
     },
     {
      "hora": "4:15 – 5:00 p.m.",
@@ -266,7 +470,8 @@
       "Casos reales: revisar información, preparar publicaciones, dar seguimiento",
       "Cómo se le define un objetivo, los permisos y los límites a un agente",
       "Qué tareas conviene automatizar y cuáles no"
-     ]
+     ],
+     "entrega": "Un agente configurado con su objetivo, sus permisos y sus límites"
     },
     {
      "hora": "5:00 – 5:40 p.m.",
@@ -277,7 +482,8 @@
       "Demostración: de una idea a una herramienta interna funcionando",
       "Cuándo te conviene una app propia y cuándo no vale la pena",
       "Por dónde seguir si quieres construir la tuya"
-     ]
+     ],
+     "entrega": "El boceto de la herramienta interna que te hace falta"
     },
     {
      "hora": "5:40 – 6:00 p.m.",
@@ -287,7 +493,8 @@
       "Eliges las tres tareas de tu negocio que vas a automatizar primero",
       "Te llevas tu biblioteca de instrucciones y lo que creaste en clase",
       "Entrega de certificados y acceso al grupo de WhatsApp"
-     ]
+     ],
+     "entrega": "Tu plan escrito: tres tareas automatizadas y por dónde seguir"
     }
    ]
   }

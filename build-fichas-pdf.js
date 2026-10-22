@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 /*
- * Genera una ficha en PDF por cada taller y por el Programa Ejecutivo, con la marca de Estudio Vector.
- * Son las fichas que se le mandan a un prospecto por WhatsApp: portada con la fecha y el precio,
- * lo que aprenderá, el plan de estudio si el taller lo trae, lo que incluye y cómo reservar.
+ * Fichas de los talleres y del Programa Ejecutivo de Vector Academy.
  *
- * Uso:  node build-fichas-pdf.js
- *   → talleres/<slug>/<slug>.pdf  y  <slug-del-programa>/<slug>.pdf
- * Requiere Playwright con Chromium (igual que build-pdf.js).
+ *   PDF  → brochure vertical (1080 x 1920, formato de celular) pensado para mandarlo por WhatsApp:
+ *          portada, de qué se trata, ruta de aprendizaje, una página por par de bloques con lo que
+ *          se aprende, se practica y se llevan, resultados, herramientas, requisitos, instructor,
+ *          fechas e inversión, preguntas frecuentes y cómo reservar.
+ *   PNG  → ficha publicitaria para feed (1080x1350) e historias (1080x1920).
+ *
+ * Uso:  node build-fichas-pdf.js      (o  npm run fichas)
+ * Requiere Playwright con Chromium, igual que build-pdf.js.
  */
 const fs = require("fs");
 const path = require("path");
@@ -20,6 +23,7 @@ const PR = JSON.parse(fs.readFileSync("src/programa.json", "utf8"));
 const { TOOLS, fmt, esc, waLink, waText, INCLUYE } = VR;
 const file = p => pathToFileURL(path.resolve(p)).href;
 const img = p => file(p.replace(/^\//, ""));
+const pares = xs => xs.reduce((a, x, i) => (i % 2 ? a[a.length - 1].push(x) : a.push([x]), a), []);
 
 const FONTS = `
 @font-face{font-family:"Anton";src:url("${file("assets/fonts/anton-latin-400-normal.woff2")}") format("woff2");font-weight:400}
@@ -27,165 +31,359 @@ const FONTS = `
 @font-face{font-family:"Manrope";src:url("${file("assets/fonts/manrope-latin-700-normal.woff2")}") format("woff2");font-weight:700}
 @font-face{font-family:"Manrope";src:url("${file("assets/fonts/manrope-latin-800-normal.woff2")}") format("woff2");font-weight:800}`;
 
+/* ---------------- Brochure vertical ---------------- */
 const CSS = `${FONTS}
-:root{--deep:#2C02A4;--violet:#6A3BF5;--fuchsia:#E0169B;--text:#160A3A;--muted:#5E5484;--dim:#8C83AF;--line:#E4DBFB;--bg:#F7F4FF;--ok:#0E9A60}
-@page{size:Letter;margin:0}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:"Manrope",system-ui,sans-serif;color:var(--text);font-size:9.5pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+:root{--deep:#2C02A4;--violet:#6A3BF5;--violet2:#7B4DFF;--fuchsia:#E0169B;--text:#160A3A;--muted:#5E5484;--dim:#8C83AF;--line:#E4DBFB;--bg:#F7F4FF;--surface2:#F4EFFF;--ok:#0E9A60;--ink:#0E0630;--grad:linear-gradient(120deg,#3A0CC9 0%,#7B4DFF 45%,#E0169B 100%)}
+@page{size:1080px 1920px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Manrope",system-ui,sans-serif;color:var(--text);-webkit-print-color-adjust:exact;print-color-adjust:exact}
 a{color:inherit;text-decoration:none}
-.page{width:8.5in;height:11in;position:relative;page-break-after:always;background:var(--bg);overflow:hidden}
-.pgin{height:auto;min-height:11in;padding:.4in .5in .34in;display:flex;flex-direction:column}
-.page.flow,.page.flow .pgin{height:auto;min-height:11in}
-.page:last-child{page-break-after:auto}
-
+li{list-style:none}
+.p{position:relative;width:1080px;height:1920px;overflow:hidden;page-break-after:always;background:var(--bg);display:flex;flex-direction:column}
+.p:last-child{page-break-after:auto}
+.in{flex:1;min-height:0;display:flex;flex-direction:column;padding:80px 80px 40px}
+.in.mid{justify-content:center}
+.pasos{margin:auto 0}
 .display{font-family:"Anton","Impact",sans-serif;font-weight:400;text-transform:uppercase;line-height:.95}
 
-.hero{margin:-.4in -.5in .18in;padding:.34in .5in .26in;color:#fff;background:radial-gradient(70% 60% at 100% 0%,rgba(224,22,155,.6),transparent 60%),radial-gradient(60% 50% at 0% 40%,rgba(123,77,255,.5),transparent 60%),linear-gradient(160deg,#12063F 0%,#2C02A4 55%,#4B14C8 100%)}
-.hero .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.16in}
-.hero .logo{height:.42in}
-.hero .pill{font-size:8pt;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:6px 13px;border:1px solid rgba(255,255,255,.34);border-radius:99px;background:rgba(255,255,255,.08)}
-.hero .eyebrow{font-size:8.5pt;letter-spacing:.26em;text-transform:uppercase;font-weight:800;color:#FF9AD2}
-.hero h1{font-size:27pt;margin:4px 0 0;color:#fff;max-width:6.6in}
-.hero .tl{margin-top:5px;font-size:10pt;font-weight:800;color:#FF9AD2}
-.hero .lead{max-width:6.2in;margin:.09in 0 0;font-size:9pt;color:#D6CCF5}
-.kv{display:flex;gap:.08in;margin-top:.16in;flex-wrap:wrap}
-.kv div{flex:1;min-width:1.3in;padding:7px 10px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.17)}
-.kv small{display:block;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#FF9AD2}
-.kv b{display:block;margin-top:2px;font-size:9.5pt;line-height:1.2}
-.kv b.big{font-family:"Anton";font-size:17pt;line-height:1}
+/* Encabezado corrido */
+.hd{display:flex;align-items:center;justify-content:space-between;padding:52px 80px 0;flex:0 0 auto}
+.hd img{height:52px;width:auto;display:block}
+.hd span{font-size:19px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.p.dark .hd span{color:#C9B6FF}
+.ft{display:flex;align-items:center;justify-content:space-between;padding:0 80px 46px;font-size:18px;font-weight:800;color:var(--dim);flex:0 0 auto}
+.p.dark{background:var(--ink);color:#fff}
+.p.dark .ft{color:rgba(255,255,255,.55)}
 
-h2.s{font-family:"Anton";text-transform:uppercase;font-size:13.5pt;color:var(--deep);margin:.15in 0 .07in;line-height:1}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:.1in}
-.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:.11in .13in;break-inside:avoid}
-ul.clean{list-style:none;margin:0;padding:0}
-ul.clean li{position:relative;padding-left:15px;margin-bottom:3px;font-size:9pt;line-height:1.35}
-ul.clean li::before{content:"";position:absolute;left:3px;top:6px;width:5px;height:5px;border-radius:50%;background:var(--violet)}
-.res li::before{background:var(--ok)}
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chips span{font-size:8pt;font-weight:800;padding:4px 9px;border-radius:99px;background:#fff;border:1px solid var(--line);color:var(--muted)}
+.eyebrow{font-size:21px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--fuchsia)}
+.p.dark .eyebrow{color:#FF9AD2}
+h2.t{font-family:"Anton";text-transform:uppercase;font-size:76px;line-height:.95;margin:16px 0 22px;color:var(--deep)}
+.p.dark h2.t{color:#fff}
+p.lead{font-size:30px;line-height:1.5;color:var(--muted)}
+.p.dark p.lead{color:#D6CCF5}
+
+/* Portada */
+.cover-ph{position:relative;flex:0 0 auto;height:980px;overflow:hidden}
+.cover-ph>img.bg{width:100%;height:100%;object-fit:cover;display:block}
+.cover-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,6,48,.55) 0%,rgba(14,6,48,0) 30%,rgba(14,6,48,.3) 65%,var(--ink) 100%)}
+.cover-top{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;padding:56px 80px}
+.cover-top img{height:76px;width:auto;display:block}
+.pill{font-size:20px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:12px 24px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.42);color:#fff}
+.cover-in{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;padding:52px 80px 56px;background:var(--ink);color:#fff}
+.cover-in h1{font-family:"Anton";text-transform:uppercase;font-size:92px;line-height:.92;margin:0 0 20px}
+.cover-in .tl{font-size:34px;font-weight:800;color:#C9B6FF;margin-bottom:34px}
+.cover-kv{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+.cover-kv div{padding:24px 28px;border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+.cover-kv small{display:block;font-size:17px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#FF9AD2}
+.cover-kv b{display:block;margin-top:8px;font-size:30px;line-height:1.2}
+.cover-kv b.big{font-family:"Anton";font-size:56px;line-height:1}
+
+/* Bloques de contenido */
+.cards{display:grid;gap:22px;align-content:center;flex:1;min-height:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:34px 36px}
+.card.soft{background:var(--surface2)}
+.bq{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.bq .h{font-size:22px;font-weight:800;color:var(--fuchsia)}
+.bq .n{font-size:17px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);color:var(--muted)}
+.card.soft .bq .n{background:#fff}
+.card h3{font-size:38px;line-height:1.14;margin-bottom:18px}
+.card ul li{position:relative;padding-left:32px;font-size:25px;line-height:1.45;color:var(--muted);margin-bottom:11px}
+.card ul li::before{content:"";position:absolute;left:8px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--violet2)}
+.entrega{display:flex;gap:16px;align-items:flex-start;margin-top:22px;padding:22px 26px;border-radius:20px;background:rgba(14,154,96,.09);border:1px solid rgba(14,154,96,.28)}
+.entrega svg{width:34px;height:34px;flex:0 0 auto;color:var(--ok);margin-top:2px}
+.entrega small{display:block;font-size:17px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ok)}
+.entrega b{display:block;font-size:26px;line-height:1.3;margin-top:6px}
+
+/* Ruta */
+.ruta{display:grid;gap:16px;counter-reset:r}
+.ruta.dos{grid-template-columns:1fr 1fr;gap:14px}
+.ruta.dos li{grid-template-columns:62px 1fr;gap:16px;padding:20px 22px}
+.ruta.dos li::before{font-size:36px}
+.ruta.dos b{font-size:25px}
+.ruta.dos span{font-size:19px;margin-top:5px}
+.ruta li{counter-increment:r;display:grid;grid-template-columns:86px 1fr;gap:24px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px 30px}
+.ruta li.soft{background:var(--surface2)}
+.ruta li::before{content:counter(r,decimal-leading-zero);font-family:"Anton";font-size:46px;line-height:1;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.ruta b{display:block;font-size:31px;line-height:1.2}
+.ruta span{display:block;font-size:22px;font-weight:700;color:var(--muted);margin-top:7px}
+
+/* Listas y bloques sueltos */
+.check{display:grid;gap:18px}
+.check li{display:flex;gap:18px;align-items:flex-start;font-size:28px;line-height:1.4}
+.check svg{width:34px;height:34px;flex:0 0 auto;color:var(--ok);margin-top:6px}
+.p.dark .check li{color:#EDE7FF}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chips span{font-size:23px;font-weight:800;padding:14px 24px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--muted)}
 .chips span.hl{background:var(--fuchsia);border-color:var(--fuchsia);color:#fff}
-.tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:.08in}
-.tools img{width:.22in;height:.22in;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:7px;padding:3px}
-.tools small{font-size:8.5pt;color:var(--muted);font-weight:700}
-.note{margin-top:.1in;padding:8px 11px;border:1px dashed var(--line);border-radius:12px;font-size:9pt;color:var(--muted);background:#fff}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tools.uno{grid-template-columns:1fr}
+.tools.uno .tool{padding:32px 34px}
+.tools.uno .tool img{width:104px;height:104px}
+.tools.uno .tool b{font-size:34px}
+.tools.uno .tool small{font-size:23px}
+.tool{display:flex;gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px}
+.tool img{width:84px;height:84px;object-fit:contain;flex:0 0 auto}
+.tool b{display:block;font-size:28px}
+.tool small{display:block;font-size:20px;color:var(--muted);margin-top:4px}
+.note{margin-top:26px;padding:26px 30px;border-radius:22px;border:2px dashed var(--line);background:#fff;font-size:25px;line-height:1.45;color:var(--muted)}
+.p.dark .note{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.26);color:#D6CCF5}
 
-.plan{display:grid;gap:6px}
-.pb{background:#fff;border:1px solid var(--line);border-left:4px solid var(--violet);border-radius:12px;padding:8px 11px;break-inside:avoid}
-.pb.soft{border-left-color:var(--line);background:#F4EFFF}
-.pb .ph2{display:flex;gap:8px;align-items:center;margin-bottom:3px}
-.pb .t{font-size:8.5pt;font-weight:800;color:var(--fuchsia)}
-.pb .n{font-size:7pt;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:#F4EFFF;border:1px solid var(--line);color:var(--muted)}
-.pb b{display:block;font-size:10pt;margin-bottom:3px}
-.pb ul{margin:0;padding-left:15px}
-.pb li{font-size:8.5pt;line-height:1.34;color:var(--muted);margin-bottom:1px}
+/* Datos con icono */
+.datos{display:grid;gap:20px}
+.datos li{display:flex;gap:24px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px 32px}
+.datos .ic{width:76px;height:76px;flex:0 0 auto;border-radius:22px;background:var(--surface2);display:grid;place-items:center}
+.datos .ic svg{width:40px;height:40px;color:var(--violet)}
+.datos small{display:block;font-size:18px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--fuchsia)}
+.datos b{display:block;font-size:32px;line-height:1.2;margin-top:5px}
+.datos b.big{font-family:"Anton";font-size:52px;line-height:1;color:var(--deep)}
 
-.inst{display:flex;gap:11px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:13px;padding:.1in}
-.inst img{width:.52in;height:.52in;border-radius:50%;object-fit:cover}
-.inst small{display:block;font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--fuchsia);font-weight:800}
-.inst b{display:block;font-size:10.5pt}
-.inst span{display:block;font-size:8.5pt;color:var(--muted)}
+/* Instructor */
+.inst{display:flex;gap:30px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:34px}
+.inst img{width:190px;height:190px;border-radius:26px;object-fit:cover;flex:0 0 auto}
+.inst small{display:block;font-size:19px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--fuchsia)}
+.inst b{display:block;font-family:"Anton";text-transform:uppercase;font-size:50px;line-height:1;margin:8px 0 12px}
+.inst p{font-size:24px;line-height:1.45;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.stats div{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;text-align:center}
+.stats b{display:block;font-family:"Anton";font-size:52px;line-height:1;color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.stats span{display:block;font-size:20px;font-weight:700;color:var(--muted);margin-top:8px}
 
-.cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.16in;padding:.14in .18in;border-radius:15px;color:#fff;background:linear-gradient(120deg,#3A0CC9 0%,#7B4DFF 45%,#E0169B 100%)}
-.cta b{display:block;font-family:"Anton";text-transform:uppercase;font-size:15.5pt;line-height:1}
-.cta span{display:block;font-size:9pt;color:rgba(255,255,255,.88);max-width:3.8in;margin-top:3px}
-.cta .btns{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
-.cta a{white-space:nowrap;font-weight:800;font-size:10pt;padding:9px 15px;border-radius:11px;background:#fff;color:var(--deep)}
-.cta a.g{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}
-.foot{margin-top:.11in;display:flex;justify-content:space-between;font-size:8pt;color:var(--dim);font-weight:700}
+/* Preguntas */
+.faq{display:grid;gap:18px}
+.faq li{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px 32px}
+.faq b{display:block;font-size:29px;line-height:1.25;margin-bottom:10px}
+.faq span{display:block;font-size:24px;line-height:1.45;color:var(--muted)}
+
+/* Pasos y cierre */
+.pasos{display:grid;gap:20px;counter-reset:s}
+.pasos li{counter-increment:s;display:grid;grid-template-columns:84px 1fr;gap:24px;align-items:start}
+.pasos li::before{content:counter(s);display:grid;place-items:center;width:84px;height:84px;border-radius:26px;background:var(--grad);font-family:"Anton";font-size:44px;color:#fff}
+.pasos b{display:block;font-size:32px;line-height:1.2}
+.pasos span{display:block;font-size:24px;line-height:1.4;color:#D6CCF5;margin-top:7px}
+.cta{margin-top:auto;padding:44px;border-radius:30px;background:var(--grad);text-align:center}
+.cta b{display:block;font-family:"Anton";text-transform:uppercase;font-size:58px;line-height:1;color:#fff}
+.cta span{display:block;font-size:26px;color:rgba(255,255,255,.92);margin-top:12px}
+.cta .wa{display:inline-block;margin-top:26px;padding:22px 42px;border-radius:20px;background:#fff;color:var(--deep);font-family:"Anton";font-size:44px;text-transform:uppercase}
 `;
 
-const toolsRow = t => !t.tools || !t.tools.length ? "" :
-  `<div class="tools">${t.tools.map(k => `<img src="${img("/img/tools/" + k + ".svg")}" alt="">`).join("")}<small>${t.tools.map(k => TOOLS[k].name).join(" · ")}</small></div>`;
+const IC = {
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg>`,
+  cal: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>`,
+  clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+  pin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>`,
+  money: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 10v4M18 10v4"/></svg>`,
+  users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.6 19.5a6.4 6.4 0 0 1 12.8 0"/><circle cx="17.5" cy="9.5" r="2.4"/><path d="M16.2 14.4A5 5 0 0 1 21.6 19"/></svg>`,
+  trophy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3a3 3 0 0 1-3 4M7 5H4a3 3 0 0 0 3 4"/></svg>`
+};
 
-const planBloques = plan => `<div class="plan">${plan.bloques.map(b => `<div class="pb${/pausa|cierre|arranque/i.test(b.nivel) ? " soft" : ""}">
-  <div class="ph2"><span class="t">${esc(b.hora)}</span><span class="n">${esc(b.nivel)}</span></div>
-  <b>${esc(b.titulo)}</b><ul>${b.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div>`).join("")}</div>`;
+const hd = txt => `<header class="hd"><img src="${img("/img/logo-morado.png")}" alt="Vector MKT"><span>${esc(txt)}</span></header>`;
+const hdDark = txt => `<header class="hd"><img src="${img("/img/logo-blanco.png")}" alt="Vector MKT"><span>${esc(txt)}</span></header>`;
+const ft = (izq, der) => `<footer class="ft"><span>${esc(izq)}</span><span>${esc(der)}</span></footer>`;
 
-const instructor = `<div class="inst"><img src="${img("/img/edgardo-avatar.jpg")}" alt=""><div><small>Imparte</small><b>Edgardo A. López</b><span>Fundador y Director Creativo de Estudio Vector · Capacitador de más de 500 alumnos · Forum Ruta Copán 2026</span></div></div>`;
+/* Páginas del brochure. `d` es el modelo común que arman tallerModelo() y programaModelo(). */
+const paginas = d => {
+  const P = [];
+  const marca = `${d.academia} · San Pedro Sula`;
 
-const cierre = (titulo, texto, waURL, pagina) => `<div class="cta"><div><b>${esc(titulo)}</b><span>${esc(texto)}</span></div>
-  <div class="btns"><a href="${waURL}">WhatsApp 9569-1481</a><a class="g" href="${pagina}">Ver la página</a></div></div>
-  <div class="foot"><span>Estudio Vector · Vector Academy · San Pedro Sula, Honduras</span><span>estudiovector.com</span></div>`;
-
-/* ---------------- Ficha de un taller ---------------- */
-const fichaTaller = t => `<!doctype html><html lang="es"><head><meta charset="utf-8"><title>${esc(t.title)} · Estudio Vector</title><style>${CSS}</style></head><body>
-<section class="page"><div class="pgin">
-  <div class="hero">
-    <div class="top"><img class="logo" src="${img("/img/logo-blanco.png")}" alt="Vector MKT"><span class="pill">${t.mode === "Online" ? "Taller online" : "Taller presencial"}</span></div>
-    <div class="eyebrow">Vector Academy · San Pedro Sula</div>
-    <h1 class="display">${esc(t.title)}</h1>
-    <div class="tl">${esc(t.tagline)}</div>
-    <p class="lead">${esc(t.sub)}</p>
-    <div class="kv">
-      <div><small>Fecha</small><b>${esc(t.dayLabel)}</b></div>
-      <div><small>Horario</small><b>${esc(t.time)}</b></div>
-      <div><small>Duración</small><b>${esc(t.dur)}${t.durNote ? " · " + esc(t.durNote) : ""}</b></div>
-      <div><small>Inversión</small><b class="big">${fmt(t.price)}</b></div>
+  /* 1 · Portada */
+  P.push(`<section class="p dark">
+  <div class="cover-ph">
+    <img class="bg" src="${d.img}" alt="">
+    <div class="cover-top"><img src="${img("/img/logo-blanco.png")}" alt=""><span class="pill">${esc(d.pill)}</span></div>
+  </div>
+  <div class="cover-in">
+    <div class="eyebrow">${esc(d.eyebrow)}</div>
+    <h1>${esc(d.titulo)}</h1>
+    <div class="tl">${esc(d.tagline)}</div>
+    <div class="cover-kv">
+      <div><small>${esc(d.kv1.k)}</small><b>${esc(d.kv1.v)}</b></div>
+      <div><small>Horario</small><b>${esc(d.horario)}</b></div>
+      <div><small>Duración</small><b>${esc(d.duracion)}</b></div>
+      <div><small>Inversión</small><b class="big">${esc(d.precio)}</b></div>
     </div>
   </div>
+  ${ft(marca, "estudiovector.com")}
+</section>`);
 
-  <h2 class="s">Lo que aprenderás</h2>
-  <div class="card"><ul class="clean">${t.learn.map(l => `<li>${esc(l)}</li>`).join("")}</ul>${toolsRow(t)}</div>
-
-  <div class="two" style="margin-top:.14in">
-    <div><h2 class="s" style="margin-top:0">Resultados para tu negocio</h2><div class="card"><ul class="clean res">${t.results.map(r => `<li>${esc(r)}</li>`).join("")}</ul></div></div>
-    <div><h2 class="s" style="margin-top:0">Ideal para</h2><div class="card"><p style="margin:0;font-size:9.5pt">${esc(t.ideal)}</p>
-      <div class="chips" style="margin-top:10px">${t.extra ? `<span class="hl">${esc(t.extra)}</span>` : ""}${INCLUYE(t).map(i => `<span>${esc(i)}</span>`).join("")}</div></div></div>
+  /* 2 · De qué se trata */
+  P.push(`<section class="p">
+  ${hd("De qué se trata")}
+  <div class="in">
+    <div class="eyebrow">Antes de inscribirte</div>
+    <h2 class="t">De qué se trata</h2>
+    <p class="lead">${esc(d.sub)}</p>
+    <div class="card" style="margin-top:44px">
+      <div class="bq"><span class="n">Al terminar te llevas</span></div>
+      <h3>${esc(d.take)}</h3>
+    </div>
+    <h2 class="t" style="font-size:52px;margin:46px 0 20px">Ideal para</h2>
+    <p class="lead">${esc(d.ideal)}</p>
+    ${d.publico ? `<ul class="check" style="margin-top:30px">${d.publico.map(x => `<li>${IC.check}<span>${esc(x)}</span></li>`).join("")}</ul>` : ""}
+    ${d.learn ? `<h2 class="t" style="font-size:52px;margin:46px 0 20px">Lo que aprenderás</h2>
+    <ul class="check">${d.learn.map(x => `<li>${IC.check}<span>${esc(x)}</span></li>`).join("")}</ul>` : ""}
   </div>
-  ${t.note ? `<div class="note">${esc(t.note)}</div>` : ""}
-  <div style="margin-top:.16in">${instructor}</div>
-  ${cierre("Reserva tu cupo", `Solo 10 cupos. Al terminar te llevas: ${t.take}`, waLink(t), `${SITE}/talleres/${t.slug}/`)}
-</div></section>
-${t.plan ? `<section class="page flow"><div class="pgin">
-  <div class="hero" style="padding-bottom:.26in">
-    <div class="top"><img class="logo" src="${img("/img/logo-blanco.png")}" alt="Vector MKT"><span class="pill">Plan de estudio</span></div>
-    <h1 class="display" style="font-size:26pt">${esc(t.title)}</h1>
-    <p class="lead">${esc(t.plan.lead || "")}</p>
-  </div>
-  ${planBloques(t.plan)}
-  ${cierre("Aparta tu lugar", "Los cupos se asignan por orden de pago.", waLink(t), `${SITE}/talleres/${t.slug}/`)}
-</div></section>` : ""}
-</body></html>`;
+  ${ft(marca, "2")}
+</section>`);
 
-/* ---------------- Ficha del Programa Ejecutivo ---------------- */
-const fichaPrograma = () => `<!doctype html><html lang="es"><head><meta charset="utf-8"><title>${esc(PR.nombre)} · ${esc(PR.academia)}</title><style>${CSS}</style></head><body>
-<section class="page"><div class="pgin">
-  <div class="hero">
-    <div class="top"><img class="logo" src="${img("/img/logo-blanco.png")}" alt="Vector MKT"><span class="pill">${esc(PR.generacion)}</span></div>
-    <div class="eyebrow">${esc(PR.academia)} · ${esc(PR.ciudad)}</div>
-    <h1 class="display">${esc(PR.h1)}</h1>
-    <div class="tl">${esc(PR.nombre)}</div>
-    <p class="lead">${esc(PR.sub)}</p>
-    <div class="kv">
-      <div><small>Inicia</small><b>${esc(PR.inicioTexto)}</b></div>
-      <div><small>Termina</small><b>${esc(PR.finTexto)}</b></div>
-      <div><small>Horario</small><b>${esc(PR.dias)}, ${esc(PR.horario)}</b></div>
-      <div><small>Inversión</small><b class="big">${fmt(PR.precio)}</b></div>
+  /* 3 · Ruta de aprendizaje */
+  const bl = d.bloques;
+  P.push(`<section class="p">
+  ${hd("Ruta de aprendizaje")}
+  <div class="in">
+    <div class="eyebrow">${bl.length} bloques · ${esc(d.duracion)}</div>
+    <h2 class="t">Ruta de aprendizaje</h2>
+    <p class="lead">${esc(d.planLead)}</p>
+    <ul class="ruta${bl.length > 7 ? " dos" : ""}" style="margin-top:38px">${bl.map(b => `<li${/pausa/i.test(b.nivel) ? ' class="soft"' : ""}><div><b>${esc(b.titulo)}</b><span>${esc(b.hora)}${b.nivel ? " · " + esc(b.nivel) : ""}</span></div></li>`).join("")}</ul>
+  </div>
+  ${ft(marca, "3")}
+</section>`);
+
+  /* 4..N · Dos bloques por página, con lo que se practica y lo que se llevan */
+  let n = 4;
+  pares(bl).forEach((par, i) => {
+    P.push(`<section class="p">
+  ${hd(`Contenido ${i + 1} de ${pares(bl).length}`)}
+  <div class="in">
+    <div class="cards">${par.map(b => `<article class="card${/pausa/i.test(b.nivel) ? " soft" : ""}">
+      <div class="bq"><span class="h">${esc(b.hora)}</span><span class="n">${esc(b.nivel)}</span></div>
+      <h3>${esc(b.titulo)}</h3>
+      <ul>${b.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      ${b.entrega ? `<div class="entrega">${IC.trophy}<div><small>Te llevas</small><b>${esc(b.entrega)}</b></div></div>` : ""}
+    </article>`).join("")}</div>
+  </div>
+  ${ft(marca, String(n++))}
+</section>`);
+  });
+
+  /* Resultados + herramientas */
+  P.push(`<section class="p">
+  ${hd("Resultados")}
+  <div class="in mid">
+    <div class="eyebrow">Para qué te sirve</div>
+    <h2 class="t">Lo que cambia en tu negocio</h2>
+    <ul class="check">${d.resultados.map(r => `<li>${IC.check}<span>${esc(r)}</span></li>`).join("")}</ul>
+    ${d.tools.length ? `<h2 class="t" style="font-size:52px;margin:52px 0 22px">Herramientas que usarás</h2>
+    <div class="tools${d.tools.length < 3 ? " uno" : ""}">${d.tools.map(k => `<div class="tool"><img src="${img("/img/tools/" + k + ".svg")}" alt=""><div><b>${esc(TOOLS[k].name)}</b><small>${esc(TOOLS[k].note)}</small></div></div>`).join("")}</div>` : ""}
+  </div>
+  ${ft(marca, String(n++))}
+</section>`);
+
+  /* Qué incluye + requisitos + instructor */
+  P.push(`<section class="p">
+  ${hd("Qué incluye")}
+  <div class="in">
+    <div class="eyebrow">Tu cupo incluye</div>
+    <h2 class="t">Qué incluye</h2>
+    <div class="chips">${d.incluye.map((x, i) => `<span${i === 0 && d.destacado ? ' class="hl"' : ""}>${esc(x)}</span>`).join("")}</div>
+    ${d.note ? `<div class="note">${esc(d.note)}</div>` : ""}
+    <h2 class="t" style="font-size:52px;margin:52px 0 22px">Quién lo imparte</h2>
+    <div class="inst">
+      <img src="${img("/img/edgardo.jpg")}" alt="">
+      <div><small>Imparte</small><b>Edgardo A. López</b><p>Fundador y Director Creativo de Estudio Vector. Capacitador empresarial en marketing digital e inteligencia artificial y asesor publicitario de empresas en Honduras.</p></div>
+    </div>
+    <div class="stats"><div><b>500+</b><span>alumnos capacitados</span></div><div><b>15+</b><span>años en marketing</span></div><div><b>IA</b><span>Forum Ruta Copán 2026</span></div></div>
+  </div>
+  ${ft(marca, String(n++))}
+</section>`);
+
+  /* Fechas e inversión */
+  P.push(`<section class="p">
+  ${hd("Fechas e inversión")}
+  <div class="in">
+    <div class="eyebrow">Lo práctico</div>
+    <h2 class="t">Fechas e inversión</h2>
+    <ul class="datos">
+      <li><span class="ic">${IC.cal}</span><div><small>${esc(d.kv1.k)}</small><b>${esc(d.kv1.v)}</b></div></li>
+      <li><span class="ic">${IC.clock}</span><div><small>Horario</small><b>${esc(d.horario)} · ${esc(d.duracion)}</b></div></li>
+      <li><span class="ic">${IC.pin}</span><div><small>Dónde</small><b>${esc(d.lugar)}</b></div></li>
+      <li><span class="ic">${IC.users}</span><div><small>Grupo</small><b>Máximo ${d.cupos} participantes</b></div></li>
+      <li><span class="ic">${IC.money}</span><div><small>Inversión</small><b class="big">${esc(d.precio)}</b>${d.precioNota ? `<span style="display:block;font-size:23px;font-weight:700;color:var(--muted);margin-top:6px">${esc(d.precioNota)}</span>` : ""}</div></li>
+    </ul>
+    ${d.politica ? `<div class="note">${esc(d.politica)}</div>` : ""}
+  </div>
+  ${ft(marca, String(n++))}
+</section>`);
+
+  /* Preguntas frecuentes */
+  P.push(`<section class="p">
+  ${hd("Preguntas frecuentes")}
+  <div class="in">
+    <div class="eyebrow">Antes de reservar</div>
+    <h2 class="t">Preguntas frecuentes</h2>
+    <ul class="faq">${d.faq.map(([q, a]) => `<li><b>${esc(q)}</b><span>${esc(a)}</span></li>`).join("")}</ul>
+  </div>
+  ${ft(marca, String(n++))}
+</section>`);
+
+  /* Cómo reservar */
+  P.push(`<section class="p dark">
+  ${hdDark("Cómo reservar")}
+  <div class="in">
+    <div class="eyebrow">Tres pasos</div>
+    <h2 class="t">Cómo reservar tu cupo</h2>
+    <ul class="pasos">
+      <li><div><b>Escríbenos por WhatsApp</b><span>Al 9569-1481, mencionando ${esc(d.titulo)}.</span></div></li>
+      <li><div><b>Te confirmamos disponibilidad</b><span>Te decimos cuántos cupos quedan y te enviamos los datos de pago.</span></div></li>
+      <li><div><b>Con tu pago quedas inscrito</b><span>Entras al grupo privado de WhatsApp y recibes la ubicación exacta.</span></div></li>
+    </ul>
+    <div class="cta">
+      <b>${esc(d.ctaTitulo)}</b>
+      <span>Solo ${d.cupos} cupos · Se asignan por orden de pago</span>
+      <span class="wa">WhatsApp 9569-1481</span>
     </div>
   </div>
+  ${ft("estudiovector.com", String(n++))}
+</section>`);
 
-  <div class="two">
-    <div><h2 class="s" style="margin-top:0">Al terminar el programa</h2><div class="card"><ul class="clean res">${PR.resultados.map(([a, b]) => `<li><b>${esc(a)}.</b> ${esc(b)}</li>`).join("")}</ul></div></div>
-    <div><h2 class="s" style="margin-top:0">Dónde vas a estudiar</h2><div class="card">${PR.espacios.map(e => `<p style="margin:0 0 8px;font-size:9.5pt"><b>${esc(e.nombre)}.</b> ${esc(e.lead)}</p>`).join("")}</div>
-      <h2 class="s">Inversión</h2><div class="card"><p style="margin:0;font-size:9.5pt">Reservas tu cupo con una matrícula de <b>${fmt(PR.matricula)}</b>, que se aplica al total y deja un saldo de <b>${fmt(PR.saldo)}</b>. ${PR.cupos} cupos.</p>
-      <div class="chips" style="margin-top:9px"><span class="hl">${PR.sesiones} sesiones</span><span>${PR.horas} horas presenciales</span><span>${PR.semanas} semanas</span><span>Coffee experience</span><span>Certificado de aprobación</span></div></div></div>
-  </div>
-  <div class="note">${esc(PR.certificado)}. No es un título con aval universitario ni reconocimiento estatal.</div>
-  <div style="margin-top:.14in">${instructor}</div>
-  ${cierre("Reserva tu cupo", `Dirigido a ${PR.dirigido.toLowerCase()}`, waText(`Hola Vector Academy, quiero reservar mi cupo en el ${PR.nombre} (${PR.generacion}).`), `${SITE}/${PR.slug}/`)}
-</div></section>
-<section class="page flow"><div class="pgin">
-  <div class="hero" style="padding-bottom:.26in">
-    <div class="top"><img class="logo" src="${img("/img/logo-blanco.png")}" alt="Vector MKT"><span class="pill">Temario · ${PR.sesiones} clases</span></div>
-    <h1 class="display" style="font-size:26pt">${esc(PR.nombre)}</h1>
-    <p class="lead">${esc(PR.dias)}, de ${esc(PR.horario)}. ${PR.semanas} semanas, ${PR.horas} horas presenciales.</p>
-  </div>
-  <div class="plan">${PR.clases.map(k => `<div class="pb"><div class="ph2"><span class="t">${esc(k.dia)}</span><span class="n">Clase ${String(k.n).padStart(2, "0")}</span></div><b>${esc(k.titulo)}</b><ul><li>${esc(k.resumen)}</li></ul></div>`).join("")}</div>
-  ${cierre("Aparta tu lugar", `Matrícula de ${fmt(PR.matricula)} aplicada al total de ${fmt(PR.precio)}.`, waText(`Hola Vector Academy, quiero reservar mi cupo en el ${PR.nombre}.`), `${SITE}/${PR.slug}/`)}
-</div></section>
-</body></html>`;
+  return P;
+};
 
+const doc = (titulo, P) => `<!doctype html><html lang="es"><head><meta charset="utf-8"><title>${esc(titulo)}</title><style>${CSS}</style></head><body>${P.join("\n")}</body></html>`;
+
+/* ---------------- Modelos ---------------- */
+const tallerModelo = t => ({
+  academia: "Vector Academy", pill: t.mode === "Online" ? "Taller online" : "Taller presencial",
+  eyebrow: "Desglose del taller", titulo: t.title, tagline: t.tagline, img: img(t.img),
+  kv1: { k: t.days.length > 1 ? "Fechas" : "Fecha", v: t.dayLabel },
+  horario: t.time, duracion: t.dur + (t.durNote ? " · " + t.durNote : ""),
+  precio: fmt(t.price), precioNota: "por persona",
+  sub: t.sub, take: t.take, ideal: t.ideal, publico: null, learn: t.learn,
+  planLead: (t.plan && t.plan.lead) || "", bloques: (t.plan && t.plan.bloques) || [],
+  resultados: t.results, tools: t.tools || [],
+  incluye: [t.extra, ...INCLUYE(t)].filter(Boolean), destacado: !!t.extra,
+  note: t.note || null, lugar: t.mode === "Online" ? "En vivo por Zoom, desde donde estés" : "Aula de Vector Academy, San Pedro Sula",
+  cupos: 10, politica: "Los cupos se asignan por orden de pago. Si no puedes asistir a una sesión, coordinamos contigo la forma de ponerte al día; el certificado requiere completar el taller.",
+  ctaTitulo: "Reserva tu cupo",
+  faq: [
+    [`¿Necesito saber del tema para entrar?`, `No. ${/todos/i.test(t.level) ? "El taller recibe todos los niveles" : "El taller es de nivel " + t.level.toLowerCase()} y se avanza paso a paso, en grupos de máximo 10 personas para que a nadie se le pase una duda.`],
+    [`¿Qué pasa si falto a una sesión?`, `La clase queda grabada y se entrega a los participantes, así que puedes repasar o ponerte al día. Además quedas en el grupo privado de WhatsApp del taller.`],
+    [`¿Me dan certificado?`, `Sí, certificado oficial de Vector MKT al completar el taller, más la grabación de la clase y el grupo privado de WhatsApp.`],
+    [`¿Dónde es exactamente?`, t.mode === "Online" ? `Es en línea, en vivo por Zoom. El enlace se envía al confirmar tu reserva.` : `En el aula de Vector Academy, en San Pedro Sula. La dirección exacta se comparte al confirmar tu reserva.`],
+    [`¿Cómo aparto mi cupo?`, `Escríbenos por WhatsApp al 9569-1481 mencionando el taller. Te confirmamos disponibilidad y con tu pago quedas inscrito.`]
+  ]
+});
+
+const programaModelo = () => ({
+  academia: PR.academia, pill: PR.generacion, eyebrow: `${PR.academia} · ${PR.ciudad}`,
+  titulo: PR.h1, tagline: PR.nombre, img: img(PR.heroImg),
+  kv1: { k: "Fechas", v: `Del ${PR.inicioTexto.replace(/^\S+ /, "").replace(/ de \d{4}$/, "")} al ${PR.finTexto.replace(/^\S+ /, "")}` },
+  horario: `${PR.dias}, ${PR.horario}`, duracion: `${PR.sesiones} sesiones · ${PR.horas} horas`,
+  precio: fmt(PR.precio), precioNota: `Reservas tu cupo con ${fmt(PR.matricula)}, aplicada al total. Saldo de ${fmt(PR.saldo)}.`,
+  sub: PR.sub, take: "Tu negocio con contenido propio, campañas activas y la operación ordenada: lo que construyes en el programa queda funcionando.",
+  ideal: PR.dirigido, publico: PR.publico.map(([a, b]) => `${a}: ${b.toLowerCase()}`), learn: null,
+  planLead: `Ocho clases de tres horas, ${PR.dias.toLowerCase()}. Cada una cierra con algo hecho por ti y aplicado a tu propio negocio.`,
+  bloques: PR.clases.map(k => ({ hora: k.dia, nivel: `Clase ${String(k.n).padStart(2, "0")}`, titulo: k.titulo, items: [k.resumen], entrega: null })),
+  resultados: PR.resultados.map(([a, b]) => `${a}. ${b}`),
+  tools: ["chatgpt", "claude", "capcut", "meta", "facebook", "whatsapp"],
+  incluye: [`${PR.sesiones} sesiones presenciales`, `${PR.horas} horas de formación`, "Práctica en el Executive Classroom y el Content Lab", "Coffee experience en cada sesión", `Grupo de máximo ${PR.cupos} participantes`, PR.certificado],
+  destacado: false,
+  note: `${PR.certificado}. No es un título con aval universitario ni reconocimiento estatal.`,
+  lugar: `Executive Classroom y Content Lab de ${PR.academia}, ${PR.ciudad}`,
+  cupos: PR.cupos,
+  politica: `Las formas de pago se confirman por WhatsApp al reservar. El cupo queda apartado cuando la matrícula está confirmada, y solo hay ${PR.cupos} por generación.`,
+  ctaTitulo: `Reserva con ${fmt(PR.matricula)}`,
+  faq: PR.faq.slice(0, 5)
+});
 /* ---------------- Ficha publicitaria en imagen (PNG) ---------------- */
 const MESCORTO = { 1: "ENE", 2: "FEB", 3: "MAR", 4: "ABR", 5: "MAY", 6: "JUN", 7: "JUL", 8: "AGO", 9: "SEP", 10: "OCT", 11: "NOV", 12: "DIC" };
 const DOWC = ["DOM", "LUN", "MAR", "MIÉ", "JUE", "VIE", "SÁB"];
@@ -305,55 +503,44 @@ const promoPrograma = () => {
   };
 };
 
+
 (async () => {
   let chromium;
   try { ({ chromium } = require("playwright")); }
   catch (e) { try { ({ chromium } = require("/opt/node22/lib/node_modules/playwright")); } catch (e2) { console.error("Falta Playwright: npm i -g playwright && npx playwright install chromium"); process.exit(1); } }
   const launch = process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {};
   const browser = await chromium.launch(launch);
-  const page = await browser.newPage();
 
-  const render = async (html, out) => {
+  /* Brochure en PDF: cada página se encoge lo justo si el contenido se pasa */
+  const brochure = async (html, out) => {
     const tmp = path.join(os.tmpdir(), "ficha-" + path.basename(out) + ".html");
     fs.writeFileSync(tmp, html);
-    await page.goto(pathToFileURL(tmp).href, { waitUntil: "networkidle" });
-    await page.evaluate(() => document.fonts.ready);
-    /* Las páginas de altura fija se encogen lo justo para no desbordar, sin importar cuánto texto traiga el taller */
-    const ajustes = await page.evaluate(() => {
+    const pg = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+    await pg.goto(pathToFileURL(tmp).href, { waitUntil: "networkidle" });
+    await pg.evaluate(() => document.fonts.ready);
+    const ajustes = await pg.evaluate(() => {
       const out = [];
-      document.querySelectorAll(".page:not(.flow)").forEach((el, i) => {
-        const inner = el.querySelector(".pgin");
+      document.querySelectorAll(".p").forEach((el, i) => {
+        const inner = el.querySelector(".in");
         if (!inner) return;
         let z = 1;
-        while (inner.getBoundingClientRect().height > el.clientHeight + 1 && z > 0.72) {
+        while (inner.scrollHeight > inner.clientHeight + 1 && z > 0.6) {
           z -= 0.01;
           inner.style.zoom = z;
         }
-        if (z < 1) out.push([i + 1, Math.round(z * 100) + "%"]);
-      });
-      /* Las páginas que fluyen (plan de estudio, temario) se ajustan para no dejar una hoja casi vacía al final */
-      document.querySelectorAll(".page.flow").forEach((el, i) => {
-        const inner = el.querySelector(".pgin");
-        if (!inner) return;
-        const H = parseFloat(getComputedStyle(inner).minHeight);
-        const alto = () => inner.getBoundingClientRect().height;
-        const hojas = Math.ceil(alto() / H);
-        const sobra = alto() - (hojas - 1) * H;
-        if (hojas < 2 || sobra > H * 0.35) return;
-        let z = 1;
-        const meta = (hojas - 1) * H;
-        while (alto() > meta + 1 && z > 0.72) { z -= 0.01; inner.style.zoom = z; }
-        if (z < 1) out.push(["flujo " + (i + 1), Math.round(z * 100) + "%"]);
+        if (z < 1) out.push((i + 1) + "→" + Math.round(z * 100) + "%");
       });
       return out;
     });
-    if (ajustes.length) console.log("    · ajuste de escala:", ajustes.map(([p, z]) => `pág ${p} → ${z}`).join(", "));
     fs.mkdirSync(path.dirname(out), { recursive: true });
-    await page.pdf({ path: out, format: "Letter", printBackground: true, preferCSSPageSize: true, margin: { top: 0, right: 0, bottom: 0, left: 0 } });
-    console.log("  ✓", out, (fs.statSync(out).size / 1024).toFixed(0) + " KB");
+    await pg.pdf({ path: out, printBackground: true, preferCSSPageSize: true, margin: { top: 0, right: 0, bottom: 0, left: 0 } });
+    await pg.close();
+    const n = (html.match(/<section class="p[ "]/g) || []).length;
+    console.log("  ✓", out, `${n} págs · ${(fs.statSync(out).size / 1024).toFixed(0)} KB`, ajustes.length ? "· escala " + ajustes.join(" ") : "");
     fs.unlinkSync(tmp);
   };
 
+  /* Ficha publicitaria en imagen */
   const shot = async (datos, out, formato) => {
     const F = FORMATOS[formato];
     const tmp = path.join(os.tmpdir(), "promo-" + path.basename(out) + ".html");
@@ -361,7 +548,7 @@ const promoPrograma = () => {
     const pg = await browser.newPage({ viewport: { width: F.w, height: F.h }, deviceScaleFactor: 1 });
     await pg.goto(pathToFileURL(tmp).href, { waitUntil: "networkidle" });
     await pg.evaluate(() => document.fonts.ready);
-    const z = await pg.evaluate(() => {
+    await pg.evaluate(() => {
       const body = document.querySelector(".body");
       const hijos = [...body.children];
       const alto = () => hijos.reduce((a, el) => a + el.getBoundingClientRect().height, 0);
@@ -369,9 +556,7 @@ const promoPrograma = () => {
       const libre = body.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
       let z = 1;
       while (alto() > libre && z > 0.62) { z -= 0.02; body.style.zoom = z; }
-      return z;
     });
-    if (z < 1) console.log("    · ajuste del texto:", Math.round(z * 100) + "%");
     fs.mkdirSync(path.dirname(out), { recursive: true });
     await pg.locator(".promo").screenshot({ path: out });
     await pg.close();
@@ -379,16 +564,18 @@ const promoPrograma = () => {
     fs.unlinkSync(tmp);
   };
 
-  console.log("Generando fichas en PDF…");
-  for (const t of T) await render(fichaTaller(t), path.join("talleres", t.slug, t.slug + ".pdf"));
-  await render(fichaPrograma(), path.join(PR.slug, PR.slug + ".pdf"));
-  console.log("Generando fichas publicitarias en PNG…");
+  console.log("Fichas en PDF (brochure vertical)…");
+  for (const t of T) await brochure(doc(`${t.title} · Estudio Vector`, paginas(tallerModelo(t))), path.join("talleres", t.slug, t.slug + ".pdf"));
+  await brochure(doc(`${PR.nombre} · ${PR.academia}`, paginas(programaModelo())), path.join(PR.slug, PR.slug + ".pdf"));
+
+  console.log("Fichas publicitarias en PNG…");
   for (const t of T) {
     await shot(promoTaller(t), path.join("talleres", t.slug, t.slug + ".png"), "feed");
     await shot(promoTaller(t), path.join("talleres", t.slug, t.slug + "-story.png"), "story");
   }
   await shot(promoPrograma(), path.join(PR.slug, PR.slug + ".png"), "feed");
   await shot(promoPrograma(), path.join(PR.slug, PR.slug + "-story.png"), "story");
+
   await browser.close();
   console.log("Listo.");
 })().catch(e => { console.error(e); process.exit(1); });
