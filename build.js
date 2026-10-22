@@ -543,7 +543,7 @@ function buildTaller(t) {
       </div>
       <div class="shareline">
         <button class="sharebtn" type="button" data-share data-title="${esc(t.title)} · Estudio Vector" data-text="${esc(t.title)}: ${t.dayLabel}, ${t.time}. ${fmt(t.price)}. Taller de Estudio Vector en San Pedro Sula.">${ICON.share}<span>Compartir</span></button>
-        <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}.pdf" download>${ICON.pdf}<span>Ficha en PDF</span></a>
+        <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}.pdf" download>${ICON.pdf}<span>Desglose en PDF</span></a>
         <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}.png" download>${ICON.img}<span>Imagen para redes</span></a>
         <a class="sharebtn" href="/talleres/${t.slug}/${t.slug}-story.png" download>${ICON.img}<span>Historia 9:16</span></a>
       </div>
