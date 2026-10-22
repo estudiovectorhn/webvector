@@ -16,6 +16,7 @@ const path = require("path");
 const os = require("os");
 const { pathToFileURL } = require("url");
 const VR = require("./assets/js/render.js");
+const ILU = require("./src/ilustraciones.js"); // dibujos propios de las interfaces, sin imágenes de terceros
 
 const SITE = "https://estudiovector.com";
 const T = JSON.parse(fs.readFileSync("src/talleres.json", "utf8"));
@@ -41,7 +42,7 @@ a{color:inherit;text-decoration:none}
 li{list-style:none}
 .p{position:relative;width:1080px;height:1920px;overflow:hidden;page-break-after:always;background:var(--bg);display:flex;flex-direction:column}
 .p:last-child{page-break-after:auto}
-.in{flex:1;min-height:0;display:flex;flex-direction:column;padding:80px 80px 40px}
+.in{flex:1;min-height:0;display:flex;flex-direction:column;padding:80px 80px 56px}
 .in.mid{justify-content:center}
 .pasos{margin:auto 0}
 .display{font-family:"Anton","Impact",sans-serif;font-weight:400;text-transform:uppercase;line-height:.95}
@@ -109,6 +110,10 @@ p.lead{font-size:40px;line-height:1.45;color:var(--muted)}
 .galeria figure{position:relative;margin:0;border-radius:28px;overflow:hidden;aspect-ratio:1}
 .galeria figure.g1{grid-column:1/-1;aspect-ratio:16/10}
 .galeria img{width:100%;height:100%;object-fit:cover;display:block}
+.ilu{margin:auto 0 0;padding-top:30px}
+.ilu figcaption{padding-bottom:4px}
+.ilu svg{width:100%;height:auto;display:block;border-radius:28px}
+.ilu figcaption{margin-top:18px;font-size:24px;font-weight:700;color:var(--dim);text-align:center}
 .galeria figcaption{position:absolute;left:0;right:0;bottom:0;padding:48px 26px 22px;font-size:24px;font-weight:800;color:#fff;background:linear-gradient(transparent,rgba(8,4,26,.85))}
 
 /* Ruta */
@@ -237,6 +242,7 @@ const paginas = d => {
     <h2 class="t" style="font-size:52px;margin:46px 0 20px">Ideal para</h2>
     <p class="lead">${esc(d.ideal)}</p>
     ${d.publico ? `<ul class="check" style="margin-top:30px">${d.publico.map(x => `<li>${IC.check}<span>${esc(x)}</span></li>`).join("")}</ul>` : ""}
+    ${d.ilustracion ? `<figure class="ilu">${d.ilustracion}<figcaption>${esc(d.iluPie)}</figcaption></figure>` : ""}
   </div>
   ${ft(marca, "2")}
 </section>`);
@@ -412,6 +418,12 @@ const FOTOS = {
     ["/img/trabajos/cap-entrega-certificado.jpg", "Certificado de aprobación de Vector Academy"]
   ]
 };
+const ILU_PIE = {
+  celular: "Así se ve el trabajo: grabar en el celular y editarlo con cortes, subtítulos y música.",
+  meta: "Así se ve el trabajo: armar la campaña, poner el presupuesto y leer el costo por resultado.",
+  canva: "Así se ve el trabajo: el arte en el lienzo y el texto resuelto con inteligencia artificial.",
+  ia: "Así se ve el trabajo: una tarea que te toma horas pasa por un agente y sale resuelta."
+};
 const FOTOS_LEAD = {
   celular: "Se graba y se edita en clase, con los sets y la iluminación del Content Lab. Sales con videos publicados, no con apuntes.",
   meta: "Trabajas en tu propia cuenta publicitaria, en pantalla y con acompañamiento. Sales con la campaña armada.",
@@ -429,6 +441,8 @@ const tallerModelo = t => ({
   sub: t.sub, take: t.take, ideal: t.ideal, publico: null,
   fotosLead: FOTOS_LEAD[t.id] || "Cada bloque se practica en el aula de Vector Academy, con el equipo y el acompañamiento del instructor.",
   fotos: (FOTOS[t.id] || []).map(([src, pie]) => ({ src: img(src), pie })),
+  ilustracion: ILU[t.id] ? ILU[t.id]() : null,
+  iluPie: ILU_PIE[t.id] || "",
   planLead: (t.plan && t.plan.lead) || "", bloques: (t.plan && t.plan.bloques) || [],
   resultados: t.results, tools: t.tools || [],
   incluye: [t.extra, ...INCLUYE(t)].filter(Boolean), destacado: !!t.extra,
@@ -454,6 +468,7 @@ const programaModelo = () => ({
   ideal: PR.dirigido, publico: PR.publico.map(([a, b]) => `${a}: ${b.toLowerCase()}`),
   fotosLead: "Se explica en el Executive Classroom y se practica en el Content Lab, los dos espacios de unos 50 m² conectados por una puerta.",
   fotos: FOTOS.programa.map(([src, pie]) => ({ src: img(src), pie })),
+  ilustracion: null, iluPie: "",
   planLead: `Ocho clases de tres horas, ${PR.dias.toLowerCase()}. Cada una cierra con algo hecho por ti y aplicado a tu propio negocio.`,
   bloques: PR.clases.map(k => ({ hora: k.dia, nivel: `Clase ${String(k.n).padStart(2, "0")}`, titulo: k.titulo, items: [k.resumen], entrega: null })),
   resultados: PR.resultados.map(([a, b]) => `${a}. ${b}`),

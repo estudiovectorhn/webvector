@@ -119,6 +119,7 @@
     whatsapp: { name: "WhatsApp Business", note: "Catálogo, etiquetas y respuestas" },
     chatgpt: { name: "ChatGPT", note: "OpenAI" },
     claude: { name: "Claude", note: "Anthropic" },
+    elevenlabs: { name: "ElevenLabs", note: "Voces con inteligencia artificial" },
     canva: { name: "Canva", note: "Diseño y kit de marca" },
     capcut: { name: "CapCut", note: "Edición de video" },
     tiktok: { name: "TikTok", note: "Formato vertical" },
