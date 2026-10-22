@@ -401,6 +401,11 @@ const FOTOS = {
     ["/img/trabajos/cap-capcut-aula.jpg", "Aula de Vector Academy, grupos de máximo 10"],
     ["/img/trabajos/cap-contenido-certificados.jpg", "Entrega de certificados a los participantes"]
   ],
+  canva: [
+    ["/img/trabajos/cap-capcut-aula.jpg", "Clase en el aula de Vector Academy, San Pedro Sula"],
+    ["/img/trabajos/cap-edgardo-pantalla.jpg", "Demostración en pantalla durante la clase"],
+    ["/img/trabajos/cap-contenido-certificados.jpg", "Entrega de certificados a los participantes"]
+  ],
   programa: [
     ["/img/trabajos/cap-capcut-aula.jpg", "Executive Classroom: aula climatizada para 10 personas"],
     ["/img/trabajos/cap-taller-luces.jpg", "Content Lab: sets, luces y micrófonos"],
@@ -410,7 +415,8 @@ const FOTOS = {
 const FOTOS_LEAD = {
   celular: "Se graba y se edita en clase, con los sets y la iluminación del Content Lab. Sales con videos publicados, no con apuntes.",
   meta: "Trabajas en tu propia cuenta publicitaria, en pantalla y con acompañamiento. Sales con la campaña armada.",
-  ia: "Cada bloque abre con una demostración en pantalla y sigue con práctica en tu laptop, con el instructor revisando tu avance."
+  ia: "Cada bloque abre con una demostración en pantalla y sigue con práctica en tu laptop, con el instructor revisando tu avance.",
+  canva: "Se diseña en clase, en tu propia laptop. Sales con tu kit de marca armado y tus primeras artes publicadas."
 };
 
 /* ---------------- Modelos ---------------- */

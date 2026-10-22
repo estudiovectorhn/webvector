@@ -339,6 +339,155 @@
   }
  },
  {
+  "id": "canva",
+  "title": "Diseño de Artes con Canva y ChatGPT",
+  "tagline": "Desde cero, con IA de apoyo",
+  "tools": [
+   "canva",
+   "chatgpt",
+   "instagram",
+   "facebook"
+  ],
+  "grad": "linear-gradient(135deg,#4A0FC4,#B026E0 50%,#FF4FB8)",
+  "goals": [
+   "contenido"
+  ],
+  "level": "Desde cero",
+  "sub": "Aprende a crear artes profesionales para tus redes aunque nunca hayas diseñado nada. Canva para armarlas y ChatGPT para las ideas, los textos y los copys que las acompañan.",
+  "days": [
+   {
+    "d": 15,
+    "m": 11
+   }
+  ],
+  "dayLabel": "Domingo 15 de noviembre",
+  "dw": "dom",
+  "time": "1:00 p.m. a 6:00 p.m.",
+  "dur": "5 horas",
+  "mode": "Presencial",
+  "price": 1500,
+  "extra": "Refrigerio incluido",
+  "take": "Tu kit de marca en Canva y tus primeras artes publicadas, con sus textos hechos con IA.",
+  "learn": [
+   "Las partes de un arte que vende y en qué orden se lee",
+   "Tipografías, colores y jerarquía visual sin ser diseñador",
+   "Usar ChatGPT para sacar ideas, titulares y copys de tus publicaciones",
+   "Plantillas de Canva: cómo usarlas sin que tu marca se vea genérica",
+   "Fotos de producto, recortes y fondos dentro de Canva",
+   "Formatos correctos para post, historia y portada",
+   "Armar tu kit de marca para que todo se vea consistente"
+  ],
+  "results": [
+   "Diseñas tus propias publicaciones en minutos y sin depender de nadie",
+   "Nunca te quedas sin ideas ni sin texto para una publicación",
+   "Tu marca se ve consistente y ahorras en diseño cada mes"
+  ],
+  "ideal": "Emprendedores, asistentes, vendedores y encargados de redes que quieren diseñar sin experiencia previa.",
+  "slug": "taller-diseno-en-canva",
+  "seoTitle": "Taller de diseño de artes en Canva con ChatGPT, desde cero",
+  "keywords": [
+   "Canva",
+   "diseño gráfico",
+   "artes para redes sociales",
+   "kit de marca",
+   "ChatGPT para contenido",
+   "taller de Canva San Pedro Sula"
+  ],
+  "note": "Requisito: lleva tu laptop con cargador y crea antes tu cuenta gratuita de Canva. Si ya tienes logo y fotos de tu negocio, tráelos.",
+  "plan": {
+   "lead": "Cinco horas en las que se diseña, no se toma apuntes. Cada bloque cierra con un arte terminado y guardado en tu cuenta.",
+   "bloques": [
+    {
+     "hora": "1:00 – 1:40 p.m.",
+     "nivel": "Arranque",
+     "titulo": "Qué hace que un arte funcione",
+     "items": [
+      "Las partes de una publicación y en qué orden las lee la gente",
+      "Jerarquía visual: qué va grande, qué va chico y qué sobra",
+      "Errores que hacen que un arte se vea improvisado",
+      "Ejemplos reales: el mismo mensaje bien y mal diseñado"
+     ],
+     "entrega": "Criterio para saber si un arte tuyo está bien antes de publicarlo"
+    },
+    {
+     "hora": "1:40 – 2:40 p.m.",
+     "nivel": "Básico",
+     "titulo": "Canva de cero: el taller de tu marca",
+     "items": [
+      "La interfaz de Canva sin perderse entre tantos botones",
+      "Textos, formas, fotos y capas: lo que de verdad se usa",
+      "Plantillas: cómo tomarlas y volverlas tuyas",
+      "Recortes, fondos y quitar el fondo de una foto de producto"
+     ],
+     "entrega": "Tu primer arte terminado, hecho por ti"
+    },
+    {
+     "hora": "2:40 – 3:00 p.m.",
+     "nivel": "Pausa",
+     "titulo": "Coffee break",
+     "items": [
+      "Café y revisión rápida de lo que llevas"
+     ]
+    },
+    {
+     "hora": "3:00 – 4:00 p.m.",
+     "nivel": "Básico",
+     "titulo": "ChatGPT: las ideas y los textos del arte",
+     "items": [
+      "Sacar ideas de publicación a partir de tu propio negocio",
+      "Titulares que entran por el ojo y copys que acompañan",
+      "Adaptar un mismo mensaje a post, historia y portada",
+      "Guardar tus instrucciones para no empezar de cero cada semana"
+     ],
+     "entrega": "Diez ideas de publicación con su texto, listas para diseñar"
+    },
+    {
+     "hora": "4:00 – 5:00 p.m.",
+     "nivel": "Intermedio",
+     "titulo": "Tu kit de marca",
+     "items": [
+      "Colores y tipografías de tu negocio cargados en Canva",
+      "Plantillas propias para post, historia y portada",
+      "Cómo mantener todo consistente publicación tras publicación",
+      "Organizar tus carpetas para encontrar las cosas después"
+     ],
+     "entrega": "Tu kit de marca creado y tus plantillas guardadas"
+    },
+    {
+     "hora": "5:00 – 5:40 p.m.",
+     "nivel": "Intermedio",
+     "titulo": "Exportar y publicar",
+     "items": [
+      "Tamaños y formatos correctos para cada red",
+      "Exportar con la calidad que la red no te baje",
+      "Programar o publicar directo desde Canva",
+      "Revisión de tus artes con el instructor"
+     ],
+     "entrega": "Tus artes exportadas y publicadas en tus redes"
+    },
+    {
+     "hora": "5:40 – 6:00 p.m.",
+     "nivel": "Cierre",
+     "titulo": "Tu plan de publicaciones",
+     "items": [
+      "Armas qué vas a publicar las próximas dos semanas",
+      "Cada cuánto diseñar para no acumularte",
+      "Entrega de certificados y acceso al grupo de WhatsApp"
+     ],
+     "entrega": "Tu plan de publicaciones de dos semanas, escrito"
+    }
+   ]
+  },
+  "sched": [
+   {
+    "date": "2026-11-15",
+    "start": "13:00",
+    "end": "18:00"
+   }
+  ],
+  "img": "/img/canva.jpg"
+ },
+ {
   "id": "ia",
   "title": "Inteligencia Artificial para Dueños de Negocio",
   "tagline": "ChatGPT, Claude y automatizaciones",
