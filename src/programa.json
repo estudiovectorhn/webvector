@@ -68,12 +68,10 @@
    "titulo": "ChatGPT + ElevenLabs",
    "resumen": "Ideas, guiones, textos publicitarios, voces con inteligencia artificial y planes de contenido.",
    "tools": [
-    "chatgpt"
+    "chatgpt",
+    "elevenlabs"
    ],
-   "apps": [
-    "ChatGPT",
-    "ElevenLabs"
-   ]
+   "apps": []
   },
   {
    "n": 2,
