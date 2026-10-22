@@ -2,3 +2,7 @@
 Thumbs.db
 node_modules/
 *.log
+
+# Planes de estudio de clientes: se generan con "npm run plan" y se entregan por WhatsApp o correo,
+# no se publican en el sitio.
+planes/
