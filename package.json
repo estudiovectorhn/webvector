@@ -9,7 +9,8 @@
     "start": "node server.js",
     "dev": "node build.js && node server.js",
     "pdf": "node build-pdf.js",
-    "fichas": "node build-fichas-pdf.js"
+    "fichas": "node build-fichas-pdf.js",
+    "plan": "node build-plan.js"
   },
   "engines": {
     "node": ">=18"
