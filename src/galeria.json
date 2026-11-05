@@ -70,6 +70,10 @@
    "name": "Ferreterías, tiendas y retail",
    "lead": "Recorridos de tienda, artes de producto con precio y spots comerciales para vender catálogo.",
    "items": [
+    "hyp-carteras-crocs",
+    "hyp-crocs-megacrush",
+    "futboleros-real-madrid",
+    "futboleros-nike-mind",
     "megatools",
     "pf-soldaduras",
     "megatools-taladros",
@@ -96,6 +100,7 @@
    "name": "Pet shops y mascotas",
    "lead": "Producto, catálogo y promociones para tiendas de mascotas y marcas de alimento.",
    "items": [
+    "tobys-satelite",
     "tobys-milk-bone",
     "tobys-alimentos",
     "balance"
@@ -106,6 +111,8 @@
    "name": "Automotriz",
    "lead": "Servicios de polarizado, detailing y talleres mostrados con ritmo y antes y después.",
    "items": [
+    "kiv-detailing-2026",
+    "spectra-carbon-titanium",
     "la-guardia",
     "bts-detailing"
    ]
@@ -135,8 +142,16 @@
   {
    "id": "salud-marca-personal",
    "name": "Salud, marca personal y podcast",
-   "lead": "Contenido para médicos y profesionales: entrevistas, clips de podcast y videos de autoridad.",
+   "lead": "Contenido para médicos, odontólogos y hospitales: marca personal a cámara, piezas educativas de clínica dental, servicios de hospital y clips de podcast que construyen confianza antes de la primera consulta.",
    "items": [
+    "dr-james-ginecologia",
+    "dental-dm-diseno-sonrisa",
+    "dental-dm-protesis-fija",
+    "cmc-quirofano",
+    "cmc-arco-en-c",
+    "cmc-emergencia",
+    "cmc-laboratorio",
+    "cmc-imagenes-mes-rosa",
     "dr-orellana",
     "podcast-orellana",
     "backstage-3",

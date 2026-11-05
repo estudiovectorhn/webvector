@@ -728,5 +728,125 @@
   "src": "/img/trabajos/menu-cros2go-bebidas-calientes.jpg",
   "w": 1280,
   "h": 720
+ },
+ {
+  "type": "video",
+  "id": "cmc-quirofano",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Quirófano, anestesia y equipo de cirugía",
+  "src": "/video/cmc-quirofano.mp4",
+  "poster": "/img/trabajos/cmc-quirofano.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-arco-en-c",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Arco en C: cómo se verifica cada paso de una cirugía",
+  "src": "/video/cmc-arco-en-c.mp4",
+  "poster": "/img/trabajos/cmc-arco-en-c.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-emergencia",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Emergencia abierta las 24 horas",
+  "src": "/video/cmc-emergencia.mp4",
+  "poster": "/img/trabajos/cmc-emergencia.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-laboratorio",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Laboratorio con personal a cualquier hora",
+  "src": "/video/cmc-laboratorio.mp4",
+  "poster": "/img/trabajos/cmc-laboratorio.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-imagenes-mes-rosa",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Mes rosa: estudio de imágenes para detección temprana",
+  "src": "/video/cmc-imagenes-mes-rosa.mp4",
+  "poster": "/img/trabajos/cmc-imagenes-mes-rosa.jpg"
+ },
+ {
+  "type": "video",
+  "id": "dental-dm-diseno-sonrisa",
+  "title": "Dental DM",
+  "caption": "Diseño de sonrisa: corregir forma y color",
+  "src": "/video/dental-dm-diseno-sonrisa.mp4",
+  "poster": "/img/trabajos/dental-dm-diseno-sonrisa.jpg"
+ },
+ {
+  "type": "video",
+  "id": "dental-dm-protesis-fija",
+  "title": "Dental DM",
+  "caption": "Prótesis fija: la solución cuando falta un diente",
+  "src": "/video/dental-dm-protesis-fija.mp4",
+  "poster": "/img/trabajos/dental-dm-protesis-fija.jpg"
+ },
+ {
+  "type": "video",
+  "id": "dr-james-ginecologia",
+  "title": "Dr. James McNeil",
+  "caption": "Marca personal de un ginecólogo y obstetra",
+  "src": "/video/dr-james-ginecologia.mp4",
+  "poster": "/img/trabajos/dr-james-ginecologia.jpg"
+ },
+ {
+  "type": "video",
+  "id": "tobys-satelite",
+  "title": "Toby's Pet Shop",
+  "caption": "Recorrido por la tienda y su personal",
+  "src": "/video/tobys-satelite.mp4",
+  "poster": "/img/trabajos/tobys-satelite.jpg"
+ },
+ {
+  "type": "video",
+  "id": "kiv-detailing-2026",
+  "title": "KIV Detailing",
+  "caption": "Así empieza la transformación de un carro",
+  "src": "/video/kiv-detailing-2026.mp4",
+  "poster": "/img/trabajos/kiv-detailing-2026.jpg"
+ },
+ {
+  "type": "video",
+  "id": "spectra-carbon-titanium",
+  "title": "Spectra",
+  "caption": "Parasoles y autoestéreos para tu carro",
+  "src": "/video/spectra-carbon-titanium.mp4",
+  "poster": "/img/trabajos/spectra-carbon-titanium.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-megacrush",
+  "title": "Importaciones HyP",
+  "caption": "Crocs MegaCrush: plataforma única",
+  "src": "/video/hyp-crocs-megacrush.mp4",
+  "poster": "/img/trabajos/hyp-crocs-megacrush.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-carteras-crocs",
+  "title": "Importaciones HyP",
+  "caption": "Carteras Crocs ultra ligeras",
+  "src": "/video/hyp-carteras-crocs.mp4",
+  "poster": "/img/trabajos/hyp-carteras-crocs.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-real-madrid",
+  "title": "Futboleros HN",
+  "caption": "Camisetas de equipo: la historia detrás del escudo",
+  "src": "/video/futboleros-real-madrid.mp4",
+  "poster": "/img/trabajos/futboleros-real-madrid.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-nike-mind",
+  "title": "Futboleros HN",
+  "caption": "Calzado deportivo Nike en tienda",
+  "src": "/video/futboleros-nike-mind.mp4",
+  "poster": "/img/trabajos/futboleros-nike-mind.jpg"
  }
 ]
