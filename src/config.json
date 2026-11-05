@@ -9,5 +9,8 @@
   },
   "inscripciones": {
     "endpoint": ""
+  },
+  "academia": {
+    "endpoint": "https://gqeqtbsuhrtrigvghcby.supabase.co/functions/v1/academia-vector"
   }
 }

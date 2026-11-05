@@ -1,0 +1,285 @@
+{
+ "niveles": {
+  "meta": [
+   "Metaanálisis o revisión sistemática",
+   "Combina muchos estudios. Es la evidencia más sólida."
+  ],
+  "exp": [
+   "Experimento publicado",
+   "Estudio controlado publicado en una revista científica revisada por pares."
+  ],
+  "obs": [
+   "Datos reales u observación",
+   "Análisis de miles de casos reales. Muestra asociación, no prueba causa."
+  ],
+  "ind": [
+   "Dato de industria",
+   "Análisis de una empresa privada, sin revisión científica."
+  ],
+  "mix": [
+   "Evidencia mixta",
+   "Hay estudios a favor y en contra; se explica cuándo aplica."
+  ],
+  "vec": [
+   "Práctica Vector",
+   "Regla de Vector Academy apoyada en los estudios relacionados, sin un estudio que la pruebe por sí sola."
+  ]
+ },
+ "items": [
+  {
+   "id": "rapidez",
+   "l": "V",
+   "nivel": "obs",
+   "consejo": "Responder rápido. La meta de Vector es menos de 5 minutos en horario.",
+   "hallazgo": "En una auditoría a 2,241 empresas de Estados Unidos, solo el 37% respondió un contacto web en la primera hora, el promedio fue de 42 horas y el 23% nunca respondió. En un segundo análisis de 1.25 millones de contactos, las empresas que respondieron en la primera hora tuvieron casi 7 veces más probabilidad de lograr una conversación con quien decide que las que tardaron una hora más, y más de 60 veces más que las que tardaron 24 horas o más.",
+   "aplica": "El cliente escribe a varios negocios a la vez y se enfría rápido. Quien responde primero suele ganar la conversación.",
+   "limite": "El estudio usó formularios web en Estados Unidos, no WhatsApp. La meta de 5 minutos es un estándar de Vector, más exigente que la hora que midió el estudio.",
+   "citas": [
+    [
+     "Oldroyd, J. B., McElheran, K. y Elkington, D. (2011). The short life of online sales leads. Harvard Business Review, 89(3), 28.",
+     "https://scholarsarchive.byu.edu/facpub/9711"
+    ]
+   ]
+  },
+  {
+   "id": "empatia",
+   "l": "V",
+   "nivel": "obs",
+   "consejo": "Saludar con calidez y validar lo que el cliente siente antes de hablar de dinero.",
+   "hallazgo": "Una revisión de estudios sobre la relación entre dentista y paciente asocia la empatía con planes de tratamiento negociados, más apego al tratamiento, mayor satisfacción y menos ansiedad. Uno de los estudios revisados encontró una correlación de 0.60 entre el trato empático y una menor ansiedad del paciente.",
+   "aplica": "Un \"le entiendo\" al inicio baja la tensión y hace que el cliente cuente su caso con confianza. Es especialmente importante en salud, estética y bienestar.",
+   "limite": "Es una revisión narrativa en contexto clínico y las asociaciones no prueban causa. Se usa como respaldo del trato empático, no como cifra de ventas.",
+   "citas": [
+    [
+     "Jones, L. M. y Huggins, T. J. (2014). Empathy in the dentist-patient relationship: review and application. New Zealand Dental Journal, septiembre de 2014, 98–104.",
+     "https://pubmed.ncbi.nlm.nih.gov/25265748/"
+    ]
+   ]
+  },
+  {
+   "id": "transparencia",
+   "l": "V",
+   "nivel": "exp",
+   "consejo": "Reconocer la pregunta del precio desde el primer mensaje y nunca esconderlo.",
+   "hallazgo": "En seis experimentos, que un negocio revelara voluntariamente información de sus costos aumentó las ventas. En un comedor universitario, la probabilidad de comprar una sopa subió cerca de 21%; en una tienda en línea, las ventas de una billetera subieron cerca de 22%. El efecto se explicó por un aumento de la confianza.",
+   "aplica": "La transparencia genera confianza. Por eso VECTOR reconoce el precio desde el saludo y lo da a más tardar en el segundo o tercer mensaje, en lugar de esquivarlo.",
+   "limite": "El estudio revela costos de producción, no precios de venta. Se usa como evidencia de que la transparencia voluntaria aumenta la confianza y la compra.",
+   "citas": [
+    [
+     "Mohan, B., Buell, R. W. y John, L. K. (2020). Lifting the veil: The benefits of cost transparency. Marketing Science.",
+     "https://informs.org/News-Room/INFORMS-Releases/News-Releases/New-Research-Finds-Cost-Transparency-Can-Increase-Sales-20"
+    ]
+   ]
+  },
+  {
+   "id": "necesidad",
+   "l": "E",
+   "nivel": "obs",
+   "consejo": "Preguntar por la necesidad antes de ofrecer.",
+   "hallazgo": "El equipo de Neil Rackham analizó más de 35,000 llamadas de venta de 10,000 vendedores en 23 países durante 12 años. En las ventas de alto valor, los vendedores exitosos preguntaban más por el problema del cliente y sus consecuencias, y las técnicas de presión que funcionan en ventas pequeñas dejaban de funcionar.",
+   "aplica": "Las letras E (Explorar) y C (Conocer) adaptan al chat las preguntas de situación, problema e implicación de ese método, conocido como SPIN.",
+   "limite": "Es investigación de una consultora publicada como libro, no en una revista científica revisada por pares, y se centra en ventas de alto valor.",
+   "citas": [
+    [
+     "Rackham, N. (1988). SPIN Selling. McGraw-Hill.",
+     "https://www.schweitzer-online.de/en/buch/Rackham/SPIN-R-Selling/9780566076893/A2525143/"
+    ]
+   ]
+  },
+  {
+   "id": "preguntas",
+   "l": "E",
+   "nivel": "exp",
+   "consejo": "Hacer preguntas de seguimiento sobre lo que el cliente acaba de contar.",
+   "hallazgo": "En un estudio de conversaciones por chat con 430 personas, quienes hicieron más preguntas, sobre todo preguntas de seguimiento, le cayeron mejor a su compañero, porque se percibían más atentos a lo que el otro decía. Los autores advierten que demasiadas preguntas, o preguntas groseras o repetitivas, pueden tener el efecto contrario.",
+   "aplica": "Cada pregunta de VECTOR retoma lo que el cliente dijo (\"¿desde cuándo le pasa?\", \"¿para cuándo lo necesita?\"). Así el cliente se siente escuchado, no interrogado.",
+   "limite": "Conversaciones entre desconocidos en un estudio, no ventas reales.",
+   "citas": [
+    [
+     "Huang, K., Yeomans, M., Brooks, A. W., Minson, J. y Gino, F. (2017). It doesn't hurt to ask: Question-asking increases liking. Journal of Personality and Social Psychology, 113(3), 430–452.",
+     "https://dash.harvard.edu/handle/1/35647952"
+    ]
+   ]
+  },
+  {
+   "id": "cantidad",
+   "l": "E",
+   "nivel": "ind",
+   "consejo": "Repartir las preguntas: una por mensaje, de 3 a 5 en toda la conversación.",
+   "hallazgo": "Un análisis de 519,000 llamadas de descubrimiento grabadas encontró que hacer de 11 a 14 preguntas se asociaba con mejores resultados, que los mejores vendedores las reparten a lo largo de la llamada en lugar de amontonarlas al inicio, y que más preguntas se sienten como un interrogatorio.",
+   "aplica": "Una conversación por WhatsApp es más corta que una llamada de ventas. VECTOR propone de 3 a 5 preguntas, una por mensaje.",
+   "limite": "Datos de una empresa privada (Gong) sobre llamadas entre empresas, sin revisión científica. La cifra de 3 a 5 es una adaptación de Vector.",
+   "citas": [
+    [
+     "Gong Labs. Análisis de preguntas en llamadas de descubrimiento.",
+     "https://www.gong.io/blog/deal-closing-discovery-call/"
+    ]
+   ]
+  },
+  {
+   "id": "nombre",
+   "l": "C",
+   "nivel": "exp",
+   "consejo": "Pedir el nombre del cliente y usarlo en momentos clave.",
+   "hallazgo": "En tres experimentos, cuando quien hacía la solicitud recordaba el nombre de la persona, aumentaba su disposición a aceptar una solicitud de compra; las personas lo interpretaban como un cumplido. Por separado, un estudio de actividad cerebral mostró que escuchar el propio nombre activa regiones que no se activan con nombres ajenos.",
+   "aplica": "Use el nombre del cliente 2 o 3 veces en la conversación (al saludar después de que lo diga, al dar la solución y al confirmar). Más que eso suena a guion.",
+   "limite": "Estudios en Estados Unidos con interacciones en persona. El número de veces (2 o 3) es una recomendación de Vector.",
+   "citas": [
+    [
+     "Howard, D. J., Gengler, C. y Jain, A. (1995). What's in a name? A complimentary means of persuasion. Journal of Consumer Research, 22(2), 200–211.",
+     "https://ideas.repec.org/a/oup/jconrs/v22y1995i2p200-211.html"
+    ],
+    [
+     "Carmody, D. P. y Lewis, M. (2006). Brain activation when hearing one's own and others' names. Brain Research, 1116(1), 153–158.",
+     "https://pmc.ncbi.nlm.nih.gov/articles/PMC1647299/"
+    ]
+   ]
+  },
+  {
+   "id": "impacto",
+   "l": "C",
+   "nivel": "obs",
+   "consejo": "Preguntar por el impacto: desde cuándo le pasa, para cuándo lo necesita, por qué ahora.",
+   "hallazgo": "En la misma investigación de más de 35,000 llamadas, las preguntas sobre las consecuencias del problema (implicación) y sobre el valor de resolverlo fueron las que más se asociaron con el éxito en ventas de alto valor.",
+   "aplica": "Cuando el cliente dice \"me caso en un año\" o \"lo necesito para el lunes\", él mismo descubre por qué vale la pena resolverlo ahora. El precio después se conecta con esa razón.",
+   "limite": "Mismo límite que SPIN: investigación de consultora, centrada en ventas de alto valor.",
+   "citas": [
+    [
+     "Rackham, N. (1988). SPIN Selling. McGraw-Hill.",
+     "https://www.schweitzer-online.de/en/buch/Rackham/SPIN-R-Selling/9780566076893/A2525143/"
+    ]
+   ]
+  },
+  {
+   "id": "precio",
+   "l": "T",
+   "nivel": "exp",
+   "consejo": "Dar el precio después de entender la necesidad, conectado con el beneficio.",
+   "hallazgo": "Con resonancia magnética y pruebas de compra, ver el precio antes que el producto cambió cómo las personas evaluaban: con el precio primero, juzgaban si el producto valía lo que cuesta; con el producto primero, si les gustaba. Mostrar el precio primero solo aumentó las compras de productos claramente baratos.",
+   "aplica": "Un servicio o producto de valor no es una ganga. Primero se entiende la necesidad, luego se da el precio conectado a lo que el cliente quiere lograr.",
+   "limite": "Experimento de laboratorio con productos de consumo.",
+   "citas": [
+    [
+     "Karmarkar, U. R., Shiv, B. y Knutson, B. (2015). Cost conscious? The neural and behavioral impact of price primacy on decision making. Journal of Marketing Research, 52(4), 467–481.",
+     "https://dash.harvard.edu/handle/1/28548032"
+    ]
+   ]
+  },
+  {
+   "id": "experiencia",
+   "l": "T",
+   "nivel": "exp",
+   "consejo": "Hablar de lo que el cliente va a vivir, no solo del dinero.",
+   "hallazgo": "En varios experimentos, mencionar el tiempo o la experiencia en lugar del dinero aumentó la conexión personal con el producto. En un puesto de limonada, el letrero que hablaba de \"pasar un rato\" atrajo aproximadamente el doble de personas que el que hablaba de \"gastar dinero\", y pagaron casi el doble.",
+   "aplica": "Junto al precio, nombre el resultado: la boda, el viaje, la tranquilidad, el negocio funcionando.",
+   "limite": "El efecto se observó sobre todo en productos de experiencia; los autores señalan que en compras de prestigio enfocarse en el dinero puede funcionar mejor.",
+   "citas": [
+    [
+     "Mogilner, C. y Aaker, J. (2009). \"The time vs. money effect\": Shifting product attitudes and decisions through personal connection. Journal of Consumer Research, 36(2), 277–291.",
+     "https://gsb.stanford.edu/insights/jennifer-aaker-happiness-time-connection"
+    ]
+   ]
+  },
+  {
+   "id": "palabras",
+   "l": "T",
+   "nivel": "exp",
+   "consejo": "Repetir el motivo del cliente con sus propias palabras.",
+   "hallazgo": "Una mesera que repetía literalmente el pedido de los clientes recibió propinas significativamente más altas que cuando no lo repetía, en dos experimentos.",
+   "aplica": "\"Para llegar a su boda con la sonrisa que quiere…\": repetir las palabras del cliente demuestra que se le escuchó y crea afinidad.",
+   "limite": "Un restaurante en Países Bajos; mide propinas, no ventas.",
+   "citas": [
+    [
+     "van Baaren, R. B., Holland, R. W., Steenaert, B. y van Knippenberg, A. (2003). Mimicry for money: Behavioral consequences of imitation. Journal of Experimental Social Psychology, 39(4), 393–398.",
+     "https://stafforini.com/works/van-baaren-2003-mimicry-money-behavioral/"
+    ]
+   ]
+  },
+  {
+   "id": "plan",
+   "l": "O",
+   "nivel": "meta",
+   "consejo": "Cerrar con día, hora y lugar concretos, confirmados por escrito.",
+   "hallazgo": "Un metaanálisis de 94 pruebas independientes encontró que formular un plan concreto de cuándo y dónde actuar (\"el jueves a las 9 voy\") tuvo un efecto entre mediano y grande sobre cumplir la meta (d = 0.65).",
+   "aplica": "Una cita con día y hora confirmados se cumple más que un \"cualquier cosa me avisa\". El chat ayuda al cliente a formular ese plan.",
+   "limite": "Los estudios miden metas personales (salud, estudio, hábitos), no compras.",
+   "citas": [
+    [
+     "Gollwitzer, P. M. y Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. Advances in Experimental Social Psychology, 38, 69–119.",
+     "https://cancercontrol.cancer.gov/brp/research/constructs/implementation-intentions"
+    ]
+   ]
+  },
+  {
+   "id": "opciones",
+   "l": "O",
+   "nivel": "mix",
+   "consejo": "Ofrecer dos opciones concretas en lugar de dejar la decisión abierta.",
+   "hallazgo": "En el experimento clásico de las mermeladas, una mesa con 6 sabores logró que compraran el 30% de quienes se detuvieron, frente al 3% con 24 sabores. Sin embargo, un metaanálisis de 50 experimentos con 5,036 personas encontró que, en promedio, el efecto es casi nulo y varía mucho. Otro metaanálisis identificó cuándo sí aparece: cuando la decisión es difícil, las opciones son complejas o la persona no tiene clara su preferencia.",
+   "aplica": "Ese es justamente el caso del cliente que escribe por WhatsApp sin saber qué horario u opción le conviene. Dos opciones concretas le simplifican la decisión.",
+   "limite": "La regla de \"dos opciones\" es una práctica de Vector apoyada en estos hallazgos, no una cifra probada.",
+   "citas": [
+    [
+     "Iyengar, S. S. y Lepper, M. R. (2000). When choice is demotivating: Can one desire too much of a good thing? Journal of Personality and Social Psychology, 79(6), 995–1006.",
+     "https://www.psychologicalscience.org/observer/being-choosy-about-choosing"
+    ],
+    [
+     "Scheibehenne, B., Greifeneder, R. y Todd, P. M. (2010). Can there ever be too many options? A meta-analytic review of choice overload. Journal of Consumer Research, 37(3), 409–425.",
+     "https://econpapers.repec.org/RePEc:oup:jconrs:v:37:y:2010:i:3:p:409-425"
+    ],
+    [
+     "Chernev, A., Böckenholt, U. y Goodman, J. (2015). Choice overload: A conceptual review and meta-analysis. Journal of Consumer Psychology, 25(2), 333–358.",
+     "https://insight.kellogg.northwestern.edu/article/what-predicts-consumer-choice-overload"
+    ]
+   ]
+  },
+  {
+   "id": "recordatorio",
+   "l": "R",
+   "nivel": "meta",
+   "consejo": "Enviar un recordatorio un día antes de cada cita o entrega.",
+   "hallazgo": "Una revisión sistemática Cochrane encontró que los recordatorios por mensaje de texto aumentaron la asistencia a citas frente a no recordar: 78.6% frente a 67.8% (7 estudios, 5,841 personas; calidad de evidencia moderada).",
+   "aplica": "Un mensaje corto un día antes (\"le recordamos su cita de mañana, ¿nos confirma?\") reduce las ausencias y permite reagendar a tiempo.",
+   "limite": "Los estudios son de citas de salud; en otros negocios el efecto puede ser distinto.",
+   "citas": [
+    [
+     "Gurol-Urganci, I., de Jongh, T., Vodopivec-Jamsek, V., Atun, R. y Car, J. (2013). Mobile phone messaging reminders for attendance at healthcare appointments. Cochrane Database of Systematic Reviews, 12, CD007458.",
+     "https://pubmed.ncbi.nlm.nih.gov/24310741/"
+    ]
+   ]
+  },
+  {
+   "id": "historias",
+   "l": "R",
+   "nivel": "meta",
+   "consejo": "Publicar historias de forma constante, de 1 a 3 al día, sin saturar.",
+   "hallazgo": "Ver algo repetidamente aumenta la preferencia por ello (efecto de mera exposición). Un metaanálisis de 208 experimentos confirmó el efecto, y uno más reciente encontró que la preferencia sube con las repeticiones y luego baja cuando la exposición es excesiva.",
+   "aplica": "Guardar el contacto permite que el cliente vea las historias del negocio. Presencia diaria sí; diez promociones seguidas, no.",
+   "limite": "Los experimentos usan estímulos simples (imágenes, palabras). En redes sociales intervienen más factores. El rango de 1 a 3 historias es una práctica de Vector.",
+   "citas": [
+    [
+     "Zajonc, R. B. (1968). Attitudinal effects of mere exposure. Journal of Personality and Social Psychology, 9(2, Pt. 2), 1–27.",
+     "https://www.simplypsychology.org/mere-exposure-effect.html"
+    ],
+    [
+     "Bornstein, R. F. (1989). Exposure and affect: Overview and meta-analysis of research, 1968–1987. Psychological Bulletin, 106(2), 265–289.",
+     "https://www.simplypsychology.org/mere-exposure-effect.html"
+    ],
+    [
+     "Montoya, R. M., Horton, R. S., Vevea, J. L., Citkowicz, M. y Lauber, E. A. (2017). A re-examination of the mere exposure effect. Psychological Bulletin, 143(5), 459–498.",
+     "https://pubmed.ncbi.nlm.nih.gov/28263645/"
+    ]
+   ]
+  },
+  {
+   "id": "seguimiento",
+   "l": "R",
+   "nivel": "vec",
+   "consejo": "Dar seguimiento los días 1, 3, 7 y 30, y dejar descansar el contacto tras 3 mensajes sin respuesta.",
+   "hallazgo": "No existe un estudio que defina estos días exactos. El calendario combina tres hallazgos: los contactos se enfrían rápido (velocidad de respuesta), los recordatorios aumentan la asistencia y la exposición repetida ayuda hasta un punto y luego cansa.",
+   "aplica": "Seguir con amabilidad recupera conversaciones; insistir de más daña la relación y puede terminar en un bloqueo.",
+   "limite": "Es una práctica de Vector. Lo ideal es que cada negocio mida sus resultados y ajuste los días.",
+   "citas": []
+  }
+ ]
+}
