@@ -375,7 +375,7 @@ function renderRegistro() {
     <form class="mv-form" id="mvForm" novalidate>
       <div class="mv-f"><label for="f-nombre">Su nombre completo</label><input id="f-nombre" autocomplete="name" maxlength="80" value="${esc(r.nombre || "")}" placeholder="Ej. María Rodríguez"></div>
       <div class="mv-f"><label for="f-cargo">Cargo</label><input id="f-cargo" autocomplete="organization-title" maxlength="80" value="${esc(r.cargo || "")}" placeholder="Ej. Vendedora, recepción, gerente"></div>
-      <div class="mv-f"><label for="f-empresa">Nombre de la empresa</label><input id="f-empresa" autocomplete="organization" maxlength="100" value="${esc(r.empresa || "")}" placeholder="Ej. Dental DM"></div>
+      <div class="mv-f"><label for="f-empresa">Nombre de la empresa</label><input id="f-empresa" autocomplete="organization" maxlength="100" value="${esc(r.empresa || "")}" placeholder="Ej. Comercial Los Pinos"></div>
       <div class="mv-f"><label for="f-rubro">Tipo de negocio</label><select id="f-rubro"><option value="">Seleccione…</option>${opt(RUBROS, r.rubro)}</select></div>
       <div class="mv-f full" id="f-otro" hidden><label for="f-prod">¿Qué producto o servicio le preguntan más?</label><input id="f-prod" maxlength="50" value="${esc(r.prod || "")}" placeholder="Ej. el plan de internet"></div>
       <div class="mv-f"><label for="f-correo">Correo</label><input id="f-correo" type="email" autocomplete="email" inputmode="email" maxlength="120" value="${esc(r.correo || "")}" placeholder="nombre@empresa.com"></div>
