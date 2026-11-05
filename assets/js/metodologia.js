@@ -242,6 +242,16 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const track = (ev, d, custom) => { try { if (window.fbq) fbq(custom ? "trackCustom" : "track", ev, d || {}); } catch (e) {} };
 const WA = "50495691481";
 const player = $("mvPlayer"), screen = $("mvScreen");
+/* Respaldo científico: filtro por letra y abrir el estudio enlazado desde las lecciones */
+(function () {
+  const evs = document.querySelectorAll(".mv-ev"); if (!evs.length) return;
+  document.querySelectorAll(".mv-filter button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".mv-filter button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    evs.forEach(e => (e.hidden = !!b.dataset.f && e.dataset.l !== b.dataset.f));
+  }));
+  const open = () => { const m = /^#ev-([\w-]+)$/.exec(location.hash); if (!m) return; const el = document.getElementById("ev-" + m[1]); if (!el) return; evs.forEach(e => (e.hidden = false)); el.open = true; el.classList.add("hl"); setTimeout(() => el.classList.remove("hl"), 2400); };
+  addEventListener("hashchange", open); open();
+})();
 if (!player) return;
 const ENDPOINT = player.dataset.endpoint || "";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -264,32 +274,32 @@ function lessons() {
     { l: "V", t: "Vincular", temp: "Frío", d: `El ${C.cli} llega frío: pregunta el precio y no sabe quién le responde. Su primer trabajo es que sienta que habla con una persona.`,
       do: ["Responda en menos de 5 minutos.", "Salude con su nombre y el del negocio.", "Reconozca la pregunta del precio: \"con gusto le comparto el precio\". Nunca la ignore."],
       ch: [["in", C.open], ["out", C.hi + " Con gusto le comparto el precio."]],
-      fact: ["7×", "más probabilidad de concretar si se responde en la primera hora. En una auditoría a 2,241 empresas, el promedio fue de 42 horas.", "Harvard Business Review, 2011"],
+      fact: ["7×", "más probabilidad de lograr la conversación con quien decide si se responde en la primera hora. En una auditoría a 2,241 empresas, el promedio de respuesta fue de 42 horas.", "Oldroyd y col., Harvard Business Review, 2011", "rapidez"],
       q: { p: C.open, q: "¿Cuál es el mejor primer mensaje?", o: [C.hi + " Con gusto le comparto el precio.", "Cuesta L ____ 👍", "Para precios tiene que venir en persona."], e: "Se presenta, usa el nombre del negocio y reconoce la pregunta. Así empieza el vínculo." } },
     { l: "E", t: "Explorar", temp: "Frío → tibio", d: `Antes de dar un número, descubra qué necesita resolver el ${C.cli}. Una sola pregunta abierta, sobre su problema o su objetivo.`,
       do: ["Pregunte por la necesidad, no por datos personales todavía.", "Una pregunta por mensaje.", "Escuche: su respuesta le dirá qué ofrecer."],
       ch: [["out", C.probQ], ["in", C.probA]],
-      fact: ["35,000", "llamadas analizadas en 12 años: los vendedores exitosos en compras importantes preguntan por el problema antes de ofrecer.", "Neil Rackham, SPIN Selling"],
+      fact: ["430", "personas en un estudio de chat: quienes hicieron preguntas de seguimiento le cayeron mejor a su compañero, porque se percibían más atentos.", "Huang y col., Journal of Personality and Social Psychology, 2017", "preguntas"],
       q: { p: "(Ya saludó y reconoció la pregunta)", q: "¿Qué pregunta hace a continuación?", o: [C.probQ, "¿Nombre completo, ciudad, edad y cómo nos encontró?", "Le mando el catálogo completo 📄"], e: "Una sola pregunta sobre la necesidad. Varias juntas se sienten como interrogatorio." } },
     { l: "C", t: "Conocer", temp: "Tibio → caliente", d: `Ahora conozca a la persona: nombre, ciudad y, sobre todo, el impacto. ¿Desde cuándo le pasa? ¿Para cuándo lo necesita? Ahí aparece la razón real para comprar.`,
       do: ["Valide lo que siente: \"le entiendo\".", "Pida nombre y ciudad, y úselo 2 o 3 veces.", "Pregunte por el impacto o la fecha que le importa."],
       ch: [["out", "Le entiendo perfectamente 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?"], ["in", `Soy ${n}, de ${c}.`], ["out", `Mucho gusto, ${n}. ${C.impQ}`], ["in", C.impA]],
-      fact: ["Su nombre", "activa regiones del cerebro que no se activan con nombres ajenos. Usarlo capta la atención.", "Carmody y Lewis, Brain Research, 2006"],
+      fact: ["Su nombre", "En tres experimentos, recordar el nombre de la persona aumentó su disposición a aceptar una solicitud de compra: lo perciben como un cumplido.", "Howard, Gengler y Jain, Journal of Consumer Research, 1995", "nombre"],
       q: { p: C.probA, q: "¿Cuál respuesta avanza mejor?", o: ["Le entiendo perfectamente, tiene solución 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", C.ruleBad, "Ok, cuesta L [precio]."], e: "Valida la emoción y pide datos para personalizar. " + C.rule } },
     { l: "T", t: "Transparentar", temp: "Caliente", d: `Ahora sí: el precio. Conéctelo con lo que el ${C.cli} le contó, dé el precio o rango y la forma de pago. Si pregunta el precio por segunda vez, se da en ese mismo mensaje.`,
       do: ["Repita su motivo con sus palabras.", "Precio o rango claro, sin rodeos.", "Mencione formas de pago si existen."],
       ch: [["in", C.impA], ["out", C.sol]],
-      fact: ["Precio primero", "hace que el cerebro evalúe si \"vale lo que cuesta\". El producto primero hace que se pregunte si lo desea.", "Karmarkar, Shiv y Knutson, 2015"],
+      fact: ["Precio primero", "lleva a juzgar si el producto \"vale lo que cuesta\"; el producto primero, a preguntarse si se desea. El precio primero solo ayudó con productos claramente baratos.", "Karmarkar, Shiv y Knutson, Journal of Marketing Research, 2015", "precio"],
       q: { p: C.impA, q: "Es la segunda vez que pregunta el precio. ¿Qué responde?", o: [C.sol, "Primero venga y ahí le decimos.", "Depende de muchas cosas."], e: "El precio no se esconde: se da con contexto y conectado a lo que el cliente contó." } },
     { l: "O", t: "Ofrecer", temp: "Cierre", d: `No deje la decisión en el aire. Ofrezca dos opciones concretas de día, hora o forma de entrega, y confirme todo por escrito.`,
       do: ["Dos opciones, no \"cuando usted guste\".", "Confirme día, hora y lugar por escrito.", "Si hay anticipo, explíquelo con calma, como reserva."],
       ch: [["out", C.close], ["in", C.closeA], ["out", C.confirm]],
-      fact: ["30% vs 3%", "compraron con 6 opciones frente a 24. Simplificar la decisión ayuda a decidir.", "Iyengar y Lepper, 2000"],
+      fact: ["94", "pruebas en un metaanálisis: un plan concreto de cuándo y dónde actuar aumenta de forma importante el cumplimiento (d = 0.65).", "Gollwitzer y Sheeran, metaanálisis, 2006", "plan"],
       q: { p: "¿Tienen disponible esta semana?", q: "¿Cuál es el mejor cierre?", o: ["Sí 😊 " + C.close, "Sí. Cualquier cosa me avisa.", "Sí, pero deposite hoy o se pierde."], e: "Dos opciones concretas facilitan decidir. \"Me avisa\" deja enfriar al cliente." } },
     { l: "R", t: "Retener", temp: "Después", d: `La venta no termina en el chat. Guarde y etiquete el contacto, recuerde la cita, dé seguimiento a quien no decidió y publique historias para seguir presente.`,
       do: ["Guarde el contacto: nombre · interés · ciudad · fecha.", "Recordatorio un día antes; seguimiento de días 1, 3, 7 y 30.", "De 1 a 3 historias al día, sin saturar."],
       ch: [["ctx", `Contacto guardado: ${n} · ${C.segItem} · ${c}`], ["out", `Guárdenos como ${C.neg} para que le lleguen nuestras novedades 😊`], ["ctx", "Un día antes"], ["out", `Hola, ${n} 😊 Le recordamos su cita de mañana. ¿Nos confirma?`]],
-      fact: ["Recordatorios", "por mensaje aumentaron la asistencia a citas frente a no recordar.", "Revisión Cochrane, 2013"],
+      fact: ["78.6%", "de asistencia con recordatorio por mensaje frente a 67.8% sin recordatorio (7 estudios, 5,841 personas).", "Revisión sistemática Cochrane, 2013", "recordatorio"],
       q: { p: "Mmm, lo voy a pensar.", q: "¿Qué responde?", o: [`¡Con mucho gusto! Le guardo como ${C.cli} de ${C.neg} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si compra hoy le hago 10% de descuento.", "Ok."], e: "Respeta la decisión y asegura el contacto para el seguimiento." } }
   ];
 }
@@ -426,7 +436,7 @@ function rLesson(f) {
   screen.innerHTML = `<div class="mv-lesson">
    <div class="mv-lx"><div class="mv-big">${x.l}</div><span class="eyebrow">Letra ${f.i + 1} de 6 · Temperatura: ${esc(x.temp)}</span><h2>${x.t}</h2><p>${esc(x.d)}</p>
      <ul class="mv-do">${x.do.map((d, k) => `<li style="--k:${k}">${esc(d)}</li>`).join("")}</ul>
-     <div class="mv-fact"><b>${esc(x.fact[0])}</b><span>${esc(x.fact[1])}</span><small>${esc(x.fact[2])}</small></div></div>
+     <div class="mv-fact"><b>${esc(x.fact[0])}</b><span>${esc(x.fact[1])}</span><small>${esc(x.fact[2])} · <a href="#ev-${x.fact[3]}">Ver el estudio y cómo citarlo</a></small></div></div>
    <div class="mv-phone">${wh()}<div class="mv-thread" id="mvT"></div></div></div>
    ${nav("Entendido, ponerme a prueba →")}`;
   animateChat($("mvT"), x.ch, 650); wireNav();

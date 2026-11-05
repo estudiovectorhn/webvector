@@ -1273,3 +1273,22 @@ a.trust{text-decoration:none;color:inherit}
 .pgcard .cbody h3{font-size:16px;line-height:1.2}
 .pgcard .netsline span{font-size:11.5px;font-weight:800;color:var(--muted);margin-left:0}
 @media (min-width:760px){.list .pgcard{grid-column:1/-1;display:grid;grid-template-columns:.9fr 1.1fr;align-items:stretch}.list .pgcard .cover{height:100%;min-height:240px;border-radius:0}.list .pgcard .cbody{display:flex;flex-direction:column;justify-content:center}}
+
+/* Acceso al curso gratuito Metodología VECTOR (portada, talleres y menú) */
+.sitenav a.nav-new{position:relative}
+.sitenav a.nav-new::after{content:"Gratis";margin-left:6px;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:99px;background:var(--grad);color:#fff;vertical-align:2px}
+.st-curso{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:700;font-size:13px;text-decoration:none}
+.st-curso b{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:99px;background:var(--grad)}
+.cvband{position:relative;overflow:hidden;isolation:isolate;margin-top:34px;display:grid;gap:18px;align-items:center;padding:24px 22px;border-radius:26px;background:radial-gradient(70% 90% at 100% 0%,rgba(224,22,155,.45),transparent 60%),radial-gradient(60% 80% at 0% 100%,rgba(106,59,245,.5),transparent 60%),var(--ink);color:#fff;box-shadow:0 30px 60px -36px rgba(8,4,26,.9)}
+.cvband .eyebrow{margin:0;color:#FF9AD2;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:800}
+.cvband h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(28px,5vw,44px);line-height:.95;margin:8px 0}
+.cvband h2 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:brightness(1.35)}
+.cvband p{margin:0;color:#D6CCF5;max-width:58ch}
+.cv-word{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.cv-word span{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-family:var(--display);font-size:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.cv-word span:nth-child(odd){color:#B9A4FF}.cv-word span:nth-child(even){color:#FF6FB5}
+.cv-pts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.cv-pts span{font-size:12px;font-weight:700;padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.08)}
+.cvband .btn{margin:0}
+.cv-act{display:grid;gap:10px}
+@media (min-width:900px){.cvband{grid-template-columns:1fr auto;padding:32px 36px}}

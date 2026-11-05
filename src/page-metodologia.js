@@ -3,6 +3,7 @@
  * al endpoint de config.json → academia.endpoint, que guarda en Supabase y avisa por correo. */
 module.exports = function buildMetodologia(c) {
   const { head, ICON, esc, SITE, ORG, ORG_ID, PERSON_ID, faqLD, crumbsLD, faqHTML, siteHeader, siteFooter, write, V, waText, endpoint } = c;
+  const EV = require("./evidencia-vector.json");
   const slug = "metodologia-vector";
   const url = `${SITE}/${slug}/`;
   const pdf = `/${slug}/metodologia-vector.pdf`;
@@ -21,28 +22,30 @@ module.exports = function buildMetodologia(c) {
     ["¿Cuánto cuesta el curso en línea?", "El curso en línea es gratuito. Dura entre 5 y 10 minutos, incluye un examen y un certificado digital de aprobación de Vector Academy."],
     ["¿Para quién es?", "Para vendedores, recepcionistas, community managers y cualquier persona que atienda mensajes de clientes en clínicas, tiendas, restaurantes, ferreterías, talleres, servicios profesionales y cualquier otro negocio. El curso adapta los ejemplos al tipo de negocio que usted elige."],
     ["¿Pueden capacitar a todo mi equipo de ventas?", `Sí. Vector Academy imparte la Metodología VECTOR en capacitaciones presenciales en San Pedro Sula, en su empresa en cualquier ciudad de Honduras o en línea, con práctica de casos reales de su negocio. Escríbanos por <a href="${waCap}" target="_blank" rel="noopener">WhatsApp al 9569-1481</a>.`],
-    ["¿En qué estudios se basa?", "En investigación sobre velocidad de respuesta (Harvard Business Review), venta consultiva (SPIN Selling de Neil Rackham), efecto del precio primero (Karmarkar, Shiv y Knutson), tiempo frente a dinero (Mogilner y Aaker), exceso de opciones (Iyengar y Lepper), intenciones de implementación (Gollwitzer y Sheeran), mera exposición (Zajonc) y recordatorios por mensaje (Cochrane). Las fuentes completas están en esta página y en el PDF."]
+    ["¿En qué estudios se basa?", "Cada consejo está respaldado por investigación publicada: velocidad de respuesta (Harvard Business Review), preguntas de seguimiento (Journal of Personality and Social Psychology), venta consultiva (SPIN Selling), uso del nombre (Journal of Consumer Research), precio primero (Journal of Marketing Research), tiempo frente a dinero (Journal of Consumer Research), planes concretos (metaanálisis de 94 pruebas), recordatorios (revisión Cochrane) y mera exposición (Psychological Bulletin), entre otros. En la sección <a href=\"#respaldo\">Respaldo científico</a> cada consejo muestra el hallazgo, cómo se aplica, su límite y la cita completa. Donde un consejo es una práctica de Vector sin estudio directo, se indica."]
   ];
-  const FUENTES = [
-    ["V", "Oldroyd, McElheran y Elkington (2011). The Short Life of Online Sales Leads. Harvard Business Review.", "https://scholarsarchive.byu.edu/facpub/9711"],
-    ["V", "Revisión sobre empatía en la relación profesional-paciente (2014). PubMed 25265748.", "https://pubmed.ncbi.nlm.nih.gov/25265748/"],
-    ["E · C", "Rackham, N. (1988). SPIN Selling. McGraw-Hill.", "https://www.schweitzer-online.de/en/buch/Rackham/SPIN-R-Selling/9780566076893/A2525143/"],
-    ["E", "Gong Labs. Análisis de preguntas en llamadas de descubrimiento.", "https://www.gong.io/blog/deal-closing-discovery-call/"],
-    ["C", "Carmody y Lewis (2006). Brain activation when hearing one's own and others' names. Brain Research.", "https://pmc.ncbi.nlm.nih.gov/articles/PMC1647299/"],
-    ["T", "Karmarkar, Shiv y Knutson (2015). Cost Conscious? The Neural and Behavioral Impact of Price Primacy. Journal of Marketing Research.", "https://hbswk.hbs.edu/item/how-our-brain-determines-if-the-product-is-worth-the-price"],
-    ["T", "Mogilner y Aaker (2009). The Time vs. Money Effect. Journal of Consumer Research.", "https://www.gsb.stanford.edu/insights/jennifer-aaker-happiness-time-connection"],
-    ["O", "Iyengar y Lepper (2000). When Choice is Demotivating. Journal of Personality and Social Psychology.", "https://www.psychologicalscience.org/observer/being-choosy-about-choosing"],
-    ["O", "Gollwitzer y Sheeran (2006). Implementation intentions and goal achievement: a meta-analysis.", "https://cancercontrol.cancer.gov/brp/research/constructs/implementation-intentions"],
-    ["R", "Zajonc (1968); Bornstein (1989); Montoya y col. (2017). Efecto de mera exposición.", "https://www.simplypsychology.org/mere-exposure-effect.html"],
-    ["R", "Gurol-Urganci y col. (2013). Mobile phone messaging reminders for attendance at healthcare appointments. Cochrane.", "https://pubmed.ncbi.nlm.nih.gov/24310741/"]
-  ];
+  const LET = { V: "Vincular", E: "Explorar", C: "Conocer", T: "Transparentar", O: "Ofrecer", R: "Retener" };
+  const evCard = it => {
+    const [nn, nd] = EV.niveles[it.nivel];
+    return `<details class="mv-ev" id="ev-${it.id}" data-l="${it.l}">
+        <summary><b class="mv-evl">${it.l}</b><span class="mv-evc">${esc(it.consejo)}</span><span class="mv-lvl lv-${it.nivel}">${nn}</span></summary>
+        <div class="mv-evb">
+          <div class="mv-evr"><h4>Qué encontró la investigación</h4><p>${esc(it.hallazgo)}</p></div>
+          <div class="mv-evr"><h4>Cómo se aplica en el chat</h4><p>${esc(it.aplica)}</p></div>
+          <div class="mv-evr lim"><h4>Límite que debe conocer</h4><p>${esc(it.limite)}</p></div>
+          ${it.citas.length ? `<div class="mv-evr cite"><h4>Cómo citarlo</h4>${it.citas.map(([c, u]) => `<p>${esc(c)} <a href="${u}" target="_blank" rel="noopener">Ver fuente</a></p>`).join("")}</div>` : ""}
+          <p class="mv-evn"><span class="mv-lvl lv-${it.nivel}">${nn}</span> ${nd} <a href="#curso">Volver al curso ↑</a></p>
+        </div>
+      </details>`;
+  };
+  const BIBLIO = [...new Map(EV.items.flatMap(it => it.citas.map(([c, u]) => [c, [c, u, it.l]]))).values()].sort((a, b) => a[0].localeCompare(b[0], "es"));
 
   const graph = [ORG,
     { "@type": "Course", "@id": url + "#curso", name: "Metodología VECTOR: atención y ventas por WhatsApp", description: "Curso en línea gratuito de Vector Marketing & Academy para vendedores: seis pasos para atender y cerrar ventas por WhatsApp entendiendo la necesidad del cliente antes del precio.", url, inLanguage: "es", provider: { "@id": ORG_ID }, isAccessibleForFree: true, educationalLevel: "Principiante", timeRequired: "PT10M", teaches: LETRAS.map(l => l[0] + " · " + l[1] + ": " + l[2]), hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: "PT10M", instructor: { "@id": PERSON_ID } }, offers: { "@type": "Offer", price: "0", priceCurrency: "HNL", category: "Free", availability: "https://schema.org/InStock" } },
     faqLD(FAQ), crumbsLD([["Inicio", "/"], ["Metodología VECTOR", `/${slug}/`]])
   ];
 
-  const body = `${siteHeader("")}
+  const body = `${siteHeader("metodologia")}
 <main class="mvpage" id="contenido">
   <section class="mv-hero">
     <div class="mv-hero-in">
@@ -90,10 +93,14 @@ module.exports = function buildMetodologia(c) {
       <a class="btn light" href="${waCap}" target="_blank" rel="noopener">${ICON.wa}Cotizar capacitación</a>
     </section>
 
-    <section class="mv-sec" aria-labelledby="mv-src">
-      <span class="eyebrow">Respaldo</span>
-      <h2 id="mv-src" class="sectitle">Estudios que respaldan cada letra</h2>
-      <ol class="mv-src">${FUENTES.map(([l, t, u]) => `<li><b>${l}</b><span>${esc(t)} <a href="${u}" target="_blank" rel="noopener">Ver fuente</a></span></li>`).join("")}</ol>
+    <section class="mv-sec" id="respaldo" aria-labelledby="mv-src">
+      <span class="eyebrow">Respaldo científico</span>
+      <h2 id="mv-src" class="sectitle">Cada consejo, con su estudio</h2>
+      <p class="mv-lead">Si alguien le pregunta en qué se basa un consejo de la Metodología VECTOR, aquí está la respuesta: qué encontró la investigación, cómo se aplica en el chat, qué límite tiene y la cita completa para mencionarla. Donde no existe un estudio directo, lo decimos.</p>
+      <div class="mv-legend">${Object.entries(EV.niveles).map(([k, [n, d]]) => `<div><span class="mv-lvl lv-${k}">${n}</span><small>${d}</small></div>`).join("")}</div>
+      <div class="mv-filter" role="group" aria-label="Filtrar por letra"><button type="button" data-f="" aria-pressed="true">Todas</button>${Object.entries(LET).map(([l, n]) => `<button type="button" data-f="${l}" aria-pressed="false"><b>${l}</b> ${n}</button>`).join("")}</div>
+      <div class="mv-evs">${EV.items.map(evCard).join("")}</div>
+      <details class="mv-biblio"><summary>Bibliografía completa (${BIBLIO.length} referencias)</summary><ol>${BIBLIO.map(([c, u, l]) => `<li>${esc(c)} <a href="${u}" target="_blank" rel="noopener">Ver fuente</a></li>`).join("")}</ol></details>
     </section>
 
     ${faqHTML(FAQ, "Preguntas sobre la Metodología VECTOR")}

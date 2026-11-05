@@ -32,6 +32,8 @@ node server.js    # abre http://localhost:3000
 | Cintillo de marcas (logos de clientes en `img/clientes/`) en portada y servicios | `src/clientes.json` |
 | Encabezado, pie, preguntas frecuentes, página de taller y de servicios | `build.js` |
 | Curso gratuito Metodología VECTOR (`/metodologia-vector/`): página en `src/page-metodologia.js`, curso interactivo en `assets/js/metodologia.js` (tipos de negocio, lecciones, misión y examen), estilos en `assets/css/metodologia.css`. Los registros y resultados van a la función `academia-vector` de Supabase (VCloud), que los guarda en la tabla `academia_registros` y avisa por correo; la dirección está en `src/config.json` → `academia.endpoint` | `src/page-metodologia.js` |
+| Respaldo científico de cada consejo de la Metodología VECTOR (hallazgo, aplicación, límite, nivel de evidencia y citas); lo usan la página y el PDF | `src/evidencia-vector.json` |
+| Banner del curso gratis en portada y talleres (`{{CURSO}}`) y enlace "Curso" del menú | `build.js` → `cursoBanner()` y `siteHeader()` |
 | PDF de la Metodología VECTOR para compartir por WhatsApp | `build-metodologia-pdf.js` → `metodologia-vector/metodologia-vector.pdf` |
 | Estilos | `assets/css/site.css` |
 | Interacción (filtros, calendario, ficha) | `assets/js/app.js`, `assets/js/render.js` |

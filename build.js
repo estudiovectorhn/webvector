@@ -246,6 +246,7 @@ function siteHeader(active) {
       ${item("/portafolio/", "Portafolio", "portafolio")}
       ${item("/talleres/", "Talleres", "talleres")}
       ${item(`/${PR.slug}/`, "Programa Ejecutivo", "programa")}
+      <a href="/metodologia-vector/" class="nav-new"${active === "metodologia" ? ' aria-current="page"' : ""}>Curso</a>
       ${item("/director-creativo/", "Director Creativo", "director")}
       ${item("/servicios/", "Servicios", "servicios")}
       <a class="navcta" href="${waText("Hola Vector, quiero información.")}" target="_blank" rel="noopener">${ICON.wa}Escríbenos</a>
@@ -382,7 +383,7 @@ function shotsHTML() {
 function buildHome() {
   let body = fs.readFileSync("src/home.body.html", "utf8");
   const tallerCTA = `Calendario de ${MESYA}: ${nTalleres(T.length)} en el aula de Vector Academy, ${lista(T.map(t => t.title))}. Máximo 10 cupos por taller.`;
-  body = body.replace("{{PROGRAMA}}", programaBanner())
+  body = body.replace("{{CURSO}}", cursoBanner()).replace("{{PROGRAMA}}", programaBanner())
     .replace("{{TALLERES_HOME}}", tallerCTA)
     .replace("{{HEADER}}", siteHeader("trabajo"))
     .replace("{{REELS}}", reelsHTML(WORK.filter(w => w.type === "video" && w.home), "Videos producidos", true))
@@ -464,6 +465,22 @@ function programaBanner() {
   </section>`;
 }
 
+function cursoBanner() {
+  return `<section class="cvband" aria-labelledby="cvb-t">
+    <div>
+      <span class="eyebrow">Vector Academy · Curso gratuito en línea</span>
+      <h2 id="cvb-t">Curso gratis de atención y ventas por WhatsApp: <span class="g">Metodología VECTOR</span></h2>
+      <p>Para vendedores y personas que atienden clientes. En menos de 10 minutos aprende a pasar del "¿cuánto cuesta?" a la venta cerrada, con ejemplos de su tipo de negocio y respaldo científico en cada consejo.</p>
+      <div class="cv-word" aria-hidden="true"><span>V</span><span>E</span><span>C</span><span>T</span><span>O</span><span>R</span></div>
+      <div class="cv-pts"><span>8 minutos</span><span>Examen y certificado</span><span>PDF para compartir</span></div>
+    </div>
+    <div class="cv-act">
+      <a class="btn light" href="/metodologia-vector/#curso">${ICON.arrow}Tomar el curso gratis</a>
+      <a class="btn ghost" href="/metodologia-vector/metodologia-vector.pdf" download>${ICON.pdf}Descargar la metodología</a>
+    </div>
+  </section>`;
+}
+
 /* ---------------- Página: talleres del mes ---------------- */
 function buildTalleres() {
   let body = fs.readFileSync("src/talleres.body.html", "utf8");
@@ -490,6 +507,7 @@ ${faqHTML(FAQ_HOME)}`;
   body = body.replace("{{HEADER}}", siteHeader("talleres"))
     .replace("{{CARDS}}", VR.programaCard(programaData()) + T.map(t => VR.cardHTML(t)).join(""))
     .replace("{{WEEKENDS}}", weekends)
+    .replace("{{CURSO}}", cursoBanner())
     .replace("{{PROGRAMA}}", programaBanner())
     .replace("{{SEO}}", seo)
     .replace("{{FOOTER}}", siteFooter())

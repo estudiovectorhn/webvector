@@ -11,6 +11,7 @@ const path = require("path");
 const { pathToFileURL } = require("url");
 
 const OUT = "metodologia-vector/metodologia-vector.pdf";
+const EV = require("./src/evidencia-vector.json");
 const file = p => pathToFileURL(path.resolve(p)).href;
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const mark = t => esc(t).replace(/\[([^\]]+)\]/g, "<mark>[$1]</mark>");
@@ -21,27 +22,27 @@ const L = [
   { l: "V", t: "Vincular", temp: "Frío", d: "El cliente llega frío: pregunta el precio y no sabe quién le responde. Su primer trabajo es que sienta que habla con una persona.",
     do: ["Responda en menos de 5 minutos.", "Salude con su nombre y el del negocio.", "Reconozca la pregunta del precio. Nunca la ignore ni la esquive."],
     ch: [["in", "Hola, ¿qué precio tiene el servicio?"], ["out", "¡Buen día! Le atiende María de [su negocio] 😊 Con gusto le comparto el precio."]],
-    f: "Responder en la primera hora hace 7 veces más probable concretar (Harvard Business Review, 2011)." },
+    f: "Responder en la primera hora hizo casi 7 veces más probable lograr la conversación con quien decide (Oldroyd y col., Harvard Business Review, 2011)." },
   { l: "E", t: "Explorar", temp: "Frío → tibio", d: "Antes de dar un número, descubra qué necesita resolver el cliente con una sola pregunta abierta.",
     do: ["Pregunte por la necesidad, no por datos personales todavía.", "Una pregunta por mensaje.", "Escuche: su respuesta le dice qué ofrecer."],
     ch: [["out", "Para darle el dato correcto, ¿qué necesita resolver o para qué lo busca?"], ["in", "Lo necesito para mi negocio, pero no sé cuál me conviene 🤔"]],
-    f: "Los vendedores exitosos preguntan por el problema antes de ofrecer (Rackham, SPIN Selling: 35,000 llamadas)." },
+    f: "Las preguntas de seguimiento aumentaron el agrado en conversaciones por chat (Huang y col., Journal of Personality and Social Psychology, 2017)." },
   { l: "C", t: "Conocer", temp: "Tibio → caliente", d: "Conozca a la persona: nombre, ciudad y el impacto. ¿Desde cuándo? ¿Para cuándo? Ahí aparece la razón real para comprar.",
     do: ["Valide lo que siente: \"le entiendo\".", "Pida nombre y ciudad; use el nombre 2 o 3 veces.", "Pregunte por el impacto o la fecha que le importa."],
     ch: [["out", "Le entiendo 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?"], ["in", "Soy Andrea, de San Pedro Sula."], ["out", "Mucho gusto, Andrea. ¿Para cuándo lo necesita?"], ["in", "Para este mes. ¿Y cuánto cuesta?"]],
-    f: "Escuchar el propio nombre activa regiones específicas del cerebro (Carmody y Lewis, 2006)." },
+    f: "Recordar el nombre aumentó la disposición a aceptar una solicitud de compra (Howard, Gengler y Jain, Journal of Consumer Research, 1995)." },
   { l: "T", t: "Transparentar", temp: "Caliente", d: "Ahora sí, el precio: conéctelo con lo que el cliente contó, dé el precio o rango y la forma de pago. Si pregunta por segunda vez, se da en ese mismo mensaje.",
     do: ["Repita su motivo con sus palabras.", "Precio o rango claro, sin rodeos.", "Mencione formas de pago."],
     ch: [["out", "Andrea, para lo que me cuenta le recomiendo [opción]. Tiene un valor de L [precio] y puede pagarlo con [forma de pago]."]],
-    f: "Ver el precio primero lleva a evaluar si \"vale lo que cuesta\"; ver el beneficio primero, a desearlo (Karmarkar, Shiv y Knutson, 2015)." },
+    f: "Ver el precio primero lleva a evaluar si \"vale lo que cuesta\"; ver el producto primero, a desearlo (Karmarkar, Shiv y Knutson, Journal of Marketing Research, 2015)." },
   { l: "O", t: "Ofrecer", temp: "Cierre", d: "No deje la decisión en el aire. Ofrezca dos opciones concretas y confirme todo por escrito.",
     do: ["Dos opciones, nunca \"cuando usted guste\".", "Confirme día, hora y lugar por escrito.", "Si hay anticipo, explíquelo con calma como reserva."],
     ch: [["out", "¿Le queda mejor el jueves en la mañana o el sábado temprano?"], ["in", "¡El jueves! 🙌"], ["out", "¡Listo, Andrea! Queda para el jueves a las 9:00 a. m. Un día antes le escribo para confirmar 😊"]],
-    f: "Con 6 opciones compró el 30%; con 24, el 3% (Iyengar y Lepper, 2000). Un plan con día y hora se cumple más (Gollwitzer y Sheeran, 2006)." },
+    f: "Un plan concreto de cuándo y dónde actuar aumenta el cumplimiento: metaanálisis de 94 pruebas, d = 0.65 (Gollwitzer y Sheeran, 2006)." },
   { l: "R", t: "Retener", temp: "Después", d: "La venta no termina en el chat. Guarde y etiquete el contacto, recuerde la cita, dé seguimiento a quien no decidió y publique historias.",
     do: ["Guarde: nombre · interés · ciudad · fecha.", "Recordatorio un día antes; seguimiento de días 1, 3, 7 y 30.", "De 1 a 3 historias al día, sin saturar."],
     ch: [["ctx", "Contacto guardado: Andrea · servicio · SPS · 05/11"], ["out", "Guárdenos como [su negocio] para que le lleguen nuestras novedades 😊"]],
-    f: "Los recordatorios por mensaje aumentan la asistencia (Cochrane, 2013). La familiaridad aumenta la preferencia (Zajonc, 1968)." }
+    f: "Con recordatorio por mensaje asistió el 78.6% frente a 67.8% sin recordatorio (revisión Cochrane, 2013)." }
 ];
 const FUENTES = [
   "Oldroyd, McElheran y Elkington (2011). The Short Life of Online Sales Leads. Harvard Business Review.",
@@ -58,6 +59,9 @@ const FUENTES = [
 ];
 const chat = ch => `<div class="ph"><div class="ph-h"><span>V</span><b>Su negocio · WhatsApp</b></div><div class="th">${ch.map(([w, t]) => w === "ctx" ? `<div class="ctx">${mark(t)}</div>` : `<div class="b ${w}">${mark(t)}</div>`).join("")}</div></div>`;
 const letra = x => `<section class="lt"><div class="lt-l"><b>${x.l}</b><div><h3>${x.t}</h3><span class="chip">Temperatura: ${x.temp}</span></div></div><p>${esc(x.d)}</p><div class="lt-g"><ul>${x.do.map(d => `<li>${esc(d)}</li>`).join("")}</ul>${chat(x.ch)}</div><div class="fact">${esc(x.f)}</div></section>`;
+const evBox = it => `<div class="ev"><div class="ev-h"><b>${it.l}</b><span>${esc(it.consejo)}</span><i class="lvl lv-${it.nivel}">${EV.niveles[it.nivel][0]}</i></div>
+  <p><strong>Hallazgo:</strong> ${esc(it.hallazgo)}</p><p><strong>Aplicación:</strong> ${esc(it.aplica)} <em>Límite: ${esc(it.limite)}</em></p>
+  ${it.citas.length ? `<p class="ci">${it.citas.map(([c]) => esc(c)).join("<br>")}</p>` : ""}</div>`;
 const foot = n => `<div class="pf"><span>Metodología VECTOR · Vector Marketing &amp; Academy</span><span>estudiovector.com/metodologia-vector · ${n}</span></div>`;
 
 const html = `<!doctype html><html lang="es"><head><meta charset="utf-8">
@@ -111,6 +115,14 @@ mark{background:rgba(106,59,245,.14);color:#2C02A4;border-radius:4px;padding:0 3
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .tl div{display:flex;gap:10px;margin-bottom:8px}.tl b{flex:none;width:58px;font-size:11px;color:#6A3BF5}
 .tags div{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px}.tags i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.ev{background:#fff;border:1px solid #E4DBFB;border-radius:12px;padding:7px 11px;margin-bottom:6px;page-break-inside:avoid}
+.ev-h{display:flex;gap:8px;align-items:center}.ev-h b{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;background:#6A3BF5;color:#fff;font-family:Anton;font-weight:400;font-size:13px}
+.ev-h span{font-weight:800;font-size:11.5px;flex:1}
+.ev p{margin:3px 0 0;font-size:9.1px;line-height:1.38;color:#2a2152}.ev em{color:#7a5a00;font-style:normal}
+.ev .ci{color:#5E5484;font-size:9px;border-top:1px dashed #E4DBFB;padding-top:4px}
+.lvl{display:inline-block;font-style:normal;font-size:8.5px;font-weight:800;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.lv-meta{background:#DCF5E9;color:#0B7A4C}.lv-exp{background:#E8E1FF;color:#3A0CC9}.lv-obs{background:#DDF1FB;color:#0A6A94}.lv-ind{background:#FFF0D6;color:#9A5B00}.lv-mix{background:#FDE7F2;color:#B0105F}.lv-vec{background:#0E0630;color:#fff}
+.lv{display:grid;gap:8px;margin:10px 0 14px}.lv div{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid #E4DBFB;border-radius:12px;padding:9px 12px;font-size:12px}.lv .lvl{font-size:10px}
 ol.src{padding-left:18px;display:grid;gap:7px;font-size:12px}
 .cta{border-radius:22px;padding:22px;background:linear-gradient(120deg,#3A0CC9,#7B4DFF 45%,#E0169B);color:#fff;margin-top:16px}
 .cta h2{font-size:34px;margin:0 0 6px}
@@ -161,14 +173,17 @@ a{color:inherit}
   ${foot(6)}
 </div>
 
+${[["V","E"],["C","T"],["O","R"]].map((pair, k) => `<div class="pg"><p class="eb">Respaldo científico · ${pair.join(" y ")}</p><h2 style="font-size:30px">Cada consejo, <span class="g">con su estudio</span></h2>
+  ${EV.items.filter(it => pair.includes(it.l)).map(evBox).join("")}${foot(7 + k)}</div>`).join("")}
+
 <div class="pg">
-  <p class="eb">Respaldo científico</p>
-  <h2>Fuentes de la <span class="g">Metodología VECTOR</span></h2>
-  <ol class="src">${FUENTES.map(f => `<li>${esc(f)}</li>`).join("")}</ol>
+  <p class="eb">Cómo leer el respaldo</p>
+  <h2 style="font-size:34px">Niveles de <span class="g">evidencia</span></h2>
+  <div class="lv">${Object.entries(EV.niveles).map(([k, [n, d]]) => `<div><span class="lvl lv-${k}">${n}</span><span>${esc(d)}</span></div>`).join("")}</div>
   <p style="color:#5E5484;font-size:11.5px">Varios estudios vienen de ventas entre empresas, consumo general o salud: muestran el mecanismo. El resultado en cada negocio se mide comparando mensajes recibidos, ventas o citas cerradas y clientes que regresan, antes y después de aplicar la metodología.</p>
   <div class="qr"><img src="${file("img/qr-metodologia-vector.png")}" alt=""><div><p class="eb">Curso gratuito · 8 minutos</p><h2 style="font-size:28px;margin:4px 0">Tome el curso y obtenga su certificado</h2><p style="margin:0;color:#5E5484">Escanee el código o entre a <a href="${CURSO}"><b>estudiovector.com/metodologia-vector</b></a>. Los ejemplos se adaptan a su tipo de negocio.</p></div></div>
   <div class="cta"><p class="eb" style="color:#fff;opacity:.85">Para equipos de venta</p><h2>Capacite a todo su equipo con Vector Academy</h2><p style="margin:0">Presencial en Vector Academy (San Pedro Sula), en sus instalaciones en cualquier ciudad de Honduras o en línea. Práctica con casos reales de su negocio, inspección de chats y plan de mejora.</p><a class="btnp" href="${WA}">Cotizar por WhatsApp · 9569-1481</a></div>
-  ${foot(7)}
+  ${foot(10)}
 </div>
 </body></html>`;
 
