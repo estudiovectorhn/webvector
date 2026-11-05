@@ -599,8 +599,8 @@ a.card{display:block;color:inherit;text-decoration:none}
 
 /* servicios */
 .sv-hero{padding-block:34px 10px;max-width:880px}
-.sv-hero h1{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(50px,12vw,104px);line-height:.9;margin:10px 0 0}
-.sv-hero h1 .g{display:block;background:linear-gradient(90deg,#3A0CC9,#7B4DFF,#E0169B,#7B4DFF,#3A0CC9);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 8s linear infinite alternate;padding-bottom:4px}
+.sv-hero h1{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(50px,12vw,104px);line-height:.98;margin:10px 0 0}
+.sv-hero h1 .g{display:block;background:linear-gradient(90deg,#3A0CC9,#7B4DFF,#E0169B,#7B4DFF,#3A0CC9);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 8s linear infinite alternate;padding:6px 0 4px}
 .sv-hero .lead{margin:16px 0 0;color:var(--muted);font-size:16.5px;max-width:58ch}
 .sv-hero>*{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
 .sv-hero h1{animation-delay:.08s}.sv-hero .lead{animation-delay:.16s}.sv-hero .tp-actions{animation-delay:.24s}.sv-hero .sv-quote{animation-delay:.32s}
