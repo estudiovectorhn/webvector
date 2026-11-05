@@ -848,5 +848,109 @@
   "caption": "Calzado deportivo Nike en tienda",
   "src": "/video/futboleros-nike-mind.mp4",
   "poster": "/img/trabajos/futboleros-nike-mind.jpg"
+ },
+ {
+  "type": "video",
+  "id": "spectra-polarizado",
+  "title": "Spectra",
+  "caption": "Polarizado de vidrios para carro y negocio",
+  "src": "/video/spectra-polarizado.mp4",
+  "poster": "/img/trabajos/spectra-polarizado.jpg"
+ },
+ {
+  "type": "video",
+  "id": "vehiculos-diesel",
+  "title": "Vehículos diesel",
+  "caption": "Camiones y pick-ups para trabajo",
+  "src": "/video/vehiculos-diesel.mp4",
+  "poster": "/img/trabajos/vehiculos-diesel.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocband",
+  "title": "Importaciones HyP",
+  "caption": "Crocband: el clásico en varios colores",
+  "src": "/video/hyp-crocband.mp4",
+  "poster": "/img/trabajos/hyp-crocband.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-pixar-lotso",
+  "title": "Importaciones HyP",
+  "caption": "Crocs x Pixar: detalles únicos de la colección",
+  "src": "/video/hyp-crocs-pixar-lotso.mp4",
+  "poster": "/img/trabajos/hyp-crocs-pixar-lotso.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-classic-buckle",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Classic Buckle: hebilla moderna",
+  "src": "/video/hyp-crocs-classic-buckle.mp4",
+  "poster": "/img/trabajos/hyp-crocs-classic-buckle.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-barbie",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Barbie con jibbitz",
+  "src": "/video/hyp-crocs-barbie.mp4",
+  "poster": "/img/trabajos/hyp-crocs-barbie.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-all-terrain",
+  "title": "Importaciones HyP",
+  "caption": "Crocs All Terrain para explorar",
+  "src": "/video/hyp-crocs-all-terrain.mp4",
+  "poster": "/img/trabajos/hyp-crocs-all-terrain.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-saturday",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Saturday: sandalias con accesorios",
+  "src": "/video/hyp-crocs-saturday.mp4",
+  "poster": "/img/trabajos/hyp-crocs-saturday.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-ballet",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Ballet: estilo natural",
+  "src": "/video/hyp-crocs-ballet.mp4",
+  "poster": "/img/trabajos/hyp-crocs-ballet.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-mayoreo-estilos",
+  "title": "Importaciones HyP",
+  "caption": "Mayoreo: surtir tu tienda con nuevos estilos",
+  "src": "/video/hyp-mayoreo-estilos.mp4",
+  "poster": "/img/trabajos/hyp-mayoreo-estilos.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-pines-jibbitz",
+  "title": "Importaciones HyP",
+  "caption": "Pines y jibbitz: el accesorio que personaliza",
+  "src": "/video/hyp-pines-jibbitz.mp4",
+  "poster": "/img/trabajos/hyp-pines-jibbitz.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-mayoreo",
+  "title": "Futboleros HN",
+  "caption": "Camisetas de equipo al por mayor",
+  "src": "/video/futboleros-mayoreo.mp4",
+  "poster": "/img/trabajos/futboleros-mayoreo.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-camisetas",
+  "title": "Futboleros HN",
+  "caption": "Camisetas para alentar al equipo de tus amores",
+  "src": "/video/futboleros-camisetas.mp4",
+  "poster": "/img/trabajos/futboleros-camisetas.jpg"
  }
 ]
