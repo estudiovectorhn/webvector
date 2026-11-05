@@ -6,3 +6,6 @@ node_modules/
 # Planes de estudio de clientes: se generan con "npm run plan" y se entregan por WhatsApp o correo,
 # no se publican en el sitio.
 planes/
+
+# Logo de cliente usado solo por los planes de estudio, no por el sitio.
+img/clientes/sakura-beauty-studio.png

@@ -728,5 +728,229 @@
   "src": "/img/trabajos/menu-cros2go-bebidas-calientes.jpg",
   "w": 1280,
   "h": 720
+ },
+ {
+  "type": "video",
+  "id": "cmc-quirofano",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Quirófano, anestesia y equipo de cirugía",
+  "src": "/video/cmc-quirofano.mp4",
+  "poster": "/img/trabajos/cmc-quirofano.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-arco-en-c",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Arco en C: cómo se verifica cada paso de una cirugía",
+  "src": "/video/cmc-arco-en-c.mp4",
+  "poster": "/img/trabajos/cmc-arco-en-c.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-emergencia",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Emergencia abierta las 24 horas",
+  "src": "/video/cmc-emergencia.mp4",
+  "poster": "/img/trabajos/cmc-emergencia.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-laboratorio",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Laboratorio con personal a cualquier hora",
+  "src": "/video/cmc-laboratorio.mp4",
+  "poster": "/img/trabajos/cmc-laboratorio.jpg"
+ },
+ {
+  "type": "video",
+  "id": "cmc-imagenes-mes-rosa",
+  "title": "Clínica Médica Cristiana",
+  "caption": "Mes rosa: estudio de imágenes para detección temprana",
+  "src": "/video/cmc-imagenes-mes-rosa.mp4",
+  "poster": "/img/trabajos/cmc-imagenes-mes-rosa.jpg"
+ },
+ {
+  "type": "video",
+  "id": "dental-dm-diseno-sonrisa",
+  "title": "Dental DM",
+  "caption": "Diseño de sonrisa: corregir forma y color",
+  "src": "/video/dental-dm-diseno-sonrisa.mp4",
+  "poster": "/img/trabajos/dental-dm-diseno-sonrisa.jpg"
+ },
+ {
+  "type": "video",
+  "id": "dental-dm-protesis-fija",
+  "title": "Dental DM",
+  "caption": "Prótesis fija: la solución cuando falta un diente",
+  "src": "/video/dental-dm-protesis-fija.mp4",
+  "poster": "/img/trabajos/dental-dm-protesis-fija.jpg"
+ },
+ {
+  "type": "video",
+  "id": "dr-james-ginecologia",
+  "title": "Dr. James McNeil",
+  "caption": "Marca personal de un ginecólogo y obstetra",
+  "src": "/video/dr-james-ginecologia.mp4",
+  "poster": "/img/trabajos/dr-james-ginecologia.jpg"
+ },
+ {
+  "type": "video",
+  "id": "tobys-satelite",
+  "title": "Toby's Pet Shop",
+  "caption": "Recorrido por la tienda y su personal",
+  "src": "/video/tobys-satelite.mp4",
+  "poster": "/img/trabajos/tobys-satelite.jpg"
+ },
+ {
+  "type": "video",
+  "id": "kiv-detailing-2026",
+  "title": "KIV Detailing",
+  "caption": "Así empieza la transformación de un carro",
+  "src": "/video/kiv-detailing-2026.mp4",
+  "poster": "/img/trabajos/kiv-detailing-2026.jpg"
+ },
+ {
+  "type": "video",
+  "id": "spectra-carbon-titanium",
+  "title": "Spectra",
+  "caption": "Parasoles y autoestéreos para tu carro",
+  "src": "/video/spectra-carbon-titanium.mp4",
+  "poster": "/img/trabajos/spectra-carbon-titanium.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-megacrush",
+  "title": "Importaciones HyP",
+  "caption": "Crocs MegaCrush: plataforma única",
+  "src": "/video/hyp-crocs-megacrush.mp4",
+  "poster": "/img/trabajos/hyp-crocs-megacrush.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-carteras-crocs",
+  "title": "Importaciones HyP",
+  "caption": "Carteras Crocs ultra ligeras",
+  "src": "/video/hyp-carteras-crocs.mp4",
+  "poster": "/img/trabajos/hyp-carteras-crocs.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-real-madrid",
+  "title": "Futboleros HN",
+  "caption": "Camisetas de equipo: la historia detrás del escudo",
+  "src": "/video/futboleros-real-madrid.mp4",
+  "poster": "/img/trabajos/futboleros-real-madrid.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-nike-mind",
+  "title": "Futboleros HN",
+  "caption": "Calzado deportivo Nike en tienda",
+  "src": "/video/futboleros-nike-mind.mp4",
+  "poster": "/img/trabajos/futboleros-nike-mind.jpg"
+ },
+ {
+  "type": "video",
+  "id": "spectra-polarizado",
+  "title": "Spectra",
+  "caption": "Polarizado de vidrios para carro y negocio",
+  "src": "/video/spectra-polarizado.mp4",
+  "poster": "/img/trabajos/spectra-polarizado.jpg"
+ },
+ {
+  "type": "video",
+  "id": "vehiculos-diesel",
+  "title": "Vehículos diesel",
+  "caption": "Camiones y pick-ups para trabajo",
+  "src": "/video/vehiculos-diesel.mp4",
+  "poster": "/img/trabajos/vehiculos-diesel.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocband",
+  "title": "Importaciones HyP",
+  "caption": "Crocband: el clásico en varios colores",
+  "src": "/video/hyp-crocband.mp4",
+  "poster": "/img/trabajos/hyp-crocband.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-pixar-lotso",
+  "title": "Importaciones HyP",
+  "caption": "Crocs x Pixar: detalles únicos de la colección",
+  "src": "/video/hyp-crocs-pixar-lotso.mp4",
+  "poster": "/img/trabajos/hyp-crocs-pixar-lotso.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-classic-buckle",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Classic Buckle: hebilla moderna",
+  "src": "/video/hyp-crocs-classic-buckle.mp4",
+  "poster": "/img/trabajos/hyp-crocs-classic-buckle.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-barbie",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Barbie con jibbitz",
+  "src": "/video/hyp-crocs-barbie.mp4",
+  "poster": "/img/trabajos/hyp-crocs-barbie.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-all-terrain",
+  "title": "Importaciones HyP",
+  "caption": "Crocs All Terrain para explorar",
+  "src": "/video/hyp-crocs-all-terrain.mp4",
+  "poster": "/img/trabajos/hyp-crocs-all-terrain.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-saturday",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Saturday: sandalias con accesorios",
+  "src": "/video/hyp-crocs-saturday.mp4",
+  "poster": "/img/trabajos/hyp-crocs-saturday.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-crocs-ballet",
+  "title": "Importaciones HyP",
+  "caption": "Crocs Ballet: estilo natural",
+  "src": "/video/hyp-crocs-ballet.mp4",
+  "poster": "/img/trabajos/hyp-crocs-ballet.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-mayoreo-estilos",
+  "title": "Importaciones HyP",
+  "caption": "Mayoreo: surtir tu tienda con nuevos estilos",
+  "src": "/video/hyp-mayoreo-estilos.mp4",
+  "poster": "/img/trabajos/hyp-mayoreo-estilos.jpg"
+ },
+ {
+  "type": "video",
+  "id": "hyp-pines-jibbitz",
+  "title": "Importaciones HyP",
+  "caption": "Pines y jibbitz: el accesorio que personaliza",
+  "src": "/video/hyp-pines-jibbitz.mp4",
+  "poster": "/img/trabajos/hyp-pines-jibbitz.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-mayoreo",
+  "title": "Futboleros HN",
+  "caption": "Camisetas de equipo al por mayor",
+  "src": "/video/futboleros-mayoreo.mp4",
+  "poster": "/img/trabajos/futboleros-mayoreo.jpg"
+ },
+ {
+  "type": "video",
+  "id": "futboleros-camisetas",
+  "title": "Futboleros HN",
+  "caption": "Camisetas para alentar al equipo de tus amores",
+  "src": "/video/futboleros-camisetas.mp4",
+  "poster": "/img/trabajos/futboleros-camisetas.jpg"
  }
 ]

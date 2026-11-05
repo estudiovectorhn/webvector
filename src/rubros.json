@@ -530,10 +530,10 @@
   "nav": "Médicos y clínicas",
   "st": "Marketing para médicos, clínicas y marca personal",
   "title": "Marketing para Médicos y Clínicas en Honduras: Videos, Podcast y Marca Personal | Estudio Vector",
-  "desc": "Videos de marca personal, entrevistas, clips de podcast y redes sociales para médicos, clínicas y profesionales en Honduras. Trabajo real para el Dr. Manuel Orellana.",
+  "desc": "Videos de marca personal, entrevistas, clips de podcast y redes sociales para médicos, clínicas y hospitales en Honduras. Trabajo real para el Dr. Manuel Orellana, Dental DM, el Dr. James McNeil y la Clínica Médica Cristiana.",
   "h1": "Marketing para médicos",
   "h1g": "y clínicas en Honduras",
-  "lead": "Estudio Vector produce videos de marca personal, entrevistas, podcast y contenido educativo para médicos, clínicas y profesionales en Honduras, para que los pacientes los conozcan y confíen antes de agendar. Hemos trabajado con el Dr. Manuel Orellana.",
+  "lead": "Estudio Vector produce videos de marca personal, entrevistas, podcast y contenido educativo para médicos, clínicas y hospitales en Honduras, para que los pacientes los conozcan y confíen antes de agendar. Hemos trabajado con el Dr. Manuel Orellana, Dental DM, el Dr. James McNeil y la Clínica Médica Cristiana.",
   "body": [
    "En salud la decisión se toma por confianza. Un paciente quiere saber quién lo va a atender, cómo explica las cosas y si entiende su problema. El video educativo y el podcast muestran justamente eso.",
    "Grabamos en estudio o en tu consultorio con iluminación y audio profesional, y convertimos cada sesión en varios clips verticales para redes."
@@ -570,7 +570,7 @@
   "faq": [
    [
     "¿Quién hace marketing para médicos en San Pedro Sula?",
-    "Estudio Vector produce videos de marca personal, podcast y contenido educativo para médicos y clínicas en San Pedro Sula y Honduras. En esta página está el trabajo para el Dr. Manuel Orellana."
+    "Estudio Vector produce videos de marca personal, podcast y contenido educativo para médicos, clínicas y hospitales en San Pedro Sula y Honduras. En esta página está el trabajo para el Dr. Manuel Orellana, Dental DM, el Dr. James McNeil y la Clínica Médica Cristiana. Si lo que buscas es posicionarte como profesional, mira además <a href='/marca-personal-para-medicos-honduras/'>marca personal para médicos</a>."
    ],
    [
     "¿Qué contenido debe publicar un médico en redes sociales?",
@@ -591,6 +591,103 @@
    "videos para doctores",
    "marca personal profesional Honduras",
    "podcast para médicos"
+  ]
+ },
+ {
+  "id": "salud-marca-personal",
+  "slug": "marca-personal-para-medicos-honduras",
+  "nav": "Marca personal médica",
+  "st": "Marca personal para médicos y odontólogos",
+  "title": "Marca Personal para Médicos en Honduras: Video, Podcast y Redes para Doctores | Estudio Vector",
+  "desc": "Construimos la marca personal de médicos, odontólogos y especialistas en Honduras: video educativo, clips de podcast y contenido para redes que hace que el paciente te elija a ti. Trabajo real para Dental DM, el Dr. James McNeil y la Clínica Médica Cristiana.",
+  "h1": "Marca personal para médicos",
+  "h1g": "y odontólogos en Honduras",
+  "lead": "El paciente ya no busca solo una clínica: busca un médico en quien confiar. Estudio Vector construye la marca personal de doctores, odontólogos y especialistas en Honduras con video educativo, podcast y contenido para redes, para que te encuentren, te entiendan y te elijan a ti antes de llamar. Hemos trabajado con Dental DM, el Dr. James McNeil y la Clínica Médica Cristiana.",
+  "body": [
+   "En salud nadie compra por precio. El paciente elige por confianza, y la confianza se construye antes de la primera consulta: en un video donde explicas con claridad, en una respuesta que resolvió su duda a las once de la noche, en ver cómo tratas a quien tienes enfrente. Esa es tu marca personal, y hoy se construye en video.",
+   "La diferencia entre la cuenta de una clínica y la marca personal de un médico es quién habla. La clínica comunica servicios; el profesional comunica criterio. Por eso un médico con marca personal propia atrae pacientes que lo buscan por su nombre, recibe referencias de colegas, lo invitan a conferencias y a medios, y deja de competir por precio con el consultorio de al lado.",
+   "Trabajamos con médicos generales y especialistas, odontólogos, dermatólogos, nutricionistas, psicólogos, fisioterapeutas y cirujanos. En odontología producimos para Dental DM el contenido de diseño de sonrisa y prótesis fija; en ginecología, la marca personal del Dr. James McNeil; y para la Clínica Médica Cristiana, las piezas de quirófano, emergencia, laboratorio e imágenes diagnósticas. Grabamos en tu consultorio o en nuestro estudio, con iluminación y audio profesional, y de cada sesión salen varias piezas: el video largo, los clips verticales para TikTok, Reels y Facebook, y las portadas. Una grabación rinde contenido para semanas.",
+   "Todo se produce respetando la ética de tu profesión: sin datos ni imágenes de pacientes sin su consentimiento por escrito, sin promesas de resultados y sin material que comprometa tu colegiación. Si una pieza no se puede publicar, te lo decimos antes de grabarla."
+  ],
+  "tips": [
+   [
+    "Habla como en consulta",
+    "Las piezas que mejor funcionan son las que responden, en lenguaje sencillo, la duda que te repiten diez veces al día."
+   ],
+   [
+    "Tu nombre, no solo tu clínica",
+    "Que el paciente recuerde a quién quiere ver. La marca personal es la que te sigue si cambias de consultorio."
+   ],
+   [
+    "Una sesión, muchas piezas",
+    "De una grabación salen el video largo, los clips verticales y las portadas: contenido para varias semanas."
+   ],
+   [
+    "Audio antes que cámara",
+    "En contenido hablado el sonido limpio retiene más que la mejor imagen. Micrófono siempre."
+   ],
+   [
+    "Educa, no diagnostiques",
+    "Explicar un procedimiento construye autoridad; dar diagnósticos por redes te expone. La línea se define antes de grabar."
+   ],
+   [
+    "Cierra con cómo agendar",
+    "Cada pieza termina diciendo dónde atiendes y cómo pedir cita: WhatsApp, teléfono o ubicación."
+   ]
+  ],
+  "servicios": [
+   "produccion-audiovisual",
+   "podcast",
+   "reels",
+   "redes-sociales",
+   "fotografia",
+   "meta-ads"
+  ],
+  "logos": [
+   "dr-manuel-orellana",
+   "vivian-rivera"
+  ],
+  "faq": [
+   [
+    "¿Qué es la marca personal de un médico?",
+    "Es la reputación profesional que te precede: lo que el paciente sabe, siente y recuerda de ti antes de entrar a tu consultorio. Se construye mostrando criterio y trato, no anunciando servicios. En la práctica se trabaja con video educativo, entrevistas, podcast y presencia constante en redes bajo tu propio nombre."
+   ],
+   [
+    "¿Por qué un médico necesita marca personal si ya tiene pacientes?",
+    "Porque las referencias de boca en boca tienen techo y dependen de terceros. Con marca personal propia los pacientes te buscan por tu nombre, los colegas te refieren con más confianza, te invitan a medios y conferencias, y dejas de competir por precio. Además, es lo único que te acompaña si cambias de clínica o abres la tuya."
+   ],
+   [
+    "¿Qué contenido debe publicar un médico en redes sociales?",
+    "Respuestas a las dudas que más te repiten en consulta, explicaciones sencillas de procedimientos, mitos y verdades de tu especialidad, señales de alarma, preparación antes de una cita y presentación de tu equipo. Los testimonios y los casos solo con consentimiento por escrito del paciente."
+   ],
+   [
+    "¿Hacen contenido para odontólogos y dentistas?",
+    "Sí, y es de lo que más producimos. Para Dental DM grabamos las piezas de diseño de sonrisa y de prótesis fija, con la doctora y el doctor explicando a cámara. El contenido dental funciona muy bien en video: explicar un tratamiento quita el miedo, que es la principal razón por la que un paciente no agenda. Grabamos en la clínica dental con la iluminación y el audio adecuados."
+   ],
+   [
+    "¿Cómo se protege la privacidad del paciente?",
+    "No se graba ni se publica a ningún paciente sin su consentimiento por escrito, y ese consentimiento se recoge antes de la sesión. Las tomas de procedimientos se trabajan sin identificar a la persona, y cualquier pieza que pueda comprometer tu ética profesional o tu colegiación se descarta antes de producirla."
+   ],
+   [
+    "¿Dónde se graba y cuánto tiempo toma?",
+    "En tu consultorio o en nuestro estudio en San Pedro Sula, y atendemos médicos de todo Honduras. Una sesión de medio día suele rendir el material de varias semanas de publicaciones."
+   ],
+   [
+    "¿Cuánto cuesta construir la marca personal de un médico?",
+    "Depende de la cantidad de sesiones de grabación, de piezas al mes y de si incluye manejo de redes y pauta. Te enviamos la cotización por escrito después de una conversación corta por WhatsApp al +504 9569-1481."
+   ]
+  ],
+  "kw": [
+   "marca personal para médicos",
+   "marca personal médicos Honduras",
+   "cómo hacer marca personal siendo médico",
+   "contenido para doctores en redes sociales",
+   "videos para médicos Honduras",
+   "marketing para odontólogos Honduras",
+   "redes sociales para dentistas",
+   "marca personal odontólogo",
+   "podcast para médicos",
+   "videos para dentistas San Pedro Sula"
   ]
  }
 ]
