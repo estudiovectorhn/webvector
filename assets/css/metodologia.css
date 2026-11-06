@@ -33,8 +33,8 @@
 
 /* PLAYER */
 .mv-course{position:relative;margin-top:-18px;scroll-margin-top:calc(var(--hh,64px) + 12px)}
-.mv-player{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 60px -36px rgba(44,2,164,.45);overflow:hidden}
-.mv-top{position:sticky;top:var(--hh,64px);z-index:5;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 18px}
+.mv-player{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:28px;box-shadow:0 30px 60px -36px rgba(44,2,164,.45)}
+.mv-top{position:sticky;top:var(--hh,64px);z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);border-radius:27px 27px 0 0;padding:12px 18px}
 .mv-bar{height:8px;border-radius:99px;background:var(--surface2);overflow:hidden}
 .mv-bar i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
 .mv-toprow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
@@ -92,7 +92,7 @@
 .mv-lesson{display:grid;gap:24px;align-items:start}
 @media (min-width:900px){.mv-lesson{grid-template-columns:1.1fr .9fr;gap:36px}}
 .mv-lx{position:relative}
-.mv-big{font-family:var(--display);font-size:clamp(90px,14vw,150px);line-height:.85;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;animation:mvFlip .7s cubic-bezier(.2,.8,.2,1) both;transform-origin:left bottom}
+.mv-big{font-family:var(--display);font-size:clamp(90px,14vw,150px);line-height:1;padding:10px 0 6px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;animation:mvFlip .7s cubic-bezier(.2,.8,.2,1) both;transform-origin:left bottom}
 @keyframes mvFlip{from{opacity:0;transform:rotate(-8deg) scale(.6)}to{opacity:1;transform:none}}
 .mv-lx p{color:var(--muted);line-height:1.6;font-size:16px;margin:0 0 14px}
 .mv-do{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:8px}
@@ -296,3 +296,24 @@ mark{background:rgba(106,59,245,.12);color:var(--deep);padding:0 4px;border-radi
 .mv-certload{padding:34px 18px;text-align:center;font-weight:800;color:var(--muted)}
 .mv-endnav{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:22px}
 .mv-endnav .mv-link,.mv-endnav a{font-size:14px;color:var(--muted);text-decoration:underline}
+
+/* La letra grande usa background-clip:text: necesita caja propia o se recorta el asta */
+.mv-big{display:block}
+.mv-home .sm,.mv-exit .sm{display:none}
+@media (max-width:680px){
+  .mv-top{padding:10px 12px}
+  .mv-barrow{gap:6px;margin-bottom:8px;flex-wrap:nowrap}
+  .mv-home,.mv-exit{padding:4px 10px;font-size:11px;flex:none}
+  .mv-home .lg,.mv-exit .lg{display:none}
+  .mv-home .sm,.mv-exit .sm{display:inline}
+  .mv-step{font-size:10px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+  .mv-toprow{margin-top:8px;gap:8px}
+  .mv-letters{gap:4px}
+  .mv-letters span{width:27px;height:27px;border-radius:8px;font-size:15px}
+  .mv-stats{gap:5px}
+  .mv-toprow .mv-pill{font-size:11px;padding:5px 9px}
+}
+
+/* El reproductor no recorta: la barra pegajosa necesita que no haya overflow:hidden
+   (dentro de uno, se desplaza y tapa la letra grande de la lección). */
+.mv-screen{border-radius:0 0 27px 27px}

@@ -69,9 +69,9 @@ module.exports = function buildMetodologia(c) {
       <div class="mv-player" id="mvPlayer" data-endpoint="${esc(endpoint)}">
         <div class="mv-top" id="mvTop">
           <div class="mv-barrow">
-            <a class="mv-home" href="/">← Inicio del sitio</a>
+            <a class="mv-home" href="/">← <span class="lg">Inicio del sitio</span><span class="sm">Inicio</span></a>
             <span class="mv-step" id="mvStep">Paso 1</span>
-            <button class="mv-exit" type="button" id="mvExit" hidden>Registrar a otra persona</button>
+            <button class="mv-exit" type="button" id="mvExit" hidden title="Borrar el avance y registrar a otra persona"><span class="lg">Registrar a otra persona</span><span class="sm">Otra persona</span></button>
           </div>
           <div class="mv-bar"><i id="mvBar"></i></div>
           <div class="mv-toprow">

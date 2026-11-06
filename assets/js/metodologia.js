@@ -778,16 +778,19 @@ async function certCanvas(r, ok, n, p, lv) {
   x.restore();
   /* logo */
   const logo = await img("/img/logo-morado.png");
-  if (logo) { const lw = 330, lh = lw * logo.height / logo.width; x.drawImage(logo, W / 2 - lw / 2, 150, lw, lh); }
+  const logoTop = 136; let logoBot = logoTop + 232;
+  if (logo) { let lw = 300, lh = lw * logo.height / logo.width; if (lh > 240) { lh = 240; lw = lh * logo.width / logo.height; } x.drawImage(logo, W / 2 - lw / 2, logoTop, lw, lh); logoBot = logoTop + lh; }
   x.textAlign = "center"; x.textBaseline = "alphabetic";
+  /* la línea de marca arranca siempre debajo del logo, nunca encima */
+  const eyeY = logoBot + 56;
   x.fillStyle = MUT; x.font = '600 30px Manrope, sans-serif';
-  lsp(x, "VECTOR MARKETING & ACADEMY · SAN PEDRO SULA, HONDURAS", W / 2, 420, 5);
+  lsp(x, "VECTOR MARKETING & ACADEMY · SAN PEDRO SULA, HONDURAS", W / 2, eyeY, 5);
   /* divisor con rombo */
   const div = (y, w) => { x.strokeStyle = GOLD; x.lineWidth = 2; x.beginPath(); x.moveTo(W / 2 - w, y); x.lineTo(W / 2 - 16, y); x.moveTo(W / 2 + 16, y); x.lineTo(W / 2 + w, y); x.stroke(); x.fillStyle = GOLD; x.save(); x.translate(W / 2, y); x.rotate(Math.PI / 4); x.fillRect(-7, -7, 14, 14); x.restore(); };
-  div(460, 360);
+  div(eyeY + 42, 360);
   /* título */
-  x.fillStyle = INK; x.font = '400 150px Anton, Impact, sans-serif'; lsp(x, "CERTIFICADO", W / 2, 610, 10);
-  x.fillStyle = PUR; x.font = '800 46px Manrope, sans-serif'; lsp(x, "EN ATENCIÓN AL CLIENTE", W / 2, 678, 9);
+  x.fillStyle = INK; x.font = '400 150px Anton, Impact, sans-serif'; lsp(x, "CERTIFICADO", W / 2, eyeY + 192, 10);
+  x.fillStyle = PUR; x.font = '800 46px Manrope, sans-serif'; lsp(x, "EN ATENCIÓN AL CLIENTE", W / 2, eyeY + 260, 9);
   x.fillStyle = MUT; x.font = '500 34px Manrope, sans-serif'; x.fillText("Se otorga el presente certificado a", W / 2, 770);
   /* nombre */
   x.fillStyle = INK; const ns = fitText(x, r.nombre, W - 700, 132, s => `700 ${s}px "Playfair Display", Georgia, serif`);
