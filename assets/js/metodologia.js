@@ -198,6 +198,175 @@ const PRESETS=[
  rule:"No dar asesoría específica por chat sin conocer el caso completo.",
  ruleBad:"No se preocupe, eso no le van a multar.",
  quick:[["Precio del servicio","¿Cuánto cobran?","¡Con gusto le ayudo! ¿Qué le gustaría resolver? Así le doy el precio correcto."],["Asesoría","Necesito asesoría","¡Claro! ¿Sobre qué tema y para cuándo lo necesita?"],["Trámites","¿Hacen trámites?","¡Sí! ¿Qué trámite necesita y tiene alguna fecha límite?"],["Reunión","¿Puedo hablar con alguien?","¡Por supuesto! ¿Le queda mejor una llamada hoy o mañana?"]]}
+,
+
+{id:"farmacia",label:"Farmacia",emoji:"💊",cli:"cliente",clis:"clientes",neg:"Farmacia",
+ open:"Buenas, ¿tienen el medicamento para la presión?",
+ probQ:"¡Con gusto le reviso! ¿Me dice el nombre que trae la receta y la presentación?",
+ probA:"Es para mi papá, ya se le acabó y no quiero que pase el día sin tomarlo 😟",
+ who:["Doña Marta","La Lima"],
+ impQ:"Le entiendo, eso es importante. ¿Para cuándo lo necesita y es la primera vez que lo compra con nosotros?",
+ impA:"Lo necesita hoy mismo. ¿Cuánto cuesta?",
+ sol:"Para que no le falte hoy: la caja tiene un valor de L [precio] y tenemos [existencias] disponibles. Si lo lleva por mes le queda a [precio especial].",
+ close:"¿Pasa por él antes de las 6:00 p. m. o se lo enviamos a domicilio esta tarde?",
+ closeA:"Mándemelo a domicilio, por favor.",
+ confirm:"¡Listo! Le enviamos el medicamento hoy en la tarde a nombre de Doña Marta. Le aviso cuando salga el motorista 😊",
+ simpleQ:"Solo dígame el precio del jarabe, no me pregunte tanto 🙄",
+ simpleR:"¡Claro! El jarabe tiene un valor de L [precio] 😊 Una sola pregunta para darle el correcto: ¿es para adulto o para niño?",
+ simpleA:"Para un niño de 6 años.",
+ simpleF:"Perfecto, la presentación pediátrica es la indicada. ¿Se lo aparto o se lo enviamos?",
+ urgQ:"Mi mamá se quedó sin su insulina y la farmacia de aquí ya cerró 😭",
+ urgR:"Vamos a ayudarle ya. ¿Me dice el nombre exacto que aparece en la caja y en qué zona está?",
+ urgA:"Soy Gabriela, estoy en el Barrio Guamilito.",
+ urgClose:"Gabriela, sí la tenemos y tiene un valor de L [precio]. ¿Pasa usted en los próximos 20 minutos o se la mandamos con el motorista?",
+ caroQ:"¿Cuánto cuesta el tratamiento completo del mes?",
+ caroE:"Con gusto le cotizo. ¿Cuántos medicamentos trae la receta y es tratamiento permanente?",
+ caroA:"Son tres y es de por vida. Pero en otra farmacia me salía más barato 😕",
+ payR:"Le entiendo, es un gasto de todos los meses. Tenemos [opción genérica autorizada] y [precio de paquete mensual], y el farmacéutico le confirma la equivalencia. ¿Le preparo la cotización de los tres hoy o mañana?",
+ segItem:"el tratamiento del mes",segEvent:"la recarga del próximo mes",
+ rule:"No recomendar ni cambiar medicamentos por chat: el farmacéutico o el médico indican, quien atiende confirma existencias y precios.",
+ ruleBad:"Para eso tómese este otro, es lo mismo y es más barato.",
+ quick:[["Disponibilidad","¿Tienen este medicamento?","¡Con gusto le reviso! ¿Me manda una foto de la receta o el nombre exacto de la caja?"],["Precio","¿Cuánto cuesta?","¡Con gusto! ¿Me dice el nombre y la presentación? Así le doy el precio exacto y le digo si hay equivalente autorizado."],["Domicilio","¿Hacen entregas?","¡Sí! ¿A qué zona sería y para qué hora lo necesita?"],["Genéricos","¿Tienen genérico?","Puede que sí. ¿Me dice cuál es el medicamento? El farmacéutico le confirma la equivalencia."]]},
+
+{id:"hotel",label:"Hotel, hostal o cabañas",emoji:"🏨",cli:"huésped",clis:"huéspedes",neg:"Hotel",
+ open:"Hola, ¿cuánto cuesta la noche?",
+ probQ:"¡Con gusto le comparto las tarifas! ¿Para qué fechas sería y cuántas personas viajan?",
+ probA:"Vamos mi esposa y yo, es nuestro aniversario y queremos algo tranquilo 💕",
+ who:["Óscar","Tegucigalpa"],
+ impQ:"¡Felicidades! ¿Qué fecha tienen pensada y les gustaría algo con vista o más privado?",
+ impA:"El fin de semana del 20. ¿Cuánto nos sale?",
+ sol:"¡Qué bonito plan! Para esa fecha la habitación [tipo] va en L [precio] la noche e incluye [desayuno y servicios]. Como es su aniversario les podemos preparar [detalle de cortesía].",
+ close:"¿Les reservo dos noches del viernes al domingo o solo la del sábado?",
+ closeA:"Las dos noches, por favor.",
+ confirm:"¡Listo! Queda su reserva del viernes al domingo a nombre de Óscar. Le envío los datos para el anticipo y el lunes le confirmo todo 😊",
+ simpleQ:"Solo quiero saber el precio de la noche, no me pregunte tanto 🙄",
+ simpleR:"¡Claro! La habitación sencilla está en L [precio] la noche 😊 Una sola pregunta para confirmarle disponibilidad: ¿para qué fecha?",
+ simpleA:"Para este sábado.",
+ simpleF:"¡Perfecto! Para el sábado tenemos disponible. ¿Se la aparto?",
+ urgQ:"Se nos canceló el hotel y llegamos a la ciudad en dos horas 😩 ¿Tienen cuarto?",
+ urgR:"¡Le ayudamos! Vamos a resolverlo ya. ¿Cuántas personas son y me regala su nombre?",
+ urgA:"Somos cuatro. Soy Jessica.",
+ urgClose:"Jessica, tenemos una habitación para cuatro en L [precio] la noche y la dejamos lista para su llegada. ¿Se la aparto ahorita o prefiere que le mande fotos primero?",
+ caroQ:"¿Cuánto por el grupo de 12 personas?",
+ caroE:"Con gusto le cotizo. ¿Cuántas noches serían y es viaje de trabajo o de paseo?",
+ caroA:"Dos noches, es un retiro de la empresa. Pero otro hotel nos dio mejor precio 😕",
+ payR:"Le entiendo. Nuestra tarifa de grupo incluye [desayuno, salón y estacionamiento], que normalmente se cobra aparte. Podemos hacer anticipo y el resto al llegar. ¿Le envío la cotización formal hoy o mañana temprano?",
+ segItem:"la reserva del aniversario",segEvent:"un viaje el fin de semana",
+ rule:"No confirmar habitaciones ni tarifas sin revisar la disponibilidad real del sistema.",
+ ruleBad:"Sí, seguro hay cuartos, venga sin reservar.",
+ quick:[["Tarifas","¿Cuánto la noche?","¡Con gusto! ¿Para qué fechas y cuántas personas? Así le doy la tarifa exacta y le confirmo disponibilidad."],["Disponibilidad","¿Tienen para este fin?","¡Déjeme revisar! ¿Cuántas personas y cuántas noches serían?"],["Grupos / eventos","Somos un grupo","¡Con gusto le cotizo! ¿Cuántas personas, cuántas noches y es trabajo o paseo?"],["Qué incluye","¿Incluye desayuno?","¡Con gusto le detallo todo! ¿Para qué fecha está viendo?"]]},
+
+{id:"gimnasio",label:"Gimnasio o entrenamiento",emoji:"🏋️",cli:"cliente",clis:"clientes",neg:"Gimnasio",
+ open:"Hola, ¿cuánto cuesta la mensualidad?",
+ probQ:"¡Con gusto le comparto los planes! ¿Qué resultado está buscando: bajar de peso, ganar músculo o mejorar su salud?",
+ probA:"Quiero bajar de peso. Ya intenté varias veces y siempre lo dejo 😔",
+ who:["Nelson","Choloma"],
+ impQ:"Le entiendo, es más común de lo que cree y con acompañamiento cambia. ¿Hay alguna fecha o motivo que lo tenga decidido ahora?",
+ impA:"El doctor me dijo que tengo que bajar. ¿Cuánto es la mensualidad?",
+ sol:"Para lo que me cuenta le recomiendo el plan [nombre], que incluye rutina guiada y seguimiento del entrenador: L [precio] al mes, con [forma de pago]. Así no lo deja a los dos meses.",
+ close:"¿Viene a conocerlo hoy en la tarde o mañana en la mañana? La primera clase es de cortesía.",
+ closeA:"Mañana en la mañana.",
+ confirm:"¡Listo! Lo esperamos mañana a las 8:00 a. m. a nombre de Nelson. Traiga ropa cómoda y agua 💪",
+ simpleQ:"Solo dígame el precio de la mensualidad, no me pregunte tanto 🙄",
+ simpleR:"¡Claro! La mensualidad está en L [precio] 😊 Una sola pregunta para orientarlo: ¿entrenaría en la mañana o en la tarde?",
+ simpleA:"En la tarde, saliendo del trabajo.",
+ simpleF:"Perfecto, en la tarde tenemos [clases o espacio]. ¿Le aparto su clase de cortesía esta semana?",
+ urgQ:"Necesito empezar ya, tengo un chequeo médico en un mes 😩",
+ urgR:"¡Le ayudamos a empezar hoy mismo! ¿Me regala su nombre y qué le indicó el médico?",
+ urgA:"Soy Carmen, me dijeron que baje de peso y mueva el cuerpo.",
+ urgClose:"Carmen, el plan de acompañamiento está en L [precio] al mes y el entrenador le arma la rutina desde el primer día. ¿Viene hoy a las 5:00 p. m. o mañana a las 7:00 a. m.?",
+ caroQ:"¿Cuánto cuesta el plan con entrenador personal?",
+ caroE:"Con gusto le comparto el precio. ¿Qué quiere lograr con el entrenador y cuántos días a la semana podría venir?",
+ caroA:"Tres días, quiero resultados rápido. Pero en otro gimnasio está más barato 😕",
+ payR:"Le entiendo. El nuestro incluye [evaluación, plan de alimentación y seguimiento semanal], que es lo que hace la diferencia. Puede pagarlo con [forma de pago]. ¿Le aparto su evaluación el martes o el jueves?",
+ segItem:"el plan mensual",segEvent:"un chequeo médico el próximo mes",
+ rule:"No prometer kilos ni tallas exactas por chat: cada cuerpo responde distinto y el entrenador evalúa.",
+ ruleBad:"En un mes baja 10 libras seguro.",
+ quick:[["Mensualidad","¿Cuánto al mes?","¡Con gusto! ¿Qué resultado está buscando? Así le recomiendo el plan que le conviene."],["Horarios","¿A qué hora abren?","¡Con gusto le digo! ¿Entrenaría en la mañana o en la tarde?"],["Entrenador","¿Tienen entrenador?","¡Sí! ¿Qué le gustaría lograr y cuántos días podría venir?"],["Clase de prueba","¿Puedo probar?","¡Claro! La primera clase es de cortesía. ¿Viene hoy o mañana?"]]},
+
+{id:"educacion",label:"Colegio, academia o centro educativo",emoji:"🎓",cli:"padre de familia",clis:"padres de familia",neg:"Centro Educativo",
+ open:"Buenas, ¿cuánto cuesta la matrícula?",
+ probQ:"¡Con gusto le informo! ¿Para qué grado sería y su hijo o hija viene de otro centro?",
+ probA:"Para sexto grado. Es que en el colegio donde está no le están poniendo atención 😟",
+ who:["Doña Lesly","Villanueva"],
+ impQ:"Le entiendo, eso preocupa. ¿Desde cuándo lo nota y para cuándo le gustaría hacer el cambio?",
+ impA:"Desde este año. Quiero cambiarlo para el próximo. ¿Cuánto sale todo?",
+ sol:"Para sexto grado la matrícula es de L [precio] y la mensualidad de L [precio], e incluye [lo que incluye]. En la visita la directora le explica cómo acompañamos a los niños que vienen de un cambio.",
+ close:"¿Le agendo la visita el martes a las 9:00 a. m. o el jueves a las 2:00 p. m.?",
+ closeA:"El jueves en la tarde.",
+ confirm:"¡Listo! Queda su visita el jueves a las 2:00 p. m. a nombre de Doña Lesly. Le mando la lista de documentos por si decide avanzar 😊",
+ simpleQ:"Solo dígame cuánto es la mensualidad, no me pregunte tanto 🙄",
+ simpleR:"¡Claro! La mensualidad de primaria es de L [precio] 😊 Una sola pregunta para darle el dato exacto: ¿para qué grado?",
+ simpleA:"Para tercer grado.",
+ simpleF:"Perfecto, para tercer grado es L [precio] e incluye [lo que incluye]. ¿Le mando la lista de requisitos?",
+ urgQ:"Necesito cambiar a mi hija ya, las clases empiezan la otra semana 😩",
+ urgR:"¡Le ayudamos! Vamos a resolverlo esta semana. ¿Para qué grado y me regala su nombre?",
+ urgA:"Soy Wendy, es para séptimo.",
+ urgClose:"Wendy, en séptimo tenemos cupo. La matrícula es de L [precio] y podemos hacer el proceso en un día. ¿Viene hoy antes de las 4:00 p. m. o mañana temprano?",
+ caroQ:"¿Cuánto sale todo el año con los tres niños?",
+ caroE:"Con gusto le hago el cálculo. ¿En qué grados van los tres y vienen todos del mismo centro?",
+ caroA:"Van en primero, cuarto y séptimo. Pero otro colegio me cobra menos 😕",
+ payR:"Le entiendo, con tres es una decisión grande. Tenemos [descuento por hermanos] y [plan de pagos], y la mensualidad incluye [lo que incluye]. ¿Le preparo el cálculo de los tres para hoy o mañana?",
+ segItem:"la matrícula",segEvent:"el inicio de clases",
+ rule:"No prometer cupos, becas ni resultados académicos sin confirmarlo con la dirección.",
+ ruleBad:"Sí, seguro le damos beca, no se preocupe.",
+ quick:[["Matrícula y mensualidad","¿Cuánto cuesta?","¡Con gusto le informo! ¿Para qué grado sería? Así le doy los montos exactos."],["Cupos","¿Tienen cupo?","¡Déjeme confirmar con la dirección! ¿Para qué grado y para cuándo sería?"],["Requisitos","¿Qué documentos piden?","¡Con gusto le mando la lista! ¿Para qué grado es?"],["Visita","¿Puedo ir a conocer?","¡Claro que sí! ¿Le queda mejor en la mañana o en la tarde?"]]},
+
+{id:"inmobiliaria",label:"Inmobiliaria o bienes raíces",emoji:"🏠",cli:"cliente",clis:"clientes",neg:"Inmobiliaria",
+ open:"Hola, ¿cuánto cuesta la casa que publicaron?",
+ probQ:"¡Con gusto le doy todos los datos! ¿La busca para vivir o como inversión?",
+ probA:"Para vivir. Estamos pagando alquiler y ya queremos algo propio 🏡",
+ who:["Kevin","San Pedro Sula"],
+ impQ:"Le entiendo perfectamente. ¿Para cuándo les gustaría mudarse y ya han visto si califican para préstamo?",
+ impA:"Queremos mudarnos este año. Todavía no hemos ido al banco. ¿Cuánto es?",
+ sol:"Esa casa está en L [precio] y está en [zona]. Para lo que me cuenta, lo primero es la precalificación en el banco: es gratis y le dice exactamente hasta cuánto puede. Nosotros lo acompañamos en ese trámite.",
+ close:"¿Le agendo la visita a la casa el sábado a las 10:00 a. m. o el domingo a las 3:00 p. m.?",
+ closeA:"El sábado a las 10.",
+ confirm:"¡Listo! Queda la visita el sábado a las 10:00 a. m. a nombre de Kevin. Le mando la ubicación y qué llevar 😊",
+ simpleQ:"Solo dígame el precio, no me pregunte tanto 🙄",
+ simpleR:"¡Claro! Esa propiedad está en L [precio] 😊 Una sola pregunta para mandarle opciones parecidas: ¿en qué zona la busca?",
+ simpleA:"Por el sector norte.",
+ simpleF:"Perfecto, en el sector norte tengo [cantidad] opciones en ese rango. ¿Le mando las fotos?",
+ urgQ:"Me entregan el apartamento donde vivo en 15 días y no tengo a dónde irme 😩",
+ urgR:"¡Le ayudamos a resolverlo! ¿Para cuántas personas, en qué zona y me regala su nombre?",
+ urgA:"Somos tres. Soy Alejandra, busco por el centro.",
+ urgClose:"Alejandra, tengo dos opciones listas para entrega inmediata por el centro, desde L [precio]. ¿Las vemos hoy en la tarde o mañana temprano?",
+ caroQ:"¿Cuánto por la casa de la colonia?",
+ caroE:"Con gusto le comparto el precio. ¿Qué es lo más importante para ustedes: el tamaño, la zona o la cuota mensual?",
+ caroA:"La cuota, que no se nos dispare. Pero vi otra más barata 😕",
+ payR:"Le entiendo, la cuota es lo que se paga todos los meses. Esta tiene [estado, servicios y ubicación] que afectan el valor a futuro, y con [plan de financiamiento] la cuota queda clara desde el inicio. ¿Vemos las dos el sábado y compara en persona?",
+ segItem:"la casa del sector norte",segEvent:"la entrega del apartamento en 15 días",
+ rule:"No prometer precios finales, aprobaciones de préstamo ni condiciones del banco: eso lo confirma la institución.",
+ ruleBad:"Con ese sueldo seguro le aprueban, no se preocupe.",
+ quick:[["Precio","¿Cuánto cuesta?","¡Con gusto! ¿La busca para vivir o como inversión? Así le mando también opciones parecidas."],["Visitas","¿Puedo verla?","¡Claro! ¿Le queda mejor entre semana o el fin de semana?"],["Financiamiento","¿Aceptan préstamo?","¡Sí! ¿Ya tiene precalificación del banco o lo acompañamos a sacarla?"],["Alquiler","¿Tienen en alquiler?","¡Sí! ¿En qué zona la busca y para cuántas personas?"]]},
+
+{id:"veterinaria",label:"Veterinaria o pet shop",emoji:"🐾",cli:"cliente",clis:"clientes",neg:"Veterinaria",
+ open:"Hola, ¿cuánto cuesta la consulta?",
+ probQ:"¡Con gusto le digo! ¿Qué le está pasando a su mascota y qué edad tiene?",
+ probA:"Mi perrita no quiere comer desde ayer y está bien decaída 😢",
+ who:["Mónica","San Pedro Sula"],
+ impQ:"Le entiendo, uno se preocupa un montón. ¿Ha vomitado o tiene algún otro síntoma? ¿Desde cuándo exactamente?",
+ impA:"Desde ayer en la tarde. ¿Cuánto me cobran?",
+ sol:"La consulta tiene un valor de L [precio] y la doctora la revisa completa. Si necesita exámenes se los indica ahí mismo y le dice el costo antes de hacerlos, para que no haya sorpresas.",
+ close:"¿La trae hoy a las 3:00 p. m. o a las 5:30 p. m.?",
+ closeA:"A las 3 voy.",
+ confirm:"¡Listo! La esperamos hoy a las 3:00 p. m. a nombre de Mónica. Si vomita otra vez antes de venir, me avisa 😊",
+ simpleQ:"Solo quiero el precio del baño, no me pregunte tanto 🙄",
+ simpleR:"¡Claro! El baño tiene un valor de L [precio] 😊 Una sola pregunta para darle el precio exacto: ¿de qué tamaño es su perrito?",
+ simpleA:"Es mediano, un french poodle.",
+ simpleF:"¡Perfecto! Para talla mediana es L [precio] e incluye [lo que incluye]. ¿Le aparto espacio esta semana?",
+ urgQ:"Mi gato se comió algo raro y está vomitando 😭 ¿Pueden verlo ya?",
+ urgR:"Vamos a atenderlo de inmediato. ¿Sabe qué fue lo que se comió y hace cuánto? Me regala su nombre, por favor.",
+ urgA:"Soy Daniel, creo que fue un pedazo de hilo, hace como una hora.",
+ urgClose:"Daniel, tráigalo ya, la doctora lo recibe apenas llegue. La consulta de urgencia tiene un valor de L [precio]. ¿Viene usted o le ayudamos con el traslado?",
+ caroQ:"¿Cuánto cuesta la esterilización?",
+ caroE:"Con gusto le comparto el precio. ¿Es perro o gato, qué peso tiene y ya tiene sus vacunas al día?",
+ caroA:"Es una perrita de 15 libras, sí está vacunada. Pero en otra clínica está más barato 😕",
+ payR:"Le entiendo. El nuestro incluye [exámenes previos, anestesia monitoreada y control post operatorio], que es lo que cuida que todo salga bien. Puede pagarlo con [forma de pago]. ¿Le aparto el martes o el sábado?",
+ segItem:"la cita de la perrita",segEvent:"las vacunas del próximo mes",
+ rule:"No diagnosticar ni recomendar medicamentos por chat: quien atiende orienta y la veterinaria revisa al animal.",
+ ruleBad:"Eso es parásitos, dele este desparasitante.",
+ quick:[["Consulta","¿Cuánto la consulta?","¡Con gusto! ¿Qué le está pasando a su mascota? Así le digo qué necesita y le aparto espacio."],["Baño y estética","¿Precio del baño?","¡Claro! ¿De qué tamaño es su mascota? Así le doy el precio exacto."],["Vacunas","¿Tienen vacunas?","¡Sí! ¿Qué edad tiene su mascota y cuándo fue la última vacuna?"],["Urgencias","¿Atienden urgencias?","¡Sí! ¿Qué está pasando y hace cuánto? Dígame y lo coordinamos ya."]]}
 ];
 
 /* "Otro negocio": se arma con lo que escribe el usuario */
@@ -244,6 +413,56 @@ const mark = t => esc(t).replace(/\[([^\]]+)\]/g, '<mark>[$1]</mark>');
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const track = (ev, d, custom) => { try { if (window.fbq) fbq(custom ? "trackCustom" : "track", ev, d || {}); } catch (e) {} };
 const WA = "50495691481";
+/* ---------- Sonido corto generado en el navegador (sin archivos) ---------- */
+let SND = LS.get("mv-snd", true), AC = null;
+function sfx(tipo) {
+  if (!SND) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    if (AC.state === "suspended") AC.resume();
+    const notas = { envio: [[660, 0, .06]], bien: [[660, 0, .09], [990, .08, .14]], mal: [[220, 0, .18]], insignia: [[660, 0, .08], [880, .07, .08], [1320, .14, .22]], perdido: [[300, 0, .14], [180, .12, .3]] }[tipo];
+    if (!notas) return;
+    notas.forEach(([f, t, d]) => {
+      const o = AC.createOscillator(), g = AC.createGain(), t0 = AC.currentTime + t;
+      o.type = "sine"; o.frequency.setValueAtTime(f, t0);
+      g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(.16, t0 + .012); g.gain.exponentialRampToValueAtTime(.0001, t0 + d);
+      o.connect(g); g.connect(AC.destination); o.start(t0); o.stop(t0 + d + .02);
+    });
+  } catch (e) {}
+}
+const buzz = ms => { try { if (SND && navigator.vibrate) navigator.vibrate(ms); } catch (e) {} };
+
+/* ---------- Insignias ---------- */
+const INSIGNIAS = [
+  ["rayo", "⚡", "Rayo", "Contestó el primer mensaje en menos de 8 segundos"],
+  ["caliente", "🔥", "Punto de ebullición", "Llevó al cliente de frío a caliente"],
+  ["apurado", "⏱️", "El apurado", "Resolvió al cliente que no quiere preguntas"],
+  ["regateador", "💰", "El regateador", "Sostuvo el precio sin regalar descuento"],
+  ["urgencia", "🚨", "La urgencia", "Atendió una emergencia sin perder el método"],
+  ["orden", "🧩", "Orden perfecto", "Armó la conversación VECTOR sin un solo error"],
+  ["racha", "🎯", "Racha de 5", "Cinco respuestas correctas seguidas en el examen"],
+  ["perfecto", "🏆", "Examen perfecto", "Respondió las 12 preguntas correctamente"]
+];
+function darInsignia(id) {
+  if (!S.badges) S.badges = [];
+  if (S.badges.includes(id)) return;
+  S.badges.push(id); save();
+  const b = INSIGNIAS.find(x => x[0] === id); if (!b) return;
+  sfx("insignia"); buzz([18, 40, 18]); burst();
+  toast(`${b[1]} Insignia desbloqueada: ${b[2]}`);
+  const el = $("mvBadges"); if (el) { el.textContent = "🏅 " + S.badges.length; el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
+}
+
+/* ---------- Termómetro del cliente: la mecánica del curso ---------- */
+const NIVEL_T = t => t >= 75 ? ["Caliente", "hot"] : t >= 40 ? ["Tibio", "warm"] : t > 0 ? ["Frío", "cold"] : ["Se fue", "gone"];
+function setTemp(d) {
+  S.temp = Math.max(0, Math.min(100, (S.temp || 0) + d)); save();
+  const el = $("mvTemp"); if (!el) return;
+  const [n, c] = NIVEL_T(S.temp);
+  el.className = "mv-temp " + c; el.querySelector("i").style.height = S.temp + "%"; el.querySelector("b").textContent = n;
+  el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump");
+  if (S.temp >= 100) darInsignia("caliente");
+}
 const ORD = ["V", "E", "C", "T", "O", "R"];
 const player = $("mvPlayer"), screen = $("mvScreen");
 /* Respaldo científico: filtro por letra y abrir el estudio enlazado desde las lecciones */
@@ -263,7 +482,7 @@ const EN_VIVO = /(^|\.)estudiovector\.com$/.test(location.hostname);
 const ENDPOINT = EN_VIVO ? (player.dataset.endpoint || "") : "";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const FRESH = () => ({ ver: 2, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now() });
+const FRESH = () => ({ ver: 2, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now(), temp: 15, badges: [], perdidos: 0, sesion: Math.random().toString(36).slice(2, 12) });
 let S = LS.get("mv-state", null) || FRESH();
 /* Migración del curso anterior (un solo formulario largo): se conservan nombre, empresa y contacto */
 if (S.reg && S.ver !== 2) {
@@ -292,8 +511,8 @@ function lessons() {
       ch: [["in", C.open], ["out", C.hi + " Con gusto le comparto el precio."]],
       fact: ["7×", "más probabilidad de lograr la conversación con quien decide si se responde en la primera hora. En una auditoría a 2,241 empresas, el promedio de respuesta fue de 42 horas.", "Oldroyd y col., Harvard Business Review, 2011", "rapidez"],
       q: { ctx: `Son las 8:40 a. m. Entra al WhatsApp de ${C.neg} un mensaje de un número que no tiene guardado.`, p: C.open, q: "¿Cuál es el mejor primer mensaje?",
-        o: [C.hi + " Con gusto le comparto el precio.", "Cuesta L ____ 👍", "Para precios tiene que venir en persona."],
-        cons: ["", `El ${C.cli} recibe un número suelto, lo compara con otros dos negocios y se va con el más barato. Usted nunca supo qué necesitaba.`, `El ${C.cli} siente que le esconden el precio. La mayoría no vuelve a escribir ni llega al local.`],
+        o: [C.hi + " Con gusto le comparto el precio.", C.hi + " El precio va desde L [precio], depende de lo que necesite.", "¡Buen día! Con gusto le ayudo 😊 ¿Me regala su nombre y en qué le podemos servir?"],
+        cons: ["", `Se presentó bien, pero soltó el número antes de saber qué necesita. El ${C.cli} ya tiene con qué comparar y nada que lo amarre: se va al negocio más barato.`, `Saludó, pero dejó la pregunta del precio sin responder. El ${C.cli} siente que le están sacando la vuelta y contesta a medias o ya no contesta.`],
         res: `El ${C.cli} ve que le responde una persona con nombre y que no le esconden el precio: se abre la conversación.`,
         e: "Se presenta, usa el nombre del negocio y reconoce la pregunta. Así empieza el vínculo." } },
     { l: "E", t: "Explorar", temp: "Frío → tibio", d: `Antes de dar un número, descubra qué necesita resolver el ${C.cli}. Una sola pregunta abierta, sobre su problema o su objetivo.`,
@@ -301,8 +520,8 @@ function lessons() {
       ch: [["out", C.probQ], ["in", C.probA]],
       fact: ["430", "personas en un estudio de chat: quienes hicieron preguntas de seguimiento le cayeron mejor a su compañero, porque se percibían más atentos.", "Huang y col., Journal of Personality and Social Psychology, 2017", "preguntas"],
       q: { ctx: `Ya saludó y reconoció la pregunta del precio. El ${C.cli} está en línea esperando.`, p: C.open, q: "¿Qué pregunta hace a continuación?",
-        o: [C.probQ, "¿Nombre completo, ciudad, edad y cómo nos encontró?", "Le mando el catálogo completo 📄"],
-        cons: ["", `Se siente un interrogatorio. El ${C.cli} todavía no sabe si le conviene y ya le piden sus datos: responde a medias o deja de escribir.`, `El ${C.cli} recibe veinte precios y ninguna guía. No sabe cuál le sirve y deja el chat en visto.`],
+        o: [C.probQ, "¿Cuánto tenía pensado invertir en esto?", "¿Me regala su nombre y desde qué ciudad nos escribe?"],
+        cons: ["", `Preguntar por el presupuesto antes de entender la necesidad pone al ${C.cli} a la defensiva: dice una cifra baja para protegerse y usted queda amarrado a ella.`, `Es una buena pregunta, pero va después: eso es Conocer. Pedida ahora, sin saber qué necesita, se siente formulario y el ${C.cli} todavía no tiene motivo para dar sus datos.`],
         res: `El ${C.cli} cuenta su caso con sus propias palabras: ahí está lo que de verdad necesita y lo que le va a ofrecer.`,
         e: "Una sola pregunta sobre la necesidad. Varias juntas se sienten como interrogatorio." } },
     { l: "C", t: "Conocer", temp: "Tibio → caliente", d: `Ahora conozca a la persona: nombre, ciudad y, sobre todo, el impacto. ¿Desde cuándo le pasa? ¿Para cuándo lo necesita? Ahí aparece la razón real para comprar.`,
@@ -310,8 +529,8 @@ function lessons() {
       ch: [["out", "Le entiendo perfectamente 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?"], ["in", `Soy ${n}, de ${c}.`], ["out", `Mucho gusto, ${n}. ${C.impQ}`], ["in", C.impA]],
       fact: ["Su nombre", "En tres experimentos, recordar el nombre de la persona aumentó su disposición a aceptar una solicitud de compra: lo perciben como un cumplido.", "Howard, Gengler y Jain, Journal of Consumer Research, 1995", "nombre"],
       q: { ctx: `El ${C.cli} acaba de abrirse y le contó algo personal sobre su caso.`, p: C.probA, q: "¿Cuál respuesta avanza mejor?",
-        o: ["Le entiendo perfectamente, tiene solución 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", C.ruleBad, "Ok, cuesta L [precio]."],
-        cons: ["", `Usted resolvió por chat algo que no le toca resolver. Si después le dicen otra cosa, el ${C.cli} siente que le mintieron. ${C.rule}`, `El ${C.cli} contó algo importante y recibió un número. Se siente ignorado y se va a comparar precios.`],
+        o: ["Le entiendo perfectamente, tiene solución 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", C.ruleBad, "Le entiendo 😊 Déjeme mandarle las opciones que tenemos para que escoja la que más le guste."],
+        cons: ["", `Usted resolvió por chat algo que no le toca resolver. Si después le dicen otra cosa, el ${C.cli} siente que le mintieron. ${C.rule}`, `Suena amable, pero le pasó la decisión al ${C.cli}. Acababa de contarle algo personal y, en vez de que lo escucharan, recibió un menú: escoge por precio o no escoge.`],
         res: `El ${C.cli} se siente escuchado y le da su nombre: desde aquí la conversación es entre dos personas, no entre un número y un catálogo.`,
         e: "Valida la emoción y pide datos para personalizar. " + C.rule } },
     { l: "T", t: "Transparentar", temp: "Caliente", d: `Ahora sí: el precio. Conéctelo con lo que el ${C.cli} le contó, dé el precio o rango y la forma de pago. Si pregunta el precio por segunda vez, se da en ese mismo mensaje.`,
@@ -319,8 +538,8 @@ function lessons() {
       ch: [["in", C.impA], ["out", C.sol]],
       fact: ["Precio primero", "lleva a juzgar si el producto \"vale lo que cuesta\"; el producto primero, a preguntarse si se desea. El precio primero solo ayudó con productos claramente baratos.", "Karmarkar, Shiv y Knutson, Journal of Marketing Research, 2015", "precio"],
       q: { ctx: `Es la segunda vez en el mismo chat que el ${C.cli} le pregunta el precio, y ya le contó para cuándo lo necesita.`, p: C.impA, q: "¿Qué responde?",
-        o: [C.sol, "Primero venga y ahí le decimos.", "Depende de muchas cosas."],
-        cons: ["", `Esquivar el precio dos veces se lee como evasión. El ${C.cli} asume que es carísimo y deja de responder.`, `Una respuesta así no le sirve para decidir nada. El ${C.cli} se queda igual que antes de escribir y busca a otro negocio.`],
+        o: [C.sol, "Con gusto. Primero le explico todo lo que incluye y al final le doy el precio 😊", "Para darle el precio más exacto, ¿cuánto tenía pensado invertir?"],
+        cons: ["", `Parece buena venta, pero es la segunda vez que pregunta. Mientras usted explica, el ${C.cli} solo busca el número: se salta el mensaje completo y queda con la idea de que le dan vueltas.`, `Devolver la pregunta con otra, y encima sobre dinero, se lee como evasión. El ${C.cli} piensa que el precio cambia según cuánto tenga y pierde la confianza.`],
         res: `El ${C.cli} ya puede decidir: sabe cuánto es, por qué le conviene y cómo pagarlo. Ahí es donde pregunta por horarios.`,
         e: "El precio no se esconde: se da con contexto y conectado a lo que el cliente contó." } },
     { l: "O", t: "Ofrecer", temp: "Cierre", d: `No deje la decisión en el aire. Ofrezca dos opciones concretas de día, hora o forma de entrega, y confirme todo por escrito.`,
@@ -328,8 +547,8 @@ function lessons() {
       ch: [["out", C.close], ["in", C.closeA], ["out", C.confirm]],
       fact: ["94", "pruebas en un metaanálisis: un plan concreto de cuándo y dónde actuar aumenta de forma importante el cumplimiento (d = 0.65).", "Gollwitzer y Sheeran, metaanálisis, 2006", "plan"],
       q: { ctx: `El ${C.cli} ya conoce el precio y pregunta por disponibilidad: es la señal de que está listo.`, p: "¿Tienen disponible esta semana?", q: "¿Cuál es el mejor cierre?",
-        o: ["Sí 😊 " + C.close, "Sí. Cualquier cosa me avisa.", "Sí, pero deposite hoy o se pierde."],
-        cons: ["", `La decisión queda en el aire. El ${C.cli} se distrae con su día, nadie le recuerda nada y la conversación muere sin cita.`, `La presión asusta. El ${C.cli} siente que solo le quieren sacar el dinero y se va aunque le interesaba.`],
+        o: ["Sí 😊 " + C.close, "¡Sí! ¿Qué día y a qué hora le queda mejor a usted?", "Sí, tenemos espacio 😊 Me avisa cuando quiera venir y se lo apartamos."],
+        cons: ["", `Suena atento, pero le pasó el trabajo al ${C.cli}. Si no traía una fecha en mente, tiene que ponerse a pensar, y pensar es lo que posterga: no contesta.`, `"Me avisa" deja todo en el aire. Nadie agenda, nadie recuerda, y la conversación se enfría sin que nadie dijera que no.`],
         res: `El ${C.cli} solo tiene que elegir entre dos opciones fáciles, y queda una fecha por escrito a la que usted puede dar seguimiento.`,
         e: "Dos opciones concretas facilitan decidir. \"Me avisa\" deja enfriar al cliente." } },
     { l: "R", t: "Retener", temp: "Después", d: `La venta no termina en el chat. Guarde y etiquete el contacto, recuerde la cita, dé seguimiento a quien no decidió y publique historias para seguir presente.`,
@@ -337,8 +556,8 @@ function lessons() {
       ch: [["ctx", `Contacto guardado: ${n} · ${C.segItem} · ${c}`], ["out", `Guárdenos como ${C.neg} para que le lleguen nuestras novedades 😊`], ["ctx", "Un día antes"], ["out", `Hola, ${n} 😊 Le recordamos su cita de mañana. ¿Nos confirma?`]],
       fact: ["78.6%", "de asistencia con recordatorio por mensaje frente a 67.8% sin recordatorio (7 estudios, 5,841 personas).", "Revisión sistemática Cochrane, 2013", "recordatorio"],
       q: { ctx: `Usted ya dio el precio y ofreció dos horarios. El ${C.cli} no dice ni sí ni no.`, p: "Mmm, lo voy a pensar.", q: "¿Qué responde?",
-        o: [`¡Con mucho gusto! Le guardo como ${C.cli} de ${C.neg} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si compra hoy le hago 10% de descuento.", "Ok."],
-        cons: ["", `Regaló margen sin saber qué le detenía. Muchos ${C.clis} aprenden que basta con dudar para que baje el precio, y los que iban a comprar igual pagan menos.`, `"Ok" cierra la puerta. El ${C.cli} entiende que ya no le interesa atenderlo y nadie vuelve a escribirle.`],
+        o: [`¡Con mucho gusto! Le guardo como ${C.cli} de ${C.neg} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si lo confirma hoy le puedo hacer un mejor precio 😊", "¡Claro que sí! Quedo pendiente, que tenga buen día 😊"],
+        cons: ["", `Regaló margen sin saber qué le detenía. Muchos ${C.clis} aprenden que basta con dudar para que baje el precio, y los que iban a comprar igual pagan menos.`, `Es educado, pero se despidió sin averiguar qué lo frenaba ni dejar nada abierto. El ${C.cli} se va con la misma duda con la que llegó y no vuelve.`],
         res: `El ${C.cli} se va sin presión pero queda guardado, ve sus historias y puede volver en días o semanas. Eso es Retener.`,
         e: "Respeta la decisión y asegura el contacto para el seguimiento." } }
   ];
@@ -357,63 +576,63 @@ function exam() {
   const sc = t => `Usted atiende el WhatsApp de ${C.neg}. ${t}`;
   return [
     { l: "V", ctx: sc("Son las 8:40 a. m. y escribe un número nuevo, que no tiene guardado."), chat: C.open, q: "¿Cuál es la mejor primera respuesta?",
-      o: [C.hi + " Con gusto le comparto el precio. " + C.probQ, "Buen día. Cuesta L ____.", "Para precios tiene que venir en persona.", "Le mando el catálogo completo 📄"],
-      cons: ["", `El ${C.cli} recibe un número suelto y lo compara con otros negocios. Gana el más barato, no el que mejor le resuelve.`, `Suena a que le esconden el precio. La mayoría no vuelve a escribir ni llega al local.`, `Veinte precios y ninguna guía: el ${C.cli} no sabe cuál le sirve y deja el chat en visto.`],
+      o: [C.hi + " Con gusto le comparto el precio. " + C.probQ, C.hi + " El precio va desde L [precio], depende de lo que necesite.", "¡Buen día! Con gusto le ayudo 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", C.hi + " Le paso nuestro catálogo con todos los precios para que lo revise 📄"],
+      cons: ["", `Se presentó y no escondió el precio, pero cerró sin pregunta. El ${C.cli} ya tiene el número y nada más que hablar: se va a comparar y gana el más barato.`, `Pedir los datos antes de saber qué necesita invierte el orden, y encima su pregunta del precio quedó sin responder.`, `El catálogo parece servicial, pero le entrega veinte precios y ninguna guía. El ${C.cli} no sabe cuál le sirve y deja el chat en visto.`],
       res: `El ${C.cli} sabe con quién habla, ve que no le esconden el precio y cuenta qué necesita.`,
       e: "V + E: se presenta, reconoce la pregunta y abre con la necesidad." },
     { l: "V", ctx: sc("Son las 10:00 a. m., en pleno horario de atención, y entra una consulta de precio."), q: "¿Cuál es la meta de tiempo para responderle?",
-      o: ["Menos de 5 minutos", "Menos de 2 horas", "El mismo día", "Cuando haya tiempo"],
-      cons: ["", `En dos horas el ${C.cli} ya escribió a otros tres negocios y el primero que contestó le está cotizando.`, `Al final del día el ${C.cli} ya compró en otro lado o perdió el interés.`, `El mensaje queda sin leer y el ${C.cli} asume que el negocio no está trabajando.`],
+      o: ["Menos de 5 minutos", "Menos de 30 minutos, para contestarle bien", "Antes de que termine el día, sin falta", "Juntar varios mensajes y responderlos de corrido"],
+      cons: ["", `Media hora suena razonable, pero el ${C.cli} le escribió a tres negocios a la vez. En ese rato otro ya le contestó y le está cotizando: usted llega a competir, no a atender.`, `Para el final del día el ${C.cli} ya decidió. Contestar entonces es entrar a una conversación que alguien más ya cerró.`, `Juntar mensajes es cómodo para usted y caro para el negocio: cada minuto de espera enfría a alguien que escribió con intención de comprar.`],
       res: "Responder en los primeros minutos multiplica la probabilidad de lograr la conversación con quien decide.",
       e: "El cliente escribe a varios negocios a la vez. Responder rápido multiplica las probabilidades de cerrar." },
     { l: "E", ctx: "Entra a trabajar una persona nueva en el equipo y le pregunta qué significa cada letra de VECTOR.", q: "¿Qué significa la E?",
-      o: ["Explorar lo que el cliente necesita resolver", "Enviar el catálogo", "Esperar a que el cliente vuelva a escribir", "Exigir el anticipo"],
-      cons: ["", "Si lo primero es enviar el catálogo, el cliente elige solo y casi siempre elige el precio más bajo o nada.", "Esperar es regalar el cliente al negocio que sí contestó.", "Pedir anticipo antes de entender la necesidad rompe la confianza de inmediato."],
+      o: [C.probQ, "¿Cuánto tenía pensado invertir en esto?", "¿Me regala su nombre y desde qué ciudad nos escribe?", "¿Quiere que le mande las opciones que tenemos disponibles?"],
+      cons: ["", `Hablar de dinero antes de entender el caso pone al ${C.cli} a la defensiva: dice una cifra baja para protegerse y usted queda amarrado a ella el resto del chat.`, "Es la pregunta correcta en el momento equivocado: eso es Conocer, y va después de Explorar. Pedida ahora se siente formulario.", `Le pasa la decisión al ${C.cli} sin saber qué necesita. Termina escogiendo por precio, que es justo lo que usted quería evitar.`],
       res: "Explorar primero le dice qué ofrecer y por qué le conviene a esa persona en particular.",
       e: "V Vincular, E Explorar, C Conocer, T Transparentar, O Ofrecer, R Retener." },
     { l: "E", ctx: sc(`El ${C.cli} ya contó su necesidad y usted necesita dos datos más para orientarlo.`), chat: C.probA, q: "¿Cuántas preguntas conviene hacer en cada mensaje?",
-      o: ["Una", "Tres, para avanzar rápido", "Todas de una vez", "Ninguna, solo informar"],
-      cons: ["", "Tres preguntas juntas se leen como interrogatorio: el cliente contesta una sola o ninguna.", `El ${C.cli} se abruma, siente que llena un formulario y deja el chat en visto.`, "Sin preguntas usted ofrece a ciegas y el cliente no siente que lo escuchan."],
+      o: ["Una sola, y esperar su respuesta", "Dos, para avanzar más rápido en el chat", "Las que hagan falta, pero todas en un mismo mensaje", "Ninguna: darle toda la información de una vez"],
+      cons: ["", `Dos parecen pocas, pero en WhatsApp el ${C.cli} contesta solo la última y la primera se pierde. Usted cree que preguntó y quedó a medias.`, "Varias preguntas juntas se leen como interrogatorio. El cliente responde una, ninguna, o pide que mejor le manden el precio.", "Sin preguntas usted ofrece a ciegas: manda lo que usted cree y el cliente no siente que lo escucharon."],
       res: "Una pregunta por mensaje mantiene el ritmo de conversación y casi siempre obtiene respuesta.",
       e: "Una por mensaje. Varias juntas se sienten como interrogatorio." },
     { l: "C", ctx: sc(`El ${C.cli} ya le contó su problema, pero usted todavía no sabe qué tan urgente es.`), chat: C.probA, q: "¿Para qué sirve preguntar \"¿para cuándo lo necesita?\"",
-      o: ["Para descubrir la razón real de compra y la urgencia", "Para llenar un formulario", "Para alargar la conversación", "No sirve, mejor dar el precio de una vez"],
-      cons: ["", "Si lo trata como dato de formulario, no lo usa después y el precio vuelve a quedar sin contexto.", "Alargar sin avanzar cansa al cliente: cada mensaje debe acercarlo a una decisión.", "Un precio sin saber la urgencia es solo un número: el cliente no tiene con qué compararlo más que con otro número."],
+      o: [C.impQ, "¿Cuánto tenía pensado invertir para resolverlo?", "¿Quiere que le mande las opciones que tenemos?", "¿Le gustaría que le reserve algo desde ya?"],
+      cons: ["", `Pregunta por dinero cuando el ${C.cli} acaba de contarle algo personal. Corta la confianza, y la cifra que diga será baja para protegerse.`, "Salta de la emoción al catálogo. El cliente deja de hablar de su problema y empieza a comparar precios, que es lo contrario de lo que usted busca.", "Apura el cierre sin saber para cuándo lo necesita. Si todavía no tiene fecha, la propuesta le llega fuera de tiempo y la rechaza."],
       res: "Con la fecha y el motivo usted conecta el precio a algo que le importa, y el cliente deja de verlo como un gasto.",
       e: "El impacto y la fecha son la motivación real. Con eso, el precio se conecta con algo que le importa." },
     { l: "C", ctx: sc(`Un ${C.cli} le describe su caso con detalle y le pide que usted le diga qué tiene y qué necesita.`), chat: C.probA, q: `En ${C.neg}, ¿qué debe hacer quien atiende el WhatsApp?`,
-      o: [C.rule, C.ruleBad, "Contestar solo en la noche, cuando ya hay tiempo", "Mandar un audio largo explicando todo el caso"],
-      cons: ["", `Resolvió por chat algo que no le toca. Si el profesional dice otra cosa, el ${C.cli} siente que le mintieron y se pierde la venta y la confianza.`, "De noche el cliente ya resolvió con otro negocio.", "Muchos clientes no pueden oír audios en el trabajo: el mensaje queda sin escuchar y la conversación se detiene."],
+      o: [C.rule, C.ruleBad, "Darle una respuesta aproximada para que no se vaya, y confirmarla después", "Pedirle que mejor llame por teléfono para explicarle con calma"],
+      cons: ["", `Resolvió por chat algo que no le toca. Si el profesional dice otra cosa, el ${C.cli} siente que le mintieron y se pierde la venta y la confianza.`, `Es la trampa más común: suena a buen servicio, pero un "más o menos" se queda grabado como promesa. Cuando el dato real no coincide, usted queda mal y el ${C.cli} también.`, `Mover la conversación al teléfono suena atento, pero el ${C.cli} escribió por WhatsApp por algo: está trabajando, está ocupado o le da pena llamar. Muchos no llaman nunca.`],
       res: "Usted orienta, da el siguiente paso concreto y deja la decisión técnica a quien corresponde: el cliente avanza y nadie promete de más.",
       e: "Quien atiende orienta y confirma; nunca promete ni asegura lo que no ha verificado." },
     { l: "T", ctx: sc(`Es la segunda vez en el mismo chat que el ${C.cli} le pregunta cuánto cuesta.`), chat: "¿Pero cuánto me sale al final? 🙏", q: "¿Qué hace?",
-      o: ["Le da el precio o rango en ese mensaje y sigue con una sola pregunta", "Le insiste en que venga en persona", "Le hace otra pregunta sin mencionar el precio", "Le manda una promoción"],
-      cons: ["", `Dos evasivas seguidas se leen como \"es carísimo\". El ${C.cli} deja de responder sin decir nada.`, "Preguntar otra vez sin dar el precio se siente como que lo están entreteniendo: pierde la confianza.", "Una promoción sin responder lo que preguntó parece venta a presión y tapa la duda real."],
+      o: ["Le da el precio o rango en ese mismo mensaje y agrega una sola pregunta", "Le explica primero todo lo que incluye y al final le da el precio", "Le da el precio y le pide que pase al negocio para explicarle bien", "Le pregunta su presupuesto para darle una opción a su medida"],
+      cons: ["", `Parece buena venta, pero el ${C.cli} ya preguntó dos veces: mientras usted explica, él solo busca el número. Se salta el mensaje y queda con la idea de que le dan vueltas.`, `El precio llegó condicionado a ir al local. El ${C.cli} entiende que el dato de verdad está en otro lado y que este fue incompleto: se queda con la duda.`, "Devolver una pregunta sobre dinero en la segunda insistencia se lee como que el precio depende de cuánto tenga. Es lo que más rápido rompe la confianza."],
       res: `El ${C.cli} obtiene lo que pidió, siente que le hablan claro y sigue conversando con usted.`,
       e: "Esquivar el precio dos veces se siente como evasión y rompe la confianza." },
     { l: "T", ctx: sc(`El ${C.cli} está apurado, escribe desde el trabajo y no quiere que le pregunten nada.`), chat: C.simpleQ, q: "¿Cuál respuesta respeta al cliente?",
-      o: [C.simpleR, "Para darle el precio necesito saber su caso.", "L [precio].", "Primero dígame su nombre, ciudad y edad."],
-      cons: ["", "Pidió el precio y recibió una condición. Se siente un trámite y se va.", "El precio solo, sin una palabra más, cierra la conversación: no hay por dónde seguir.", "Le pidieron tres datos personales cuando solo quería un número: eso espanta al cliente apurado."],
+      o: [C.simpleR, "¡Claro! Tiene un valor de L [precio] 😊 Cualquier duda, aquí estoy.", "Con gusto, pero déjeme entender bien su caso para no darle un dato equivocado.", "El precio varía según lo que necesite. ¿Me cuenta un poco más y se lo confirmo?"],
+      cons: ["", `Respetó la prisa y dio el precio, pero cerró la puerta. Sin una pregunta útil no hay siguiente mensaje: el ${C.cli} dice "gracias" y se va a comparar.`, `Suena profesional, pero el ${C.cli} pidió un número y recibió una condición. Para alguien apurado eso es un trámite, y los trámites se abandonan.`, `Es una evasiva con buenos modales. El ${C.cli} ya dijo que no quiere que le pregunten, y le preguntaron igual sin darle nada a cambio.`],
       res: "Recibe el precio de inmediato, siente que lo respetan, y la única pregunta que le hacen le resulta útil: por eso la contesta.",
       e: "Si piden el precio directo, se da de inmediato con una sola pregunta útil." },
     { l: "O", ctx: sc(`El ${C.cli} ya sabe el precio y ahora pregunta por disponibilidad: está listo para cerrar.`), chat: "¿Tienen disponible esta semana?", q: "¿Cuál es el mejor cierre?",
-      o: ["Sí 😊 " + C.close, "Sí. Cualquier cosa me avisa.", "Sí, pero deposite hoy o se pierde.", "Depende, ¿cuándo puede usted?"],
-      cons: ["", "La decisión queda en el aire. El cliente se distrae, nadie agenda nada y la venta se enfría.", "La presión asusta: el cliente siente que solo le quieren sacar el dinero.", "Le pasó el trabajo al cliente. Si no tenía una fecha en mente, simplemente no contesta."],
+      o: ["Sí 😊 " + C.close, "¡Sí! ¿Qué día y a qué hora le queda mejor a usted?", "Sí, tenemos espacio 😊 Me avisa cuando quiera venir y se lo apartamos.", "Sí, pero los espacios se llenan rápido. Le recomiendo apartar hoy mismo."],
+      cons: ["", `Suena atento y es el error más común: le pasó el trabajo al ${C.cli}. Si no traía fecha en mente, tiene que ponerse a pensar, y pensar es lo que posterga.`, `"Me avisa" deja todo en el aire. Nadie agenda, nadie recuerda, y en dos días la conversación está muerta sin que nadie dijera que no.`, `La urgencia inventada se nota. El ${C.cli} siente presión en lugar de ayuda y se retira aunque le interesara.`],
       res: "El cliente solo elige entre dos opciones fáciles y queda una fecha por escrito que usted puede recordar un día antes.",
       e: "Dos opciones concretas facilitan decidir." },
     { l: "O", ctx: sc("Lleva seis mensajes con un cliente y quiere saber si ya puede ofrecer el cierre."), q: "¿Qué señal indica que ya está listo para cerrar?",
-      o: ["Pregunta por horarios, entrega o formas de pago", "Pregunta el precio", "Responde \"ok\"", "Deja en visto"],
-      cons: ["", "Preguntar el precio es el inicio, no el final: todavía falta explorar y conocer.", "\"Ok\" suele ser educación, no decisión: si cierra ahí, lo apura antes de tiempo.", "El visto es señal de enfriamiento: lo que toca es seguimiento, no cierre."],
+      o: ["Pregunta por horarios, entrega o formas de pago", "Dice que el precio le parece bien", "Responde rápido y con mensajes largos", "Vuelve a escribir después de varios días"],
+      cons: ["", "Que el precio le parezca bien no es lo mismo que decidir: muchos lo dicen por cortesía y luego siguen comparando. Falta ver si ya se imagina usándolo.", "Responder rápido y extenso es interés, no decisión. Es señal de que siga explorando, no de que cierre.", "Volver después de días es una segunda oportunidad, no un cierre: toca retomar desde donde quedó, no apurarlo."],
       res: "Cuando pregunta cómo y cuándo, ya decidió por dentro: ofrecerle dos opciones solo le facilita el último paso.",
       e: "Cuando pregunta cómo y cuándo, es momento de ofrecer el cierre." },
     { l: "R", ctx: sc(`Usted ya dio el precio y ofreció dos horarios. El ${C.cli} no dice ni sí ni no.`), chat: "Mmm, lo voy a pensar.", q: "¿Cuál respuesta deja la puerta abierta sin presionar?",
-      o: [`¡Con mucho gusto! Le guardo como ${C.cli} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si compra hoy le hago 10% de descuento.", "Ok.", "¿Qué hay que pensar?"],
-      cons: ["", "Regaló margen sin saber qué lo detenía, y enseñó que dudando se consigue descuento.", "\"Ok\" cierra la puerta: el cliente entiende que ya no le interesa atenderlo.", "Suena a reclamo. El cliente se pone a la defensiva y deja de responder."],
+      o: [`¡Con mucho gusto! Le guardo como ${C.cli} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si lo confirma hoy le puedo hacer un mejor precio 😊", "¡Claro que sí! Quedo pendiente, que tenga buen día 😊", "¡Con gusto! ¿Le parece si le escribo mañana para ver qué decidió?"],
+      cons: ["", "Regaló margen sin saber qué lo detenía, y enseñó que dudando se consigue descuento.", "Es educado, pero se despidió sin averiguar qué lo frenaba. El cliente se va con la misma duda con la que llegó.", "Agendar el seguimiento está bien, pero deja la duda viva un día más. En 24 horas ya comparó con otros y el motivo real sigue sin resolverse."],
       res: "Se va sin presión pero queda guardado, ve sus historias y puede volver en días o semanas con la duda resuelta.",
       e: "Respeta la decisión y asegura el contacto: eso es Retener." },
     { l: "R", ctx: sc("Un cliente pidió precio hace tres días, le escribió dos veces y no ha vuelto a responder."), q: "¿Cuándo se deja descansar el contacto?",
-      o: ["Después de 3 o 4 seguimientos (días 1, 3, 7 y 30) sin respuesta", "Después del primer mensaje", "Nunca: hay que escribir todos los días", "Se le bloquea"],
-      cons: ["", "Un solo mensaje es muy poco: la mayoría de las ventas de seguimiento se cierran del segundo al cuarto contacto.", "Escribir a diario se siente acoso y termina en bloqueo o reporte de WhatsApp.", "Bloquear borra un contacto que ya mostró interés, y con él todas sus compras futuras."],
+      o: ["Después de 3 o 4 seguimientos (días 1, 3, 7 y 30) sin respuesta", "Después del segundo mensaje, para no incomodarlo", "Escribiéndole cada semana hasta que conteste algo", "Dejando de escribir y esperando a que vuelva solo"],
+      cons: ["", "Dos es quedarse corto: buena parte de las ventas de seguimiento se cierran entre el segundo y el cuarto contacto, justo donde usted se detendría.", "Cada semana sin pausa se siente acoso y termina en bloqueo o reporte de WhatsApp, y ahí pierde el contacto para siempre.", "Esperar es regalar el cliente. Si nadie le recuerda, se queda con el negocio que sí le escribió."],
       res: "Deja de escribir pero no desaparece: si guardó el número, sigue viendo sus historias y puede volver solo.",
       e: "Días 1, 3, 7 y 30 como máximo. Sigue viendo las historias si guardó el número." }
   ];
@@ -421,9 +640,15 @@ function exam() {
 
 /* ---------- Flujo ---------- */
 let FLOW = [];
+const DIF_TRAS = { E: 0, T: 1, O: 2 };
 function buildFlow() {
   FLOW = [{ k: "reg1" }, { k: "intro" }];
-  ORD.forEach((l, i) => { FLOW.push({ k: "lesson", i }, { k: "check", i }); if (l === "C") FLOW.push({ k: "termo" }); if (l === "O") FLOW.push({ k: "orden" }); });
+  ORD.forEach((l, i) => {
+    FLOW.push({ k: "lesson", i }, { k: "check", i });
+    if (l === "C") FLOW.push({ k: "termo" });
+    if (l in DIF_TRAS) FLOW.push({ k: "dificil", i: DIF_TRAS[l] });
+    if (l === "O") FLOW.push({ k: "orden" });
+  });
   FLOW.push({ k: "reg2" }, { k: "mission" }, { k: "examIntro" }, { k: "exam" }, { k: "result" });
 }
 const LESS = () => lessons();
@@ -432,7 +657,9 @@ function topbar() {
   if (!FLOW.length) buildFlow();
   const last = FLOW.length - 1, i = Math.min(S.idx, last);
   const pct = Math.round(i / last * 100);
-  $("mvBar").style.width = pct + "%"; $("mvPct").textContent = pct + "%"; $("mvXp").textContent = S.xp + " XP";
+  $("mvBar").style.width = pct + "%"; $("mvXp").textContent = S.xp + " XP";
+  $("mvBadges").textContent = "🏅 " + ((S.badges || []).length);
+  setTemp(0);
   const st = $("mvStep"); if (st) st.textContent = `Paso ${i + 1} de ${last + 1}`;
   const ex = $("mvExit"); if (ex) ex.hidden = !S.reg;
   $("mvLetters").querySelectorAll("span").forEach(s => s.classList.toggle("on", S.done.includes(s.dataset.l)));
@@ -443,9 +670,10 @@ function go(i) { S.idx = Math.max(0, Math.min(FLOW.length - 1, i)); save(); rend
 const next = () => go(S.idx + 1);
 function bub(box, w, t) { const d = document.createElement("div"); d.className = w === "ctx" ? "mv-ctx" : "mv-b " + w; d.innerHTML = mark(t); box.appendChild(d); box.scrollTop = box.scrollHeight; return d; }
 function animateChat(box, items, gap) {
+  if (!box || !box.isConnected) return;
   let k = 0; const token = Symbol(); box._t = token;
   const step = () => {
-    if (box._t !== token || k >= items.length) return;
+    if (box._t !== token || !box.isConnected || k >= items.length) return;
     const [w, t] = items[k++];
     if (w === "in" && !reduce) { const ty = document.createElement("div"); ty.className = "mv-typing"; ty.innerHTML = "<i></i><i></i><i></i>"; box.appendChild(ty); box.scrollTop = box.scrollHeight; setTimeout(() => { ty.remove(); bub(box, w, t); setTimeout(step, gap); }, 700); }
     else { bub(box, w, t); setTimeout(step, reduce ? 0 : gap); }
@@ -454,16 +682,17 @@ function animateChat(box, items, gap) {
 }
 /* Lección interactiva: el alumno envía cada mensaje del negocio */
 function playLesson(box, items, onDone) {
+  if (!box) return;
   let k = 0; const token = Symbol(); box._t = token;
   const step = () => {
-    if (box._t !== token) return;
+    if (box._t !== token || !box.isConnected) return;
     if (k >= items.length) { onDone && onDone(); return; }
     const [w, t] = items[k];
     if (w === "out") {
       const p = document.createElement("div"); p.className = "mv-send";
       p.innerHTML = `<span class="mv-sendl">Su respuesta</span><div class="mv-sendt">${mark(t)}</div><button class="mv-sendb" type="button">Enviar <b>➤</b></button>`;
       box.appendChild(p); box.scrollTop = box.scrollHeight;
-      p.querySelector("button").onclick = () => { p.remove(); bub(box, "out", t); k++; step(); };
+      p.querySelector("button").onclick = () => { sfx("envio"); buzz(12); p.remove(); bub(box, "out", t); k++; step(); };
       return;
     }
     if (w === "in" && !reduce) { const ty = document.createElement("div"); ty.className = "mv-typing"; ty.innerHTML = "<i></i><i></i><i></i>"; box.appendChild(ty); box.scrollTop = box.scrollHeight; setTimeout(() => { if (box._t !== token) return; ty.remove(); bub(box, w, t); k++; step(); }, 700); return; }
@@ -472,6 +701,17 @@ function playLesson(box, items, onDone) {
   step();
 }
 const wh = () => `<div class="mv-wa-head"><span class="mv-av">${esc(C.neg.charAt(0))}</span><div><b>${esc(C.neg)}</b><small>WhatsApp Business</small></div></div>`;
+
+/* Efecto de la respuesta sobre el cliente. Si llega a cero, se va: se cuenta y vuelve tibio. */
+function efecto(ok) {
+  setTemp(ok ? 20 : -24);
+  sfx(ok ? "bien" : "mal"); buzz(ok ? 14 : [30, 50, 30]);
+  if (S.temp > 0) return "";
+  S.perdidos = (S.perdidos || 0) + 1; save();
+  sfx("perdido");
+  setTimeout(() => setTemp(25), 1400);
+  return `<div class="mv-perdido"><b>😕 El ${esc(C.cli)} se fue</b><p>Con esa respuesta la conversación se enfrió del todo. Pasa en la vida real y no se avisa: simplemente dejan de contestar.</p><small>Le mandamos otro ${esc(C.cli)}. Va ${S.perdidos} perdido${S.perdidos === 1 ? "" : "s"}.</small></div>`;
+}
 
 /* Retroalimentación: qué pasa si responde así, qué se pudo hacer y por qué */
 function fbHTML(ok, q, k, extra) {
@@ -492,7 +732,8 @@ function render() {
   if (g.k !== "reg1") buildC();
   topbar();
   screen.className = "mv-screen in";
-  ({ reg1: rReg1, intro: rIntro, lesson: rLesson, check: rCheck, termo: rTermo, orden: rOrden, reg2: rReg2, mission: rMission, examIntro: rExamIntro, exam: rExam, result: rResult })[g.k](g);
+  ({ reg1: rReg1, intro: rIntro, lesson: rLesson, check: rCheck, termo: rTermo, dificil: rDificil, orden: rOrden, reg2: rReg2, mission: rMission, examIntro: rExamIntro, exam: rExam, result: rResult })[g.k](g);
+  pulso(g.k, S.idx);
   requestAnimationFrame(() => screen.classList.add("on"));
 }
 
@@ -574,7 +815,13 @@ function rIntro() {
   screen.innerHTML = `<div class="mv-intro"><span class="eyebrow">Bienvenido, ${esc(first)}</span><h2>Así va a vender ${esc(C.neg)} por WhatsApp</h2>
   <p class="mv-lead">Vamos a recorrer las 6 letras de <b>VECTOR</b> con chats de ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}. En cada letra usted <b>envía las respuestas</b> y resuelve un reto. Gane XP, desbloquee las letras y al final haga el examen.</p>
   <div class="mv-road">${LESS().map((x, i) => `<div class="mv-rs" style="--i:${i}"><b>${x.l}</b><span>${x.t}</span></div>`).join("")}<div class="mv-rs fin" style="--i:6"><b>🏆</b><span>Examen</span></div></div>
-  <div class="mv-mini3"><div><b>⏱️</b><span>8 minutos</span></div><div><b>⚡</b><span>XP por cada acierto</span></div><div><b>🎓</b><span>Certificado imprimible</span></div></div>
+  <div class="mv-reglas"><h3>Cómo se juega</h3><ul>
+    <li><b>Usted escribe.</b> En cada lección toca Enviar para mandar la respuesta del negocio.</li>
+    <li><b>El cliente se enfría o se calienta.</b> El termómetro de arriba sube con cada acierto y baja con cada error. Si llega a cero, el cliente se va.</li>
+    <li><b>Tres clientes difíciles.</b> El apurado, el regateador y la urgencia. Cada uno tiene su insignia.</li>
+    <li><b>8 insignias y un certificado.</b> Las que gane quedan impresas en su certificado.</li>
+  </ul></div>
+  <div class="mv-mini3"><div><b>⏱️</b><span>12 minutos</span></div><div><b>🏅</b><span>8 insignias</span></div><div><b>🎓</b><span>Certificado imprimible</span></div></div>
   ${nav("Empezar con la V →")}</div>`;
   wireNav();
 }
@@ -596,18 +843,80 @@ function rLesson(f) {
   });
 }
 function rCheck(f) {
-  const x = LESS()[f.i], q = x.q, order = shuffle([0, 1, 2]);
+  const x = LESS()[f.i], q = x.q, order = shuffle([0, 1, 2]), reloj = f.i === 0;
   screen.innerHTML = `<div class="mv-check"><span class="eyebrow">Reto rápido · ${x.l} · ${x.t}</span>
    ${q.ctx ? `<p class="mv-ctxline">${esc(q.ctx)}</p>` : ""}
-   <div class="mv-phone sm">${wh()}<div class="mv-thread"><div class="mv-b in">${mark(q.p)}</div></div></div>
+   ${reloj ? `<div class="mv-reloj" id="mvReloj"><i></i><b>El ${esc(C.cli)} está en línea. Conteste rápido.</b></div>` : ""}
+   <div class="mv-phone sm">${wh()}<div class="mv-thread" id="mvT"><div class="mv-b in">${mark(q.p)}</div></div></div>
    <h2>${esc(q.q)}</h2><div class="mv-opts">${order.map((k, n) => `<button type="button" class="mv-opt" data-k="${k}"><span class="mv-lt">${"ABC"[n]}</span><span>${mark(q.o[k])}</span></button>`).join("")}</div><div id="mvFb"></div></div>`;
+  const t0 = Date.now(), th = $("mvT"); let tarde = false, tmr = null, r = null;
+  if (reloj) {
+    r = $("mvReloj"); const barra = r.querySelector("i");
+    requestAnimationFrame(() => { barra.style.transition = "width 8s linear"; barra.style.width = "0%"; });
+    tmr = setTimeout(() => {
+      if (!r.isConnected) return;
+      tarde = true; r.classList.add("tarde"); r.querySelector("b").textContent = "Se tardó. Así se siente del otro lado:";
+      bub(th, "in", "¿Hola? 😕 Ya me respondieron de otro lado.");
+      setTemp(-10); sfx("mal");
+    }, 8000);
+  }
+  screen.querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
+    clearTimeout(tmr);
+    const k = +b.dataset.k, ok = k === 0, seg = (Date.now() - t0) / 1000;
+    screen.querySelectorAll(".mv-opt").forEach(o => { o.disabled = true; if (+o.dataset.k === 0) o.classList.add("right"); else if (o === b) o.classList.add("wrong"); });
+    if (ok) addXP(20); else b.classList.add("shake");
+    if (reloj) { r.querySelector("i").style.transition = "none"; if (ok && !tarde && seg < 8) darInsignia("rayo"); }
+    const perdido = efecto(ok);
+    const first = !S.done.includes(x.l);
+    if (first) { S.done.push(x.l); save(); topbar(); setTimeout(() => { burst(); toast(`¡Letra ${x.l} desbloqueada! ${S.done.length}/6`); }, 250); }
+    $("mvFb").innerHTML = perdido + fbHTML(ok, q, k, ok ? " +20 XP" : "") + nav(f.i < 5 ? `Siguiente: ${LESS()[f.i + 1].l} →` : "Seguir →");
+    wireNav();
+  });
+}
+
+/* ---------- Clientes difíciles: tres personajes con una decisión cada uno ---------- */
+function dificiles() {
+  return [
+    { id: "apurado", emoji: "⏱️", nombre: "El apurado", desc: `Escribe desde el trabajo, no quiere preguntas y quiere el número ya.`,
+      ch: [["in", C.simpleQ]], q: "¿Qué le responde?",
+      o: [C.simpleR, "¡Claro! Tiene un valor de L [precio] 😊 Cualquier duda, aquí estoy.", "Con gusto, pero déjeme entender su caso para no darle un dato equivocado."],
+      cons: ["", `Le dio el precio y cerró la puerta. Sin una pregunta útil no hay siguiente mensaje: el ${C.cli} agradece y se va a comparar.`, `Pidió un número y recibió una condición. Para alguien apurado eso es un trámite, y los trámites se abandonan.`],
+      fin: [["in", C.simpleA], ["out", C.simpleF]],
+      res: `Le dio el precio de una vez, así que se sintió respetado, y la única pregunta que le hizo le resultaba útil: por eso la contestó.`,
+      e: "Al apurado se le da el precio de inmediato y se le hace una sola pregunta que a él le sirva." },
+    { id: "regateador", emoji: "💰", nombre: "El regateador", desc: `Ya le dio el precio y le acaba de decir que en otro lado está más barato.`,
+      ch: [["in", C.caroQ], ["out", C.caroE], ["in", C.caroA]], q: "¿Qué le responde?",
+      o: [C.payR, "Le puedo dejar un precio especial si lo confirma hoy 😊", "Es que la calidad se paga, nosotros no somos los más baratos."],
+      cons: ["", `Bajó el precio sin saber qué lo detenía. Aprende que dudando consigue descuento, y los que iban a pagar completo también se enteran.`, `Suena a reproche. El ${C.cli} siente que le están diciendo que no sabe comprar y se va con el otro, aunque sea peor.`],
+      fin: [["in", "Mmm… tiene razón. ¿Cuándo puedo ir?"], ["out", C.close]],
+      res: `No bajó el precio: cambió la conversación de "cuánto cuesta" a "qué incluye", y cerró con una fecha concreta.`,
+      e: "Al regateador no se le baja el precio: se le explica qué incluye y se le facilita el pago, sin regalar margen." },
+    { id: "urgencia", emoji: "🚨", nombre: "La urgencia", desc: `Escribe angustiado y necesita una solución hoy mismo.`,
+      ch: [["in", C.urgQ]], q: "¿Qué le responde?",
+      o: [C.urgR, "Con gusto le ayudamos. El servicio tiene un valor de L [precio] 😊", "Lo entiendo. Déjeme revisar y en un ratito le confirmo."],
+      cons: ["", `Está angustiado y lo primero que recibe es un precio. Siente que al negocio le importa más cobrar que ayudarlo.`, `"En un ratito" a alguien con una urgencia se le hace eterno. Mientras espera, escribe a otro negocio que sí le contestó con algo concreto.`],
+      fin: [["in", C.urgA], ["out", C.urgClose]],
+      res: `Primero reconoció la urgencia y pidió solo lo necesario para actuar. El ${C.cli} sintió que alguien ya estaba resolviendo su problema.`,
+      e: "En una urgencia primero se calma y se actúa; el precio va después, junto con la solución concreta." }
+  ];
+}
+function rDificil(f) {
+  const d = dificiles()[f.i], order = shuffle([0, 1, 2]);
+  screen.innerHTML = `<div class="mv-dif">
+   <div class="mv-cab"><span class="eyebrow">Cliente difícil ${f.i + 1} de 3</span>
+     <div class="mv-difh"><span class="mv-difem">${d.emoji}</span><div><h2>${esc(d.nombre)}</h2><p>${esc(d.desc)}</p></div></div></div>
+   <div class="mv-phone tall">${wh()}<div class="mv-thread" id="mvT"></div></div>
+   <div class="mv-dec"><h3>${esc(d.q)}</h3><div class="mv-opts">${order.map((k, n) => `<button type="button" class="mv-opt" data-k="${k}"><span class="mv-lt">${"ABC"[n]}</span><span>${mark(d.o[k])}</span></button>`).join("")}</div><div id="mvFb"></div></div></div>`;
+  const th = $("mvT");
+  animateChat(th, d.ch, 600);
   screen.querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
     const k = +b.dataset.k, ok = k === 0;
     screen.querySelectorAll(".mv-opt").forEach(o => { o.disabled = true; if (+o.dataset.k === 0) o.classList.add("right"); else if (o === b) o.classList.add("wrong"); });
-    if (ok) addXP(20); else b.classList.add("shake");
-    const first = !S.done.includes(x.l);
-    if (first) { S.done.push(x.l); save(); topbar(); setTimeout(() => { burst(); toast(`¡Letra ${x.l} desbloqueada! ${S.done.length}/6`); }, 250); }
-    $("mvFb").innerHTML = fbHTML(ok, q, k, ok ? " +20 XP" : "") + nav(f.i < 5 ? `Siguiente: ${LESS()[f.i + 1].l} →` : "Seguir →");
+    bub(th, "out", d.o[k]);
+    if (ok) { addXP(25); darInsignia(d.id); } else b.classList.add("shake");
+    const perdido = efecto(ok);
+    if (ok) setTimeout(() => animateChat(th, d.fin, 600), 500);
+    $("mvFb").innerHTML = perdido + fbHTML(ok, d, k, ok ? " +25 XP" : "") + nav("Seguir →");
     wireNav();
   });
 }
@@ -630,36 +939,41 @@ function rOrden() {
     ["T", "Doy el precio con contexto", C.sol],
     ["O", "Cierro con dos opciones concretas", C.close]
   ];
-  screen.innerHTML = `<div class="mv-orden"><div class="mv-ox"><span class="eyebrow">Drill · Arme la conversación</span><h2>Ponga los cinco mensajes en orden</h2>
-     <p class="mv-lead">Toque las tarjetas en el orden en que las enviaría. Si se equivoca, le decimos qué falta antes.</p>
-     <div class="mv-chips" id="mvCh">${shuffle(steps.map((s, i) => i)).map(i => `<button type="button" class="mv-chip" data-i="${i}"><b>${steps[i][0]}</b><span>${esc(steps[i][1])}</span></button>`).join("")}</div>
-     <div id="mvOf"></div></div>
-   <div class="mv-phone tall">${wh()}<div class="mv-thread" id="mvT"><div class="mv-b in">${mark(C.open)}</div></div></div></div>`;
-  const th = $("mvT"); let k = 0;
-  const fin = () => { burst(); $("mvCh").innerHTML = ""; $("mvOf").innerHTML = `<div class="mv-fb ok"><b>¡Conversación completa!</b><p class="mv-rz"><span>Lo que pasa con el cliente</span>Llegó frío preguntando precio y se va con una cita por escrito. Ese es el camino VECTOR de principio a fin.</p></div>` + nav("Seguir con la R →"); wireNav(); };
+  screen.innerHTML = `<div class="mv-orden">
+   <div class="mv-cab"><span class="eyebrow">Drill · Arme la conversación</span><h2>Ponga los cinco mensajes en orden</h2>
+     <p class="mv-lead">Toque las tarjetas en el orden en que las enviaría. Si se equivoca, le decimos qué falta antes.</p></div>
+   <div class="mv-phone tall">${wh()}<div class="mv-thread" id="mvT"><div class="mv-b in">${mark(C.open)}</div></div></div>
+   <div class="mv-dec"><div class="mv-chips" id="mvCh">${shuffle(steps.map((s, i) => i)).map(i => `<button type="button" class="mv-chip" data-i="${i}"><b>${steps[i][0]}</b><span>${esc(steps[i][1])}</span></button>`).join("")}</div>
+     <div id="mvOf"></div></div></div>`;
+  const th = $("mvT"); let k = 0, fallos = 0;
+  const fin = () => { burst(); if (!fallos) darInsignia("orden"); $("mvCh").innerHTML = ""; $("mvOf").innerHTML = `<div class="mv-fb ok"><b>¡Conversación completa!</b><p class="mv-rz"><span>Lo que pasa con el cliente</span>Llegó frío preguntando precio y se va con una cita por escrito. Ese es el camino VECTOR de principio a fin.</p></div>` + nav("Seguir con la R →"); wireNav(); };
   screen.querySelectorAll(".mv-chip").forEach(b => b.onclick = () => {
     const i = +b.dataset.i;
-    if (i !== k) { b.classList.add("shake"); setTimeout(() => b.classList.remove("shake"), 500); $("mvOf").innerHTML = `<div class="mv-fb bad"><b>Todavía no</b><p class="mv-rz bad"><span>El resultado de enviarlo así</span>Si manda eso ahora, se salta la letra <b>${steps[k][0]}</b> y el cliente recibe un mensaje que no corresponde a lo que acaba de escribir.</p><p class="mv-rz best"><span>Qué va primero</span>${steps[k][0]} · ${esc(steps[k][1])}</p></div>`; return; }
-    b.remove(); bub(th, "out", steps[i][2]); addXP(10); k++;
+    if (i !== k) { fallos++; sfx("mal"); b.classList.add("shake"); setTimeout(() => b.classList.remove("shake"), 500); $("mvOf").innerHTML = `<div class="mv-fb bad"><b>Todavía no</b><p class="mv-rz bad"><span>El resultado de enviarlo así</span>Si manda eso ahora, se salta la letra <b>${steps[k][0]}</b> y el cliente recibe un mensaje que no corresponde a lo que acaba de escribir.</p><p class="mv-rz best"><span>Qué va primero</span>${steps[k][0]} · ${esc(steps[k][1])}</p></div>`; return; }
+    b.remove(); sfx("envio"); bub(th, "out", steps[i][2]); addXP(10); k++;
     if (k < steps.length) { $("mvOf").innerHTML = `<div class="mv-fb ok"><b>Bien · +10 XP</b><p>${esc(steps[i][0])} listo. Siguen ${steps.length - k} mensajes.</p></div>`; setTimeout(() => bub(th, "ctx", "El cliente responde y la conversación avanza…"), 400); }
     else fin();
   });
 }
 function rMission() {
   const M = mission(); let k = 0, good = 0;
-  screen.innerHTML = `<div class="mv-mission"><div class="mv-mx"><span class="eyebrow">Misión final · 4 mensajes</span><h2>Atienda a un cliente de principio a fin</h2><p>Responda cada mensaje. Mire cómo sube o baja la temperatura.</p>
-   <div class="mv-gauge"><div><i id="mvG"></i></div><span>Frío</span><span>Caliente</span></div><div id="mvMo"></div></div>
-   <div class="mv-phone tall">${wh()}<div class="mv-thread" id="mvT"></div></div></div>`;
+  screen.innerHTML = `<div class="mv-mission">
+   <div class="mv-cab"><span class="eyebrow">Misión final · 4 mensajes</span><h2>Atienda a un cliente de principio a fin</h2><p>Responda cada mensaje. Mire cómo sube o baja la temperatura.</p>
+     <div class="mv-gauge"><div><i id="mvG"></i></div><span>Frío</span><span>Caliente</span></div></div>
+   <div class="mv-phone tall">${wh()}<div class="mv-thread" id="mvT"></div></div>
+   <div class="mv-dec"><div id="mvMo"></div></div></div>`;
   const th = $("mvT"); let temp = 10;
   const setG = () => ($("mvG").style.width = Math.max(5, Math.min(100, temp)) + "%");
   const ask = () => {
     const st = M[k];
     animateChat(th, [["in", st.p]], 0);
     setTimeout(() => {
+      if (!th.isConnected) return;
       $("mvMo").innerHTML = `<div class="mv-opts">${shuffle([0, 1, 2]).map((i, n) => `<button type="button" class="mv-opt" data-i="${i}"><span class="mv-lt">${"ABC"[n]}</span><span>${mark(st.o[i][0])}</span></button>`).join("")}</div>`;
       $("mvMo").querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
         const o = st.o[+b.dataset.i]; bub(th, "out", o[0]);
         temp += o[1] === 1 ? 23 : o[1] === 0 ? 4 : -12; setG();
+        sfx(o[1] === 1 ? "bien" : "mal"); setTemp(o[1] === 1 ? 12 : o[1] === 0 ? 0 : -10);
         if (o[1] === 1) { good++; addXP(15); } else bub(th, "ctx", o[1] === 0 ? "El cliente tarda en responder…" : "Visto ✓✓ · aquí el cliente se enfría");
         const best = st.o[0];
         $("mvMo").innerHTML = `<div class="mv-fb ${o[1] === 1 ? "ok" : "bad"}"><b>${o[1] === 1 ? "¡Bien! +15 XP" : "No es la mejor opción"}</b>
@@ -691,9 +1005,11 @@ function rExam() {
   screen.querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
     const k = +b.dataset.k, ok = k === 0;
     screen.querySelectorAll(".mv-opt").forEach(o => { o.disabled = true; if (+o.dataset.k === 0) o.classList.add("right"); else if (o === b) o.classList.add("wrong"); });
-    if (ok) { X.ok++; X.streak++; X.best = Math.max(X.best, X.streak); addXP(25); } else { X.streak = 0; b.classList.add("shake"); X.miss.push({ letra: q.l, situacion: q.ctx, pregunta: q.q, eligio: q.o[k], consecuencia: (q.cons && q.cons[k]) || "", correcta: q.o[0], comoMejorar: q.e }); }
+    if (ok) { X.ok++; X.streak++; X.best = Math.max(X.best, X.streak); addXP(25); if (X.streak >= 5) darInsignia("racha"); } else { X.streak = 0; b.classList.add("shake"); X.miss.push({ letra: q.l, situacion: q.ctx, pregunta: q.q, eligio: q.o[k], consecuencia: (q.cons && q.cons[k]) || "", correcta: q.o[0], comoMejorar: q.e }); }
     X.i++; save();
-    $("mvFb").innerHTML = fbHTML(ok, q, k, ok ? (X.streak >= 3 ? ` ¡Racha de ${X.streak}! 🔥` : " +25 XP") : "") + `<div class="mv-nav"><button class="btn" type="button" id="mvEn">${X.i < E.length ? "Siguiente caso →" : "Ver mi resultado"}</button></div>`;
+    const perdido = efecto(ok);
+    if (X.i >= E.length && X.ok === E.length) darInsignia("perfecto");
+    $("mvFb").innerHTML = perdido + fbHTML(ok, q, k, ok ? (X.streak >= 3 ? ` ¡Racha de ${X.streak}! 🔥` : " +25 XP") : "") + `<div class="mv-nav"><button class="btn" type="button" id="mvEn">${X.i < E.length ? "Siguiente caso →" : "Ver mi resultado"}</button></div>`;
     $("mvEn").onclick = () => (X.i < E.length ? render() : next());
   });
 }
@@ -712,6 +1028,7 @@ function rResult() {
   screen.innerHTML = `<div class="mv-result">
    <div class="mv-score"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="bg"/><circle cx="60" cy="60" r="52" class="fg" style="stroke:${col};stroke-dashoffset:${327 - 327 * p / 100}"/></svg><div><b>${X.ok}/${n}</b><small>${p}%</small></div></div>
    <div class="mv-rt"><span class="eyebrow">${pass ? "¡Aprobado!" : "Resultado"}</span><h2>${esc(lv)}</h2><p>${pass ? `Felicidades, ${esc(r.nombre.split(" ")[0])}. Ya domina la Metodología VECTOR. Descargue su certificado, imprímalo y cuélguelo.` : "Le faltó poco. Repase los casos marcados y vuelva a intentarlo."} · ${S.xp} XP · ${Math.floor(secs / 60)} min ${secs % 60} s</p></div>
+   <div class="mv-insig"><b>Insignias · ${(S.badges || []).length} de ${INSIGNIAS.length}</b><div class="mv-insg">${INSIGNIAS.map(([id, em, nom, d]) => `<div class="mv-ins${(S.badges || []).includes(id) ? " on" : ""}" title="${esc(d)}"><span>${em}</span><small>${esc(nom)}</small></div>`).join("")}</div>${S.perdidos ? `<small class="mv-perd">Clientes perdidos en el camino: ${S.perdidos}</small>` : `<small class="mv-perd ok">No perdió un solo cliente 👏</small>`}</div>
    ${pass ? `<div class="mv-certbox" id="mvCertBox"><div class="mv-certload">Preparando su certificado…</div></div>` : ""}
    ${X.miss.length ? `<div class="mv-miss"><b>Para repasar</b>${X.miss.map(m => `<div><span class="mv-lt">${m.letra}</span><p>${esc(m.pregunta)}<small>${esc(m.comoMejorar)}</small></p></div>`).join("")}</div>` : ""}
    <div class="mv-actions">
@@ -725,7 +1042,7 @@ function rResult() {
   $("mvPdf").href = location.pathname.replace(/\/?$/, "/") + "metodologia-vector.pdf";
   $("mvWa").onclick = () => track("Contact", { content_name: "Capacitación VECTOR" });
   if (pass) {
-    certCanvas(r, X.ok, n, p, lv).then(cv => {
+    certCanvas(r, X.ok, n, p, lv, (S.badges || []).length).then(cv => {
       const url = cv.toDataURL("image/png");
       $("mvCertBox").innerHTML = `<img src="${url}" alt="Certificado en Atención al Cliente, Método VECTOR, a nombre de ${esc(r.nombre)}"><small>Listo para imprimir en hoja horizontal (A4 o carta).</small>`;
       $("mvCert").onclick = () => { certDownload(cv, r.nombre); track("MetodologiaVectorCertificado", {}, true); };
@@ -733,7 +1050,7 @@ function rResult() {
     });
   }
   $("mvRetry") && ($("mvRetry").onclick = () => { S.exam = null; save(); go(FLOW.findIndex(f => f.k === "examIntro")); });
-  $("mvRestart").onclick = () => { S = Object.assign(FRESH(), { reg: S.reg, reg2: S.reg2, regId: S.regId }); save(); go(1); };
+  $("mvRestart").onclick = () => { S = Object.assign(FRESH(), { reg: S.reg, reg2: S.reg2, regId: S.regId, badges: S.badges || [] }); save(); go(1); };
   $("mvOther").onclick = resetAll;
 }
 
@@ -759,7 +1076,7 @@ function lsp(x, t, cx, y, sp, align) { const ch = [...String(t)]; const w = ch.r
 function wrapLines(x, t, max) { const ws = String(t).split(" "); const out = []; let c = ""; ws.forEach(w => { const n = c ? c + " " + w : w; if (x.measureText(n).width > max && c) { out.push(c); c = w; } else c = n; }); if (c) out.push(c); return out; }
 function fitText(x, t, max, px, mk) { let s = px; x.font = mk(s); while (x.measureText(t).width > max && s > 24) { s -= 2; x.font = mk(s); } return s; }
 
-async function certCanvas(r, ok, n, p, lv) {
+async function certCanvas(r, ok, n, p, lv, insignias) {
   await loadCertFonts();
   const W = 2480, H = 1754, cv = document.createElement("canvas"); cv.width = W; cv.height = H; const x = cv.getContext("2d");
   const INK = "#140A3C", MUT = "#5B5280", GOLD = "#B4933F", PUR = "#3A0CC9";
@@ -803,10 +1120,12 @@ async function certCanvas(r, ok, n, p, lv) {
   x.fillText([r.cargo, r.empresa].filter(Boolean).join(" · "), W / 2, 986, W - 600);
   /* cuerpo */
   x.fillStyle = "#3A3360"; x.font = '400 34px Manrope, sans-serif';
-  const body = `por haber completado y aprobado el curso de atención y ventas por WhatsApp con el Método VECTOR — Vincular, Explorar, Conocer, Transparentar, Ofrecer y Retener — obteniendo una calificación de ${p}% (${ok} de ${n} respuestas correctas) y la distinción de ${lv}.`;
-  wrapLines(x, body, W - 900).forEach((ln, i) => x.fillText(ln, W / 2, 1056 + i * 48));
-  /* sello */
-  const scx = W / 2, scy = 1320, R = 112;
+  const body = `por haber completado y aprobado el curso de atención y ventas por WhatsApp con el Método VECTOR — Vincular, Explorar, Conocer, Transparentar, Ofrecer y Retener — obteniendo una calificación de ${p}% (${ok} de ${n} respuestas correctas)${insignias ? `, ${insignias} de 8 insignias de práctica` : ""} y la distinción de ${lv}.`;
+  const lineas = wrapLines(x, body, W - 860);
+  lineas.forEach((ln, i) => x.fillText(ln, W / 2, 1046 + i * 47));
+  /* sello: baja según cuántas líneas haya ocupado el cuerpo, sin chocar con la firma */
+  const scx = W / 2, R = 112;
+  const scy = Math.min(1372, Math.max(1316, 1046 + (lineas.length - 1) * 47 + 160));
   const sg = x.createLinearGradient(scx - R, scy - R, scx + R, scy + R); sg.addColorStop(0, "#2C02A4"); sg.addColorStop(.55, "#7B4DFF"); sg.addColorStop(1, "#E0169B");
   x.beginPath(); x.arc(scx, scy, R, 0, Math.PI * 2); x.fillStyle = sg; x.fill();
   x.beginPath(); x.arc(scx, scy, R - 14, 0, Math.PI * 2); x.strokeStyle = "rgba(255,255,255,.6)"; x.lineWidth = 3; x.stroke();
@@ -846,8 +1165,27 @@ function burst() {
   let f = 0; (function t() { x.clearRect(0, 0, W, H); ps.forEach(p => { p.vy += .35; p.x += p.vx; p.y += p.vy; p.a += .15; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * .6); x.restore(); }); if (++f < 120) requestAnimationFrame(t); else x.clearRect(0, 0, W, H); })();
 }
 
+/* Pulso anónimo de avance: sin nombre, correo ni teléfono. Solo sirve para ver
+   en qué pantalla abandona la gente y poder arreglarla. */
+let ultPulso = "";
+function pulso(k, i) {
+  if (!ENDPOINT || !S.sesion) return;
+  const id = k + ":" + i; if (id === ultPulso) return; ultPulso = id;
+  try {
+    const body = JSON.stringify({ tipo: "paso", sesion: S.sesion, paso: k, indice: i, total: FLOW.length, rubro: (S.reg && S.reg.rubro) || "", origen: location.href });
+    if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT, new Blob([body], { type: "text/plain;charset=UTF-8" }));
+    else fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true }).catch(() => {});
+  } catch (e) {}
+}
+
 buildFlow();
 if (S.reg) buildC();
+const sndBtn = $("mvSnd");
+if (sndBtn) {
+  const pinta = () => { sndBtn.textContent = SND ? "🔊" : "🔇"; sndBtn.setAttribute("aria-pressed", String(SND)); sndBtn.title = SND ? "Silenciar el curso" : "Activar el sonido"; };
+  pinta();
+  sndBtn.onclick = () => { SND = !SND; LS.set("mv-snd", SND); pinta(); if (SND) sfx("bien"); };
+}
 const exitBtn = $("mvExit"); if (exitBtn) exitBtn.onclick = resetAll;
 render();
 

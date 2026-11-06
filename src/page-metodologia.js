@@ -52,8 +52,8 @@ module.exports = function buildMetodologia(c) {
       <div class="mv-hero-tx">
         <span class="eyebrow">Vector Marketing &amp; Academy · Curso gratuito</span>
         <h1>Bienvenido a la <span class="g">Metodología VECTOR</span></h1>
-        <p class="lead">El protocolo de atención y ventas por WhatsApp para personas que atienden clientes. Aprenda en menos de 10 minutos a llevar a un cliente desde el primer "¿cuánto cuesta?" hasta la venta cerrada, con ejemplos de su tipo de negocio. Empieza con tres datos, sin formularios largos, y termina con un certificado listo para imprimir.</p>
-        <div class="mv-facts"><div><b>8</b><span>minutos</span></div><div><b>6</b><span>pasos</span></div><div><b>12</b><span>casos</span></div><div><b>1</b><span>certificado imprimible</span></div></div>
+        <p class="lead">El protocolo de atención y ventas por WhatsApp para personas que atienden clientes. Aprenda en menos de 10 minutos a llevar a un cliente desde el primer "¿cuánto cuesta?" hasta la venta cerrada, con ejemplos de su tipo de negocio. Empieza con tres datos, sin formularios largos. Usted escribe cada respuesta, el cliente se enfría o se calienta según lo que conteste, y al final se lleva un certificado listo para imprimir.</p>
+        <div class="mv-facts"><div><b>6</b><span>letras</span></div><div><b>3</b><span>clientes difíciles</span></div><div><b>8</b><span>insignias</span></div><div><b>1</b><span>certificado imprimible</span></div></div>
         <div class="mv-cta">
           <a class="btn" href="#curso">${ICON.arrow}Empezar el curso gratis</a>
           <a class="btn light" href="${pdf}" download>${ICON.pdf}Descargar la metodología</a>
@@ -71,12 +71,17 @@ module.exports = function buildMetodologia(c) {
           <div class="mv-barrow">
             <a class="mv-home" href="/">← <span class="lg">Inicio del sitio</span><span class="sm">Inicio</span></a>
             <span class="mv-step" id="mvStep">Paso 1</span>
+            <button class="mv-snd" type="button" id="mvSnd" aria-pressed="true" title="Sonido del curso">🔊</button>
             <button class="mv-exit" type="button" id="mvExit" hidden title="Borrar el avance y registrar a otra persona"><span class="lg">Registrar a otra persona</span><span class="sm">Otra persona</span></button>
           </div>
           <div class="mv-bar"><i id="mvBar"></i></div>
           <div class="mv-toprow">
             <div class="mv-letters" id="mvLetters">${LETRAS.map(([l]) => `<span data-l="${l}">${l}</span>`).join("")}</div>
-            <div class="mv-stats"><span class="mv-pill" id="mvPct">0%</span><span class="mv-pill xp" id="mvXp">0 XP</span></div>
+            <div class="mv-stats">
+              <span class="mv-temp" id="mvTemp" title="Temperatura del cliente"><i></i><b>Frío</b></span>
+              <span class="mv-pill med" id="mvBadges">🏅 0</span>
+              <span class="mv-pill xp" id="mvXp">0 XP</span>
+            </div>
           </div>
         </div>
         <div class="mv-screen" id="mvScreen" aria-live="polite"><noscript><p>Active JavaScript para tomar el curso, o descargue la metodología en PDF.</p></noscript></div>

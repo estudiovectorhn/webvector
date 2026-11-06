@@ -148,8 +148,6 @@ mark{background:rgba(106,59,245,.12);color:var(--deep);padding:0 4px;border-radi
 .mv-tb.on{border-color:var(--c);transform:translateX(4px)}
 
 /* Misión */
-.mv-mission{display:grid;gap:22px;align-items:start}
-@media (min-width:900px){.mv-mission{grid-template-columns:1fr 1fr;gap:32px}}
 .mv-mx p{color:var(--muted)}
 .mv-gauge{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:6px 0 16px;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
 .mv-gauge div{grid-column:1/-1;height:12px;border-radius:99px;background:linear-gradient(90deg,var(--mv-cold),var(--mv-warm),var(--mv-hot));position:relative}
@@ -280,8 +278,6 @@ mark{background:rgba(106,59,245,.12);color:var(--deep);padding:0 4px;border-radi
 .mv-rz.why{background:transparent;padding:8px 2px 0}
 
 /* Drill: ordenar la conversación */
-.mv-orden{display:grid;gap:22px;align-items:start}
-@media (min-width:900px){.mv-orden{grid-template-columns:1fr 1fr;gap:32px}}
 .mv-chips{display:grid;gap:10px;margin-bottom:14px}
 .mv-chip{font:inherit;text-align:left;display:flex;gap:12px;align-items:center;padding:13px 16px;border-radius:16px;border:2px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;transition:border-color .15s,transform .15s}
 .mv-chip:hover{border-color:var(--violet);transform:translateY(-2px)}
@@ -317,3 +313,69 @@ mark{background:rgba(106,59,245,.12);color:var(--deep);padding:0 4px;border-radi
 /* El reproductor no recorta: la barra pegajosa necesita que no haya overflow:hidden
    (dentro de uno, se desplaza y tapa la letra grande de la lección). */
 .mv-screen{border-radius:0 0 27px 27px}
+
+/* ===== Capa de juego: termómetro, insignias, clientes difíciles, contrarreloj ===== */
+.mv-snd{font:inherit;font-size:14px;line-height:1;background:none;border:1.5px solid var(--line);border-radius:99px;padding:4px 9px;cursor:pointer}
+.mv-snd:hover{border-color:var(--violet)}
+
+/* Termómetro del cliente, siempre visible */
+.mv-temp{display:inline-flex;align-items:center;gap:7px;padding:4px 11px 4px 6px;border-radius:99px;background:var(--surface2);font-weight:800;font-size:12px;border:1.5px solid var(--line)}
+.mv-temp i{display:block;width:8px;height:18px;border-radius:99px;background:var(--mv-cold);align-self:flex-end;transition:height .5s cubic-bezier(.2,.8,.2,1),background .4s}
+.mv-temp::before{content:"";width:8px;height:18px;margin-right:-15px;border-radius:99px;background:rgba(0,0,0,.08)}
+.mv-temp.cold i{background:var(--mv-cold)}.mv-temp.warm i{background:var(--mv-warm)}
+.mv-temp.hot i{background:var(--mv-hot)}.mv-temp.gone i{background:var(--dim)}
+.mv-temp.warm{border-color:var(--mv-warm)}.mv-temp.hot{border-color:var(--mv-hot);background:#FFF1F3}
+.mv-temp.gone{border-color:var(--dim);color:var(--muted)}
+.mv-temp.bump{animation:mvBump .5s}
+.mv-pill.med{background:#FFF4D6;color:#8A6A00}
+
+/* El cliente se fue */
+.mv-perdido{border-radius:16px;padding:14px 16px;margin-bottom:10px;background:#2B1247;color:#fff;animation:mvPop .3s}
+.mv-perdido b{display:block;font-size:17px}
+.mv-perdido p{margin:6px 0 0;line-height:1.5;color:#E0D7FF}
+.mv-perdido small{display:block;margin-top:8px;color:#FF9AD2;font-weight:700}
+
+/* Contrarreloj de la V */
+.mv-reloj{position:relative;overflow:hidden;border-radius:14px;background:var(--surface2);border:1.5px solid var(--line);padding:9px 14px;margin-bottom:14px}
+.mv-reloj i{position:absolute;inset:0;width:100%;background:linear-gradient(90deg,rgba(14,154,96,.22),rgba(245,165,36,.3) 60%,rgba(244,63,94,.35));z-index:0}
+.mv-reloj b{position:relative;z-index:1;font-size:13px;font-weight:800}
+.mv-reloj.tarde{border-color:var(--fuchsia);background:#FDE7F2}
+.mv-reloj.tarde i{display:none}
+
+/* Clientes difíciles */
+.mv-difh{display:flex;gap:14px;align-items:flex-start;margin:6px 0 18px}
+.mv-difem{flex:none;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:28px;background:var(--grad);box-shadow:0 14px 26px -14px rgba(44,2,164,.8)}
+.mv-difh h2{margin:0 0 4px}
+.mv-difh p{margin:0;color:var(--muted);line-height:1.5}
+
+/* Reglas del juego en la introducción */
+.mv-reglas{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:18px 0}
+.mv-reglas h3{margin:0 0 10px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
+.mv-reglas ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.mv-reglas li{line-height:1.5;padding-left:20px;position:relative}
+.mv-reglas li::before{content:"▸";position:absolute;left:0;color:var(--fuchsia);font-weight:800}
+
+/* Insignias */
+.mv-insig{margin:20px 0 4px}
+.mv-insig>b{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:10px}
+.mv-insg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:560px){.mv-insg{grid-template-columns:repeat(2,1fr)}}
+.mv-ins{border:1.5px solid var(--line);border-radius:14px;padding:11px 8px;text-align:center;background:var(--surface2);opacity:.45;filter:grayscale(1)}
+.mv-ins.on{opacity:1;filter:none;background:var(--surface);border-color:var(--violet);box-shadow:0 12px 24px -16px rgba(44,2,164,.8)}
+.mv-ins span{display:block;font-size:24px;line-height:1.2}
+.mv-ins small{display:block;font-size:11px;font-weight:800;margin-top:4px;line-height:1.25}
+.mv-perd{display:block;margin-top:10px;font-weight:700;color:var(--fuchsia-soft)}
+.mv-perd.ok{color:var(--ok)}
+
+/* En celular: primero el mensaje del cliente, después las opciones.
+   En pantalla grande: encabezado y decisión a la izquierda, chat a la derecha. */
+.mv-dif,.mv-orden,.mv-mission{display:grid;gap:18px;align-items:start}
+.mv-dec h3{margin:0 0 12px;font-size:17px;font-weight:800}
+@media (min-width:900px){
+  .mv-dif,.mv-orden,.mv-mission{grid-template-columns:1fr 1fr;column-gap:32px;
+    grid-template-areas:"cab chat" "dec chat"}
+  .mv-cab{grid-area:cab}.mv-dec{grid-area:dec}
+  .mv-dif>.mv-phone,.mv-orden>.mv-phone,.mv-mission>.mv-phone{grid-area:chat;position:sticky;top:calc(var(--hh,64px) + 130px)}
+}
+.mv-cab p{color:var(--muted);line-height:1.6;margin:0 0 10px}
+@media (max-width:680px){.mv-phone.tall .mv-thread{min-height:190px}.mv-difem{width:50px;height:50px;font-size:24px;border-radius:15px}}

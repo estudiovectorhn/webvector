@@ -4,6 +4,7 @@
 // Correos que se envían (y solo estos dos por persona):
 //   1. Registro: la primera vez que ese correo se inscribe. Si vuelve a registrarse, se guarda pero no avisa.
 //   2. Curso completado: la primera vez que ese correo aprueba (70% o más) y recibe su certificado.
+// El tipo "paso" no manda ningún correo: es el pulso anónimo del embudo (tabla academia_pasos).
 // Los exámenes reprobados y los intentos repetidos se guardan en la base pero no generan correo.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 
@@ -14,7 +15,7 @@ const APROBADO = 70;
 
 function cors(origin: string | null) {
   const o = origin && ALLOWED.includes(origin) ? origin : ALLOWED[0];
-  return { "Access-Control-Allow-Origin": o, "Access-Control-Allow-Methods": "POST, OPTIONS", "Access-Control-Allow-Headers": "content-type", "Vary": "Origin" };
+  return { "Access-Control-Allow-Origin": o, "Access-Control-Allow-Methods": "POST, OPTIONS", "Access-Control-Allow-Headers": "content-type, authorization, apikey", "Vary": "Origin" };
 }
 const s = (v: unknown, n = 120) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 const esc = (v: unknown) => String(v ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]!));
@@ -58,6 +59,16 @@ Deno.serve(async (req) => {
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
   const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim();
   const ipHash = await hash(ip || "sin-ip");
+  /* Pulso anónimo de avance: sin datos personales, solo para ver dónde abandona la gente. */
+  if (b.tipo === "paso") {
+    const paso = s(b.paso, 24), sesion = s(b.sesion, 24);
+    if (!paso || !sesion) return json({ ok: true });
+    const { count: pasos } = await db.from("academia_pasos").select("id", { count: "exact", head: true }).eq("sesion", sesion);
+    if ((pasos ?? 0) >= 120) return json({ ok: true });
+    await db.from("academia_pasos").insert({ sesion, paso, indice: Number(b.indice) || 0, total: Number(b.total) || 0, rubro: s(b.rubro, 40), origen });
+    return json({ ok: true });
+  }
+
   const desde = new Date(Date.now() - 10 * 60 * 1000).toISOString();
   const { count } = await db.from("academia_registros").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).gte("created_at", desde);
   if ((count ?? 0) >= 12) return json({ error: "Demasiados envíos seguidos. Intente en unos minutos." }, 429);
