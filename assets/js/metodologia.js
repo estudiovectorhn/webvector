@@ -257,7 +257,10 @@ const player = $("mvPlayer"), screen = $("mvScreen");
   addEventListener("hashchange", open); open();
 })();
 if (!player) return;
-const ENDPOINT = player.dataset.endpoint || "";
+/* Solo el sitio en vivo envía registros y resultados: así las pruebas locales
+   o en vista previa nunca generan correos ni filas en la base. */
+const EN_VIVO = /(^|\.)estudiovector\.com$/.test(location.hostname);
+const ENDPOINT = EN_VIVO ? (player.dataset.endpoint || "") : "";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const FRESH = () => ({ ver: 2, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now() });
