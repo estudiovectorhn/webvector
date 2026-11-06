@@ -367,6 +367,35 @@ const PRESETS=[
  rule:"No diagnosticar ni recomendar medicamentos por chat: quien atiende orienta y la veterinaria revisa al animal.",
  ruleBad:"Eso es parásitos, dele este desparasitante.",
  quick:[["Consulta","¿Cuánto la consulta?","¡Con gusto! ¿Qué le está pasando a su mascota? Así le digo qué necesita y le aparto espacio."],["Baño y estética","¿Precio del baño?","¡Claro! ¿De qué tamaño es su mascota? Así le doy el precio exacto."],["Vacunas","¿Tienen vacunas?","¡Sí! ¿Qué edad tiene su mascota y cuándo fue la última vacuna?"],["Urgencias","¿Atienden urgencias?","¡Sí! ¿Qué está pasando y hace cuánto? Dígame y lo coordinamos ya."]]}
+,
+
+{id:"barberia",label:"Barbería o salón de belleza",emoji:"💈",cli:"cliente",clis:"clientes",neg:"Barbería",
+ open:"Buenas, ¿hay campo ahorita?",
+ probQ:"¡Con gusto le reviso! ¿Qué servicio quiere y se atiende con algún barbero en especial?",
+ probA:"Corte y barba. Siempre me atiende el mismo, pero no sé cómo se llama 😅",
+ who:["Jorge","San Pedro Sula"],
+ impQ:"¡Tranquilo, lo ubicamos! ¿Para qué hora lo necesita y es para algo especial?",
+ impA:"Para hoy si se puede, tengo una reunión mañana temprano. ¿Cuánto es?",
+ sol:"Corte y barba está en L [precio] y le toma como [tiempo]. Para hoy me queda espacio con [barbero], que es con quien lo hemos atendido.",
+ close:"¿Se lo aparto a las 4:00 p. m. o a las 6:30 p. m.?",
+ closeA:"A las 4 llego.",
+ confirm:"¡Listo, Jorge! Queda a las 4:00 p. m. con [barbero]. Si se le complica, avíseme con tiempo para dárselo a otro 😊",
+ simpleQ:"Solo dígame cuánto vale el corte, no me pregunte tanto 🙄",
+ simpleR:"¡Claro! El corte está en L [precio] 😊 Una sola pregunta para apartarle bien: ¿lo quiere hoy o para otro día?",
+ simpleA:"Hoy mismo si se puede.",
+ simpleF:"¡Perfecto! Hoy me queda a las 3:00 p. m. y a las 5:30 p. m. ¿Cuál le sirve?",
+ urgQ:"Tengo una boda en 3 horas y ando sin corte 😩",
+ urgR:"¡Vamos a resolverlo! ¿Corte solo o corte y barba? Me regala su nombre y en cuánto puede estar aquí.",
+ urgA:"Corte y barba. Soy Andrés, llego en 30 minutos.",
+ urgClose:"Andrés, lo recibimos apenas llegue. Corte y barba está en L [precio]. ¿Viene ya o le aparto en 45 minutos para que no corra?",
+ caroQ:"¿Cuánto cuesta el paquete de corte, barba y cejas?",
+ caroE:"Con gusto le digo. ¿Es para una ocasión o lo quiere como rutina del mes?",
+ caroA:"Como rutina, vengo seguido. Pero por mi casa cobran menos 😕",
+ payR:"Le entiendo. Si viene seguido le conviene [plan mensual o membresía], que le sale mejor que pagar suelto, y siempre con el mismo barbero. ¿Se lo armo desde esta semana?",
+ segItem:"el corte del mes",segEvent:"una boda el sábado",
+ rule:"No prometer que alguien lo atiende sin revisar la agenda de ese barbero: cada quien tiene su propia cola.",
+ ruleBad:"Véngase ya, aquí lo atendemos al toque.",
+ quick:[["Disponibilidad","¿Hay campo?","¡Déjeme revisar la agenda! ¿Qué servicio quiere y se atiende con algún barbero en especial?"],["Precios","¿Cuánto el corte?","¡Con gusto! El corte está en L [precio]. ¿Lo quiere hoy o para otro día?"],["Citas","¿Puedo apartar?","¡Claro! ¿Para qué día y con quién se atiende normalmente?"],["Servicios","¿Qué servicios tienen?","Tenemos [servicios]. ¿Qué le gustaría hacerse?"]]}
 ];
 
 /* "Otro negocio": se arma con lo que escribe el usuario */
@@ -401,6 +430,117 @@ function customPreset(name,prod,cli){
  quick:[["Precio",`¿Precio de ${prod}?`,`¡Con gusto le comparto el precio! Para darle el dato correcto, ¿qué necesita resolver con ${prod}?`],["Información","Info por favor","¡Con gusto! ¿Sobre qué producto o servicio le gustaría información?"],["Disponibilidad","¿Tienen disponible?","¡Déjeme revisar! ¿Qué necesita exactamente y para cuándo?"],["Envíos / citas","¿Cómo hago el pedido?","¡Es muy fácil! ¿Qué necesita y a qué ciudad sería?"]]};
 }
 function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s}
+
+/* ===== Lógica de atención propia de cada rubro =====
+ * Una barbería no se atiende como un restaurante. Cada rubro trae sus tres reglas
+ * y un caso de examen que solo existe en ese giro. */
+const EXTRA = {
+dental:{logica:["La cita de valoración es lo que se vende por chat, no el tratamiento.","El precio siempre es un rango: la doctora confirma al ver la boca.","Dolor es urgencia: se atiende hoy, el precio va después."],
+ caso:{l:"C",ctx:"Una paciente le manda una foto de su muela y escribe esto.",chat:"Mire 📷 ¿Qué cree que tengo? ¿Es caries o se me quebró?",q:"¿Qué responde?",
+  o:["Gracias por la foto 😊 Por aquí no podemos saberlo con certeza, pero la doctora lo ve en minutos en la valoración. ¿Le aparto hoy a las 3:00 p. m. o mañana a las 9:00 a. m.?","Por la foto parece una caries, lo más probable es que ocupe una calza.","Necesitamos una radiografía para saber, no se puede por foto.","Tendría que venir a la clínica para poder decirle algo."],
+  cons:["","Diagnosticó por una foto. Si la doctora encuentra otra cosa, la paciente siente que le mintieron o que le quieren cobrar de más, y se va a buscar segunda opinión.","Es cierto, pero suena a trámite y la deja sin siguiente paso. La paciente se queda con el susto y sin cita.","Es correcto y a la vez inútil: no le dice cuándo, ni con quién, ni cuánto tarda. Pocas personas se mueven con eso."],
+  res:"La paciente entiende por qué no se puede por chat, pero no se va con las manos vacías: se va con una hora.",
+  e:"En salud quien atiende nunca diagnostica: convierte la duda en una cita concreta."}},
+
+bienestar:{logica:["La persona llega con pena: primero se valida lo que siente, después se habla de tratamiento.","Nunca se prometen resultados exactos; la especialista evalúa.","La evaluación gratuita es la oferta, no el paquete."],
+ caso:{l:"T",ctx:"Una clienta quiere saber si el tratamiento le va a funcionar antes de agendar.",chat:"¿Y de verdad funciona? ¿Cuántas tallas bajo con el paquete? 😬",q:"¿Qué responde?",
+  o:["Le entiendo, es la pregunta que todas hacen 😊 Los resultados dependen de cada cuerpo, por eso la especialista hace una evaluación gratuita y le dice qué esperar en su caso. ¿Viene el miércoles o el sábado?","Con el paquete de 10 sesiones baja 2 tallas, se lo aseguro.","Eso depende de muchos factores, no le puedo decir.","Todas nuestras clientas quedan felices, venga y verá."],
+  cons:["","Prometió un resultado que nadie puede garantizar. Si no se cumple, pierde a la clienta, su reseña y las que ella iba a recomendar.","Es honesto pero la deja sin nada. Se va a otro lugar donde sí le contestaron algo, aunque le hayan mentido.","Una promesa vacía. La clienta no escucha nada concreto y asume que le están vendiendo humo."],
+  res:"Se siente comprendida, entiende por qué no hay una cifra exacta y acepta la evaluación, que es donde de verdad se cierra.",
+  e:"En estética no se promete resultado: se promete una evaluación seria y honesta."}},
+
+ropa:{logica:["Primero se revisa la existencia real, nunca se asume la talla.","Cuando no hay, se ofrece una alternativa concreta: no se dice solo \"no hay\".","La foto puesta vende más que la foto del producto solo."],
+ caso:{l:"O",ctx:"La clienta quiere el vestido que vio publicado, pero en talla M ya no queda.",chat:"¿Me lo aparta en M? Lo necesito para el sábado 🙏",q:"¿Qué responde?",
+  o:["En M se nos acabó justo hoy 😔 Pero le tengo dos opciones para el sábado: el mismo modelo en L, que queda suelto y se ve precioso, o este otro en M que le mando ahorita. ¿Le mando las fotos?","Lo siento, en M ya no hay. Le aviso cuando nos llegue.","Déjeme revisar y le confirmo más tarde.","Sí, se lo aparto, deje veo si hay en bodega."],
+  cons:["","Un \"ya no hay\" sin alternativa termina la conversación. La clienta sigue necesitando algo para el sábado y lo va a comprar en otra tienda hoy mismo.","\"Más tarde\" a alguien que lo necesita el sábado es demasiado tarde. Mientras espera, compra en otro lado.","Apartó algo que no existe. Cuando le diga la verdad, la clienta siente que le hicieron perder el día."],
+  res:"La clienta no consigue lo que pidió, pero sí lo que necesitaba: algo listo para el sábado. La venta se salva y la confianza también.",
+  e:"En tienda, cuando no hay, lo que vende es la alternativa concreta, no la disculpa."}},
+
+restaurante:{logica:["El tiempo es el producto: nunca se promete una hora que la cocina no puede cumplir.","Alergias y restricciones se preguntan antes, no después.","En hora pico, decir el tiempo real de espera retiene más de lo que espanta."],
+ caso:{l:"T",ctx:"Es domingo al mediodía, el restaurante está lleno y entra este mensaje.",chat:"¿Hay mesa para 6 ahorita? Vamos saliendo de la iglesia.",q:"¿Qué responde?",
+  o:["¡Con gusto los recibimos! Ahorita hay como 25 minutos de espera para mesa de 6. Si quiere les aparto y les escribo apenas se desocupe, o se los dejo para la 1:30 p. m. sin espera. ¿Cuál prefiere?","¡Claro, véngase! Aquí les buscamos campo.","Ahorita está lleno, mejor venga más tarde.","Sí hay, pero tendrían que esperar un poco."],
+  cons:["","Prometió lo que la cocina y el salón no pueden cumplir. Llegan 6 personas con hambre, esperan 40 minutos de pie y esa es la reseña que van a dejar.","Los mandó a otro lado. \"Más tarde\" sin hora concreta se lee como \"no nos interesan\".","\"Un poco\" no es un dato. Cada quien se imagina algo distinto y el que se imaginó 5 minutos se enoja a los 20."],
+  res:"Saben exactamente a qué atenerse y eligen. Llegan con la expectativa correcta, que es lo que decide si vuelven.",
+  e:"En restaurante el tiempo real dicho de frente retiene; la promesa optimista quema al cliente y al equipo."}},
+
+ferreteria:{logica:["Sin medida y uso no hay precio: primero se pregunta qué va a hacer.","Se cotiza el trabajo completo, no la pieza suelta.","Una foto resuelve en segundos lo que diez mensajes no aclaran."],
+ caso:{l:"E",ctx:"Entra un mensaje corto de alguien que está en media reparación.",chat:"Buenas, ¿tienen llaves de chorro?",q:"¿Qué responde?",
+  o:["¡Sí tenemos! Para darle la correcta, ¿es para lavamanos, pila o chorro de patio? Si puede, mándeme una foto de la que va a cambiar 📷","Sí tenemos, andan desde L [precio].","Sí, venga y aquí le mostramos las que hay.","¿De qué medida la necesita?"],
+  cons:["","Le dio precio de algo que puede no servirle. Viene, compra la equivocada, vuelve a cambiarla y se acuerda de eso más que del precio.","Lo mandó a venir sin saber si tiene lo que necesita. Si llega y no está, perdió el viaje y al cliente.","La medida sola no basta: la misma medida sirve para piezas distintas. Y mucha gente no sabe la medida, por eso pregunta."],
+  res:"Con la foto y el uso usted le entrega la pieza correcta a la primera, y de paso le vende el teflón y el empaque que iba a necesitar igual.",
+  e:"En ferretería la pregunta correcta ahorra el viaje devuelto, que es lo que de verdad pierde clientes."}},
+
+taller:{logica:["No se diagnostica por chat: se agenda la revisión.","El diagnóstico tiene precio y se dice desde el inicio, sin pena.","Un carro parado es urgencia: primero se resuelve el traslado."],
+ caso:{l:"C",ctx:"Un cliente describe un ruido y quiere saber cuánto le va a costar arreglarlo.",chat:"Mi carro hace un ruido al frenar. ¿Cuánto me cobran por arreglarlo? 🚗",q:"¿Qué responde?",
+  o:["Ese ruido puede ser varias cosas y el precio cambia mucho entre una y otra 😊 El diagnóstico tiene un valor de L [precio] y el técnico le dice exactamente qué es y cuánto antes de tocar nada. ¿Lo trae el jueves a las 8:00 a. m. o el sábado a las 9:00 a. m.?","Seguro son las pastillas, eso anda por L [precio].","Depende de lo que tenga, hay que verlo.","Tráigalo y aquí vemos qué le hacemos."],
+  cons:["","Adivinó. Si eran los discos y no las pastillas, el cliente llega esperando un precio y se encuentra con otro: siente que le están inflando la cuenta.","Es verdad pero no ofrece nada. El cliente sigue sin saber qué hacer y llama a otro taller.","\"Aquí vemos\" sin precio ni fecha asusta: el cliente se imagina una cuenta abierta y prefiere no arriesgarse."],
+  res:"El cliente sabe cuánto cuesta averiguar, confía en que no le van a inventar, y queda con una cita.",
+  e:"En taller el diagnóstico con precio claro es lo que se vende por chat; la reparación se cotiza después."}},
+
+servicios:{logica:["El caso del cliente es confidencial: nada se comenta ni se asume.","No se opina sobre multas, plazos ni sanciones sin ver los documentos.","La reunión inicial es la oferta; el precio exacto sale de ahí."],
+ caso:{l:"C",ctx:"Un cliente nuevo está asustado por un atraso y le pide que lo tranquilice.",chat:"Me atrasé 4 meses con las declaraciones 😟 ¿Me van a multar?",q:"¿Qué responde?",
+  o:["Le entiendo, es más común de lo que cree y tiene solución 😊 Para decirle qué aplica en su caso necesitamos ver sus documentos, y en la reunión inicial se lo explicamos claro. ¿Le queda mejor mañana a las 10:00 a. m. o el viernes a las 3:00 p. m.?","No se preocupe, por 4 meses no suelen multar.","Sí, lo más probable es que haya multa y recargos.","Eso lo tiene que ver un contador, no le puedo decir."],
+  cons:["","Dio una garantía que no está en sus manos. Si llega la multa, el cliente va a recordar que usted le dijo que no pasaba nada.","Lo asustó sin saber su caso. Puede que no aplique, y mientras tanto el cliente ya decidió no hacer nada por miedo.","Es correcto, pero suena a que no le quieren ayudar. Usted es el contador: lo que falta es la cita, no la excusa."],
+  res:"Baja el miedo sin prometer nada, deja claro que hay un camino y lo convierte en una reunión.",
+  e:"En servicios profesionales se calma y se agenda; opinar sobre consecuencias legales sin ver el caso es el error más caro."}},
+
+farmacia:{logica:["Nunca se recomienda ni se cambia un medicamento por chat: eso lo indica el farmacéutico o el médico.","El equivalente autorizado se ofrece, no se impone.","Falta de medicamento crónico es urgencia: se resuelve hoy."],
+ caso:{l:"C",ctx:"Una clienta describe un síntoma y le pide que le recomiende algo.",chat:"Ando con un dolor de cabeza horrible desde ayer 😩 ¿Qué me recomienda?",q:"¿Qué responde?",
+  o:["Lamento que esté así 😟 Por aquí no podemos recomendarle un medicamento, pero el farmacéutico la orienta en el mostrador o por llamada ahorita mismo. ¿Le paso con él o prefiere pasar a la farmacia?","Tómese [medicamento], eso le quita el dolor rápido.","Para eso lo mejor es un analgésico común, tenemos varios.","No podemos recomendar medicamentos, lo sentimos."],
+  cons:["","Recomendó un medicamento por chat. Si la clienta es alérgica, está embarazada o toma otra cosa, el problema es serio y la responsabilidad es de la farmacia.","Suena inofensivo pero sigue siendo una recomendación, y además no resuelve: la clienta queda igual, con dolor y sin saber qué llevar.","Es la regla correcta dicha de la peor forma: la deja sola, con dolor y sin opción. Se va a la farmacia de la esquina."],
+  res:"La clienta entiende el límite, no se siente rechazada, y queda en manos del profesional en minutos.",
+  e:"En farmacia el límite es claro y no se negocia, pero siempre va acompañado del siguiente paso."}},
+
+hotel:{logica:["Sin fechas no hay tarifa: la misma habitación cuesta distinto según el día.","Nunca se confirma disponibilidad sin revisar el sistema.","El anticipo se explica como reserva, no como cobro."],
+ caso:{l:"E",ctx:"Alguien pregunta por precio sin decirle para cuándo.",chat:"Hola, ¿cuánto cuesta la noche?",q:"¿Qué responde?",
+  o:["¡Con gusto! La tarifa cambia según la fecha, así que para darle el precio exacto: ¿para qué días sería y cuántas personas viajan?","La noche está en L [precio].","Depende de la temporada y del tipo de habitación.","Le mando la lista de tarifas de todas las habitaciones 📄"],
+  cons:["","Dio una tarifa que puede no aplicar en su fecha. Cuando reserve y vea otro precio, va a sentir que le cambiaron las reglas.","Es verdad y no sirve de nada. El huésped quería un número y recibió una explicación: se va a otro hotel.","Una lista de precios no le dice si hay cupo en sus fechas, que es lo que de verdad necesita saber."],
+  res:"Con las fechas usted da la tarifa correcta, confirma disponibilidad real y ya está hablando de una reserva concreta.",
+  e:"En hotelería la fecha es la pregunta que desbloquea todo: sin ella, cualquier precio es un precio equivocado."}},
+
+gimnasio:{logica:["Nadie compra mensualidad: compra el resultado y el acompañamiento.","No se prometen libras ni tallas; el entrenador evalúa.","La clase de cortesía es la oferta real del chat."],
+ caso:{l:"T",ctx:"Un cliente quiere un número antes de decidirse.",chat:"¿En cuánto tiempo bajo 20 libras? 🏋️",q:"¿Qué responde?",
+  o:["Depende de su cuerpo, su alimentación y cuántos días pueda venir, así que darle una fecha exacta sería mentirle 😊 Lo que sí le puedo decir es cómo lo acompañamos para lograrlo. ¿Viene a su clase de cortesía hoy a las 5:00 p. m. o mañana a las 7:00 a. m.?","En dos meses, con nuestro plan eso se logra fácil.","Eso varía mucho de persona a persona.","Con disciplina todo se puede, venga y empiece."],
+  cons:["","Puso una fecha que nadie controla. A los dos meses, si no bajó 20 libras, se da de baja convencido de que el gimnasio no sirve.","Cierto, pero lo deja sin nada a qué agarrarse. Se va a buscar a quien sí le dé un número, aunque sea falso.","Suena a frase de cartel. No responde su pregunta ni le da un primer paso concreto."],
+  res:"Valora que no le mintieran, que es raro en este giro, y acepta la clase de cortesía, que es donde la gente se queda.",
+  e:"En gimnasio la honestidad sobre los tiempos retiene mucho más que la promesa que luego no se cumple."}},
+
+educacion:{logica:["Cupos y becas los confirma la dirección: nunca se prometen por chat.","El padre compra tranquilidad, no precio: primero se escucha su preocupación.","La visita al centro es lo que cierra, no el folleto."],
+ caso:{l:"T",ctx:"Una madre pregunta por becas antes de hablar de matrícula.",chat:"¿Dan becas? Porque la verdad ahorita está difícil 😔",q:"¿Qué responde?",
+  o:["Le entiendo, y gracias por la confianza de decírmelo 😊 Sí manejamos apoyos, pero quién califica lo define la dirección caso por caso. ¿Le agendo una cita con la directora el martes a las 9:00 a. m. o el jueves a las 2:00 p. m. para que lo vean juntos?","Sí, seguro le damos beca, no se preocupe.","Las becas ya se asignaron todas este año.","Tendría que llenar la solicitud y esperar."],
+  cons:["","Prometió algo que no le toca decidir. Si la dirección dice que no, la madre siente que la ilusionaron y lo va a contar.","Puede que ni sea cierto, y aunque lo fuera, cerró la puerta sin escucharla. Se va con la idea de que ahí no hay opciones.","Convirtió una conversación delicada en un trámite. Mucha gente no llena la solicitud por pena y simplemente no vuelve."],
+  res:"La madre siente que la escucharon sin juzgarla, no recibe una promesa falsa, y queda con una cita donde sí se decide.",
+  e:"En educación nunca se promete un cupo ni una beca: se agenda con quien sí puede resolverlo."}},
+
+inmobiliaria:{logica:["La precalificación del banco va antes que la visita: ahorra el viaje a todos.","Nunca se promete aprobación de préstamo ni precio final.","Lo que se agenda es la visita a la propiedad, no la venta."],
+ caso:{l:"C",ctx:"Un interesado quiere saber si le van a prestar antes de ver la casa.",chat:"Gano L [sueldo] al mes, ¿cree que me aprueben? 🏠",q:"¿Qué responde?",
+  o:["Esa la decide el banco, no nosotros, y le va a sorprender lo rápido que se sabe 😊 La precalificación es gratis y le dice exactamente hasta cuánto puede. Nosotros lo acompañamos en el trámite. ¿Lo hacemos esta semana y de una vez vemos la casa el sábado?","Con ese sueldo seguro le aprueban, no se preocupe.","Es difícil con ese ingreso, le conviene ver algo más pequeño.","Eso lo tiene que ver con el banco."],
+  cons:["","Prometió una aprobación que no depende de usted. Si el banco dice que no, el cliente siente que le hicieron perder semanas y se lo cuenta a todos.","Lo descartó sin datos. El ingreso no es lo único que miran, y usted acaba de regalar un cliente que quizá sí calificaba.","Es cierto y suena a portazo. El cliente no sabe por dónde empezar y abandona la idea."],
+  res:"El cliente entiende que hay un paso claro y gratis antes de ilusionarse, y usted deja de enseñar casas a quien no puede comprarlas todavía.",
+  e:"En bienes raíces la precalificación protege al cliente de la ilusión y a usted del tiempo perdido."}},
+
+veterinaria:{logica:["No se diagnostica ni se receta por chat: la veterinaria revisa al animal.","Un animal que comió algo raro o no come es urgencia: primero se actúa.","El dueño llega asustado: primero se calma, después se cotiza."],
+ caso:{l:"V",ctx:"Un cliente escribe angustiado un domingo en la tarde.",chat:"Mi perro se comió un chocolate 😭 ¿Qué le doy?",q:"¿Qué responde?",
+  o:["Tráigalo ya, eso sí es urgente 🚨 En el camino me dice cuánto pesa y cuánto chocolate comió. No le dé nada por su cuenta, puede empeorarlo. ¿Viene usted o le ayudamos con el traslado?","Dele leche o agua con sal para que lo vomite.","El chocolate es tóxico para los perros, es grave.","Traígalo mañana temprano cuando abramos."],
+  cons:["","Indicó un remedio casero por chat. Provocar vómito sin saber qué ni cuánto comió puede matar al animal, y la responsabilidad queda en la clínica.","Lo asustó más y no le dijo qué hacer. El dueño entra en pánico, busca en internet y sigue el primer consejo que encuentre, casi siempre malo.","En una intoxicación, mañana puede ser tarde. Si el animal muere, esa familia no vuelve nunca y lo cuenta."],
+  res:"El dueño deja de improvisar, se mueve de inmediato y la veterinaria recibe al animal con los datos que necesita para actuar rápido.",
+  e:"En veterinaria la urgencia manda: primero se detiene el daño y se mueve al animal; el precio viene después."}},
+
+barberia:{logica:["Cada barbero tiene su propia agenda: nunca se promete \"venga ya\" sin revisarla.","La hora pico es sábado: ahí se dicen tiempos reales de espera.","El cliente vuelve por la persona, no por el local: se anota con quién se atiende."],
+ caso:{l:"O",ctx:"Es sábado a las 11 de la mañana, hay tres personas esperando y entra este mensaje.",chat:"¿Hay campo ahorita? Ando cerca 💈",q:"¿Qué responde?",
+  o:["Ahorita hay como 40 minutos de espera 😊 Si quiere le aparto a las 12:30 p. m. y llega sin esperar, o véngase ya y lo anoto en la cola. ¿Cuál le sirve?","¡Claro, véngase ya! Aquí lo atendemos al toque.","Ahorita está bien lleno, mejor venga otro día.","Sí hay campo, pase cuando quiera."],
+  cons:["","Llega, se encuentra con tres personas adelante y se va enojado. En barbería la espera no avisada es la queja número uno.","Lo mandó a la competencia, que el sábado está igual de llena pero sí le dijo cuánto esperaría.","\"Cuando quiera\" el sábado es una trampa. Llega a la peor hora, espera de pie y no vuelve."],
+  res:"Elige con la información real: o se espera sabiendo cuánto, o llega a una hora en que lo atienden de una. En los dos casos se va contento.",
+  e:"En barbería el tiempo de espera dicho de frente es lo que separa al cliente que vuelve del que no."}},
+
+otro:{logica:["Primero se entiende para qué lo necesita, después se habla de precio.","No se promete nada que el negocio no pueda cumplir.","Toda conversación termina con un siguiente paso concreto."],
+ caso:{l:"T",ctx:"Un cliente quiere una garantía antes de decidirse.",chat:"¿Y me garantizan que me va a servir? 🤔",q:"¿Qué responde?",
+  o:["Le entiendo, es una pregunta justa 😊 Para decirle con seguridad si le sirve necesito saber para qué lo va a usar. Cuénteme eso y le digo de frente si es lo que le conviene o no.","Sí, se lo garantizo, a todos les ha servido.","No le puedo garantizar nada, cada caso es distinto.","Si no le sirve se lo cambiamos, no se preocupe."],
+  cons:["","Garantizó sin saber su caso. Si no le sirve, el cliente reclama con razón y usted queda sin argumento.","Es honesto pero lo deja solo con la duda. Se va con quien sí le respondió algo.","Prometió un cambio que quizá el negocio no haga. Eso se descubre justo en el peor momento."],
+  res:"El cliente ve que no le quieren vender a la fuerza, cuenta su caso, y ahí usted ya puede recomendar con criterio.",
+  e:"Prometer de menos y cumplir de más es lo que construye clientes que vuelven."}}
+};
+
 
 /* ===== Motor del curso Metodología VECTOR =====
  * Registro en dos pasos cortos dentro del propio curso (reg1 al entrar, reg2 antes del examen),
@@ -499,7 +639,7 @@ let C = null;
 function buildC() {
   const r = S.reg; if (!r) return;
   const base = r.rubro === "otro" ? customPreset(r.empresa, r.prod || "su producto o servicio", r.cli) : (PRESETS.find(p => p.id === r.rubro) || PRESETS[0]);
-  C = Object.assign({}, base); C.neg = r.empresa || base.neg; C.Cli = cap(C.cli);
+  C = Object.assign({}, base, EXTRA[base.id] || EXTRA.otro); C.neg = r.empresa || base.neg; C.Cli = cap(C.cli);
   C.hi = `¡Buen día! Le atiende ${r.nombre.split(" ")[0]} de ${C.neg} 😊`;
 }
 /* Datos completos del alumno (paso 1 + paso 2) */
@@ -577,7 +717,8 @@ function mission() {
 function exam() {
   const [n, c] = C.who;
   const sc = t => `Usted atiende el WhatsApp de ${C.neg}. ${t}`;
-  return [
+  const propio = C.caso ? [Object.assign({}, C.caso, { ctx: sc(C.caso.ctx) })] : [];
+  return propio.concat([
     { l: "V", ctx: sc("Son las 8:40 a. m. y escribe un número nuevo, que no tiene guardado."), chat: C.open, q: "¿Cuál es la mejor primera respuesta?",
       o: [C.hi + " Con gusto le comparto el precio. " + C.probQ, C.hi + " El precio va desde L [precio], depende de lo que necesite.", "¡Buen día! Con gusto le ayudo 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", C.hi + " Le paso nuestro catálogo con todos los precios para que lo revise 📄"],
       cons: ["", `Se presentó y no escondió el precio, pero cerró sin pregunta. El ${C.cli} ya tiene el número y nada más que hablar: se va a comparar y gana el más barato.`, `Pedir los datos antes de saber qué necesita invierte el orden, y encima su pregunta del precio quedó sin responder.`, `El catálogo parece servicial, pero le entrega veinte precios y ninguna guía. El ${C.cli} no sabe cuál le sirve y deja el chat en visto.`],
@@ -638,7 +779,7 @@ function exam() {
       cons: ["", "Dos es quedarse corto: buena parte de las ventas de seguimiento se cierran entre el segundo y el cuarto contacto, justo donde usted se detendría.", "Cada semana sin pausa se siente acoso y termina en bloqueo o reporte de WhatsApp, y ahí pierde el contacto para siempre.", "Esperar es regalar el cliente. Si nadie le recuerda, se queda con el negocio que sí le escribió."],
       res: "Deja de escribir pero no desaparece: si guardó el número, sigue viendo sus historias y puede volver solo.",
       e: "Días 1, 3, 7 y 30 como máximo. Sigue viendo las historias si guardó el número." }
-  ];
+  ]);
 }
 
 /* ---------- Flujo ---------- */
@@ -861,6 +1002,7 @@ function rIntro() {
   screen.innerHTML = `<div class="mv-intro"><span class="eyebrow">Bienvenido, ${esc(first)}</span><h2>Así va a vender ${esc(C.neg)} por WhatsApp</h2>
   <p class="mv-lead">Vamos a recorrer las 6 letras de <b>VECTOR</b> con chats de ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}. En cada letra usted <b>envía las respuestas</b> y resuelve un reto. Gane XP, desbloquee las letras y al final haga el examen.</p>
   <div class="mv-road">${LESS().map((x, i) => `<div class="mv-rs" style="--i:${i}"><b>${x.l}</b><span>${x.t}</span></div>`).join("")}<div class="mv-rs fin" style="--i:6"><b>🏆</b><span>Examen</span></div></div>
+  ${C.logica ? `<div class="mv-reglas logica"><h3>Cómo se atiende en ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}</h3><ul>${C.logica.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
   <div class="mv-reglas"><h3>Cómo se juega</h3><ul>
     <li><b>Usted escribe.</b> En cada lección toca Enviar para mandar la respuesta del negocio.</li>
     <li><b>El cliente se enfría o se calienta.</b> El termómetro de arriba sube con cada acierto y baja con cada error. Si llega a cero, el cliente se va.</li>
@@ -1034,8 +1176,8 @@ function rMission() {
   setG(); ask();
 }
 function rExamIntro() {
-  screen.innerHTML = `<div class="mv-intro center"><div class="mv-trophy">🏆</div><span class="eyebrow">Último paso</span><h2>Examen de certificación</h2><p class="mv-lead">12 casos reales de ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}. Cada pregunta le dice la situación completa antes de preguntarle qué haría. Con 70% o más obtiene su certificado.</p>
-   <div class="mv-mini3"><div><b>12</b><span>casos con contexto</span></div><div><b>3 min</b><span>aproximado</span></div><div><b>70%</b><span>para aprobar</span></div></div>${nav("Empezar el examen →")}</div>`;
+  screen.innerHTML = `<div class="mv-intro center"><div class="mv-trophy">🏆</div><span class="eyebrow">Último paso</span><h2>Examen de certificación</h2><p class="mv-lead">${exam().length} casos reales de ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}, uno de ellos escrito solo para este giro. Cada pregunta le dice la situación completa antes de preguntarle qué haría. Con 70% o más obtiene su certificado, y puede repetirlo para subir su nota.</p>
+   <div class="mv-mini3"><div><b>${exam().length}</b><span>casos con contexto</span></div><div><b>3 min</b><span>aproximado</span></div><div><b>70%</b><span>para aprobar</span></div></div>${nav("Empezar el examen →")}</div>`;
   wireNav();
   screen.querySelector("[data-next]").onclick = () => { const E = exam(); S.exam = { order: shuffle(E.map((_, i) => i)), i: 0, ok: 0, miss: [], t0: Date.now(), streak: 0, best: 0 }; save(); next(); };
 }
@@ -1061,7 +1203,10 @@ function rExam() {
 }
 function level(p) { return p >= 90 ? ["Experto VECTOR", "#0E9A60"] : p >= 70 ? ["Vendedor certificado", "#6A3BF5"] : p >= 50 ? ["En camino", "#E89B0C"] : ["Necesita repasar", "#E0169B"]; }
 function rResult() {
-  const X = S.exam, n = exam().length, p = Math.round(X.ok / n * 100), [lv, col] = level(p), secs = Math.round((Date.now() - X.t0) / 1000), pass = p >= 70;
+  const X = S.exam, n = exam().length, p = Math.round(X.ok / n * 100), secs = Math.round((Date.now() - X.t0) / 1000);
+  const previo = S.mejor || 0;
+  if (p > previo) { S.mejor = p; save(); }
+  const mejorP = Math.max(p, previo), [lv, col] = level(mejorP), pass = mejorP >= 70, subio = p > previo && previo > 0;
   const r = REG();
   if (!X.sent) {
     X.sent = 1; save();
@@ -1073,13 +1218,17 @@ function rResult() {
   const share = `https://wa.me/?text=${encodeURIComponent("Les recomiendo este curso gratuito de atención y ventas por WhatsApp de Vector Academy. Dura menos de 10 minutos: " + location.origin + location.pathname)}`;
   screen.innerHTML = `<div class="mv-result">
    <div class="mv-score"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="bg"/><circle cx="60" cy="60" r="52" class="fg" style="stroke:${col};stroke-dashoffset:${327 - 327 * p / 100}"/></svg><div><b>${X.ok}/${n}</b><small>${p}%</small></div></div>
-   <div class="mv-rt"><span class="eyebrow">${pass ? "¡Aprobado!" : "Resultado"}</span><h2>${esc(lv)}</h2><p>${pass ? `Felicidades, ${esc(r.nombre.split(" ")[0])}. Ya domina la Metodología VECTOR. Descargue su certificado, imprímalo y cuélguelo.` : "Le faltó poco. Repase los casos marcados y vuelva a intentarlo."} · ${S.xp} XP · ${Math.floor(secs / 60)} min ${secs % 60} s</p></div>
+   <div class="mv-rt"><span class="eyebrow">${pass ? "¡Aprobado!" : "Resultado"}</span><h2>${esc(lv)}</h2>
+     <p>${pass ? `Felicidades, ${esc(r.nombre.split(" ")[0])}. Ya domina la Metodología VECTOR. Descargue su certificado, imprímalo y cuélguelo.` : "Le faltó poco. Repase los casos marcados y vuelva a intentarlo: puede repetir el examen las veces que quiera y se queda con su mejor nota."} · ${S.xp} XP · ${Math.floor(secs / 60)} min ${secs % 60} s</p>
+     ${subio ? `<p class="mv-subio">📈 Subió de ${previo}% a ${p}%. Su mejor resultado queda en <b>${mejorP}%</b>.</p>` : previo > p ? `<p class="mv-subio baja">Su mejor resultado sigue siendo <b>${previo}%</b>, y es el que vale para su certificado.</p>` : ""}</div>
    ${S.equipo ? `<div id="mvRank"></div>` : ""}
+   <div id="mvVoto"></div>
    <div class="mv-insig"><b>Insignias · ${(S.badges || []).length} de ${INSIGNIAS.length}</b><div class="mv-insg">${INSIGNIAS.map(([id, em, nom, d]) => `<div class="mv-ins${(S.badges || []).includes(id) ? " on" : ""}" title="${esc(d)}"><span>${em}</span><small>${esc(nom)}</small></div>`).join("")}</div>${S.perdidos ? `<small class="mv-perd">Clientes perdidos en el camino: ${S.perdidos}</small>` : `<small class="mv-perd ok">No perdió un solo cliente 👏</small>`}</div>
    ${pass ? `<div class="mv-certbox" id="mvCertBox"><div class="mv-certload">Preparando su certificado…</div></div>` : ""}
    ${X.miss.length ? `<div class="mv-miss"><b>Para repasar</b>${X.miss.map(m => `<div><span class="mv-lt">${m.letra}</span><p>${esc(m.pregunta)}<small>${esc(m.comoMejorar)}</small></p></div>`).join("")}</div>` : ""}
    <div class="mv-actions">
-     ${pass ? `<button class="btn" type="button" id="mvCert">🎓 Descargar certificado (PNG)</button><button class="btn light" type="button" id="mvPrint">🖨️ Imprimir certificado</button>` : `<button class="btn" type="button" id="mvRetry">Repetir el examen</button>`}
+     ${pass ? `<button class="btn" type="button" id="mvCert">🎓 Descargar certificado</button><button class="btn light" type="button" id="mvShare">📤 Compartir mi certificado</button><button class="btn ghost" type="button" id="mvPrint">🖨️ Imprimir</button>` : ""}
+     <button class="btn ${pass ? "ghost" : ""}" type="button" id="mvRetry">${pass ? "Repetir para subir mi nota" : "Repetir el examen"}</button>
      <a class="btn ghost" href="pdf-placeholder" download id="mvPdf">📄 Descargar la metodología (PDF)</a>
      <a class="btn ghost" href="${share}" target="_blank" rel="noopener">Compartir con mi equipo por WhatsApp</a>
    </div>
@@ -1089,17 +1238,44 @@ function rResult() {
   $("mvPdf").href = location.pathname.replace(/\/?$/, "/") + "metodologia-vector.pdf";
   $("mvWa").onclick = () => track("Contact", { content_name: "Capacitación VECTOR" });
   if (pass) {
-    certCanvas(r, X.ok, n, p, lv, (S.badges || []).length).then(cv => {
+    certCanvas(r, Math.round(mejorP * n / 100), n, mejorP, lv, (S.badges || []).length).then(cv => {
       const url = cv.toDataURL("image/png");
       $("mvCertBox").innerHTML = `<img src="${url}" alt="Certificado en Atención al Cliente, Método VECTOR, a nombre de ${esc(r.nombre)}"><small>Listo para imprimir en hoja horizontal (A4 o carta).</small>`;
       $("mvCert").onclick = () => { certDownload(cv, r.nombre); track("MetodologiaVectorCertificado", {}, true); };
       $("mvPrint").onclick = () => certPrint(url);
+      $("mvShare").onclick = () => certShare(cv, r);
     });
   }
-  $("mvRetry") && ($("mvRetry").onclick = () => { S.exam = null; save(); go(FLOW.findIndex(f => f.k === "examIntro")); });
+  $("mvRetry").onclick = () => { S.exam = null; save(); go(FLOW.findIndex(f => f.k === "examIntro")); };
   $("mvRestart").onclick = () => { S = Object.assign(FRESH(), { reg: S.reg, reg2: S.reg2, regId: S.regId, modo: S.modo, equipo: S.equipo, badges: S.badges || [] }); save(); go(1); };
   if (S.equipo && EP) pintarRanking(r.nombre, p);
+  pintarVoto(r);
   $("mvOther").onclick = resetAll;
+}
+
+/* Calificación del curso, una sola vez por persona */
+function pintarVoto(r) {
+  const caja = $("mvVoto"); if (!caja) return;
+  if (S.voto) { caja.innerHTML = `<div class="mv-voto hecho"><b>Gracias por calificar el curso con ${S.voto} ${S.voto === 1 ? "estrella" : "estrellas"} ${"★".repeat(S.voto)}</b></div>`; return; }
+  caja.innerHTML = `<div class="mv-voto"><b>¿Qué tal le pareció el curso?</b>
+    <div class="mv-estrellas" id="mvEst" role="group" aria-label="Calificación de 1 a 5 estrellas">${[1, 2, 3, 4, 5].map(k => `<button type="button" data-v="${k}" aria-label="${k} de 5">★</button>`).join("")}</div>
+    <div id="mvVotoF"></div></div>`;
+  const btns = caja.querySelectorAll("#mvEst button");
+  const pinta = v => btns.forEach((b, i) => b.classList.toggle("on", i < v));
+  btns.forEach(b => {
+    b.onmouseenter = () => pinta(+b.dataset.v);
+    b.onclick = () => {
+      const v = +b.dataset.v; pinta(v); sfx("bien"); S.voto = v; save();
+      $("mvVotoF").innerHTML = `<label class="mv-f full"><span>¿Qué le mejoraría? <small>(opcional)</small></span><textarea id="mvCom" maxlength="400" rows="2" placeholder="Lo que quiera contarnos"></textarea></label><button class="btn light" type="button" id="mvVotoGo">Enviar mi calificación</button>`;
+      $("mvVotoGo").onclick = () => {
+        const com = $("mvCom").value.trim();
+        if (ENDPOINT) fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "voto", estrellas: v, comentario: com, nombre: r.nombre, empresa: r.empresa, rubro: C.label, equipo: (S.equipo && S.equipo.codigo) || "", origen: location.href }) }).catch(() => {});
+        caja.innerHTML = `<div class="mv-voto hecho"><b>¡Gracias! ${"★".repeat(v)}</b><p>Su opinión nos ayuda a mejorarlo para el siguiente.</p></div>`;
+        burst();
+      };
+    };
+  });
+  btns.forEach(b => (b.onmouseleave = () => pinta(S.voto || 0)));
 }
 
 /* Tabla de posiciones del reto: dónde quedó esta persona frente a su equipo */
@@ -1217,6 +1393,23 @@ async function certCanvas(r, ok, n, p, lv, insignias) {
   lsp(x, `FOLIO ${folio(r.nombre + r.correo)} · estudiovector.com/metodologia-vector`, W / 2, H - 128, 3);
   return cv;
 }
+async function certShare(cv, r) {
+  const texto = `Acabo de certificarme en Atención al Cliente con el Método VECTOR de Vector Academy. El curso es gratis y dura unos 12 minutos: ${location.origin}${location.pathname}`;
+  try {
+    const blob = await new Promise(res => cv.toBlob(res, "image/png"));
+    const file = new File([blob], "Certificado VECTOR.png", { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: "Mi certificado · Método VECTOR", text: texto });
+      track("MetodologiaVectorCompartir", {}, true);
+      return;
+    }
+  } catch (e) { if (e && e.name === "AbortError") return; }
+  /* Sin compartir nativo: se descarga la imagen y se abre WhatsApp para adjuntarla */
+  certDownload(cv, r.nombre);
+  toast("Certificado descargado. Adjúntelo en WhatsApp 😊");
+  setTimeout(() => window.open("https://wa.me/?text=" + encodeURIComponent(texto), "_blank", "noopener"), 900);
+  track("MetodologiaVectorCompartir", {}, true);
+}
 function certDownload(cv, nombre) { cv.toBlob(b => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = `Certificado Atencion al Cliente - Metodo VECTOR - ${nombre}.png`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }, "image/png"); }
 function certPrint(url) {
   const w = window.open("", "_blank"); if (!w) { toast("Permita las ventanas emergentes para imprimir."); return; }
@@ -1319,6 +1512,25 @@ if (sndBtn) {
   sndBtn.onclick = () => { SND = !SND; LS.set("mv-snd", SND); pinta(); if (SND) sfx("bien"); };
 }
 const exitBtn = $("mvExit"); if (exitBtn) exitBtn.onclick = resetAll;
+/* Contador real del curso. Si son pocos, se dice de otra forma, pero nunca se infla. */
+(function () {
+  const el = document.getElementById("mvContador"); if (!el || !EP) return;
+  fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "contador", origen: location.href }) })
+    .then(r => r.json())
+    .then(j => {
+      if (!j || !j.ok) return;
+      const n = j.certificados || 0, reg = j.registrados || 0;
+      const partes = [];
+      if (n >= 10) partes.push(`<b>${n}</b> personas ya se certificaron`);
+      else if (reg >= 10) partes.push(`<b>${reg}</b> personas ya empezaron el curso`);
+      else partes.push("Sea de los primeros en certificarse");
+      if (j.votos >= 5 && j.estrellas) partes.push(`<b>${j.estrellas}</b> de 5 ★ (${j.votos} calificaciones)`);
+      el.innerHTML = partes.join(" · ");
+      el.hidden = false;
+    })
+    .catch(() => {});
+})();
+
 cargarEquipo().then(render);
 
 })();

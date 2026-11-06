@@ -5,6 +5,7 @@
 //   1. Registro: la primera vez que ese correo se inscribe. Si vuelve a registrarse, se guarda pero no avisa.
 //   2. Curso completado: la primera vez que ese correo aprueba (70% o más) y recibe su certificado.
 // El tipo "paso" no manda ningún correo: es el pulso anónimo del embudo (tabla academia_pasos).
+// Los tipos "contador" y "voto" tampoco: son el contador público y la calificación del curso.
 //
 // Reto empresarial: una empresa crea su reto (tipo "equipo"), reparte un enlace con el código y, cada
 // vez que alguien de ese reto aprueba, el correo va al JEFE, no a Vector. Vector solo recibe un aviso
@@ -63,10 +64,10 @@ Deno.serve(async (req) => {
   try { const raw = await req.text(); if (raw.length > 20000) return json({ error: "Solicitud muy grande" }, 413); b = JSON.parse(raw); } catch { return json({ error: "Datos inválidos" }, 400); }
   if (s(b.web)) return json({ ok: true }); // campo trampa para robots
   const origen = s(b.origen, 200);
-  /* Las lecturas (información pública del reto, tabla de posiciones y tablero del jefe) no escriben
-     nada ni mandan correos, así que se permiten desde cualquier parte. Todo lo que escribe sí queda
-     restringido al sitio en vivo, para que una prueba no genere filas ni avisos. */
-  const soloLee = b.tipo === "equipo_info" || b.tipo === "equipo_panel" || b.tipo === "equipo_ranking";
+  /* Las lecturas (contador, información pública del reto, tabla de posiciones y tablero del jefe) no
+     escriben nada ni mandan correos, así que se permiten desde cualquier parte. Todo lo que escribe sí
+     queda restringido al sitio en vivo, para que una prueba no genere filas ni avisos. */
+  const soloLee = b.tipo === "equipo_info" || b.tipo === "equipo_panel" || b.tipo === "equipo_ranking" || b.tipo === "contador";
   if (!soloLee && esPrueba(origen || req.headers.get("origin") || "")) return json({ ok: true, prueba: true });
 
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false } });
@@ -79,6 +80,22 @@ Deno.serve(async (req) => {
     const { count: pasos } = await db.from("academia_pasos").select("id", { count: "exact", head: true }).eq("sesion", sesion);
     if ((pasos ?? 0) >= 120) return json({ ok: true });
     await db.from("academia_pasos").insert({ sesion, paso, indice: Number(b.indice) || 0, total: Number(b.total) || 0, rubro: s(b.rubro, 40), origen });
+    return json({ ok: true });
+  }
+
+  /* Contador público del curso. Números reales, nunca inflados: si son pocos, son pocos. */
+  if (b.tipo === "contador") {
+    const { data } = await db.from("academia_contador").select("*").maybeSingle();
+    return json({ ok: true, ...(data || { registrados: 0, certificados: 0, votos: 0, estrellas: null }) });
+  }
+
+  /* Calificación del curso, de quien ya lo terminó */
+  if (b.tipo === "voto") {
+    const estrellas = Math.round(Number(b.estrellas) || 0);
+    if (estrellas < 1 || estrellas > 5) return json({ error: "Califique de 1 a 5 estrellas." }, 400);
+    const { count: ya } = await db.from("academia_votos").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).gte("created_at", new Date(Date.now() - 86400000).toISOString());
+    if ((ya ?? 0) >= 5) return json({ ok: true, repetido: true });
+    await db.from("academia_votos").insert({ estrellas, comentario: s(b.comentario, 400), nombre: s(b.nombre, 80), empresa: s(b.empresa, 100), rubro: s(b.rubro, 80), equipo_codigo: s(b.equipo, 12).toUpperCase() || null, origen, ip_hash: ipHash });
     return json({ ok: true });
   }
 

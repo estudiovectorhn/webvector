@@ -480,3 +480,22 @@ mark{background:rgba(106,59,245,.12);color:var(--deep);padding:0 4px;border-radi
 .eq-podio b{font-size:16px}
 .eq-pts{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding:3px 0 1px}
 .eq-podio small{color:var(--muted)}
+
+/* ===== Contador real, calificación y mejoras del resultado ===== */
+.mv-contador{margin:16px 0 0;font-size:14px;color:#D6CCF5;font-weight:700}
+.mv-contador b{color:#fff;font-size:17px}
+.mv-reglas.logica{border-left:4px solid var(--fuchsia)}
+.mv-reglas.logica h3{color:var(--fuchsia)}
+.mv-subio{margin:8px 0 0;font-weight:800;color:var(--ok)}
+.mv-subio.baja{color:var(--muted);font-weight:700}
+.mv-voto{margin:20px 0 4px;background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:16px 18px;text-align:center}
+.mv-voto>b{display:block;font-size:17px;margin-bottom:8px}
+.mv-voto.hecho{background:#E7F7EF;border-color:rgba(14,154,96,.35)}
+.mv-voto.hecho p{margin:6px 0 0;color:var(--muted)}
+.mv-estrellas{display:flex;gap:4px;justify-content:center}
+.mv-estrellas button{font:inherit;font-size:34px;line-height:1;background:none;border:0;cursor:pointer;color:var(--line);padding:2px 4px;transition:color .15s,transform .15s}
+.mv-estrellas button:hover{transform:scale(1.15)}
+.mv-estrellas button.on{color:#F5A524}
+.mv-voto textarea{font:inherit;font-size:15px;width:100%;margin-top:10px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);resize:vertical}
+.mv-voto .mv-f span{display:block;font-size:13px;font-weight:800;text-align:left}
+.mv-voto .btn{margin:10px 0 0}
