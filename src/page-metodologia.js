@@ -52,13 +52,13 @@ module.exports = function buildMetodologia(c) {
       <div class="mv-hero-tx">
         <span class="eyebrow">Vector Marketing &amp; Academy · Curso gratuito</span>
         <h1>Bienvenido a la <span class="g">Metodología VECTOR</span></h1>
-        <p class="lead">El protocolo de atención y ventas por WhatsApp para personas que atienden clientes. Aprenda en menos de 10 minutos a llevar a un cliente desde el primer "¿cuánto cuesta?" hasta la venta cerrada, con ejemplos de su tipo de negocio. Empieza con tres datos, sin formularios largos. Usted escribe cada respuesta, el cliente se enfría o se calienta según lo que conteste, y al final se lleva un certificado listo para imprimir.</p>
+        <p class="lead">El protocolo de atención y ventas por WhatsApp para personas que atienden clientes. Hágalo usted solo, o lance el reto a todo su equipo. Aprenda en menos de 10 minutos a llevar a un cliente desde el primer "¿cuánto cuesta?" hasta la venta cerrada, con ejemplos de su tipo de negocio. Empieza con tres datos, sin formularios largos. Usted escribe cada respuesta, el cliente se enfría o se calienta según lo que conteste, y al final se lleva un certificado listo para imprimir.</p>
         <div class="mv-facts"><div><b>6</b><span>letras</span></div><div><b>3</b><span>clientes difíciles</span></div><div><b>8</b><span>insignias</span></div><div><b>1</b><span>certificado imprimible</span></div></div>
         <div class="mv-cta">
           <a class="btn" href="#curso">${ICON.arrow}Empezar el curso gratis</a>
           <a class="btn light" href="${pdf}" download>${ICON.pdf}Descargar la metodología</a>
         </div>
-        <p class="mv-jefe"><a href="#equipo">¿Es dueño o jefe? Capacite a todo su equipo con un solo enlace →</a></p>
+        <p class="mv-jefe"><a href="#equipo">¿Es dueño o jefe? Lance el <b>reto empresarial</b> a todo su equipo →</a></p>
         <div class="shareline"><button class="sharebtn" type="button" data-share data-title="Metodología VECTOR · Vector Academy" data-text="Curso gratuito de atención y ventas por WhatsApp para vendedores. Dura menos de 10 minutos.">${ICON.share}<span>Compartir con mi equipo</span></button></div>
       </div>
       <div class="mv-word" aria-hidden="true">${LETRAS.map(([l, n], i) => `<div class="mv-wl" style="--i:${i}"><b>${l}</b><small>${n}</small></div>`).join("")}</div>
@@ -100,13 +100,13 @@ module.exports = function buildMetodologia(c) {
 
     <section class="mv-sec eqcrear" id="equipo" aria-labelledby="eq-t">
       <span class="eyebrow">Para dueños y jefes</span>
-      <h2 id="eq-t" class="sectitle">Capacite a su equipo con un solo enlace</h2>
-      <p class="mv-lead">Cree el equipo de su empresa, reparta el enlace a su gente y reciba en su correo el resultado de cada persona que lo complete. Es gratis y no necesita cuenta.</p>
+      <h2 id="eq-t" class="sectitle">Reto empresarial: ponga a competir a su equipo</h2>
+      <p class="mv-lead">El mismo curso, pero su gente compite entre sí en una tabla de posiciones. Cree el reto de su empresa, reparta un enlace y reciba en su correo el resultado de cada quien. Es gratis y no necesita cuenta.</p>
       <div class="eq-pasos">
-        <div><b>1</b><span>Cree el equipo con el nombre de su empresa y su correo</span></div>
+        <div><b>1</b><span>Cree el reto con el nombre de su empresa y su correo</span></div>
         <div><b>2</b><span>Reparta el enlace por WhatsApp a su gente</span></div>
-        <div><b>3</b><span>Cada quien solo escribe su nombre y empieza</span></div>
-        <div><b>4</b><span>Usted recibe los resultados y ve su tablero</span></div>
+        <div><b>3</b><span>Cada quien escribe su nombre y compite</span></div>
+        <div><b>4</b><span>Usted ve el tablero y quién va ganando</span></div>
       </div>
       <form class="mv-form eqform" id="eqForm" novalidate>
         <div class="mv-f"><label for="e-empresa">Nombre de su empresa <i>*</i></label><input id="e-empresa" autocomplete="organization" maxlength="100" placeholder="Ej. Comercial Los Pinos"></div>
@@ -116,10 +116,10 @@ module.exports = function buildMetodologia(c) {
         <div class="mv-f"><label for="e-correo">Su correo <small>(ahí llegan los resultados)</small> <i>*</i></label><input id="e-correo" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="nombre@empresa.com"></div>
         <div class="mv-f full"><label for="e-tel">Su WhatsApp <small>(opcional)</small></label><input id="e-tel" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="Ej. 9876-5432"></div>
         <p class="mv-err" id="eqErr" hidden></p>
-        <button class="btn" type="submit" id="eqGo">Crear el equipo de mi empresa →</button>
+        <button class="btn" type="submit" id="eqGo">Crear el reto de mi empresa →</button>
       </form>
       <div id="eqListo" hidden></div>
-      <p class="mv-note">No se publica nada ni se cobra. Sus empleados solo escriben su nombre; el tipo de negocio y los ejemplos ya vienen de su empresa.</p>
+      <p class="mv-note">No se publica nada ni se cobra. Sus empleados solo escriben su nombre; el tipo de negocio y los ejemplos ya vienen de su empresa, y al terminar cada quien ve en qué lugar quedó.</p>
     </section>
 
     <section class="ctaband">

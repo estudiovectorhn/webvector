@@ -443,3 +443,40 @@ mark{background:rgba(106,59,245,.12);color:var(--deep);padding:0 4px;border-radi
 .eq-aviso{text-align:center;padding:50px 16px}
 .eq-aviso h1{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(28px,5vw,44px);padding:6px 0 4px}
 .eq-aviso p{color:var(--muted);max-width:52ch;margin:0 auto 20px}
+
+/* ===== Dos puertas al entrar: individual o reto empresarial ===== */
+.mv-modo{text-align:center}
+.mv-modo .mv-lead{margin-left:auto;margin-right:auto}
+.mv-puertas{display:grid;gap:14px;margin:22px 0 10px;text-align:left}
+@media (min-width:800px){.mv-puertas{grid-template-columns:1fr 1fr}}
+.mv-puerta{font:inherit;display:grid;gap:6px;padding:22px;border-radius:22px;border:2px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;text-align:left;transition:border-color .18s,transform .18s,box-shadow .18s}
+.mv-puerta:hover{border-color:var(--violet);transform:translateY(-3px);box-shadow:0 22px 40px -26px rgba(44,2,164,.8)}
+.mv-puerta.reto{border-color:rgba(224,22,155,.35);background:linear-gradient(180deg,rgba(224,22,155,.05),transparent)}
+.mv-puerta.reto:hover{border-color:var(--fuchsia)}
+.mv-pem{font-size:34px;line-height:1}
+.mv-puerta b{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(22px,3vw,30px);line-height:1.05;padding:4px 0 2px}
+.mv-puerta small{color:var(--muted);font-size:15px;line-height:1.5}
+.mv-pcta{margin-top:8px;font-weight:800;color:var(--violet)}
+.mv-puerta.reto .mv-pcta{color:var(--fuchsia)}
+
+/* Tabla de posiciones del reto, al final del curso */
+.mv-pos{margin:8px 0 12px;font-size:16px}
+.mv-pos b{font-size:20px}
+.mv-pos.chico{font-size:14px;color:var(--muted);margin:10px 0 0}
+.mv-tabla{list-style:none;padding:0;margin:0;display:grid;gap:7px;counter-reset:r}
+.mv-tabla li{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:var(--surface);border:1.5px solid var(--line)}
+.mv-tabla li.yo{border-color:var(--violet);background:#F4EFFF}
+.mv-tabla b{flex:1;min-width:0}
+.mv-med{flex:none;width:26px;text-align:center;font-weight:800}
+.mv-pts{font-weight:800;color:var(--ok)}
+.mv-ins2{font-size:13px;color:var(--muted)}
+
+/* Podio del tablero del jefe */
+.eq-podio{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+@media (min-width:640px){.eq-podio{grid-template-columns:repeat(3,1fr)}}
+.eq-podio li{display:grid;gap:4px;justify-items:center;text-align:center;padding:16px;border-radius:18px;background:var(--surface);border:1.5px solid var(--line)}
+.eq-podio li.p1{border-color:#D8B64A;background:linear-gradient(180deg,rgba(216,182,74,.12),transparent)}
+.eq-med{font-size:28px;line-height:1}
+.eq-podio b{font-size:16px}
+.eq-pts{font-family:var(--display);font-weight:400;font-size:30px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding:3px 0 1px}
+.eq-podio small{color:var(--muted)}

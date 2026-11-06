@@ -485,7 +485,7 @@ const ENDPOINT = EN_VIVO ? EP : "";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const EQ_PARAM = (new URLSearchParams(location.search).get("equipo") || "").trim().toUpperCase();
-const FRESH = () => ({ ver: 2, equipo: null, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now(), temp: 15, badges: [], perdidos: 0, sesion: Math.random().toString(36).slice(2, 12) });
+const FRESH = () => ({ ver: 2, modo: null, equipo: null, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now(), temp: 15, badges: [], perdidos: 0, sesion: Math.random().toString(36).slice(2, 12) });
 let S = LS.get("mv-state", null) || FRESH();
 /* Migración del curso anterior (un solo formulario largo): se conservan nombre, empresa y contacto */
 if (S.reg && S.ver !== 2) {
@@ -726,8 +726,40 @@ function fbHTML(ok, q, k, extra) {
     <p class="mv-rz why"><span>Por qué funciona</span>${esc(q.e)}</p></div>`;
 }
 
+function rModo() {
+  $("mvTop").hidden = true;
+  screen.className = "mv-screen in";
+  screen.innerHTML = `<div class="mv-modo">
+    <span class="eyebrow">Curso gratuito · Vector Academy</span>
+    <h2>¿Cómo lo va a hacer?</h2>
+    <p class="mv-lead">El curso es el mismo y dura unos 12 minutos. Lo que cambia es si lo hace usted solo o si pone a competir a todo su equipo.</p>
+    <div class="mv-puertas">
+      <button type="button" class="mv-puerta" data-m="solo">
+        <span class="mv-pem">🙋</span>
+        <b>Lo hago yo</b>
+        <small>Para usted, ahora mismo. Escribe tres datos y empieza. Al final descarga su certificado.</small>
+        <span class="mv-pcta">Empezar yo solo →</span>
+      </button>
+      <button type="button" class="mv-puerta reto" data-m="reto">
+        <span class="mv-pem">🏁</span>
+        <b>Reto empresarial</b>
+        <small>Para su negocio. Crea el reto de su empresa, reparte un enlace y su gente compite en una tabla de posiciones. Usted recibe los resultados.</small>
+        <span class="mv-pcta">Crear el reto de mi empresa →</span>
+      </button>
+    </div>
+    <p class="mv-note">Las dos son gratis y dan certificado.</p></div>`;
+  screen.querySelectorAll(".mv-puerta").forEach(b => b.onclick = () => {
+    sfx("envio");
+    if (b.dataset.m === "reto") { const sec = document.getElementById("equipo"); if (sec) sec.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); const c = $("e-empresa"); c && setTimeout(() => c.focus({ preventScroll: true }), reduce ? 0 : 600); return; }
+    S.modo = "solo"; save(); render();
+  });
+  requestAnimationFrame(() => screen.classList.add("on"));
+}
+
 function render() {
   if (!FLOW.length) buildFlow();
+  if (!S.reg && !S.modo && !S.equipo) return rModo();
+  $("mvTop").hidden = false;
   const f = FLOW[S.idx] || FLOW[0];
   if (f.k !== "reg1" && !S.reg) { S.idx = 0; save(); return render(); }
   if (f.k !== "reg1" && f.k !== "reg2" && FLOW.findIndex(x => x.k === "reg2") < S.idx && !S.reg2) { S.idx = FLOW.findIndex(x => x.k === "reg2"); save(); }
@@ -748,8 +780,8 @@ function rReg1() {
   const opt = (arr, v) => arr.map(([k, l]) => `<option value="${esc(k)}"${k === v ? " selected" : ""}>${esc(l)}</option>`).join("");
   screen.innerHTML = `<div class="mv-reg">
     <div class="mv-reg-tx"><span class="eyebrow">Paso 1 de ${FLOW.length} · ${eq ? "10 segundos" : "20 segundos"}</span>
-      <h2>${eq ? "Bienvenido al equipo" : "Empecemos"}</h2>
-      ${eq ? `<div class="mv-eqbox"><b>${esc(eq.empresa)}</b><span>${esc(eq.jefe_nombre)} inscribió a su equipo, así que los ejemplos del curso ya vienen ajustados a su negocio.</span></div>
+      <h2>${eq ? "Bienvenido al reto" : "Empecemos"}</h2>
+      ${eq ? `<div class="mv-eqbox"><b>${esc(eq.empresa)}</b><span>${esc(eq.jefe_nombre)} lanzó este reto a su equipo, así que los ejemplos del curso ya vienen ajustados a su negocio.</span></div>
         <p>Solo escriba su nombre para empezar. Sus datos de contacto se piden más adelante, cuando ya haya avanzado.</p>`
       : `<p>Solo tres datos para que el curso use ejemplos de <b>su</b> negocio. Sus datos de contacto se piden más adelante, cuando ya haya avanzado.</p>`}
       <ul class="mv-ul"><li>6 lecciones donde usted escribe y envía las respuestas</li><li>Tres clientes difíciles y 8 insignias</li><li>Examen con casos reales y certificado imprimible</li></ul>
@@ -1033,7 +1065,7 @@ function rResult() {
   const r = REG();
   if (!X.sent) {
     X.sent = 1; save();
-    if (ENDPOINT) fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "examen", registro_id: S.regId, equipo: (S.equipo && S.equipo.codigo) || "", nombre: r.nombre, empresa: r.empresa, cargo: r.cargo, correo: r.correo, telefono: r.telefono, ciudad: r.ciudad, rubro: C.label + (r.rubro === "otro" ? ": " + r.prod : ""), vendedores: r.vendedores, interes: r.interes, correctas: X.ok, total: n, nivel: lv, segundos: secs, falladas: X.miss, origen: location.href }) }).catch(() => {});
+    if (ENDPOINT) fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "examen", registro_id: S.regId, equipo: (S.equipo && S.equipo.codigo) || "", nombre: r.nombre, empresa: r.empresa, cargo: r.cargo, correo: r.correo, telefono: r.telefono, ciudad: r.ciudad, rubro: C.label + (r.rubro === "otro" ? ": " + r.prod : ""), vendedores: r.vendedores, interes: r.interes, correctas: X.ok, total: n, nivel: lv, segundos: secs, insignias: (S.badges || []).length, falladas: X.miss, origen: location.href }) }).catch(() => {});
     track("MetodologiaVectorExamen", { score: p, nivel: lv }, true);
     if (pass) setTimeout(burst, 300);
   }
@@ -1042,6 +1074,7 @@ function rResult() {
   screen.innerHTML = `<div class="mv-result">
    <div class="mv-score"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="bg"/><circle cx="60" cy="60" r="52" class="fg" style="stroke:${col};stroke-dashoffset:${327 - 327 * p / 100}"/></svg><div><b>${X.ok}/${n}</b><small>${p}%</small></div></div>
    <div class="mv-rt"><span class="eyebrow">${pass ? "¡Aprobado!" : "Resultado"}</span><h2>${esc(lv)}</h2><p>${pass ? `Felicidades, ${esc(r.nombre.split(" ")[0])}. Ya domina la Metodología VECTOR. Descargue su certificado, imprímalo y cuélguelo.` : "Le faltó poco. Repase los casos marcados y vuelva a intentarlo."} · ${S.xp} XP · ${Math.floor(secs / 60)} min ${secs % 60} s</p></div>
+   ${S.equipo ? `<div id="mvRank"></div>` : ""}
    <div class="mv-insig"><b>Insignias · ${(S.badges || []).length} de ${INSIGNIAS.length}</b><div class="mv-insg">${INSIGNIAS.map(([id, em, nom, d]) => `<div class="mv-ins${(S.badges || []).includes(id) ? " on" : ""}" title="${esc(d)}"><span>${em}</span><small>${esc(nom)}</small></div>`).join("")}</div>${S.perdidos ? `<small class="mv-perd">Clientes perdidos en el camino: ${S.perdidos}</small>` : `<small class="mv-perd ok">No perdió un solo cliente 👏</small>`}</div>
    ${pass ? `<div class="mv-certbox" id="mvCertBox"><div class="mv-certload">Preparando su certificado…</div></div>` : ""}
    ${X.miss.length ? `<div class="mv-miss"><b>Para repasar</b>${X.miss.map(m => `<div><span class="mv-lt">${m.letra}</span><p>${esc(m.pregunta)}<small>${esc(m.comoMejorar)}</small></p></div>`).join("")}</div>` : ""}
@@ -1064,14 +1097,37 @@ function rResult() {
     });
   }
   $("mvRetry") && ($("mvRetry").onclick = () => { S.exam = null; save(); go(FLOW.findIndex(f => f.k === "examIntro")); });
-  $("mvRestart").onclick = () => { S = Object.assign(FRESH(), { reg: S.reg, reg2: S.reg2, regId: S.regId, badges: S.badges || [] }); save(); go(1); };
+  $("mvRestart").onclick = () => { S = Object.assign(FRESH(), { reg: S.reg, reg2: S.reg2, regId: S.regId, modo: S.modo, equipo: S.equipo, badges: S.badges || [] }); save(); go(1); };
+  if (S.equipo && EP) pintarRanking(r.nombre, p);
   $("mvOther").onclick = resetAll;
+}
+
+/* Tabla de posiciones del reto: dónde quedó esta persona frente a su equipo */
+function pintarRanking(nombre, pct) {
+  const caja = $("mvRank"); if (!caja) return;
+  fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "equipo_ranking", equipo: S.equipo.codigo, origen: location.href }) })
+    .then(x => x.json())
+    .then(j => {
+      if (!j || !j.ok || !j.tabla || !j.tabla.length) { caja.remove(); return; }
+      const corto = String(nombre).trim().split(/\s+/);
+      const yo = corto[0] + (corto[1] ? " " + corto[1][0].toUpperCase() + "." : "");
+      const i = j.tabla.findIndex(t => t.nombre === yo && t.porcentaje === pct);
+      const pos = i >= 0 ? i + 1 : null;
+      const medalla = n => n === 1 ? "🥇" : n === 2 ? "🥈" : n === 3 ? "🥉" : n;
+      const top = j.tabla.slice(0, 5);
+      caja.innerHTML = `<div class="mv-insig"><b>Reto de ${esc(j.empresa)} · ${j.tabla.length} de ${j.inscritos} ya terminaron</b>
+        ${pos ? `<p class="mv-pos">Usted va en el lugar <b>#${pos}</b> de ${j.tabla.length}${pos === 1 ? " 🏆 ¡va de primero!" : ""}</p>` : ""}
+        <ol class="mv-tabla">${top.map((t, k) => `<li${pos === k + 1 ? ' class="yo"' : ""}><span class="mv-med">${medalla(k + 1)}</span><b>${esc(t.nombre)}</b><span class="mv-pts">${t.porcentaje}%</span><span class="mv-ins2">🏅 ${t.insignias}</span></li>`).join("")}</ol>
+        ${j.tabla.length > 5 && pos > 5 ? `<p class="mv-pos chico">…y usted en el #${pos}</p>` : ""}</div>`;
+    })
+    .catch(() => caja.remove());
 }
 
 function resetAll() {
   if (!confirm("Se borrará el avance de esta persona en esta computadora para empezar un registro nuevo. ¿Continuar?")) return;
+  const eq = S.equipo;  /* si vino por el enlace de un reto, el siguiente también es de ese reto */
   LS.del("mv-state"); LS.del("mv-draft");
-  S = FRESH(); C = null; buildFlow(); go(0);
+  S = Object.assign(FRESH(), eq ? { equipo: eq, modo: "reto" } : {}); C = null; buildFlow(); go(0);
 }
 
 /* ---------- Certificado premium imprimible ---------- */
@@ -1204,7 +1260,7 @@ function cargarEquipo() {
   screen.innerHTML = `<p class="mv-cargando">Abriendo el curso de su equipo…</p>`;
   return fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "equipo_info", equipo: EQ_PARAM, origen: location.href }) })
     .then(r => r.json())
-    .then(j => { if (j && j.ok && j.equipo) { S.equipo = j.equipo; save(); } })
+    .then(j => { if (j && j.ok && j.equipo) { S.equipo = j.equipo; S.modo = "reto"; save(); } })
     .catch(() => {});
 }
 
@@ -1221,17 +1277,17 @@ function cargarEquipo() {
     const d = { tipo: "equipo", empresa: v("empresa"), rubro: v("rubro"), prod: v("prod"), nombre: v("nombre"), correo: v("correo").toLowerCase(), telefono: v("tel"), origen: location.href };
     const bad = d.empresa.length < 2 ? "empresa" : !d.rubro ? "rubro" : d.rubro === "otro" && d.prod.length < 3 ? "prod" : d.nombre.length < 3 ? "nombre" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.correo) ? "correo" : "";
     if (bad) { err.hidden = false; err.textContent = { empresa: "Escriba el nombre de su empresa.", rubro: "Elija el tipo de negocio.", prod: "Escriba el producto o servicio que más les preguntan.", nombre: "Escriba su nombre.", correo: "Revise su correo." }[bad]; $("e-" + bad).focus(); return; }
-    if (!ENDPOINT) { err.hidden = false; err.textContent = "Los equipos solo se pueden crear desde estudiovector.com."; return; }
-    err.hidden = true; btn.disabled = true; btn.textContent = "Creando su equipo…";
+    if (!ENDPOINT) { err.hidden = false; err.textContent = "Los retos solo se pueden crear desde estudiovector.com."; return; }
+    err.hidden = true; btn.disabled = true; btn.textContent = "Creando su reto…";
     try {
       const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) });
       const j = await res.json();
       if (!res.ok || !j.ok) throw new Error(j.error || "No se pudo crear el equipo.");
-      const wa = "https://wa.me/?text=" + encodeURIComponent(`Les comparto el curso gratuito de atención y ventas por WhatsApp que vamos a hacer en ${d.empresa}. Toma unos 12 minutos y da certificado: ${j.enlace}`);
+      const wa = "https://wa.me/?text=" + encodeURIComponent(`Les lanzo el reto: el curso gratuito de atención y ventas por WhatsApp de ${d.empresa}. Toma unos 12 minutos, da certificado y al final se ve quién quedó de primero: ${j.enlace}`);
       f.hidden = true;
       const listo = $("eqListo"); listo.hidden = false;
       listo.innerHTML = `<div class="eq-ok">
-        <h3>🎉 El equipo de ${esc(d.empresa)} está listo</h3>
+        <h3>🎉 El reto de ${esc(d.empresa)} está listo</h3>
         <p>Le mandamos todo esto a <b>${esc(d.correo)}</b>, para que no lo pierda.</p>
         <div class="eq-bloque"><span class="eyebrow">1 · Reparta este enlace a su gente</span>
           <div class="eq-link"><input id="eqU1" readonly value="${esc(j.enlace)}"><button class="btn" type="button" data-copia="eqU1">Copiar</button></div>
@@ -1240,7 +1296,7 @@ function cargarEquipo() {
           <p class="eq-p">Este es privado: no se lo pase al equipo.</p>
           <div class="eq-link"><input id="eqU2" readonly value="${esc(j.panel)}"><button class="btn" type="button" data-copia="eqU2">Copiar</button></div>
           <a class="btn light" href="${j.panel}">Abrir mi tablero</a></div>
-        <p class="mv-note">Código del equipo: <b>${esc(j.codigo)}</b>. Cada vez que alguien de su equipo apruebe, le llega el resultado a su correo.</p></div>`;
+        <p class="mv-note">Código del reto: <b>${esc(j.codigo)}</b>. Cada vez que alguien de su equipo apruebe, le llega el resultado a su correo.</p></div>`;
       listo.querySelectorAll("[data-copia]").forEach(b => b.onclick = async () => {
         const i = $(b.dataset.copia);
         try { await navigator.clipboard.writeText(i.value); } catch (x) { i.select(); try { document.execCommand("copy"); } catch (y) {} }
@@ -1251,7 +1307,7 @@ function cargarEquipo() {
       burst();
     } catch (x) {
       err.hidden = false; err.textContent = String(x.message || x);
-      btn.disabled = false; btn.textContent = "Crear el equipo de mi empresa →";
+      btn.disabled = false; btn.textContent = "Crear el reto de mi empresa →";
     }
   };
 })();
