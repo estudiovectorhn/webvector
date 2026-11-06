@@ -413,6 +413,7 @@ const mark = t => esc(t).replace(/\[([^\]]+)\]/g, '<mark>[$1]</mark>');
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const track = (ev, d, custom) => { try { if (window.fbq) fbq(custom ? "trackCustom" : "track", ev, d || {}); } catch (e) {} };
 const WA = "50495691481";
+const ICONWA = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 5-1.3A10 10 0 1 0 12 2Zm5.5 14c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.2-4.4-4-4.5-4.2-.1-.2-1-1.4-1-2.7s.6-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.5-.1l.8-.9c.2-.2.3-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>';
 /* ---------- Sonido corto generado en el navegador (sin archivos) ---------- */
 let SND = LS.get("mv-snd", true), AC = null;
 function sfx(tipo) {
@@ -479,10 +480,12 @@ if (!player) return;
 /* Solo el sitio en vivo envía registros y resultados: así las pruebas locales
    o en vista previa nunca generan correos ni filas en la base. */
 const EN_VIVO = /(^|\.)estudiovector\.com$/.test(location.hostname);
-const ENDPOINT = EN_VIVO ? (player.dataset.endpoint || "") : "";
+const EP = player.dataset.endpoint || "";
+const ENDPOINT = EN_VIVO ? EP : "";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const FRESH = () => ({ ver: 2, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now(), temp: 15, badges: [], perdidos: 0, sesion: Math.random().toString(36).slice(2, 12) });
+const EQ_PARAM = (new URLSearchParams(location.search).get("equipo") || "").trim().toUpperCase();
+const FRESH = () => ({ ver: 2, equipo: null, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now(), temp: 15, badges: [], perdidos: 0, sesion: Math.random().toString(36).slice(2, 12) });
 let S = LS.get("mv-state", null) || FRESH();
 /* Migración del curso anterior (un solo formulario largo): se conservan nombre, empresa y contacto */
 if (S.reg && S.ver !== 2) {
@@ -741,31 +744,42 @@ function render() {
 const RUBROS = PRESETS.map(p => [p.id, p.emoji + " " + p.label]).concat([["otro", "✨ Otro negocio"]]);
 function rReg1() {
   const r = LS.get("mv-draft", {});
+  const eq = S.equipo;
   const opt = (arr, v) => arr.map(([k, l]) => `<option value="${esc(k)}"${k === v ? " selected" : ""}>${esc(l)}</option>`).join("");
   screen.innerHTML = `<div class="mv-reg">
-    <div class="mv-reg-tx"><span class="eyebrow">Paso 1 de ${FLOW.length} · 20 segundos</span><h2>Empecemos</h2><p>Solo tres datos para que el curso use ejemplos de <b>su</b> negocio. Sus datos de contacto se piden más adelante, cuando ya haya avanzado.</p>
-      <ul class="mv-ul"><li>6 lecciones donde usted escribe y envía las respuestas</li><li>Un reto por letra, un drill de orden y una misión práctica</li><li>Examen con casos reales y certificado imprimible</li></ul>
+    <div class="mv-reg-tx"><span class="eyebrow">Paso 1 de ${FLOW.length} · ${eq ? "10 segundos" : "20 segundos"}</span>
+      <h2>${eq ? "Bienvenido al equipo" : "Empecemos"}</h2>
+      ${eq ? `<div class="mv-eqbox"><b>${esc(eq.empresa)}</b><span>${esc(eq.jefe_nombre)} inscribió a su equipo, así que los ejemplos del curso ya vienen ajustados a su negocio.</span></div>
+        <p>Solo escriba su nombre para empezar. Sus datos de contacto se piden más adelante, cuando ya haya avanzado.</p>`
+      : `<p>Solo tres datos para que el curso use ejemplos de <b>su</b> negocio. Sus datos de contacto se piden más adelante, cuando ya haya avanzado.</p>`}
+      <ul class="mv-ul"><li>6 lecciones donde usted escribe y envía las respuestas</li><li>Tres clientes difíciles y 8 insignias</li><li>Examen con casos reales y certificado imprimible</li></ul>
       <p class="mv-note">Sin correo ni teléfono para empezar.</p></div>
     <form class="mv-form short" id="mvForm" novalidate>
       <div class="mv-f full"><label for="f-nombre">Su nombre completo</label><input id="f-nombre" autocomplete="name" maxlength="80" value="${esc(r.nombre || "")}" placeholder="Ej. María Rodríguez"></div>
-      <div class="mv-f full"><label for="f-empresa">Nombre de la empresa o negocio</label><input id="f-empresa" autocomplete="organization" maxlength="100" value="${esc(r.empresa || "")}" placeholder="Ej. Comercial Los Pinos"></div>
+      ${eq ? "" : `<div class="mv-f full"><label for="f-empresa">Nombre de la empresa o negocio</label><input id="f-empresa" autocomplete="organization" maxlength="100" value="${esc(r.empresa || "")}" placeholder="Ej. Comercial Los Pinos"></div>
       <div class="mv-f full"><label for="f-rubro">Tipo de negocio</label><select id="f-rubro"><option value="">Seleccione…</option>${opt(RUBROS, r.rubro)}</select></div>
-      <div class="mv-f full" id="f-otro" hidden><label for="f-prod">¿Qué producto o servicio le preguntan más?</label><input id="f-prod" maxlength="50" value="${esc(r.prod || "")}" placeholder="Ej. el plan de internet"></div>
+      <div class="mv-f full" id="f-otro" hidden><label for="f-prod">¿Qué producto o servicio le preguntan más?</label><input id="f-prod" maxlength="50" value="${esc(r.prod || "")}" placeholder="Ej. el plan de internet"></div>`}
       <p class="mv-err" id="mvErr" hidden></p>
       <button class="btn" type="submit" id="mvGo">Empezar el curso →</button>
     </form></div>`;
-  const rub = $("f-rubro"), otro = $("f-otro");
-  const upd = () => (otro.hidden = rub.value !== "otro"); rub.onchange = upd; upd();
-  const ids = ["nombre", "empresa", "rubro", "prod"];
-  $("mvForm").oninput = () => { const d = LS.get("mv-draft", {}); ids.forEach(i => (d[i] = $("f-" + i).value)); LS.set("mv-draft", d); };
+  if (!eq) {
+    const rub = $("f-rubro"), otro = $("f-otro");
+    const upd = () => (otro.hidden = rub.value !== "otro"); rub.onchange = upd; upd();
+    const ids = ["nombre", "empresa", "rubro", "prod"];
+    $("mvForm").oninput = () => { const d = LS.get("mv-draft", {}); ids.forEach(i => (d[i] = $("f-" + i).value)); LS.set("mv-draft", d); };
+  } else {
+    $("mvForm").oninput = () => { const d = LS.get("mv-draft", {}); d.nombre = $("f-nombre").value; LS.set("mv-draft", d); };
+  }
   $("mvForm").onsubmit = e => {
     e.preventDefault();
-    const v = id => $("f-" + id).value.trim();
-    const reg = { nombre: v("nombre"), empresa: v("empresa"), rubro: v("rubro"), prod: v("prod"), cli: "cliente" };
+    const v = id => { const el = $("f-" + id); return el ? el.value.trim() : ""; };
+    const reg = eq
+      ? { nombre: v("nombre"), empresa: eq.empresa, rubro: eq.rubro, prod: eq.prod || "", cli: "cliente" }
+      : { nombre: v("nombre"), empresa: v("empresa"), rubro: v("rubro"), prod: v("prod"), cli: "cliente" };
     const err = $("mvErr");
     const bad = !reg.nombre || reg.nombre.length < 3 ? "nombre" : !reg.empresa ? "empresa" : !reg.rubro ? "rubro" : reg.rubro === "otro" && reg.prod.length < 3 ? "prod" : "";
-    if (bad) { err.hidden = false; err.textContent = { nombre: "Escriba su nombre completo.", empresa: "Escriba el nombre de su empresa o negocio.", rubro: "Elija el tipo de negocio.", prod: "Escriba el producto o servicio que más le preguntan." }[bad]; $("f-" + bad).focus(); return; }
-    S = Object.assign(FRESH(), { reg }); save(); buildC(); buildFlow();
+    if (bad) { err.hidden = false; err.textContent = { nombre: "Escriba su nombre completo.", empresa: "Escriba el nombre de su empresa o negocio.", rubro: "Elija el tipo de negocio.", prod: "Escriba el producto o servicio que más le preguntan." }[bad]; const f = $("f-" + bad); f && f.focus(); return; }
+    S = Object.assign(FRESH(), { reg, equipo: eq }); save(); buildC(); buildFlow();
     track("ViewContent", { content_name: "Metodología VECTOR · inicio" });
     burst(); next();
   };
@@ -784,7 +798,7 @@ function rReg2() {
       <div class="mv-f"><label for="f-tel">Teléfono / WhatsApp <i>*</i></label><input id="f-tel" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" value="${esc(r.telefono || "")}" placeholder="Ej. 9876-5432"></div>
       <div class="mv-f"><label for="f-cargo">Cargo <small>(va en el certificado)</small></label><input id="f-cargo" autocomplete="organization-title" maxlength="80" value="${esc(r.cargo || "")}" placeholder="Ej. Vendedora, recepción, gerente"></div>
       <div class="mv-f"><label for="f-ciudad">Ciudad</label><input id="f-ciudad" autocomplete="address-level2" maxlength="60" value="${esc(r.ciudad || "")}" placeholder="Ej. San Pedro Sula"></div>
-      <div class="mv-f full"><label for="f-int">¿Qué le interesa? <i>*</i></label><select id="f-int">${opt([["", "Seleccione…"], ["Solo aprender por mi cuenta", "Solo aprender por mi cuenta"], ["Capacitación presencial para mi equipo", "Capacitación presencial para mi equipo"], ["Capacitación en línea para mi equipo", "Capacitación en línea para mi equipo"], ["Asesoría de marketing y ventas", "Asesoría de marketing y ventas"]], r.interes)}</select></div>
+      ${S.equipo ? "" : `<div class="mv-f full"><label for="f-int">¿Qué le interesa? <i>*</i></label><select id="f-int">${opt([["", "Seleccione…"], ["Solo aprender por mi cuenta", "Solo aprender por mi cuenta"], ["Capacitación presencial para mi equipo", "Capacitación presencial para mi equipo"], ["Capacitación en línea para mi equipo", "Capacitación en línea para mi equipo"], ["Asesoría de marketing y ventas", "Asesoría de marketing y ventas"]], r.interes)}</select></div>`}
       <input class="mv-hp" id="f-web" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="mv-err" id="mvErr" hidden></p>
       <label class="mv-ok"><input type="checkbox" id="f-ok" ${r.ok ? "checked" : ""}><span>Acepto que Vector Marketing &amp; Academy me contacte sobre mi resultado y sus capacitaciones.</span></label>
@@ -792,19 +806,19 @@ function rReg2() {
       <button class="mv-link" type="button" id="mvBack2">← Volver a repasar las letras</button>
     </form></div>`;
   const ids = { correo: "correo", tel: "telefono", cargo: "cargo", ciudad: "ciudad", int: "interes" };
-  $("mvForm2").oninput = () => { const d = LS.get("mv-draft", {}); Object.entries(ids).forEach(([f, k]) => (d[k] = $("f-" + f).value)); d.ok = $("f-ok").checked; LS.set("mv-draft", d); };
+  $("mvForm2").oninput = () => { const d = LS.get("mv-draft", {}); Object.entries(ids).forEach(([f, k]) => { const el = $("f-" + f); if (el) d[k] = el.value; }); d.ok = $("f-ok").checked; LS.set("mv-draft", d); };
   $("mvBack2").onclick = () => go(S.idx - 1);
   $("mvForm2").onsubmit = async e => {
     e.preventDefault();
     const v = id => $("f-" + id).value.trim();
-    const reg2 = { correo: v("correo").toLowerCase(), telefono: v("tel"), cargo: v("cargo"), ciudad: v("ciudad"), interes: v("int"), vendedores: "" };
+    const reg2 = { correo: v("correo").toLowerCase(), telefono: v("tel"), cargo: v("cargo"), ciudad: v("ciudad"), interes: S.equipo ? "Capacitación de equipo · " + S.equipo.empresa : v("int"), vendedores: "" };
     const err = $("mvErr");
     const bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reg2.correo) ? "correo" : reg2.telefono.replace(/\D/g, "").length < 8 ? "tel" : !reg2.interes ? "int" : !$("f-ok").checked ? "ok" : "";
-    if (bad) { err.hidden = false; err.textContent = { correo: "Revise su correo.", tel: "Escriba un teléfono de 8 dígitos.", int: "Díganos qué le interesa.", ok: "Marque la casilla para continuar." }[bad]; $("f-" + bad).focus(); return; }
+    if (bad) { err.hidden = false; err.textContent = { correo: "Revise su correo.", tel: "Escriba un teléfono de 8 dígitos.", int: "Díganos qué le interesa.", ok: "Marque la casilla para continuar." }[bad]; const f = $("f-" + bad); f && f.focus(); return; }
     const btn = $("mvGo2"); btn.disabled = true; btn.textContent = "Preparando su examen…";
     S.reg2 = reg2; save();
     const rub = RUBROS.find(x => x[0] === S.reg.rubro);
-    if (ENDPOINT) { try { const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.assign({ tipo: "registro" }, REG(), { rubro: rub ? rub[1].replace(/^\S+\s/, "") + (S.reg.rubro === "otro" ? ": " + S.reg.prod : "") : S.reg.rubro, web: $("f-web").value, origen: location.href })) }); const j = await res.json().catch(() => ({})); if (res.ok) S.regId = j.id || null; save(); } catch (x) {} }
+    if (ENDPOINT) { try { const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.assign({ tipo: "registro", equipo: (S.equipo && S.equipo.codigo) || "" }, REG(), { rubro: rub ? rub[1].replace(/^\S+\s/, "") + (S.reg.rubro === "otro" ? ": " + S.reg.prod : "") : S.reg.rubro, web: $("f-web").value, origen: location.href })) }); const j = await res.json().catch(() => ({})); if (res.ok) S.regId = j.id || null; save(); } catch (x) {} }
     track("Lead", { content_name: "Metodología VECTOR" });
     burst(); next();
   };
@@ -1019,7 +1033,7 @@ function rResult() {
   const r = REG();
   if (!X.sent) {
     X.sent = 1; save();
-    if (ENDPOINT) fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "examen", registro_id: S.regId, nombre: r.nombre, empresa: r.empresa, cargo: r.cargo, correo: r.correo, telefono: r.telefono, ciudad: r.ciudad, rubro: C.label + (r.rubro === "otro" ? ": " + r.prod : ""), vendedores: r.vendedores, interes: r.interes, correctas: X.ok, total: n, nivel: lv, segundos: secs, falladas: X.miss, origen: location.href }) }).catch(() => {});
+    if (ENDPOINT) fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "examen", registro_id: S.regId, equipo: (S.equipo && S.equipo.codigo) || "", nombre: r.nombre, empresa: r.empresa, cargo: r.cargo, correo: r.correo, telefono: r.telefono, ciudad: r.ciudad, rubro: C.label + (r.rubro === "otro" ? ": " + r.prod : ""), vendedores: r.vendedores, interes: r.interes, correctas: X.ok, total: n, nivel: lv, segundos: secs, falladas: X.miss, origen: location.href }) }).catch(() => {});
     track("MetodologiaVectorExamen", { score: p, nivel: lv }, true);
     if (pass) setTimeout(burst, 300);
   }
@@ -1180,6 +1194,68 @@ function pulso(k, i) {
 
 buildFlow();
 if (S.reg) buildC();
+
+/* Enlace de equipo: ?equipo=CODIGO llena empresa y rubro antes de que empiece el curso */
+function cargarEquipo() {
+  if (!EQ_PARAM || !EP) return Promise.resolve();
+  if (S.equipo && S.equipo.codigo === EQ_PARAM) return Promise.resolve();
+  if (S.reg) return Promise.resolve();  /* ya iba avanzando: no se le cambia el negocio a media marcha */
+  screen.className = "mv-screen in on";
+  screen.innerHTML = `<p class="mv-cargando">Abriendo el curso de su equipo…</p>`;
+  return fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "equipo_info", equipo: EQ_PARAM, origen: location.href }) })
+    .then(r => r.json())
+    .then(j => { if (j && j.ok && j.equipo) { S.equipo = j.equipo; save(); } })
+    .catch(() => {});
+}
+
+/* ---------- Crear el equipo de una empresa ---------- */
+(function () {
+  const f = $("eqForm"); if (!f) return;
+  const sel = $("e-rubro"), otro = $("e-otro");
+  sel.insertAdjacentHTML("beforeend", RUBROS.map(([k, l]) => `<option value="${esc(k)}">${esc(l)}</option>`).join(""));
+  const upd = () => (otro.hidden = sel.value !== "otro"); sel.onchange = upd; upd();
+  f.onsubmit = async e => {
+    e.preventDefault();
+    const v = id => $("e-" + id).value.trim();
+    const err = $("eqErr"), btn = $("eqGo");
+    const d = { tipo: "equipo", empresa: v("empresa"), rubro: v("rubro"), prod: v("prod"), nombre: v("nombre"), correo: v("correo").toLowerCase(), telefono: v("tel"), origen: location.href };
+    const bad = d.empresa.length < 2 ? "empresa" : !d.rubro ? "rubro" : d.rubro === "otro" && d.prod.length < 3 ? "prod" : d.nombre.length < 3 ? "nombre" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.correo) ? "correo" : "";
+    if (bad) { err.hidden = false; err.textContent = { empresa: "Escriba el nombre de su empresa.", rubro: "Elija el tipo de negocio.", prod: "Escriba el producto o servicio que más les preguntan.", nombre: "Escriba su nombre.", correo: "Revise su correo." }[bad]; $("e-" + bad).focus(); return; }
+    if (!ENDPOINT) { err.hidden = false; err.textContent = "Los equipos solo se pueden crear desde estudiovector.com."; return; }
+    err.hidden = true; btn.disabled = true; btn.textContent = "Creando su equipo…";
+    try {
+      const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) });
+      const j = await res.json();
+      if (!res.ok || !j.ok) throw new Error(j.error || "No se pudo crear el equipo.");
+      const wa = "https://wa.me/?text=" + encodeURIComponent(`Les comparto el curso gratuito de atención y ventas por WhatsApp que vamos a hacer en ${d.empresa}. Toma unos 12 minutos y da certificado: ${j.enlace}`);
+      f.hidden = true;
+      const listo = $("eqListo"); listo.hidden = false;
+      listo.innerHTML = `<div class="eq-ok">
+        <h3>🎉 El equipo de ${esc(d.empresa)} está listo</h3>
+        <p>Le mandamos todo esto a <b>${esc(d.correo)}</b>, para que no lo pierda.</p>
+        <div class="eq-bloque"><span class="eyebrow">1 · Reparta este enlace a su gente</span>
+          <div class="eq-link"><input id="eqU1" readonly value="${esc(j.enlace)}"><button class="btn" type="button" data-copia="eqU1">Copiar</button></div>
+          <a class="btn light" href="${wa}" target="_blank" rel="noopener">${ICONWA}Compartir por WhatsApp</a></div>
+        <div class="eq-bloque"><span class="eyebrow">2 · Guarde su tablero de resultados</span>
+          <p class="eq-p">Este es privado: no se lo pase al equipo.</p>
+          <div class="eq-link"><input id="eqU2" readonly value="${esc(j.panel)}"><button class="btn" type="button" data-copia="eqU2">Copiar</button></div>
+          <a class="btn light" href="${j.panel}">Abrir mi tablero</a></div>
+        <p class="mv-note">Código del equipo: <b>${esc(j.codigo)}</b>. Cada vez que alguien de su equipo apruebe, le llega el resultado a su correo.</p></div>`;
+      listo.querySelectorAll("[data-copia]").forEach(b => b.onclick = async () => {
+        const i = $(b.dataset.copia);
+        try { await navigator.clipboard.writeText(i.value); } catch (x) { i.select(); try { document.execCommand("copy"); } catch (y) {} }
+        b.textContent = "¡Copiado!"; setTimeout(() => (b.textContent = "Copiar"), 1800);
+      });
+      listo.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      track("Lead", { content_name: "Equipo Metodología VECTOR" });
+      burst();
+    } catch (x) {
+      err.hidden = false; err.textContent = String(x.message || x);
+      btn.disabled = false; btn.textContent = "Crear el equipo de mi empresa →";
+    }
+  };
+})();
+
 const sndBtn = $("mvSnd");
 if (sndBtn) {
   const pinta = () => { sndBtn.textContent = SND ? "🔊" : "🔇"; sndBtn.setAttribute("aria-pressed", String(SND)); sndBtn.title = SND ? "Silenciar el curso" : "Activar el sonido"; };
@@ -1187,6 +1263,6 @@ if (sndBtn) {
   sndBtn.onclick = () => { SND = !SND; LS.set("mv-snd", SND); pinta(); if (SND) sfx("bien"); };
 }
 const exitBtn = $("mvExit"); if (exitBtn) exitBtn.onclick = resetAll;
-render();
+cargarEquipo().then(render);
 
 })();

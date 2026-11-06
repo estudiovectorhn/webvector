@@ -58,6 +58,7 @@ module.exports = function buildMetodologia(c) {
           <a class="btn" href="#curso">${ICON.arrow}Empezar el curso gratis</a>
           <a class="btn light" href="${pdf}" download>${ICON.pdf}Descargar la metodología</a>
         </div>
+        <p class="mv-jefe"><a href="#equipo">¿Es dueño o jefe? Capacite a todo su equipo con un solo enlace →</a></p>
         <div class="shareline"><button class="sharebtn" type="button" data-share data-title="Metodología VECTOR · Vector Academy" data-text="Curso gratuito de atención y ventas por WhatsApp para vendedores. Dura menos de 10 minutos.">${ICON.share}<span>Compartir con mi equipo</span></button></div>
       </div>
       <div class="mv-word" aria-hidden="true">${LETRAS.map(([l, n], i) => `<div class="mv-wl" style="--i:${i}"><b>${l}</b><small>${n}</small></div>`).join("")}</div>
@@ -95,6 +96,30 @@ module.exports = function buildMetodologia(c) {
       <h2 id="mv-que" class="sectitle">Seis pasos para vender sin presionar</h2>
       <p class="mv-lead">La mayoría de vendedores responde "¿cuánto cuesta?" con un número, y el cliente se va a comparar. Con VECTOR, el precio se da con contexto: primero se entiende qué necesita la persona, luego se ofrece la solución y se cierra con una cita o pedido concreto.</p>
       <div class="mv-grid6">${LETRAS.map(([l, n, d]) => `<article class="mv-card"><b class="mv-cl">${l}</b><h3>${n}</h3><p>${d}</p></article>`).join("")}</div>
+    </section>
+
+    <section class="mv-sec eqcrear" id="equipo" aria-labelledby="eq-t">
+      <span class="eyebrow">Para dueños y jefes</span>
+      <h2 id="eq-t" class="sectitle">Capacite a su equipo con un solo enlace</h2>
+      <p class="mv-lead">Cree el equipo de su empresa, reparta el enlace a su gente y reciba en su correo el resultado de cada persona que lo complete. Es gratis y no necesita cuenta.</p>
+      <div class="eq-pasos">
+        <div><b>1</b><span>Cree el equipo con el nombre de su empresa y su correo</span></div>
+        <div><b>2</b><span>Reparta el enlace por WhatsApp a su gente</span></div>
+        <div><b>3</b><span>Cada quien solo escribe su nombre y empieza</span></div>
+        <div><b>4</b><span>Usted recibe los resultados y ve su tablero</span></div>
+      </div>
+      <form class="mv-form eqform" id="eqForm" novalidate>
+        <div class="mv-f"><label for="e-empresa">Nombre de su empresa <i>*</i></label><input id="e-empresa" autocomplete="organization" maxlength="100" placeholder="Ej. Comercial Los Pinos"></div>
+        <div class="mv-f"><label for="e-rubro">Tipo de negocio <i>*</i></label><select id="e-rubro"><option value="">Seleccione…</option></select></div>
+        <div class="mv-f full" id="e-otro" hidden><label for="e-prod">¿Qué producto o servicio les preguntan más?</label><input id="e-prod" maxlength="50" placeholder="Ej. el plan de internet"></div>
+        <div class="mv-f"><label for="e-nombre">Su nombre <i>*</i></label><input id="e-nombre" autocomplete="name" maxlength="80" placeholder="Ej. Edgardo López"></div>
+        <div class="mv-f"><label for="e-correo">Su correo <small>(ahí llegan los resultados)</small> <i>*</i></label><input id="e-correo" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="nombre@empresa.com"></div>
+        <div class="mv-f full"><label for="e-tel">Su WhatsApp <small>(opcional)</small></label><input id="e-tel" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="Ej. 9876-5432"></div>
+        <p class="mv-err" id="eqErr" hidden></p>
+        <button class="btn" type="submit" id="eqGo">Crear el equipo de mi empresa →</button>
+      </form>
+      <div id="eqListo" hidden></div>
+      <p class="mv-note">No se publica nada ni se cobra. Sus empleados solo escriben su nombre; el tipo de negocio y los ejemplos ya vienen de su empresa.</p>
     </section>
 
     <section class="ctaband">

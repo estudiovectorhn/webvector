@@ -984,6 +984,14 @@ function buildMetodologia() {
   });
 }
 
+/* ---------------- Tablero privado del jefe de equipo ---------------- */
+function buildEquipo() {
+  require("./src/page-equipo.js")({
+    head, ICON, SITE, ORG, siteHeader, siteFooter, write, V,
+    endpoint: (CFG.academia && CFG.academia.endpoint) || ""
+  });
+}
+
 /* ---------------- Página de campaña de anuncios ---------------- */
 function buildAnuncios() {
   require("./src/page-anuncios.js")({ head, ICON, ART, fmt, T, SITE, ORG, PERSON, tallerLD, faqLD, crumbsLD, faqHTML, siteFooter, write, V, waText, MES, MESNOM, MESCAP, MESYA, MESYACAP });
@@ -1170,6 +1178,7 @@ buildGaleria();
 RB.forEach(buildRubro);
 buildPrograma();
 buildMetodologia();
+buildEquipo();
 buildAnuncios();
 buildForum();
 build404();
