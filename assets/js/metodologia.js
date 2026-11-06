@@ -575,7 +575,7 @@ const buzz = ms => { try { if (SND && navigator.vibrate) navigator.vibrate(ms); 
 
 /* ---------- Insignias ---------- */
 const INSIGNIAS = [
-  ["rayo", "⚡", "Rayo", "Contestó el primer mensaje en menos de 8 segundos"],
+  ["rayo", "⚡", "Rayo", "Contestó el primer mensaje en menos de 15 segundos"],
   ["caliente", "🔥", "Punto de ebullición", "Llevó al cliente de frío a caliente"],
   ["apurado", "⏱️", "El apurado", "Resolvió al cliente que no quiere preguntas"],
   ["regateador", "💰", "El regateador", "Sostuvo el precio sin regalar descuento"],
@@ -1034,26 +1034,26 @@ function rCheck(f) {
   const x = LESS()[f.i], q = x.q, order = shuffle([0, 1, 2]), reloj = f.i === 0;
   screen.innerHTML = `<div class="mv-check"><span class="eyebrow">Reto rápido · ${x.l} · ${x.t}</span>
    ${q.ctx ? `<p class="mv-ctxline">${esc(q.ctx)}</p>` : ""}
-   ${reloj ? `<div class="mv-reloj" id="mvReloj"><i></i><b>El ${esc(C.cli)} está en línea. Conteste rápido.</b></div>` : ""}
+   ${reloj ? `<div class="mv-reloj" id="mvReloj"><i></i><b>El ${esc(C.cli)} está en línea y esperando. Tómese el tiempo de leer, pero no lo deje esperando.</b></div>` : ""}
    <div class="mv-phone sm">${wh()}<div class="mv-thread" id="mvT"><div class="mv-b in">${mark(q.p)}</div></div></div>
    <h2>${esc(q.q)}</h2><div class="mv-opts">${order.map((k, n) => `<button type="button" class="mv-opt" data-k="${k}"><span class="mv-lt">${"ABC"[n]}</span><span>${mark(q.o[k])}</span></button>`).join("")}</div><div id="mvFb"></div></div>`;
   const t0 = Date.now(), th = $("mvT"); let tarde = false, tmr = null, r = null;
   if (reloj) {
     r = $("mvReloj"); const barra = r.querySelector("i");
-    requestAnimationFrame(() => { barra.style.transition = "width 8s linear"; barra.style.width = "0%"; });
+    requestAnimationFrame(() => { barra.style.transition = "width 25s linear"; barra.style.width = "0%"; });
     tmr = setTimeout(() => {
       if (!r.isConnected) return;
       tarde = true; r.classList.add("tarde"); r.querySelector("b").textContent = "Se tardó. Así se siente del otro lado:";
       bub(th, "in", "¿Hola? 😕 Ya me respondieron de otro lado.");
       setTemp(-10); sfx("mal");
-    }, 8000);
+    }, 25000);
   }
   screen.querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
     clearTimeout(tmr);
     const k = +b.dataset.k, ok = k === 0, seg = (Date.now() - t0) / 1000;
     screen.querySelectorAll(".mv-opt").forEach(o => { o.disabled = true; if (+o.dataset.k === 0) o.classList.add("right"); else if (o === b) o.classList.add("wrong"); });
     if (ok) addXP(20); else b.classList.add("shake");
-    if (reloj) { r.querySelector("i").style.transition = "none"; if (ok && !tarde && seg < 8) darInsignia("rayo"); }
+    if (reloj) { r.querySelector("i").style.transition = "none"; if (ok && !tarde && seg < 15) darInsignia("rayo"); }
     const perdido = efecto(ok);
     const first = !S.done.includes(x.l);
     if (first) { S.done.push(x.l); save(); topbar(); setTimeout(() => { burst(); toast(`¡Letra ${x.l} desbloqueada! ${S.done.length}/6`); }, 250); }
