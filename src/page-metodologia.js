@@ -19,7 +19,7 @@ module.exports = function buildMetodologia(c) {
   ];
   const FAQ = [
     ["¿Qué es la Metodología VECTOR?", "Es el método de Vector Marketing &amp; Academy para atender y vender por WhatsApp y redes sociales. Tiene seis pasos: Vincular, Explorar, Conocer, Transparentar, Ofrecer y Retener. Su idea central es entender la necesidad del cliente antes de hablar de precio, sin esconder el precio."],
-    ["¿Cuánto cuesta el curso en línea?", "El curso en línea es gratuito. Dura entre 5 y 10 minutos, incluye un examen y un certificado digital de aprobación de Vector Academy."],
+    ["¿Cuánto cuesta el curso en línea?", "El curso en línea es gratuito. Dura entre 5 y 10 minutos, incluye un examen de 12 casos y un certificado en Atención al Cliente, Método VECTOR, en alta resolución para imprimir y enmarcar. Para empezar solo se piden tres datos: su nombre, su empresa y el tipo de negocio."],
     ["¿Para quién es?", "Para vendedores, recepcionistas, community managers y cualquier persona que atienda mensajes de clientes en clínicas, tiendas, restaurantes, ferreterías, talleres, servicios profesionales y cualquier otro negocio. El curso adapta los ejemplos al tipo de negocio que usted elige."],
     ["¿Pueden capacitar a todo mi equipo de ventas?", `Sí. Vector Academy imparte la Metodología VECTOR en capacitaciones presenciales en San Pedro Sula, en su empresa en cualquier ciudad de Honduras o en línea, con práctica de casos reales de su negocio. Escríbanos por <a href="${waCap}" target="_blank" rel="noopener">WhatsApp al 9569-1481</a>.`],
     ["¿En qué estudios se basa?", "Cada consejo está respaldado por investigación publicada: velocidad de respuesta (Harvard Business Review), preguntas de seguimiento (Journal of Personality and Social Psychology), venta consultiva (SPIN Selling), uso del nombre (Journal of Consumer Research), precio primero (Journal of Marketing Research), tiempo frente a dinero (Journal of Consumer Research), planes concretos (metaanálisis de 94 pruebas), recordatorios (revisión Cochrane) y mera exposición (Psychological Bulletin), entre otros. En la sección <a href=\"#respaldo\">Respaldo científico</a> cada consejo muestra el hallazgo, cómo se aplica, su límite y la cita completa. Donde un consejo es una práctica de Vector sin estudio directo, se indica."]
@@ -52,8 +52,8 @@ module.exports = function buildMetodologia(c) {
       <div class="mv-hero-tx">
         <span class="eyebrow">Vector Marketing &amp; Academy · Curso gratuito</span>
         <h1>Bienvenido a la <span class="g">Metodología VECTOR</span></h1>
-        <p class="lead">El protocolo de atención y ventas por WhatsApp para personas que atienden clientes. Aprenda en menos de 10 minutos a llevar a un cliente desde el primer "¿cuánto cuesta?" hasta la venta cerrada, con ejemplos de su tipo de negocio.</p>
-        <div class="mv-facts"><div><b>8</b><span>minutos</span></div><div><b>6</b><span>pasos</span></div><div><b>12</b><span>preguntas</span></div><div><b>1</b><span>certificado</span></div></div>
+        <p class="lead">El protocolo de atención y ventas por WhatsApp para personas que atienden clientes. Aprenda en menos de 10 minutos a llevar a un cliente desde el primer "¿cuánto cuesta?" hasta la venta cerrada, con ejemplos de su tipo de negocio. Empieza con tres datos, sin formularios largos, y termina con un certificado listo para imprimir.</p>
+        <div class="mv-facts"><div><b>8</b><span>minutos</span></div><div><b>6</b><span>pasos</span></div><div><b>12</b><span>casos</span></div><div><b>1</b><span>certificado imprimible</span></div></div>
         <div class="mv-cta">
           <a class="btn" href="#curso">${ICON.arrow}Empezar el curso gratis</a>
           <a class="btn light" href="${pdf}" download>${ICON.pdf}Descargar la metodología</a>
@@ -67,7 +67,12 @@ module.exports = function buildMetodologia(c) {
   <div class="wrap mv-wrap">
     <section id="curso" class="mv-course" aria-label="Curso Metodología VECTOR">
       <div class="mv-player" id="mvPlayer" data-endpoint="${esc(endpoint)}">
-        <div class="mv-top" id="mvTop" hidden>
+        <div class="mv-top" id="mvTop">
+          <div class="mv-barrow">
+            <a class="mv-home" href="/">← Inicio del sitio</a>
+            <span class="mv-step" id="mvStep">Paso 1</span>
+            <button class="mv-exit" type="button" id="mvExit" hidden>Registrar a otra persona</button>
+          </div>
           <div class="mv-bar"><i id="mvBar"></i></div>
           <div class="mv-toprow">
             <div class="mv-letters" id="mvLetters">${LETRAS.map(([l]) => `<span data-l="${l}">${l}</span>`).join("")}</div>

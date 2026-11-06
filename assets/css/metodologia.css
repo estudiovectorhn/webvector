@@ -240,3 +240,59 @@ mark{background:rgba(106,59,245,.12);color:var(--deep);padding:0 4px;border-radi
 .mv-biblio summary{cursor:pointer;font-weight:800;padding:14px 0}
 .mv-biblio ol{margin:0 0 16px;padding-left:20px;display:grid;gap:8px;font-size:14px}
 @media (max-width:640px){.mv-ev summary{grid-template-columns:auto 1fr}.mv-ev summary .mv-lvl{grid-column:2}}
+
+/* ===== Navegación dentro del curso: salida al inicio y cambio de persona ===== */
+.mv-barrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:12px}
+.mv-home{font-weight:800;color:var(--violet);text-decoration:none;border:1.5px solid var(--line);border-radius:99px;padding:5px 12px;white-space:nowrap}
+.mv-home:hover{border-color:var(--violet);background:var(--surface2)}
+.mv-step{font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-right:auto}
+.mv-exit{font:inherit;font-size:12px;font-weight:700;background:none;border:1.5px solid var(--line);border-radius:99px;padding:5px 12px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.mv-exit:hover{border-color:var(--fuchsia);color:var(--fuchsia)}
+
+/* Registro corto en dos pasos */
+.mv-form.short{grid-template-columns:1fr}
+.mv-f label i{color:var(--fuchsia);font-style:normal}
+.mv-f label small{font-weight:600;color:var(--muted)}
+.mv-note{margin:14px 0 0;font-size:13px;font-weight:700;color:var(--ok)}
+.mv-form .mv-link{margin-top:10px;font-size:14px}
+
+/* Lección interactiva: el alumno envía cada mensaje */
+.mv-hint{background:var(--grad);color:#fff;font-size:12px;font-weight:800;text-align:center;padding:7px 12px}
+.mv-hint b{text-transform:uppercase;letter-spacing:.06em}
+.mv-send{margin:10px 0 2px;background:var(--surface);border:2px dashed var(--violet);border-radius:16px;padding:12px 14px;display:grid;gap:8px;animation:mvPop .3s}
+.mv-sendl{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--violet)}
+.mv-sendt{font-size:14px;line-height:1.45}
+.mv-sendb{font:inherit;font-weight:800;font-size:14px;border:0;border-radius:99px;padding:10px 18px;background:var(--grad);color:#fff;cursor:pointer;justify-self:start;box-shadow:0 10px 22px -12px rgba(44,2,164,.8)}
+.mv-sendb:hover{transform:translateY(-1px)}
+.mv-sendb b{font-weight:800}
+
+/* Situación antes de cada pregunta */
+.mv-ctxline{background:var(--surface2);border-left:4px solid var(--violet);border-radius:0 14px 14px 0;padding:12px 16px;margin:0 0 16px;font-size:15px;line-height:1.5;color:var(--text)}
+.mv-ctxline b{font-weight:800}
+
+/* Retroalimentación en bloques: resultado, qué se pudo hacer, por qué */
+.mv-rz{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.65);line-height:1.5;font-size:15px}
+.mv-rz span{display:block;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.mv-rz.bad{background:rgba(224,22,155,.09)}
+.mv-rz.bad span{color:var(--fuchsia)}
+.mv-rz.best{background:rgba(14,154,96,.1);font-weight:700}
+.mv-rz.best span{color:var(--ok)}
+.mv-rz.why{background:transparent;padding:8px 2px 0}
+
+/* Drill: ordenar la conversación */
+.mv-orden{display:grid;gap:22px;align-items:start}
+@media (min-width:900px){.mv-orden{grid-template-columns:1fr 1fr;gap:32px}}
+.mv-chips{display:grid;gap:10px;margin-bottom:14px}
+.mv-chip{font:inherit;text-align:left;display:flex;gap:12px;align-items:center;padding:13px 16px;border-radius:16px;border:2px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;transition:border-color .15s,transform .15s}
+.mv-chip:hover{border-color:var(--violet);transform:translateY(-2px)}
+.mv-chip b{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--grad);color:#fff;font-family:var(--display);font-weight:400;font-size:20px}
+.mv-chip span{font-size:15px;font-weight:700;line-height:1.35}
+.mv-chip.shake{animation:mvShake .4s}
+
+/* Certificado: vista previa y salidas */
+.mv-certbox{margin:18px 0 4px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface2);box-shadow:0 26px 50px -30px rgba(44,2,164,.55)}
+.mv-certbox img{display:block;width:100%;height:auto}
+.mv-certbox small{display:block;padding:10px 14px;font-size:12px;font-weight:700;color:var(--muted);background:var(--surface);text-align:center}
+.mv-certload{padding:34px 18px;text-align:center;font-weight:800;color:var(--muted)}
+.mv-endnav{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:22px}
+.mv-endnav .mv-link,.mv-endnav a{font-size:14px;color:var(--muted);text-decoration:underline}

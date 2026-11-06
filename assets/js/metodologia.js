@@ -233,14 +233,18 @@ function customPreset(name,prod,cli){
 }
 function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s}
 
-/* ===== Motor del curso Metodología VECTOR ===== */
+/* ===== Motor del curso Metodología VECTOR =====
+ * Registro en dos pasos cortos dentro del propio curso (reg1 al entrar, reg2 antes del examen),
+ * lecciones donde el alumno envía cada mensaje, drill de orden VECTOR, examen con contexto y
+ * consecuencias por respuesta, y certificado premium imprimible. */
 const $ = id => document.getElementById(id);
-const LS = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
-const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const LS = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem(k); } catch (e) {} } };
+const esc = s => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const mark = t => esc(t).replace(/\[([^\]]+)\]/g, '<mark>[$1]</mark>');
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const track = (ev, d, custom) => { try { if (window.fbq) fbq(custom ? "trackCustom" : "track", ev, d || {}); } catch (e) {} };
 const WA = "50495691481";
+const ORD = ["V", "E", "C", "T", "O", "R"];
 const player = $("mvPlayer"), screen = $("mvScreen");
 /* Respaldo científico: filtro por letra y abrir el estudio enlazado desde las lecciones */
 (function () {
@@ -256,7 +260,14 @@ if (!player) return;
 const ENDPOINT = player.dataset.endpoint || "";
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-let S = LS.get("mv-state", null) || { reg: null, regId: null, idx: 0, xp: 0, done: [], exam: null };
+const FRESH = () => ({ ver: 2, reg: null, reg2: null, regId: null, idx: 0, xp: 0, done: [], exam: null, t0: Date.now() });
+let S = LS.get("mv-state", null) || FRESH();
+/* Migración del curso anterior (un solo formulario largo): se conservan nombre, empresa y contacto */
+if (S.reg && S.ver !== 2) {
+  if (!S.reg2 && (S.reg.correo || S.reg.telefono)) S.reg2 = { correo: S.reg.correo || "", telefono: S.reg.telefono || "", cargo: S.reg.cargo || "", ciudad: S.reg.ciudad || "", interes: S.reg.interes || "", vendedores: S.reg.vendedores || "" };
+  S.ver = 2; S.idx = 1; S.exam = null; S.done = S.done || [];
+  LS.set("mv-state", S);
+}
 const save = () => LS.set("mv-state", S);
 let C = null;
 
@@ -266,6 +277,8 @@ function buildC() {
   C = Object.assign({}, base); C.neg = r.empresa || base.neg; C.Cli = cap(C.cli);
   C.hi = `¡Buen día! Le atiende ${r.nombre.split(" ")[0]} de ${C.neg} 😊`;
 }
+/* Datos completos del alumno (paso 1 + paso 2) */
+const REG = () => Object.assign({ cargo: "", correo: "", telefono: "", ciudad: "", vendedores: "", interes: "" }, S.reg || {}, S.reg2 || {});
 
 /* ---------- Contenido de cada letra ---------- */
 function lessons() {
@@ -275,185 +288,323 @@ function lessons() {
       do: ["Responda en menos de 5 minutos.", "Salude con su nombre y el del negocio.", "Reconozca la pregunta del precio: \"con gusto le comparto el precio\". Nunca la ignore."],
       ch: [["in", C.open], ["out", C.hi + " Con gusto le comparto el precio."]],
       fact: ["7×", "más probabilidad de lograr la conversación con quien decide si se responde en la primera hora. En una auditoría a 2,241 empresas, el promedio de respuesta fue de 42 horas.", "Oldroyd y col., Harvard Business Review, 2011", "rapidez"],
-      q: { p: C.open, q: "¿Cuál es el mejor primer mensaje?", o: [C.hi + " Con gusto le comparto el precio.", "Cuesta L ____ 👍", "Para precios tiene que venir en persona."], e: "Se presenta, usa el nombre del negocio y reconoce la pregunta. Así empieza el vínculo." } },
+      q: { ctx: `Son las 8:40 a. m. Entra al WhatsApp de ${C.neg} un mensaje de un número que no tiene guardado.`, p: C.open, q: "¿Cuál es el mejor primer mensaje?",
+        o: [C.hi + " Con gusto le comparto el precio.", "Cuesta L ____ 👍", "Para precios tiene que venir en persona."],
+        cons: ["", `El ${C.cli} recibe un número suelto, lo compara con otros dos negocios y se va con el más barato. Usted nunca supo qué necesitaba.`, `El ${C.cli} siente que le esconden el precio. La mayoría no vuelve a escribir ni llega al local.`],
+        res: `El ${C.cli} ve que le responde una persona con nombre y que no le esconden el precio: se abre la conversación.`,
+        e: "Se presenta, usa el nombre del negocio y reconoce la pregunta. Así empieza el vínculo." } },
     { l: "E", t: "Explorar", temp: "Frío → tibio", d: `Antes de dar un número, descubra qué necesita resolver el ${C.cli}. Una sola pregunta abierta, sobre su problema o su objetivo.`,
       do: ["Pregunte por la necesidad, no por datos personales todavía.", "Una pregunta por mensaje.", "Escuche: su respuesta le dirá qué ofrecer."],
       ch: [["out", C.probQ], ["in", C.probA]],
       fact: ["430", "personas en un estudio de chat: quienes hicieron preguntas de seguimiento le cayeron mejor a su compañero, porque se percibían más atentos.", "Huang y col., Journal of Personality and Social Psychology, 2017", "preguntas"],
-      q: { p: "(Ya saludó y reconoció la pregunta)", q: "¿Qué pregunta hace a continuación?", o: [C.probQ, "¿Nombre completo, ciudad, edad y cómo nos encontró?", "Le mando el catálogo completo 📄"], e: "Una sola pregunta sobre la necesidad. Varias juntas se sienten como interrogatorio." } },
+      q: { ctx: `Ya saludó y reconoció la pregunta del precio. El ${C.cli} está en línea esperando.`, p: C.open, q: "¿Qué pregunta hace a continuación?",
+        o: [C.probQ, "¿Nombre completo, ciudad, edad y cómo nos encontró?", "Le mando el catálogo completo 📄"],
+        cons: ["", `Se siente un interrogatorio. El ${C.cli} todavía no sabe si le conviene y ya le piden sus datos: responde a medias o deja de escribir.`, `El ${C.cli} recibe veinte precios y ninguna guía. No sabe cuál le sirve y deja el chat en visto.`],
+        res: `El ${C.cli} cuenta su caso con sus propias palabras: ahí está lo que de verdad necesita y lo que le va a ofrecer.`,
+        e: "Una sola pregunta sobre la necesidad. Varias juntas se sienten como interrogatorio." } },
     { l: "C", t: "Conocer", temp: "Tibio → caliente", d: `Ahora conozca a la persona: nombre, ciudad y, sobre todo, el impacto. ¿Desde cuándo le pasa? ¿Para cuándo lo necesita? Ahí aparece la razón real para comprar.`,
       do: ["Valide lo que siente: \"le entiendo\".", "Pida nombre y ciudad, y úselo 2 o 3 veces.", "Pregunte por el impacto o la fecha que le importa."],
       ch: [["out", "Le entiendo perfectamente 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?"], ["in", `Soy ${n}, de ${c}.`], ["out", `Mucho gusto, ${n}. ${C.impQ}`], ["in", C.impA]],
       fact: ["Su nombre", "En tres experimentos, recordar el nombre de la persona aumentó su disposición a aceptar una solicitud de compra: lo perciben como un cumplido.", "Howard, Gengler y Jain, Journal of Consumer Research, 1995", "nombre"],
-      q: { p: C.probA, q: "¿Cuál respuesta avanza mejor?", o: ["Le entiendo perfectamente, tiene solución 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", C.ruleBad, "Ok, cuesta L [precio]."], e: "Valida la emoción y pide datos para personalizar. " + C.rule } },
+      q: { ctx: `El ${C.cli} acaba de abrirse y le contó algo personal sobre su caso.`, p: C.probA, q: "¿Cuál respuesta avanza mejor?",
+        o: ["Le entiendo perfectamente, tiene solución 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", C.ruleBad, "Ok, cuesta L [precio]."],
+        cons: ["", `Usted resolvió por chat algo que no le toca resolver. Si después le dicen otra cosa, el ${C.cli} siente que le mintieron. ${C.rule}`, `El ${C.cli} contó algo importante y recibió un número. Se siente ignorado y se va a comparar precios.`],
+        res: `El ${C.cli} se siente escuchado y le da su nombre: desde aquí la conversación es entre dos personas, no entre un número y un catálogo.`,
+        e: "Valida la emoción y pide datos para personalizar. " + C.rule } },
     { l: "T", t: "Transparentar", temp: "Caliente", d: `Ahora sí: el precio. Conéctelo con lo que el ${C.cli} le contó, dé el precio o rango y la forma de pago. Si pregunta el precio por segunda vez, se da en ese mismo mensaje.`,
       do: ["Repita su motivo con sus palabras.", "Precio o rango claro, sin rodeos.", "Mencione formas de pago si existen."],
       ch: [["in", C.impA], ["out", C.sol]],
       fact: ["Precio primero", "lleva a juzgar si el producto \"vale lo que cuesta\"; el producto primero, a preguntarse si se desea. El precio primero solo ayudó con productos claramente baratos.", "Karmarkar, Shiv y Knutson, Journal of Marketing Research, 2015", "precio"],
-      q: { p: C.impA, q: "Es la segunda vez que pregunta el precio. ¿Qué responde?", o: [C.sol, "Primero venga y ahí le decimos.", "Depende de muchas cosas."], e: "El precio no se esconde: se da con contexto y conectado a lo que el cliente contó." } },
+      q: { ctx: `Es la segunda vez en el mismo chat que el ${C.cli} le pregunta el precio, y ya le contó para cuándo lo necesita.`, p: C.impA, q: "¿Qué responde?",
+        o: [C.sol, "Primero venga y ahí le decimos.", "Depende de muchas cosas."],
+        cons: ["", `Esquivar el precio dos veces se lee como evasión. El ${C.cli} asume que es carísimo y deja de responder.`, `Una respuesta así no le sirve para decidir nada. El ${C.cli} se queda igual que antes de escribir y busca a otro negocio.`],
+        res: `El ${C.cli} ya puede decidir: sabe cuánto es, por qué le conviene y cómo pagarlo. Ahí es donde pregunta por horarios.`,
+        e: "El precio no se esconde: se da con contexto y conectado a lo que el cliente contó." } },
     { l: "O", t: "Ofrecer", temp: "Cierre", d: `No deje la decisión en el aire. Ofrezca dos opciones concretas de día, hora o forma de entrega, y confirme todo por escrito.`,
       do: ["Dos opciones, no \"cuando usted guste\".", "Confirme día, hora y lugar por escrito.", "Si hay anticipo, explíquelo con calma, como reserva."],
       ch: [["out", C.close], ["in", C.closeA], ["out", C.confirm]],
       fact: ["94", "pruebas en un metaanálisis: un plan concreto de cuándo y dónde actuar aumenta de forma importante el cumplimiento (d = 0.65).", "Gollwitzer y Sheeran, metaanálisis, 2006", "plan"],
-      q: { p: "¿Tienen disponible esta semana?", q: "¿Cuál es el mejor cierre?", o: ["Sí 😊 " + C.close, "Sí. Cualquier cosa me avisa.", "Sí, pero deposite hoy o se pierde."], e: "Dos opciones concretas facilitan decidir. \"Me avisa\" deja enfriar al cliente." } },
+      q: { ctx: `El ${C.cli} ya conoce el precio y pregunta por disponibilidad: es la señal de que está listo.`, p: "¿Tienen disponible esta semana?", q: "¿Cuál es el mejor cierre?",
+        o: ["Sí 😊 " + C.close, "Sí. Cualquier cosa me avisa.", "Sí, pero deposite hoy o se pierde."],
+        cons: ["", `La decisión queda en el aire. El ${C.cli} se distrae con su día, nadie le recuerda nada y la conversación muere sin cita.`, `La presión asusta. El ${C.cli} siente que solo le quieren sacar el dinero y se va aunque le interesaba.`],
+        res: `El ${C.cli} solo tiene que elegir entre dos opciones fáciles, y queda una fecha por escrito a la que usted puede dar seguimiento.`,
+        e: "Dos opciones concretas facilitan decidir. \"Me avisa\" deja enfriar al cliente." } },
     { l: "R", t: "Retener", temp: "Después", d: `La venta no termina en el chat. Guarde y etiquete el contacto, recuerde la cita, dé seguimiento a quien no decidió y publique historias para seguir presente.`,
       do: ["Guarde el contacto: nombre · interés · ciudad · fecha.", "Recordatorio un día antes; seguimiento de días 1, 3, 7 y 30.", "De 1 a 3 historias al día, sin saturar."],
       ch: [["ctx", `Contacto guardado: ${n} · ${C.segItem} · ${c}`], ["out", `Guárdenos como ${C.neg} para que le lleguen nuestras novedades 😊`], ["ctx", "Un día antes"], ["out", `Hola, ${n} 😊 Le recordamos su cita de mañana. ¿Nos confirma?`]],
       fact: ["78.6%", "de asistencia con recordatorio por mensaje frente a 67.8% sin recordatorio (7 estudios, 5,841 personas).", "Revisión sistemática Cochrane, 2013", "recordatorio"],
-      q: { p: "Mmm, lo voy a pensar.", q: "¿Qué responde?", o: [`¡Con mucho gusto! Le guardo como ${C.cli} de ${C.neg} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si compra hoy le hago 10% de descuento.", "Ok."], e: "Respeta la decisión y asegura el contacto para el seguimiento." } }
+      q: { ctx: `Usted ya dio el precio y ofreció dos horarios. El ${C.cli} no dice ni sí ni no.`, p: "Mmm, lo voy a pensar.", q: "¿Qué responde?",
+        o: [`¡Con mucho gusto! Le guardo como ${C.cli} de ${C.neg} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si compra hoy le hago 10% de descuento.", "Ok."],
+        cons: ["", `Regaló margen sin saber qué le detenía. Muchos ${C.clis} aprenden que basta con dudar para que baje el precio, y los que iban a comprar igual pagan menos.`, `"Ok" cierra la puerta. El ${C.cli} entiende que ya no le interesa atenderlo y nadie vuelve a escribirle.`],
+        res: `El ${C.cli} se va sin presión pero queda guardado, ve sus historias y puede volver en días o semanas. Eso es Retener.`,
+        e: "Respeta la decisión y asegura el contacto para el seguimiento." } }
   ];
 }
 function mission() {
   const [n, c] = C.who;
   return [
-    { p: C.open, o: [[C.hi + " Con gusto le comparto el precio. " + C.probQ, 1], ["Buen día. Cuesta L [precio].", 0], ["Para precios tiene que venir en persona.", -1]] },
-    { p: C.probA, o: [["Le entiendo perfectamente, tiene solución 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", 1], ["Ok, entonces cuesta L [precio].", 0], [C.ruleBad, -1]] },
-    { p: `Soy ${n}, de ${c}.`, o: [[`Mucho gusto, ${n}. ${C.impQ}`, 1], [`Ok ${n}, le esperamos cuando guste.`, 0], [`${n}, hoy hay 20% de descuento si paga ya.`, -1]] },
-    { p: C.impA, o: [[C.sol + " " + C.close, 1], ["Cuesta L [precio]. Cualquier cosa me avisa.", 0], ["Primero venga y ahí le decimos.", -1]] }
+    { p: C.open, o: [[C.hi + " Con gusto le comparto el precio. " + C.probQ, 1, "Se presentó, no escondió el precio y abrió con una pregunta: el cliente responde."], ["Buen día. Cuesta L [precio].", 0, "Dio el número sin contexto: el cliente se va a comparar."], ["Para precios tiene que venir en persona.", -1, "El cliente siente que le esconden el precio y no vuelve."]] },
+    { p: C.probA, o: [["Le entiendo perfectamente, tiene solución 😊 ¿Me regala su nombre y desde qué ciudad nos escribe?", 1, "Validó lo que siente y pidió sus datos en el momento correcto."], ["Ok, entonces cuesta L [precio].", 0, "Contó algo personal y recibió un precio: se siente ignorado."], [C.ruleBad, -1, "Prometió o diagnosticó por chat. " + C.rule]] },
+    { p: `Soy ${n}, de ${c}.`, o: [[`Mucho gusto, ${n}. ${C.impQ}`, 1, "Usó su nombre y buscó el impacto: ahí aparece la razón real de compra."], [`Ok ${n}, le esperamos cuando guste.`, 0, "\"Cuando guste\" no es una cita: el cliente se enfría."], [`${n}, hoy hay 20% de descuento si paga ya.`, -1, "Descuento antes de entender la necesidad: parece desesperación."]] },
+    { p: C.impA, o: [[C.sol + " " + C.close, 1, "Precio con contexto y dos opciones concretas: así se cierra."], ["Cuesta L [precio]. Cualquier cosa me avisa.", 0, "El precio quedó suelto y la decisión en el aire."], ["Primero venga y ahí le decimos.", -1, "Segunda evasiva del precio: el cliente abandona el chat."]] }
   ];
 }
 function exam() {
-  const L = "VECTOR";
+  const [n, c] = C.who;
+  const sc = t => `Usted atiende el WhatsApp de ${C.neg}. ${t}`;
   return [
-    { l: "V", chat: C.open, q: "Llega este mensaje. ¿Cuál es la mejor primera respuesta?", o: [C.hi + " Con gusto le comparto el precio. " + C.probQ, "Buen día. Cuesta L ____.", "Para precios tiene que venir en persona.", "Le mando el catálogo completo 📄"], e: "V + E: se presenta, reconoce la pregunta y abre con la necesidad." },
-    { l: "V", q: "¿Cuál es la meta de tiempo para responder un mensaje nuevo en horario?", o: ["Menos de 5 minutos", "Menos de 2 horas", "El mismo día", "Cuando haya tiempo"], e: "El cliente escribe a varios negocios a la vez. Responder rápido multiplica las probabilidades de cerrar." },
-    { l: "E", q: "En la Metodología VECTOR, ¿qué significa la E?", o: ["Explorar lo que el cliente necesita resolver", "Enviar el catálogo", "Esperar a que el cliente vuelva a escribir", "Exigir el anticipo"], e: "V Vincular, E Explorar, C Conocer, T Transparentar, O Ofrecer, R Retener." },
-    { l: "E", q: "¿Cuántas preguntas conviene hacer en cada mensaje?", o: ["Una", "Tres, para avanzar rápido", "Todas de una vez", "Ninguna, solo informar"], e: "Una por mensaje. Varias juntas se sienten como interrogatorio." },
-    { l: "C", q: "¿Para qué sirve preguntar \"para cuándo lo necesita\"?", o: ["Para descubrir la razón real de compra y la urgencia", "Para llenar un formulario", "Para alargar la conversación", "No sirve, mejor dar el precio"], e: "El impacto y la fecha son la motivación real. Con eso, el precio se conecta con algo que le importa." },
-    { l: "C", q: "¿Cuál de estas es una regla de este negocio?", o: [C.rule, C.ruleBad, "Contestar solo en la noche", "Mandar audios largos para explicar mejor"], e: "Quien atiende orienta y confirma; nunca promete ni asegura lo que no ha verificado." },
-    { l: "T", q: "El cliente pregunta el precio por segunda vez. ¿Qué hace?", o: ["Le da el precio o rango en ese mensaje y sigue con una sola pregunta", "Le insiste en que venga en persona", "Le hace otra pregunta sin mencionar el precio", "Le manda una promoción"], e: "Esquivar el precio dos veces se siente como evasión y rompe la confianza." },
-    { l: "T", chat: C.simpleQ, q: "¿Cuál respuesta respeta al cliente?", o: [C.simpleR, "Para darle el precio necesito saber su caso.", "L [precio].", "Primero dígame su nombre, ciudad y edad."], e: "Si piden el precio directo, se da de inmediato con una sola pregunta útil." },
-    { l: "O", chat: "¿Tienen disponible esta semana?", q: "¿Cuál es el mejor cierre?", o: ["Sí 😊 " + C.close, "Sí. Cualquier cosa me avisa.", "Sí, pero deposite hoy o se pierde.", "Depende, ¿cuándo puede usted?"], e: "Dos opciones concretas facilitan decidir." },
-    { l: "O", q: "¿Qué señal indica que el cliente ya está listo para cerrar?", o: ["Pregunta por horarios, entrega o formas de pago", "Pregunta el precio", "Responde \"ok\"", "Deja en visto"], e: "Cuando pregunta cómo y cuándo, es momento de ofrecer el cierre." },
-    { l: "R", chat: "Mmm, lo voy a pensar.", q: "¿Cuál respuesta deja la puerta abierta sin presionar?", o: [`¡Con mucho gusto! Le guardo como ${C.cli} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si compra hoy le hago 10% de descuento.", "Ok.", "¿Qué hay que pensar?"], e: "Respeta la decisión y asegura el contacto: eso es Retener." },
-    { l: "R", q: "Un cliente no responde. ¿Cuándo se deja descansar el contacto?", o: ["Después de 3 mensajes de seguimiento sin respuesta", "Después del primer mensaje", "Nunca: hay que escribir todos los días", "Se le bloquea"], e: "Días 1, 3, 7 y 30 como máximo. Sigue viendo las historias si guardó el número." }
+    { l: "V", ctx: sc("Son las 8:40 a. m. y escribe un número nuevo, que no tiene guardado."), chat: C.open, q: "¿Cuál es la mejor primera respuesta?",
+      o: [C.hi + " Con gusto le comparto el precio. " + C.probQ, "Buen día. Cuesta L ____.", "Para precios tiene que venir en persona.", "Le mando el catálogo completo 📄"],
+      cons: ["", `El ${C.cli} recibe un número suelto y lo compara con otros negocios. Gana el más barato, no el que mejor le resuelve.`, `Suena a que le esconden el precio. La mayoría no vuelve a escribir ni llega al local.`, `Veinte precios y ninguna guía: el ${C.cli} no sabe cuál le sirve y deja el chat en visto.`],
+      res: `El ${C.cli} sabe con quién habla, ve que no le esconden el precio y cuenta qué necesita.`,
+      e: "V + E: se presenta, reconoce la pregunta y abre con la necesidad." },
+    { l: "V", ctx: sc("Son las 10:00 a. m., en pleno horario de atención, y entra una consulta de precio."), q: "¿Cuál es la meta de tiempo para responderle?",
+      o: ["Menos de 5 minutos", "Menos de 2 horas", "El mismo día", "Cuando haya tiempo"],
+      cons: ["", `En dos horas el ${C.cli} ya escribió a otros tres negocios y el primero que contestó le está cotizando.`, `Al final del día el ${C.cli} ya compró en otro lado o perdió el interés.`, `El mensaje queda sin leer y el ${C.cli} asume que el negocio no está trabajando.`],
+      res: "Responder en los primeros minutos multiplica la probabilidad de lograr la conversación con quien decide.",
+      e: "El cliente escribe a varios negocios a la vez. Responder rápido multiplica las probabilidades de cerrar." },
+    { l: "E", ctx: "Entra a trabajar una persona nueva en el equipo y le pregunta qué significa cada letra de VECTOR.", q: "¿Qué significa la E?",
+      o: ["Explorar lo que el cliente necesita resolver", "Enviar el catálogo", "Esperar a que el cliente vuelva a escribir", "Exigir el anticipo"],
+      cons: ["", "Si lo primero es enviar el catálogo, el cliente elige solo y casi siempre elige el precio más bajo o nada.", "Esperar es regalar el cliente al negocio que sí contestó.", "Pedir anticipo antes de entender la necesidad rompe la confianza de inmediato."],
+      res: "Explorar primero le dice qué ofrecer y por qué le conviene a esa persona en particular.",
+      e: "V Vincular, E Explorar, C Conocer, T Transparentar, O Ofrecer, R Retener." },
+    { l: "E", ctx: sc(`El ${C.cli} ya contó su necesidad y usted necesita dos datos más para orientarlo.`), chat: C.probA, q: "¿Cuántas preguntas conviene hacer en cada mensaje?",
+      o: ["Una", "Tres, para avanzar rápido", "Todas de una vez", "Ninguna, solo informar"],
+      cons: ["", "Tres preguntas juntas se leen como interrogatorio: el cliente contesta una sola o ninguna.", `El ${C.cli} se abruma, siente que llena un formulario y deja el chat en visto.`, "Sin preguntas usted ofrece a ciegas y el cliente no siente que lo escuchan."],
+      res: "Una pregunta por mensaje mantiene el ritmo de conversación y casi siempre obtiene respuesta.",
+      e: "Una por mensaje. Varias juntas se sienten como interrogatorio." },
+    { l: "C", ctx: sc(`El ${C.cli} ya le contó su problema, pero usted todavía no sabe qué tan urgente es.`), chat: C.probA, q: "¿Para qué sirve preguntar \"¿para cuándo lo necesita?\"",
+      o: ["Para descubrir la razón real de compra y la urgencia", "Para llenar un formulario", "Para alargar la conversación", "No sirve, mejor dar el precio de una vez"],
+      cons: ["", "Si lo trata como dato de formulario, no lo usa después y el precio vuelve a quedar sin contexto.", "Alargar sin avanzar cansa al cliente: cada mensaje debe acercarlo a una decisión.", "Un precio sin saber la urgencia es solo un número: el cliente no tiene con qué compararlo más que con otro número."],
+      res: "Con la fecha y el motivo usted conecta el precio a algo que le importa, y el cliente deja de verlo como un gasto.",
+      e: "El impacto y la fecha son la motivación real. Con eso, el precio se conecta con algo que le importa." },
+    { l: "C", ctx: sc(`Un ${C.cli} le describe su caso con detalle y le pide que usted le diga qué tiene y qué necesita.`), chat: C.probA, q: `En ${C.neg}, ¿qué debe hacer quien atiende el WhatsApp?`,
+      o: [C.rule, C.ruleBad, "Contestar solo en la noche, cuando ya hay tiempo", "Mandar un audio largo explicando todo el caso"],
+      cons: ["", `Resolvió por chat algo que no le toca. Si el profesional dice otra cosa, el ${C.cli} siente que le mintieron y se pierde la venta y la confianza.`, "De noche el cliente ya resolvió con otro negocio.", "Muchos clientes no pueden oír audios en el trabajo: el mensaje queda sin escuchar y la conversación se detiene."],
+      res: "Usted orienta, da el siguiente paso concreto y deja la decisión técnica a quien corresponde: el cliente avanza y nadie promete de más.",
+      e: "Quien atiende orienta y confirma; nunca promete ni asegura lo que no ha verificado." },
+    { l: "T", ctx: sc(`Es la segunda vez en el mismo chat que el ${C.cli} le pregunta cuánto cuesta.`), chat: "¿Pero cuánto me sale al final? 🙏", q: "¿Qué hace?",
+      o: ["Le da el precio o rango en ese mensaje y sigue con una sola pregunta", "Le insiste en que venga en persona", "Le hace otra pregunta sin mencionar el precio", "Le manda una promoción"],
+      cons: ["", `Dos evasivas seguidas se leen como \"es carísimo\". El ${C.cli} deja de responder sin decir nada.`, "Preguntar otra vez sin dar el precio se siente como que lo están entreteniendo: pierde la confianza.", "Una promoción sin responder lo que preguntó parece venta a presión y tapa la duda real."],
+      res: `El ${C.cli} obtiene lo que pidió, siente que le hablan claro y sigue conversando con usted.`,
+      e: "Esquivar el precio dos veces se siente como evasión y rompe la confianza." },
+    { l: "T", ctx: sc(`El ${C.cli} está apurado, escribe desde el trabajo y no quiere que le pregunten nada.`), chat: C.simpleQ, q: "¿Cuál respuesta respeta al cliente?",
+      o: [C.simpleR, "Para darle el precio necesito saber su caso.", "L [precio].", "Primero dígame su nombre, ciudad y edad."],
+      cons: ["", "Pidió el precio y recibió una condición. Se siente un trámite y se va.", "El precio solo, sin una palabra más, cierra la conversación: no hay por dónde seguir.", "Le pidieron tres datos personales cuando solo quería un número: eso espanta al cliente apurado."],
+      res: "Recibe el precio de inmediato, siente que lo respetan, y la única pregunta que le hacen le resulta útil: por eso la contesta.",
+      e: "Si piden el precio directo, se da de inmediato con una sola pregunta útil." },
+    { l: "O", ctx: sc(`El ${C.cli} ya sabe el precio y ahora pregunta por disponibilidad: está listo para cerrar.`), chat: "¿Tienen disponible esta semana?", q: "¿Cuál es el mejor cierre?",
+      o: ["Sí 😊 " + C.close, "Sí. Cualquier cosa me avisa.", "Sí, pero deposite hoy o se pierde.", "Depende, ¿cuándo puede usted?"],
+      cons: ["", "La decisión queda en el aire. El cliente se distrae, nadie agenda nada y la venta se enfría.", "La presión asusta: el cliente siente que solo le quieren sacar el dinero.", "Le pasó el trabajo al cliente. Si no tenía una fecha en mente, simplemente no contesta."],
+      res: "El cliente solo elige entre dos opciones fáciles y queda una fecha por escrito que usted puede recordar un día antes.",
+      e: "Dos opciones concretas facilitan decidir." },
+    { l: "O", ctx: sc("Lleva seis mensajes con un cliente y quiere saber si ya puede ofrecer el cierre."), q: "¿Qué señal indica que ya está listo para cerrar?",
+      o: ["Pregunta por horarios, entrega o formas de pago", "Pregunta el precio", "Responde \"ok\"", "Deja en visto"],
+      cons: ["", "Preguntar el precio es el inicio, no el final: todavía falta explorar y conocer.", "\"Ok\" suele ser educación, no decisión: si cierra ahí, lo apura antes de tiempo.", "El visto es señal de enfriamiento: lo que toca es seguimiento, no cierre."],
+      res: "Cuando pregunta cómo y cuándo, ya decidió por dentro: ofrecerle dos opciones solo le facilita el último paso.",
+      e: "Cuando pregunta cómo y cuándo, es momento de ofrecer el cierre." },
+    { l: "R", ctx: sc(`Usted ya dio el precio y ofreció dos horarios. El ${C.cli} no dice ni sí ni no.`), chat: "Mmm, lo voy a pensar.", q: "¿Cuál respuesta deja la puerta abierta sin presionar?",
+      o: [`¡Con mucho gusto! Le guardo como ${C.cli} para avisarle de novedades. ¿Hay alguna duda que pueda aclararle? 😊`, "Si compra hoy le hago 10% de descuento.", "Ok.", "¿Qué hay que pensar?"],
+      cons: ["", "Regaló margen sin saber qué lo detenía, y enseñó que dudando se consigue descuento.", "\"Ok\" cierra la puerta: el cliente entiende que ya no le interesa atenderlo.", "Suena a reclamo. El cliente se pone a la defensiva y deja de responder."],
+      res: "Se va sin presión pero queda guardado, ve sus historias y puede volver en días o semanas con la duda resuelta.",
+      e: "Respeta la decisión y asegura el contacto: eso es Retener." },
+    { l: "R", ctx: sc("Un cliente pidió precio hace tres días, le escribió dos veces y no ha vuelto a responder."), q: "¿Cuándo se deja descansar el contacto?",
+      o: ["Después de 3 o 4 seguimientos (días 1, 3, 7 y 30) sin respuesta", "Después del primer mensaje", "Nunca: hay que escribir todos los días", "Se le bloquea"],
+      cons: ["", "Un solo mensaje es muy poco: la mayoría de las ventas de seguimiento se cierran del segundo al cuarto contacto.", "Escribir a diario se siente acoso y termina en bloqueo o reporte de WhatsApp.", "Bloquear borra un contacto que ya mostró interés, y con él todas sus compras futuras."],
+      res: "Deja de escribir pero no desaparece: si guardó el número, sigue viendo sus historias y puede volver solo.",
+      e: "Días 1, 3, 7 y 30 como máximo. Sigue viendo las historias si guardó el número." }
   ];
 }
 
-/* ---------- Pantallas ---------- */
+/* ---------- Flujo ---------- */
 let FLOW = [];
 function buildFlow() {
-  FLOW = [{ k: "intro" }];
-  lessons().forEach((x, i) => { FLOW.push({ k: "lesson", i }); FLOW.push({ k: "check", i }); if (x.l === "C") FLOW.push({ k: "termo" }); });
-  FLOW.push({ k: "mission" }, { k: "examIntro" }, { k: "exam" }, { k: "result" });
+  FLOW = [{ k: "reg1" }, { k: "intro" }];
+  ORD.forEach((l, i) => { FLOW.push({ k: "lesson", i }, { k: "check", i }); if (l === "C") FLOW.push({ k: "termo" }); if (l === "O") FLOW.push({ k: "orden" }); });
+  FLOW.push({ k: "reg2" }, { k: "mission" }, { k: "examIntro" }, { k: "exam" }, { k: "result" });
 }
 const LESS = () => lessons();
 
 function topbar() {
-  $("mvTop").hidden = !S.reg;
-  if (!S.reg) return;
-  const pct = Math.round(Math.min(S.idx, FLOW.length - 1) / (FLOW.length - 1) * 100);
+  if (!FLOW.length) buildFlow();
+  const last = FLOW.length - 1, i = Math.min(S.idx, last);
+  const pct = Math.round(i / last * 100);
   $("mvBar").style.width = pct + "%"; $("mvPct").textContent = pct + "%"; $("mvXp").textContent = S.xp + " XP";
+  const st = $("mvStep"); if (st) st.textContent = `Paso ${i + 1} de ${last + 1}`;
+  const ex = $("mvExit"); if (ex) ex.hidden = !S.reg;
   $("mvLetters").querySelectorAll("span").forEach(s => s.classList.toggle("on", S.done.includes(s.dataset.l)));
 }
 function addXP(n) { S.xp += n; save(); const el = $("mvXp"); el.textContent = S.xp + " XP"; el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
 function toast(t) { const el = $("mvToast"); el.textContent = t; el.hidden = false; el.classList.remove("show"); void el.offsetWidth; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => (el.hidden = true), 2600); }
 function go(i) { S.idx = Math.max(0, Math.min(FLOW.length - 1, i)); save(); render(); requestAnimationFrame(() => { const hh = (document.querySelector(".sitehead") || {}).offsetHeight || 64; const r = player.getBoundingClientRect(); if (r.top < hh || r.top > innerHeight * .4) window.scrollTo({ top: scrollY + r.top - hh - 8, behavior: reduce ? "auto" : "smooth" }); }); }
 const next = () => go(S.idx + 1);
+function bub(box, w, t) { const d = document.createElement("div"); d.className = w === "ctx" ? "mv-ctx" : "mv-b " + w; d.innerHTML = mark(t); box.appendChild(d); box.scrollTop = box.scrollHeight; return d; }
 function animateChat(box, items, gap) {
   let k = 0; const token = Symbol(); box._t = token;
   const step = () => {
     if (box._t !== token || k >= items.length) return;
     const [w, t] = items[k++];
-    if (w === "in" && !reduce) { const ty = document.createElement("div"); ty.className = "mv-typing"; ty.innerHTML = "<i></i><i></i><i></i>"; box.appendChild(ty); setTimeout(() => { ty.remove(); add(w, t); setTimeout(step, gap); }, 700); }
-    else { add(w, t); setTimeout(step, reduce ? 0 : gap); }
+    if (w === "in" && !reduce) { const ty = document.createElement("div"); ty.className = "mv-typing"; ty.innerHTML = "<i></i><i></i><i></i>"; box.appendChild(ty); box.scrollTop = box.scrollHeight; setTimeout(() => { ty.remove(); bub(box, w, t); setTimeout(step, gap); }, 700); }
+    else { bub(box, w, t); setTimeout(step, reduce ? 0 : gap); }
   };
-  const add = (w, t) => { const d = document.createElement("div"); d.className = w === "ctx" ? "mv-ctx" : "mv-b " + w; d.innerHTML = mark(t); box.appendChild(d); };
+  step();
+}
+/* Lección interactiva: el alumno envía cada mensaje del negocio */
+function playLesson(box, items, onDone) {
+  let k = 0; const token = Symbol(); box._t = token;
+  const step = () => {
+    if (box._t !== token) return;
+    if (k >= items.length) { onDone && onDone(); return; }
+    const [w, t] = items[k];
+    if (w === "out") {
+      const p = document.createElement("div"); p.className = "mv-send";
+      p.innerHTML = `<span class="mv-sendl">Su respuesta</span><div class="mv-sendt">${mark(t)}</div><button class="mv-sendb" type="button">Enviar <b>➤</b></button>`;
+      box.appendChild(p); box.scrollTop = box.scrollHeight;
+      p.querySelector("button").onclick = () => { p.remove(); bub(box, "out", t); k++; step(); };
+      return;
+    }
+    if (w === "in" && !reduce) { const ty = document.createElement("div"); ty.className = "mv-typing"; ty.innerHTML = "<i></i><i></i><i></i>"; box.appendChild(ty); box.scrollTop = box.scrollHeight; setTimeout(() => { if (box._t !== token) return; ty.remove(); bub(box, w, t); k++; step(); }, 700); return; }
+    bub(box, w, t); k++; step();
+  };
   step();
 }
 const wh = () => `<div class="mv-wa-head"><span class="mv-av">${esc(C.neg.charAt(0))}</span><div><b>${esc(C.neg)}</b><small>WhatsApp Business</small></div></div>`;
 
+/* Retroalimentación: qué pasa si responde así, qué se pudo hacer y por qué */
+function fbHTML(ok, q, k, extra) {
+  if (ok) return `<div class="mv-fb ok"><b>¡Correcto!${extra || ""}</b>${q.res ? `<p class="mv-rz"><span>Lo que pasa con el cliente</span>${esc(q.res)}</p>` : ""}<p class="mv-rz why"><span>Por qué funciona</span>${esc(q.e)}</p></div>`;
+  const cons = (q.cons && q.cons[k]) || "";
+  return `<div class="mv-fb bad"><b>No es la mejor opción</b>
+    ${cons ? `<p class="mv-rz bad"><span>El resultado de responder así</span>${esc(cons)}</p>` : ""}
+    <p class="mv-rz best"><span>Qué se pudo hacer</span>${mark(q.o[0])}</p>
+    <p class="mv-rz why"><span>Por qué funciona</span>${esc(q.e)}</p></div>`;
+}
+
 function render() {
-  topbar();
-  if (!S.reg) { renderRegistro(); requestAnimationFrame(() => screen.classList.add("on")); return; }
-  buildC(); if (!FLOW.length) buildFlow();
+  if (!FLOW.length) buildFlow();
   const f = FLOW[S.idx] || FLOW[0];
+  if (f.k !== "reg1" && !S.reg) { S.idx = 0; save(); return render(); }
+  if (f.k !== "reg1" && f.k !== "reg2" && FLOW.findIndex(x => x.k === "reg2") < S.idx && !S.reg2) { S.idx = FLOW.findIndex(x => x.k === "reg2"); save(); }
+  const g = FLOW[S.idx];
+  if (g.k !== "reg1") buildC();
+  topbar();
   screen.className = "mv-screen in";
-  ({ intro: rIntro, lesson: rLesson, check: rCheck, termo: rTermo, mission: rMission, examIntro: rExamIntro, exam: rExam, result: rResult })[f.k](f);
+  ({ reg1: rReg1, intro: rIntro, lesson: rLesson, check: rCheck, termo: rTermo, orden: rOrden, reg2: rReg2, mission: rMission, examIntro: rExamIntro, exam: rExam, result: rResult })[g.k](g);
   requestAnimationFrame(() => screen.classList.add("on"));
 }
 
-/* Registro */
+/* ---------- Paso 1: tres datos y arranca ---------- */
 const RUBROS = PRESETS.map(p => [p.id, p.emoji + " " + p.label]).concat([["otro", "✨ Otro negocio"]]);
-function renderRegistro() {
+function rReg1() {
   const r = LS.get("mv-draft", {});
   const opt = (arr, v) => arr.map(([k, l]) => `<option value="${esc(k)}"${k === v ? " selected" : ""}>${esc(l)}</option>`).join("");
-  screen.className = "mv-screen in";
   screen.innerHTML = `<div class="mv-reg">
-    <div class="mv-reg-tx"><span class="eyebrow">Paso 0 · Su registro</span><h2>Empecemos por conocerle</h2><p>Con estos datos adaptamos los ejemplos a su negocio y le entregamos su certificado al final. Toma 30 segundos.</p>
-      <ul class="mv-ul"><li>6 lecciones cortas con chats reales</li><li>Una misión práctica y un examen de 12 preguntas</li><li>Certificado digital de Vector Academy</li></ul></div>
-    <form class="mv-form" id="mvForm" novalidate>
-      <div class="mv-f"><label for="f-nombre">Su nombre completo</label><input id="f-nombre" autocomplete="name" maxlength="80" value="${esc(r.nombre || "")}" placeholder="Ej. María Rodríguez"></div>
-      <div class="mv-f"><label for="f-cargo">Cargo</label><input id="f-cargo" autocomplete="organization-title" maxlength="80" value="${esc(r.cargo || "")}" placeholder="Ej. Vendedora, recepción, gerente"></div>
-      <div class="mv-f"><label for="f-empresa">Nombre de la empresa</label><input id="f-empresa" autocomplete="organization" maxlength="100" value="${esc(r.empresa || "")}" placeholder="Ej. Comercial Los Pinos"></div>
-      <div class="mv-f"><label for="f-rubro">Tipo de negocio</label><select id="f-rubro"><option value="">Seleccione…</option>${opt(RUBROS, r.rubro)}</select></div>
+    <div class="mv-reg-tx"><span class="eyebrow">Paso 1 de ${FLOW.length} · 20 segundos</span><h2>Empecemos</h2><p>Solo tres datos para que el curso use ejemplos de <b>su</b> negocio. Sus datos de contacto se piden más adelante, cuando ya haya avanzado.</p>
+      <ul class="mv-ul"><li>6 lecciones donde usted escribe y envía las respuestas</li><li>Un reto por letra, un drill de orden y una misión práctica</li><li>Examen con casos reales y certificado imprimible</li></ul>
+      <p class="mv-note">Sin correo ni teléfono para empezar.</p></div>
+    <form class="mv-form short" id="mvForm" novalidate>
+      <div class="mv-f full"><label for="f-nombre">Su nombre completo</label><input id="f-nombre" autocomplete="name" maxlength="80" value="${esc(r.nombre || "")}" placeholder="Ej. María Rodríguez"></div>
+      <div class="mv-f full"><label for="f-empresa">Nombre de la empresa o negocio</label><input id="f-empresa" autocomplete="organization" maxlength="100" value="${esc(r.empresa || "")}" placeholder="Ej. Comercial Los Pinos"></div>
+      <div class="mv-f full"><label for="f-rubro">Tipo de negocio</label><select id="f-rubro"><option value="">Seleccione…</option>${opt(RUBROS, r.rubro)}</select></div>
       <div class="mv-f full" id="f-otro" hidden><label for="f-prod">¿Qué producto o servicio le preguntan más?</label><input id="f-prod" maxlength="50" value="${esc(r.prod || "")}" placeholder="Ej. el plan de internet"></div>
-      <div class="mv-f"><label for="f-correo">Correo</label><input id="f-correo" type="email" autocomplete="email" inputmode="email" maxlength="120" value="${esc(r.correo || "")}" placeholder="nombre@empresa.com"></div>
-      <div class="mv-f"><label for="f-tel">Teléfono / WhatsApp</label><input id="f-tel" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" value="${esc(r.telefono || "")}" placeholder="Ej. 9876-5432"></div>
-      <div class="mv-f"><label for="f-ciudad">Ciudad</label><input id="f-ciudad" autocomplete="address-level2" maxlength="60" value="${esc(r.ciudad || "")}" placeholder="Ej. San Pedro Sula"></div>
-      <div class="mv-f"><label for="f-vend">¿Cuántas personas atienden clientes?</label><select id="f-vend">${opt([["", "Seleccione…"], ["Solo yo", "Solo yo"], ["2 a 5", "2 a 5"], ["6 a 15", "6 a 15"], ["Más de 15", "Más de 15"]], r.vendedores)}</select></div>
-      <div class="mv-f full"><label for="f-int">¿Qué le interesa?</label><select id="f-int">${opt([["", "Seleccione…"], ["Solo aprender por mi cuenta", "Solo aprender por mi cuenta"], ["Capacitación presencial para mi equipo", "Capacitación presencial para mi equipo"], ["Capacitación en línea para mi equipo", "Capacitación en línea para mi equipo"], ["Asesoría de marketing y ventas", "Asesoría de marketing y ventas"]], r.interes)}</select></div>
-      <input class="mv-hp" id="f-web" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="mv-err" id="mvErr" hidden></p>
-      <label class="mv-ok"><input type="checkbox" id="f-ok" ${r.ok ? "checked" : ""}><span>Acepto que Vector Marketing &amp; Academy me contacte sobre mi resultado y sus capacitaciones.</span></label>
-      <button class="btn" type="submit" id="mvGo">Comenzar el curso →</button>
+      <button class="btn" type="submit" id="mvGo">Empezar el curso →</button>
     </form></div>`;
   const rub = $("f-rubro"), otro = $("f-otro");
   const upd = () => (otro.hidden = rub.value !== "otro"); rub.onchange = upd; upd();
-  const ids = ["nombre", "cargo", "empresa", "rubro", "prod", "correo", "tel", "ciudad", "vend", "int"];
-  $("mvForm").oninput = () => { const d = {}; ids.forEach(i => (d[i] = $("f-" + i).value)); LS.set("mv-draft", { nombre: d.nombre, cargo: d.cargo, empresa: d.empresa, rubro: d.rubro, prod: d.prod, correo: d.correo, telefono: d.tel, ciudad: d.ciudad, vendedores: d.vend, interes: d.int, ok: $("f-ok").checked }); };
-  $("mvForm").onsubmit = async e => {
+  const ids = ["nombre", "empresa", "rubro", "prod"];
+  $("mvForm").oninput = () => { const d = LS.get("mv-draft", {}); ids.forEach(i => (d[i] = $("f-" + i).value)); LS.set("mv-draft", d); };
+  $("mvForm").onsubmit = e => {
     e.preventDefault();
     const v = id => $("f-" + id).value.trim();
-    const reg = { nombre: v("nombre"), cargo: v("cargo"), empresa: v("empresa"), rubro: v("rubro"), prod: v("prod"), correo: v("correo").toLowerCase(), telefono: v("tel"), ciudad: v("ciudad"), vendedores: v("vend"), interes: v("int"), cli: "cliente" };
+    const reg = { nombre: v("nombre"), empresa: v("empresa"), rubro: v("rubro"), prod: v("prod"), cli: "cliente" };
     const err = $("mvErr");
-    const bad = !reg.nombre || reg.nombre.length < 3 ? "nombre" : !reg.empresa ? "empresa" : !reg.rubro ? "rubro" : reg.rubro === "otro" && reg.prod.length < 3 ? "prod" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reg.correo) ? "correo" : reg.telefono.replace(/\D/g, "").length < 8 ? "tel" : !reg.interes ? "int" : !$("f-ok").checked ? "ok" : "";
-    if (bad) { err.hidden = false; err.textContent = { nombre: "Escriba su nombre completo.", empresa: "Escriba el nombre de la empresa.", rubro: "Elija el tipo de negocio.", prod: "Escriba el producto o servicio que más le preguntan.", correo: "Revise su correo.", tel: "Escriba un teléfono de 8 dígitos.", int: "Díganos qué le interesa.", ok: "Marque la casilla para continuar." }[bad]; $("f-" + bad).focus(); return; }
-    const btn = $("mvGo"); btn.disabled = true; btn.textContent = "Preparando su curso…";
-    const rub = RUBROS.find(x => x[0] === reg.rubro);
-    let id = null;
-    if (ENDPOINT) { try { const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "registro", ...reg, rubro: rub ? rub[1].replace(/^\S+\s/, "") + (reg.rubro === "otro" ? ": " + reg.prod : "") : reg.rubro, web: $("f-web").value, origen: location.href }) }); const j = await res.json().catch(() => ({})); if (res.ok) id = j.id || null; } catch (x) {} }
-    track("Lead", { content_name: "Metodología VECTOR" });
-    S = { reg, regId: id, idx: 0, xp: 0, done: [], exam: null, t0: Date.now() }; save(); buildC(); buildFlow();
-    burst(); go(0);
+    const bad = !reg.nombre || reg.nombre.length < 3 ? "nombre" : !reg.empresa ? "empresa" : !reg.rubro ? "rubro" : reg.rubro === "otro" && reg.prod.length < 3 ? "prod" : "";
+    if (bad) { err.hidden = false; err.textContent = { nombre: "Escriba su nombre completo.", empresa: "Escriba el nombre de su empresa o negocio.", rubro: "Elija el tipo de negocio.", prod: "Escriba el producto o servicio que más le preguntan." }[bad]; $("f-" + bad).focus(); return; }
+    S = Object.assign(FRESH(), { reg }); save(); buildC(); buildFlow();
+    track("ViewContent", { content_name: "Metodología VECTOR · inicio" });
+    burst(); next();
   };
 }
 
-function nav(label, cls) { return `<div class="mv-nav">${S.idx > 0 ? `<button class="btn ghost" type="button" data-back>← Atrás</button>` : ""}<button class="btn ${cls || ""}" type="button" data-next>${label}</button></div>`; }
-function wireNav() { const b = screen.querySelector("[data-back]"), n = screen.querySelector("[data-next]"); b && (b.onclick = () => go(S.idx - 1)); n && (n.onclick = next); }
+/* ---------- Paso 2: contacto, justo antes del examen ---------- */
+function rReg2() {
+  const r = Object.assign({}, LS.get("mv-draft", {}), S.reg2 || {});
+  const opt = (arr, v) => arr.map(([k, l]) => `<option value="${esc(k)}"${k === v ? " selected" : ""}>${esc(l)}</option>`).join("");
+  screen.innerHTML = `<div class="mv-reg">
+    <div class="mv-reg-tx"><span class="eyebrow">Paso ${S.idx + 1} de ${FLOW.length} · Ya completó las 6 letras</span><h2>¿A nombre de quién va el certificado?</h2>
+      <p>Terminó las seis lecciones con <b>${S.xp} XP</b>. Para emitir su certificado de Vector Academy y enviarle su resultado, necesitamos dos datos.</p>
+      <ul class="mv-ul"><li>Su nombre va impreso: <b>${esc(S.reg.nombre)}</b></li><li>El certificado se descarga en alta resolución para imprimir</li><li>Le enviamos su resultado y las respuestas para repasar</li></ul></div>
+    <form class="mv-form" id="mvForm2" novalidate>
+      <div class="mv-f"><label for="f-correo">Correo <i>*</i></label><input id="f-correo" type="email" autocomplete="email" inputmode="email" maxlength="120" value="${esc(r.correo || "")}" placeholder="nombre@empresa.com"></div>
+      <div class="mv-f"><label for="f-tel">Teléfono / WhatsApp <i>*</i></label><input id="f-tel" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" value="${esc(r.telefono || "")}" placeholder="Ej. 9876-5432"></div>
+      <div class="mv-f"><label for="f-cargo">Cargo <small>(va en el certificado)</small></label><input id="f-cargo" autocomplete="organization-title" maxlength="80" value="${esc(r.cargo || "")}" placeholder="Ej. Vendedora, recepción, gerente"></div>
+      <div class="mv-f"><label for="f-ciudad">Ciudad</label><input id="f-ciudad" autocomplete="address-level2" maxlength="60" value="${esc(r.ciudad || "")}" placeholder="Ej. San Pedro Sula"></div>
+      <div class="mv-f full"><label for="f-int">¿Qué le interesa? <i>*</i></label><select id="f-int">${opt([["", "Seleccione…"], ["Solo aprender por mi cuenta", "Solo aprender por mi cuenta"], ["Capacitación presencial para mi equipo", "Capacitación presencial para mi equipo"], ["Capacitación en línea para mi equipo", "Capacitación en línea para mi equipo"], ["Asesoría de marketing y ventas", "Asesoría de marketing y ventas"]], r.interes)}</select></div>
+      <input class="mv-hp" id="f-web" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="mv-err" id="mvErr" hidden></p>
+      <label class="mv-ok"><input type="checkbox" id="f-ok" ${r.ok ? "checked" : ""}><span>Acepto que Vector Marketing &amp; Academy me contacte sobre mi resultado y sus capacitaciones.</span></label>
+      <button class="btn" type="submit" id="mvGo2">Emitir mi certificado y hacer el examen →</button>
+      <button class="mv-link" type="button" id="mvBack2">← Volver a repasar las letras</button>
+    </form></div>`;
+  const ids = { correo: "correo", tel: "telefono", cargo: "cargo", ciudad: "ciudad", int: "interes" };
+  $("mvForm2").oninput = () => { const d = LS.get("mv-draft", {}); Object.entries(ids).forEach(([f, k]) => (d[k] = $("f-" + f).value)); d.ok = $("f-ok").checked; LS.set("mv-draft", d); };
+  $("mvBack2").onclick = () => go(S.idx - 1);
+  $("mvForm2").onsubmit = async e => {
+    e.preventDefault();
+    const v = id => $("f-" + id).value.trim();
+    const reg2 = { correo: v("correo").toLowerCase(), telefono: v("tel"), cargo: v("cargo"), ciudad: v("ciudad"), interes: v("int"), vendedores: "" };
+    const err = $("mvErr");
+    const bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reg2.correo) ? "correo" : reg2.telefono.replace(/\D/g, "").length < 8 ? "tel" : !reg2.interes ? "int" : !$("f-ok").checked ? "ok" : "";
+    if (bad) { err.hidden = false; err.textContent = { correo: "Revise su correo.", tel: "Escriba un teléfono de 8 dígitos.", int: "Díganos qué le interesa.", ok: "Marque la casilla para continuar." }[bad]; $("f-" + bad).focus(); return; }
+    const btn = $("mvGo2"); btn.disabled = true; btn.textContent = "Preparando su examen…";
+    S.reg2 = reg2; save();
+    const rub = RUBROS.find(x => x[0] === S.reg.rubro);
+    if (ENDPOINT) { try { const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.assign({ tipo: "registro" }, REG(), { rubro: rub ? rub[1].replace(/^\S+\s/, "") + (S.reg.rubro === "otro" ? ": " + S.reg.prod : "") : S.reg.rubro, web: $("f-web").value, origen: location.href })) }); const j = await res.json().catch(() => ({})); if (res.ok) S.regId = j.id || null; save(); } catch (x) {} }
+    track("Lead", { content_name: "Metodología VECTOR" });
+    burst(); next();
+  };
+}
 
 function rIntro() {
   const first = S.reg.nombre.split(" ")[0];
   screen.innerHTML = `<div class="mv-intro"><span class="eyebrow">Bienvenido, ${esc(first)}</span><h2>Así va a vender ${esc(C.neg)} por WhatsApp</h2>
-  <p class="mv-lead">Vamos a recorrer las 6 letras de <b>VECTOR</b> con chats de ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}. En cada letra: una lección corta, un ejemplo real y un reto rápido. Gane XP, desbloquee las letras y al final haga el examen.</p>
+  <p class="mv-lead">Vamos a recorrer las 6 letras de <b>VECTOR</b> con chats de ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}. En cada letra usted <b>envía las respuestas</b> y resuelve un reto. Gane XP, desbloquee las letras y al final haga el examen.</p>
   <div class="mv-road">${LESS().map((x, i) => `<div class="mv-rs" style="--i:${i}"><b>${x.l}</b><span>${x.t}</span></div>`).join("")}<div class="mv-rs fin" style="--i:6"><b>🏆</b><span>Examen</span></div></div>
-  <div class="mv-mini3"><div><b>⏱️</b><span>8 minutos</span></div><div><b>⚡</b><span>XP por cada acierto</span></div><div><b>🎓</b><span>Certificado</span></div></div>
+  <div class="mv-mini3"><div><b>⏱️</b><span>8 minutos</span></div><div><b>⚡</b><span>XP por cada acierto</span></div><div><b>🎓</b><span>Certificado imprimible</span></div></div>
   ${nav("Empezar con la V →")}</div>`;
   wireNav();
 }
+function nav(label, cls) { return `<div class="mv-nav">${S.idx > 1 ? `<button class="btn ghost" type="button" data-back>← Atrás</button>` : ""}<button class="btn ${cls || ""}" type="button" data-next>${label}</button></div>`; }
+function wireNav() { const b = screen.querySelector("[data-back]"), n = screen.querySelector("[data-next]"); b && (b.onclick = () => go(S.idx - 1)); n && (n.onclick = next); }
+
 function rLesson(f) {
   const x = LESS()[f.i];
   screen.innerHTML = `<div class="mv-lesson">
    <div class="mv-lx"><div class="mv-big">${x.l}</div><span class="eyebrow">Letra ${f.i + 1} de 6 · Temperatura: ${esc(x.temp)}</span><h2>${x.t}</h2><p>${esc(x.d)}</p>
      <ul class="mv-do">${x.do.map((d, k) => `<li style="--k:${k}">${esc(d)}</li>`).join("")}</ul>
      <div class="mv-fact"><b>${esc(x.fact[0])}</b><span>${esc(x.fact[1])}</span><small>${esc(x.fact[2])} · <a href="#ev-${x.fact[3]}">Ver el estudio y cómo citarlo</a></small></div></div>
-   <div class="mv-phone">${wh()}<div class="mv-thread" id="mvT"></div></div></div>
-   ${nav("Entendido, ponerme a prueba →")}`;
-  animateChat($("mvT"), x.ch, 650); wireNav();
-  screen.querySelector("[data-next]").onclick = () => { if (!S["read" + f.i]) { S["read" + f.i] = 1; addXP(10); } next(); };
+   <div class="mv-phone"><div class="mv-hint">Toque <b>Enviar</b> para responderle al ${esc(C.cli)}</div>${wh()}<div class="mv-thread" id="mvT"></div></div></div>
+   <div id="mvLn"></div>`;
+  playLesson($("mvT"), x.ch, () => {
+    $("mvLn").innerHTML = nav("Entendido, ponerme a prueba →");
+    wireNav();
+    screen.querySelector("[data-next]").onclick = () => { if (!S["read" + f.i]) { S["read" + f.i] = 1; addXP(10); } next(); };
+  });
 }
 function rCheck(f) {
   const x = LESS()[f.i], q = x.q, order = shuffle([0, 1, 2]);
   screen.innerHTML = `<div class="mv-check"><span class="eyebrow">Reto rápido · ${x.l} · ${x.t}</span>
+   ${q.ctx ? `<p class="mv-ctxline">${esc(q.ctx)}</p>` : ""}
    <div class="mv-phone sm">${wh()}<div class="mv-thread"><div class="mv-b in">${mark(q.p)}</div></div></div>
    <h2>${esc(q.q)}</h2><div class="mv-opts">${order.map((k, n) => `<button type="button" class="mv-opt" data-k="${k}"><span class="mv-lt">${"ABC"[n]}</span><span>${mark(q.o[k])}</span></button>`).join("")}</div><div id="mvFb"></div></div>`;
   screen.querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
     const k = +b.dataset.k, ok = k === 0;
     screen.querySelectorAll(".mv-opt").forEach(o => { o.disabled = true; if (+o.dataset.k === 0) o.classList.add("right"); else if (o === b) o.classList.add("wrong"); });
-    if (ok) addXP(20); else { b.classList.add("shake"); }
+    if (ok) addXP(20); else b.classList.add("shake");
     const first = !S.done.includes(x.l);
     if (first) { S.done.push(x.l); save(); topbar(); setTimeout(() => { burst(); toast(`¡Letra ${x.l} desbloqueada! ${S.done.length}/6`); }, 250); }
-    $("mvFb").innerHTML = `<div class="mv-fb ${ok ? "ok" : "bad"}"><b>${ok ? "¡Correcto! +20 XP" : "Casi. Esta es la mejor respuesta:"}</b><p>${ok ? "" : mark(q.o[0]) + "<br>"}${esc(q.e)}</p></div>${nav(f.i < 5 ? `Siguiente: ${LESS()[f.i + 1].l} →` : "Ir a la misión final →")}`;
+    $("mvFb").innerHTML = fbHTML(ok, q, k, ok ? " +20 XP" : "") + nav(f.i < 5 ? `Siguiente: ${LESS()[f.i + 1].l} →` : "Seguir →");
     wireNav();
   });
 }
@@ -465,6 +616,31 @@ function rTermo() {
   const pick = i => { screen.querySelectorAll(".mv-tb").forEach((b, k) => b.classList.toggle("on", k <= i)); $("mvTf").style.height = (i + 1) * 25 + "%"; };
   screen.querySelectorAll(".mv-tb").forEach(b => b.onclick = () => pick(+b.dataset.i)); setTimeout(() => pick(0), 200);
   wireNav(); screen.querySelector("[data-next]").onclick = () => { if (!S.termo) { S.termo = 1; addXP(10); } next(); };
+}
+/* Drill: ordenar una conversación completa en el orden VECTOR */
+function rOrden() {
+  const [n] = C.who;
+  const steps = [
+    ["V", "Saludo con mi nombre y el del negocio", C.hi + " Con gusto le comparto el precio."],
+    ["E", "Pregunto qué necesita resolver", C.probQ],
+    ["C", "Pido su nombre y para cuándo lo necesita", `¿Me regala su nombre? ${C.impQ}`],
+    ["T", "Doy el precio con contexto", C.sol],
+    ["O", "Cierro con dos opciones concretas", C.close]
+  ];
+  screen.innerHTML = `<div class="mv-orden"><div class="mv-ox"><span class="eyebrow">Drill · Arme la conversación</span><h2>Ponga los cinco mensajes en orden</h2>
+     <p class="mv-lead">Toque las tarjetas en el orden en que las enviaría. Si se equivoca, le decimos qué falta antes.</p>
+     <div class="mv-chips" id="mvCh">${shuffle(steps.map((s, i) => i)).map(i => `<button type="button" class="mv-chip" data-i="${i}"><b>${steps[i][0]}</b><span>${esc(steps[i][1])}</span></button>`).join("")}</div>
+     <div id="mvOf"></div></div>
+   <div class="mv-phone tall">${wh()}<div class="mv-thread" id="mvT"><div class="mv-b in">${mark(C.open)}</div></div></div></div>`;
+  const th = $("mvT"); let k = 0;
+  const fin = () => { burst(); $("mvCh").innerHTML = ""; $("mvOf").innerHTML = `<div class="mv-fb ok"><b>¡Conversación completa!</b><p class="mv-rz"><span>Lo que pasa con el cliente</span>Llegó frío preguntando precio y se va con una cita por escrito. Ese es el camino VECTOR de principio a fin.</p></div>` + nav("Seguir con la R →"); wireNav(); };
+  screen.querySelectorAll(".mv-chip").forEach(b => b.onclick = () => {
+    const i = +b.dataset.i;
+    if (i !== k) { b.classList.add("shake"); setTimeout(() => b.classList.remove("shake"), 500); $("mvOf").innerHTML = `<div class="mv-fb bad"><b>Todavía no</b><p class="mv-rz bad"><span>El resultado de enviarlo así</span>Si manda eso ahora, se salta la letra <b>${steps[k][0]}</b> y el cliente recibe un mensaje que no corresponde a lo que acaba de escribir.</p><p class="mv-rz best"><span>Qué va primero</span>${steps[k][0]} · ${esc(steps[k][1])}</p></div>`; return; }
+    b.remove(); bub(th, "out", steps[i][2]); addXP(10); k++;
+    if (k < steps.length) { $("mvOf").innerHTML = `<div class="mv-fb ok"><b>Bien · +10 XP</b><p>${esc(steps[i][0])} listo. Siguen ${steps.length - k} mensajes.</p></div>`; setTimeout(() => bub(th, "ctx", "El cliente responde y la conversación avanza…"), 400); }
+    else fin();
+  });
 }
 function rMission() {
   const M = mission(); let k = 0, good = 0;
@@ -479,12 +655,14 @@ function rMission() {
     setTimeout(() => {
       $("mvMo").innerHTML = `<div class="mv-opts">${shuffle([0, 1, 2]).map((i, n) => `<button type="button" class="mv-opt" data-i="${i}"><span class="mv-lt">${"ABC"[n]}</span><span>${mark(st.o[i][0])}</span></button>`).join("")}</div>`;
       $("mvMo").querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
-        const o = st.o[+b.dataset.i]; animateChat(th, [["out", o[0]]], 0);
+        const o = st.o[+b.dataset.i]; bub(th, "out", o[0]);
         temp += o[1] === 1 ? 23 : o[1] === 0 ? 4 : -12; setG();
-        if (o[1] === 1) { good++; addXP(15); } else th.insertAdjacentHTML("beforeend", `<div class="mv-ctx">${o[1] === 0 ? "El cliente tarda en responder…" : "Visto ✓✓ · aquí el cliente se enfría"}</div>`);
-        th.scrollTop = th.scrollHeight;
-        const best = st.o[0][0];
-        $("mvMo").innerHTML = `<div class="mv-fb ${o[1] === 1 ? "ok" : "bad"}"><b>${o[1] === 1 ? "¡Bien! +15 XP" : "Mejor así:"}</b>${o[1] === 1 ? "" : `<p>${mark(best)}</p>`}</div><button class="btn" type="button" id="mvMn">${k < M.length - 1 ? "Siguiente mensaje →" : "Ver resultado de la misión"}</button>`;
+        if (o[1] === 1) { good++; addXP(15); } else bub(th, "ctx", o[1] === 0 ? "El cliente tarda en responder…" : "Visto ✓✓ · aquí el cliente se enfría");
+        const best = st.o[0];
+        $("mvMo").innerHTML = `<div class="mv-fb ${o[1] === 1 ? "ok" : "bad"}"><b>${o[1] === 1 ? "¡Bien! +15 XP" : "No es la mejor opción"}</b>
+          <p class="mv-rz ${o[1] === 1 ? "" : "bad"}"><span>El resultado de responder así</span>${esc(o[2])}</p>
+          ${o[1] === 1 ? "" : `<p class="mv-rz best"><span>Qué se pudo hacer</span>${mark(best[0])}</p><p class="mv-rz why"><span>Por qué funciona</span>${esc(best[2])}</p>`}</div>
+          <button class="btn" type="button" id="mvMn">${k < M.length - 1 ? "Siguiente mensaje →" : "Ver resultado de la misión"}</button>`;
         $("mvMn").onclick = () => { k++; if (k < M.length) ask(); else end(); };
       });
     }, reduce ? 50 : 900);
@@ -493,8 +671,8 @@ function rMission() {
   setG(); ask();
 }
 function rExamIntro() {
-  screen.innerHTML = `<div class="mv-intro center"><div class="mv-trophy">🏆</div><span class="eyebrow">Último paso</span><h2>Examen de certificación</h2><p class="mv-lead">12 preguntas sobre las 6 letras. Con 70% o más obtiene su certificado de Vector Academy. Su resultado se envía a su capacitador.</p>
-   <div class="mv-mini3"><div><b>12</b><span>preguntas</span></div><div><b>3 min</b><span>aproximado</span></div><div><b>70%</b><span>para aprobar</span></div></div>${nav("Empezar el examen →")}</div>`;
+  screen.innerHTML = `<div class="mv-intro center"><div class="mv-trophy">🏆</div><span class="eyebrow">Último paso</span><h2>Examen de certificación</h2><p class="mv-lead">12 casos reales de ${C.id === "otro" ? "su negocio" : esc(C.label.toLowerCase())}. Cada pregunta le dice la situación completa antes de preguntarle qué haría. Con 70% o más obtiene su certificado.</p>
+   <div class="mv-mini3"><div><b>12</b><span>casos con contexto</span></div><div><b>3 min</b><span>aproximado</span></div><div><b>70%</b><span>para aprobar</span></div></div>${nav("Empezar el examen →")}</div>`;
   wireNav();
   screen.querySelector("[data-next]").onclick = () => { const E = exam(); S.exam = { order: shuffle(E.map((_, i) => i)), i: 0, ok: 0, miss: [], t0: Date.now(), streak: 0, best: 0 }; save(); next(); };
 }
@@ -504,21 +682,22 @@ function rExam() {
   const qi = X.order[X.i], q = E[qi], idx = shuffle(q.o.map((_, k) => k));
   screen.innerHTML = `<div class="mv-exam"><div class="mv-eh"><span class="mv-pill">Pregunta ${X.i + 1} de ${E.length}</span><span class="mv-pill">✓ ${X.ok}</span><span class="mv-pill">🔥 ${X.streak}</span><span class="mv-pill lt">${q.l}</span></div>
    <div class="mv-ebar"><i style="width:${X.i / E.length * 100}%"></i></div>
+   <p class="mv-ctxline"><b>La situación:</b> ${esc(q.ctx)}</p>
    ${q.chat ? `<div class="mv-phone sm">${wh()}<div class="mv-thread"><div class="mv-b in">${mark(q.chat)}</div></div></div>` : ""}
    <h2>${esc(q.q)}</h2><div class="mv-opts">${idx.map((k, n) => `<button type="button" class="mv-opt" data-k="${k}"><span class="mv-lt">${"ABCD"[n]}</span><span>${mark(q.o[k])}</span></button>`).join("")}</div><div id="mvFb"></div></div>`;
   screen.querySelectorAll(".mv-opt").forEach(b => b.onclick = () => {
     const k = +b.dataset.k, ok = k === 0;
     screen.querySelectorAll(".mv-opt").forEach(o => { o.disabled = true; if (+o.dataset.k === 0) o.classList.add("right"); else if (o === b) o.classList.add("wrong"); });
-    if (ok) { X.ok++; X.streak++; X.best = Math.max(X.best, X.streak); addXP(25); } else { X.streak = 0; b.classList.add("shake"); X.miss.push({ letra: q.l, pregunta: q.q, eligio: q.o[k], correcta: q.o[0], comoMejorar: q.e }); }
+    if (ok) { X.ok++; X.streak++; X.best = Math.max(X.best, X.streak); addXP(25); } else { X.streak = 0; b.classList.add("shake"); X.miss.push({ letra: q.l, situacion: q.ctx, pregunta: q.q, eligio: q.o[k], consecuencia: (q.cons && q.cons[k]) || "", correcta: q.o[0], comoMejorar: q.e }); }
     X.i++; save();
-    $("mvFb").innerHTML = `<div class="mv-fb ${ok ? "ok" : "bad"}"><b>${ok ? (X.streak >= 3 ? `¡Racha de ${X.streak}! 🔥` : "¡Correcto!") : "No es la mejor opción"}</b><p>${esc(q.e)}</p></div><div class="mv-nav"><button class="btn" type="button" id="mvEn">${X.i < E.length ? "Siguiente pregunta →" : "Ver mi resultado"}</button></div>`;
+    $("mvFb").innerHTML = fbHTML(ok, q, k, ok ? (X.streak >= 3 ? ` ¡Racha de ${X.streak}! 🔥` : " +25 XP") : "") + `<div class="mv-nav"><button class="btn" type="button" id="mvEn">${X.i < E.length ? "Siguiente caso →" : "Ver mi resultado"}</button></div>`;
     $("mvEn").onclick = () => (X.i < E.length ? render() : next());
   });
 }
 function level(p) { return p >= 90 ? ["Experto VECTOR", "#0E9A60"] : p >= 70 ? ["Vendedor certificado", "#6A3BF5"] : p >= 50 ? ["En camino", "#E89B0C"] : ["Necesita repasar", "#E0169B"]; }
 function rResult() {
   const X = S.exam, n = exam().length, p = Math.round(X.ok / n * 100), [lv, col] = level(p), secs = Math.round((Date.now() - X.t0) / 1000), pass = p >= 70;
-  const r = S.reg;
+  const r = REG();
   if (!X.sent) {
     X.sent = 1; save();
     if (ENDPOINT) fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tipo: "examen", registro_id: S.regId, nombre: r.nombre, empresa: r.empresa, cargo: r.cargo, correo: r.correo, telefono: r.telefono, ciudad: r.ciudad, rubro: C.label + (r.rubro === "otro" ? ": " + r.prod : ""), vendedores: r.vendedores, interes: r.interes, correctas: X.ok, total: n, nivel: lv, segundos: secs, falladas: X.miss, origen: location.href }) }).catch(() => {});
@@ -529,42 +708,127 @@ function rResult() {
   const share = `https://wa.me/?text=${encodeURIComponent("Les recomiendo este curso gratuito de atención y ventas por WhatsApp de Vector Academy. Dura menos de 10 minutos: " + location.origin + location.pathname)}`;
   screen.innerHTML = `<div class="mv-result">
    <div class="mv-score"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="bg"/><circle cx="60" cy="60" r="52" class="fg" style="stroke:${col};stroke-dashoffset:${327 - 327 * p / 100}"/></svg><div><b>${X.ok}/${n}</b><small>${p}%</small></div></div>
-   <div class="mv-rt"><span class="eyebrow">${pass ? "¡Aprobado!" : "Resultado"}</span><h2>${esc(lv)}</h2><p>${pass ? `Felicidades, ${esc(r.nombre.split(" ")[0])}. Ya domina la Metodología VECTOR. Descargue su certificado y compártalo.` : "Le faltó poco. Repase las letras marcadas y vuelva a intentarlo."} · ${S.xp} XP · ${Math.floor(secs / 60)} min ${secs % 60} s</p></div>
+   <div class="mv-rt"><span class="eyebrow">${pass ? "¡Aprobado!" : "Resultado"}</span><h2>${esc(lv)}</h2><p>${pass ? `Felicidades, ${esc(r.nombre.split(" ")[0])}. Ya domina la Metodología VECTOR. Descargue su certificado, imprímalo y cuélguelo.` : "Le faltó poco. Repase los casos marcados y vuelva a intentarlo."} · ${S.xp} XP · ${Math.floor(secs / 60)} min ${secs % 60} s</p></div>
+   ${pass ? `<div class="mv-certbox" id="mvCertBox"><div class="mv-certload">Preparando su certificado…</div></div>` : ""}
    ${X.miss.length ? `<div class="mv-miss"><b>Para repasar</b>${X.miss.map(m => `<div><span class="mv-lt">${m.letra}</span><p>${esc(m.pregunta)}<small>${esc(m.comoMejorar)}</small></p></div>`).join("")}</div>` : ""}
    <div class="mv-actions">
-     ${pass ? `<button class="btn" type="button" id="mvCert">🎓 Descargar mi certificado</button>` : `<button class="btn" type="button" id="mvRetry">Repetir el examen</button>`}
+     ${pass ? `<button class="btn" type="button" id="mvCert">🎓 Descargar certificado (PNG)</button><button class="btn light" type="button" id="mvPrint">🖨️ Imprimir certificado</button>` : `<button class="btn" type="button" id="mvRetry">Repetir el examen</button>`}
      <a class="btn ghost" href="pdf-placeholder" download id="mvPdf">📄 Descargar la metodología (PDF)</a>
      <a class="btn ghost" href="${share}" target="_blank" rel="noopener">Compartir con mi equipo por WhatsApp</a>
    </div>
    <div class="mv-upsell"><div><span class="eyebrow">Para su equipo</span><h3>Lleve la Metodología VECTOR a toda su empresa</h3><p>Capacitación práctica con casos reales de su negocio: presencial en Vector Academy, en sus instalaciones o en línea. Incluye inspección de chats y plan de mejora.</p></div>
      <a class="btn" href="https://wa.me/${WA}?text=${encodeURIComponent(waTxt)}" target="_blank" rel="noopener" id="mvWa">Quiero capacitar a mi equipo</a></div>
-   <button class="mv-link" type="button" id="mvRestart">Volver a tomar el curso desde el inicio</button></div>`;
+   <div class="mv-endnav"><button class="mv-link" type="button" id="mvRestart">Volver a tomar el curso</button><button class="mv-link" type="button" id="mvOther">Registrar a otra persona</button><a class="mv-link" href="/">Ir al inicio del sitio</a></div></div>`;
   $("mvPdf").href = location.pathname.replace(/\/?$/, "/") + "metodologia-vector.pdf";
   $("mvWa").onclick = () => track("Contact", { content_name: "Capacitación VECTOR" });
-  $("mvCert") && ($("mvCert").onclick = () => cert(r, X.ok, n, p, lv));
-  $("mvRetry") && ($("mvRetry").onclick = () => { S.exam = null; go(FLOW.findIndex(f => f.k === "examIntro")); });
-  $("mvRestart").onclick = () => { const reg = S.reg, id = S.regId; S = { reg, regId: id, idx: 0, xp: 0, done: [], exam: null }; save(); render(); };
+  if (pass) {
+    certCanvas(r, X.ok, n, p, lv).then(cv => {
+      const url = cv.toDataURL("image/png");
+      $("mvCertBox").innerHTML = `<img src="${url}" alt="Certificado en Atención al Cliente, Método VECTOR, a nombre de ${esc(r.nombre)}"><small>Listo para imprimir en hoja horizontal (A4 o carta).</small>`;
+      $("mvCert").onclick = () => { certDownload(cv, r.nombre); track("MetodologiaVectorCertificado", {}, true); };
+      $("mvPrint").onclick = () => certPrint(url);
+    });
+  }
+  $("mvRetry") && ($("mvRetry").onclick = () => { S.exam = null; save(); go(FLOW.findIndex(f => f.k === "examIntro")); });
+  $("mvRestart").onclick = () => { S = Object.assign(FRESH(), { reg: S.reg, reg2: S.reg2, regId: S.regId }); save(); go(1); };
+  $("mvOther").onclick = resetAll;
 }
 
-/* Certificado en imagen */
-function cert(r, ok, n, p, lv) {
-  const W = 1600, H = 1131, cv = document.createElement("canvas"); cv.width = W; cv.height = H; const x = cv.getContext("2d");
-  const g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, "#3A0CC9"); g.addColorStop(.45, "#7B4DFF"); g.addColorStop(1, "#E0169B");
-  x.fillStyle = "#0E0630"; x.fillRect(0, 0, W, H); x.fillStyle = g; x.fillRect(0, 0, W, 16); x.fillRect(0, H - 16, W, 16);
-  x.strokeStyle = "rgba(255,255,255,.18)"; x.lineWidth = 2; x.strokeRect(50, 50, W - 100, H - 100);
-  const rg = x.createRadialGradient(W, 0, 10, W, 0, 900); rg.addColorStop(0, "rgba(224,22,155,.45)"); rg.addColorStop(1, "rgba(224,22,155,0)"); x.fillStyle = rg; x.fillRect(0, 0, W, H);
-  x.textAlign = "center"; x.fillStyle = "#FF9AD2"; x.font = "800 26px Manrope, sans-serif"; x.fillText("VECTOR MARKETING & ACADEMY", W / 2, 190);
-  x.fillStyle = "#fff"; x.font = "88px Anton, Impact, sans-serif"; x.fillText("CERTIFICADO DE APROBACIÓN", W / 2, 300);
-  x.font = "500 30px Manrope, sans-serif"; x.fillStyle = "#D6CCF5"; x.fillText("Se otorga a", W / 2, 390);
-  x.fillStyle = "#fff"; x.font = "800 72px Manrope, sans-serif"; x.fillText(r.nombre, W / 2, 480, W - 240);
-  x.font = "500 30px Manrope, sans-serif"; x.fillStyle = "#D6CCF5"; x.fillText(`${r.cargo ? r.cargo + " · " : ""}${r.empresa}`, W / 2, 535, W - 240);
-  x.fillText("por aprobar el curso de atención y ventas por WhatsApp", W / 2, 620);
-  x.font = "120px Anton, Impact, sans-serif"; x.fillStyle = g; x.fillText("METODOLOGÍA VECTOR", W / 2, 760, W - 200);
-  x.font = "700 30px Manrope, sans-serif"; x.fillStyle = "#fff"; x.fillText(`Resultado: ${ok}/${n} (${p}%) · ${lv}`, W / 2, 840);
-  x.font = "500 26px Manrope, sans-serif"; x.fillStyle = "#B9B0E3"; x.fillText(`San Pedro Sula, Honduras · ${new Date().toLocaleDateString("es-HN", { day: "numeric", month: "long", year: "numeric" })}`, W / 2, 900);
-  x.fillText("Edgardo A. López · Director Creativo, Vector Marketing & Academy · estudiovector.com", W / 2, 990);
-  const done = () => cv.toBlob(b => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = `Certificado VECTOR - ${r.nombre}.png`; document.body.appendChild(a); a.click(); a.remove(); }, "image/png");
-  const logo = new Image(); logo.onload = () => { x.drawImage(logo, W / 2 - 70, 60, 140, 106); done(); }; logo.onerror = done; logo.src = "/img/logo-blanco.png";
+function resetAll() {
+  if (!confirm("Se borrará el avance de esta persona en esta computadora para empezar un registro nuevo. ¿Continuar?")) return;
+  LS.del("mv-state"); LS.del("mv-draft");
+  S = FRESH(); C = null; buildFlow(); go(0);
+}
+
+/* ---------- Certificado premium imprimible ---------- */
+const CERT_FONTS = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&display=swap";
+let fontsReady = null;
+function loadCertFonts() {
+  if (fontsReady) return fontsReady;
+  if (!document.querySelector('link[data-certfont]')) { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = CERT_FONTS; l.setAttribute("data-certfont", "1"); document.head.appendChild(l); }
+  const want = document.fonts ? Promise.all(['700 80px "Playfair Display"', '500 40px "Playfair Display"', '400 60px Anton', '800 40px Manrope'].map(f => document.fonts.load(f).catch(() => {}))) : Promise.resolve();
+  fontsReady = Promise.race([want, new Promise(r => setTimeout(r, 2500))]);
+  return fontsReady;
+}
+const img = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
+function folio(name) { let h = 2166136261; for (const ch of String(name)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; } const d = new Date(); const p = x => String(x).padStart(2, "0"); return `VA-MV-${String(d.getFullYear()).slice(2)}${p(d.getMonth() + 1)}${p(d.getDate())}-${String(h % 100000).padStart(5, "0")}`; }
+function lsp(x, t, cx, y, sp, align) { const ch = [...String(t)]; const w = ch.reduce((a, c) => a + x.measureText(c).width + sp, 0) - sp; let px = align === "left" ? cx : cx - w / 2; const prev = x.textAlign; x.textAlign = "left"; ch.forEach(c => { x.fillText(c, px, y); px += x.measureText(c).width + sp; }); x.textAlign = prev; return w; }
+function wrapLines(x, t, max) { const ws = String(t).split(" "); const out = []; let c = ""; ws.forEach(w => { const n = c ? c + " " + w : w; if (x.measureText(n).width > max && c) { out.push(c); c = w; } else c = n; }); if (c) out.push(c); return out; }
+function fitText(x, t, max, px, mk) { let s = px; x.font = mk(s); while (x.measureText(t).width > max && s > 24) { s -= 2; x.font = mk(s); } return s; }
+
+async function certCanvas(r, ok, n, p, lv) {
+  await loadCertFonts();
+  const W = 2480, H = 1754, cv = document.createElement("canvas"); cv.width = W; cv.height = H; const x = cv.getContext("2d");
+  const INK = "#140A3C", MUT = "#5B5280", GOLD = "#B4933F", PUR = "#3A0CC9";
+  /* papel */
+  x.fillStyle = "#FDFCF8"; x.fillRect(0, 0, W, H);
+  const warm = x.createRadialGradient(W / 2, H * .42, 100, W / 2, H * .42, W * .75);
+  warm.addColorStop(0, "rgba(255,255,255,1)"); warm.addColorStop(1, "rgba(243,239,230,1)"); x.fillStyle = warm; x.fillRect(0, 0, W, H);
+  /* marco exterior con la marca */
+  const band = x.createLinearGradient(0, 0, W, H); band.addColorStop(0, "#2C02A4"); band.addColorStop(.5, "#7B4DFF"); band.addColorStop(1, "#E0169B");
+  x.fillStyle = band; x.fillRect(0, 0, W, 26); x.fillRect(0, H - 26, W, 26); x.fillRect(0, 0, 26, H); x.fillRect(W - 26, 0, 26, H);
+  /* doble filete dorado */
+  x.strokeStyle = GOLD; x.lineWidth = 6; x.strokeRect(78, 78, W - 156, H - 156);
+  x.lineWidth = 2; x.strokeRect(100, 100, W - 200, H - 200);
+  /* ornamento de esquinas: arcos finos */
+  x.save(); x.strokeStyle = "rgba(180,147,63,.55)"; x.lineWidth = 2;
+  [[100, 100, 1, 1], [W - 100, 100, -1, 1], [100, H - 100, 1, -1], [W - 100, H - 100, -1, -1]].forEach(([cx0, cy0, sx, sy]) => {
+    for (let k = 0; k < 7; k++) { const rr = 70 + k * 22; x.beginPath(); x.arc(cx0, cy0, rr, 0, Math.PI * 2); x.save(); x.beginPath(); x.rect(Math.min(cx0, cx0 + sx * 230), Math.min(cy0, cy0 + sy * 230), 230, 230); x.clip(); x.beginPath(); x.arc(cx0, cy0, rr, 0, Math.PI * 2); x.stroke(); x.restore(); }
+  });
+  x.restore();
+  /* logo */
+  const logo = await img("/img/logo-morado.png");
+  if (logo) { const lw = 330, lh = lw * logo.height / logo.width; x.drawImage(logo, W / 2 - lw / 2, 150, lw, lh); }
+  x.textAlign = "center"; x.textBaseline = "alphabetic";
+  x.fillStyle = MUT; x.font = '600 30px Manrope, sans-serif';
+  lsp(x, "VECTOR MARKETING & ACADEMY · SAN PEDRO SULA, HONDURAS", W / 2, 420, 5);
+  /* divisor con rombo */
+  const div = (y, w) => { x.strokeStyle = GOLD; x.lineWidth = 2; x.beginPath(); x.moveTo(W / 2 - w, y); x.lineTo(W / 2 - 16, y); x.moveTo(W / 2 + 16, y); x.lineTo(W / 2 + w, y); x.stroke(); x.fillStyle = GOLD; x.save(); x.translate(W / 2, y); x.rotate(Math.PI / 4); x.fillRect(-7, -7, 14, 14); x.restore(); };
+  div(460, 360);
+  /* título */
+  x.fillStyle = INK; x.font = '400 150px Anton, Impact, sans-serif'; lsp(x, "CERTIFICADO", W / 2, 610, 10);
+  x.fillStyle = PUR; x.font = '800 46px Manrope, sans-serif'; lsp(x, "EN ATENCIÓN AL CLIENTE", W / 2, 678, 9);
+  x.fillStyle = MUT; x.font = '500 34px Manrope, sans-serif'; x.fillText("Se otorga el presente certificado a", W / 2, 770);
+  /* nombre */
+  x.fillStyle = INK; const ns = fitText(x, r.nombre, W - 700, 132, s => `700 ${s}px "Playfair Display", Georgia, serif`);
+  x.fillText(r.nombre, W / 2, 900);
+  x.strokeStyle = "rgba(20,10,60,.18)"; x.lineWidth = 2; x.beginPath(); x.moveTo(W / 2 - 560, 936); x.lineTo(W / 2 + 560, 936); x.stroke();
+  x.fillStyle = MUT; x.font = '600 32px Manrope, sans-serif';
+  x.fillText([r.cargo, r.empresa].filter(Boolean).join(" · "), W / 2, 986, W - 600);
+  /* cuerpo */
+  x.fillStyle = "#3A3360"; x.font = '400 34px Manrope, sans-serif';
+  const body = `por haber completado y aprobado el curso de atención y ventas por WhatsApp con el Método VECTOR — Vincular, Explorar, Conocer, Transparentar, Ofrecer y Retener — obteniendo una calificación de ${p}% (${ok} de ${n} respuestas correctas) y la distinción de ${lv}.`;
+  wrapLines(x, body, W - 900).forEach((ln, i) => x.fillText(ln, W / 2, 1056 + i * 48));
+  /* sello */
+  const scx = W / 2, scy = 1320, R = 112;
+  const sg = x.createLinearGradient(scx - R, scy - R, scx + R, scy + R); sg.addColorStop(0, "#2C02A4"); sg.addColorStop(.55, "#7B4DFF"); sg.addColorStop(1, "#E0169B");
+  x.beginPath(); x.arc(scx, scy, R, 0, Math.PI * 2); x.fillStyle = sg; x.fill();
+  x.beginPath(); x.arc(scx, scy, R - 14, 0, Math.PI * 2); x.strokeStyle = "rgba(255,255,255,.6)"; x.lineWidth = 3; x.stroke();
+  x.beginPath(); x.arc(scx, scy, R + 16, 0, Math.PI * 2); x.strokeStyle = GOLD; x.lineWidth = 4; x.stroke();
+  x.fillStyle = "#fff"; x.font = '700 18px Manrope, sans-serif'; lsp(x, "MÉTODO", scx, scy - 46, 5);
+  x.font = '400 56px Anton, Impact, sans-serif'; lsp(x, "VECTOR", scx, scy + 14, 3);
+  x.font = '700 19px Manrope, sans-serif'; lsp(x, "ACADEMY", scx, scy + 58, 6);
+  /* pie: fecha, folio y firma */
+  const fecha = new Date().toLocaleDateString("es-HN", { day: "numeric", month: "long", year: "numeric" });
+  const yb = 1540;
+  x.textAlign = "center"; x.strokeStyle = "rgba(20,10,60,.3)"; x.lineWidth = 2;
+  x.beginPath(); x.moveTo(300, yb); x.lineTo(900, yb); x.stroke();
+  x.beginPath(); x.moveTo(W - 900, yb); x.lineTo(W - 300, yb); x.stroke();
+  x.fillStyle = INK; x.font = '500 40px "Playfair Display", Georgia, serif'; x.fillText("Edgardo A. López", 600, yb - 20);
+  x.font = '600 26px Manrope, sans-serif'; x.fillStyle = MUT; x.fillText("Director · Vector Marketing & Academy", 600, yb + 46);
+  x.fillStyle = INK; x.font = '600 32px Manrope, sans-serif'; x.fillText(fecha, W - 600, yb - 20);
+  x.font = '600 26px Manrope, sans-serif'; x.fillStyle = MUT; x.fillText("San Pedro Sula, Honduras", W - 600, yb + 46);
+  x.font = '500 23px Manrope, sans-serif'; x.fillStyle = "#8A82AC";
+  lsp(x, `FOLIO ${folio(r.nombre + r.correo)} · estudiovector.com/metodologia-vector`, W / 2, H - 128, 3);
+  return cv;
+}
+function certDownload(cv, nombre) { cv.toBlob(b => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = `Certificado Atencion al Cliente - Metodo VECTOR - ${nombre}.png`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }, "image/png"); }
+function certPrint(url) {
+  const w = window.open("", "_blank"); if (!w) { toast("Permita las ventanas emergentes para imprimir."); return; }
+  w.document.write(`<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Certificado · Método VECTOR</title><style>@page{size:A4 landscape;margin:0}html,body{margin:0;background:#fff}img{width:100%;height:auto;display:block}</style></head><body><img src="${url}" alt="Certificado"></body></html>`);
+  w.document.close();
+  const go2 = () => { try { w.focus(); w.print(); } catch (e) {} };
+  w.addEventListener ? w.addEventListener("load", go2) : setTimeout(go2, 800); setTimeout(go2, 1200);
   track("MetodologiaVectorCertificado", {}, true);
 }
 
@@ -576,7 +840,9 @@ function burst() {
   let f = 0; (function t() { x.clearRect(0, 0, W, H); ps.forEach(p => { p.vy += .35; p.x += p.vx; p.y += p.vy; p.a += .15; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * .6); x.restore(); }); if (++f < 120) requestAnimationFrame(t); else x.clearRect(0, 0, W, H); })();
 }
 
-if (S.reg) { buildC(); buildFlow(); }
+buildFlow();
+if (S.reg) buildC();
+const exitBtn = $("mvExit"); if (exitBtn) exitBtn.onclick = resetAll;
 render();
 
 })();
